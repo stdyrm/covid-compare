@@ -142,6 +142,7 @@ const getData = () => {
                     .attr('stroke', `${lineColors[i]}`)
 
                 // line labels
+
                 const lastDayOfOutbreak = stateData[stateData.length - 1].dayOfOutbreak;
                 const lastCasesPerThousand = stateData[stateData.length - 1].casesPerThousand
 
