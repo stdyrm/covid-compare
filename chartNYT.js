@@ -39,7 +39,9 @@ const lineColors = [
     '#f06292',
     '#8e99f3',
     '#be9c91',
-    '#a7c0cd'
+    '#a7c0cd',
+    '#e57373',
+    '#ba68c8'
 ];
 
 const getStatePopulation = () => {
@@ -164,8 +166,8 @@ const getData = () => {
                     .style('font-size', 14)
                     .on('click', () => {
                         let active = stateData.active ? false : true,
-                            lineOpacity = active ? 0 : 1,
-                            legendOpacity = active ? .3 : 1;
+                            lineOpacity = active ? .1 : 1,
+                            legendOpacity = active ? .1 : 1;
 
                         d3.selectAll(`#line-label-${stateHTML}, #line-${stateHTML}`)
                             .transition().duration(100)
