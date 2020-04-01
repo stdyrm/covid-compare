@@ -45,19 +45,19 @@ const lineColors = [
 ];
 
 const getStatePopulation = () => {
+
     d3.csv('./SCPRC-EST2019-18+POP-RES.csv') // CSV from https://www2.census.gov/programs-surveys/popest/datasets/2010-2019/state/detail/
         .then(data => {
             Object.keys(notableStates).forEach(state => {
                 notableStates[state].population = parseInt(data.filter(d => d.NAME === state)[0].POPESTIMATE2019);
             });
-        })
+        });
 };
 
 const getData = () => {
     // Get data
     d3.csv('./us-states.csv')
         .then(data => {
-            
             // Clean data: 
                 // 1. Change date to date value
                 // 2. Change fips, cases, deaths to integer values

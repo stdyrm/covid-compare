@@ -1,257 +1,359 @@
-[
+[   
     {
         "name": "Alabama",
-        "abbreviation": "AL",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "AL", 
+        "htmlFormat": "alabama", 
+        "lockdown": "none as of 03-31", 
+        "population": 4903185
     },
     {
         "name": "Alaska",
-        "abbreviation": "AK",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "AK", 
+        "htmlFormat": "alaska", 
+        "lockdown": "03-28-20", 
+        "population": 731545
     },
     {
         "name": "Arizona",
-        "abbreviation": "AZ",
-        "lockdown-order": "03-31-20"
+        "abbreviation": "AZ", 
+        "htmlFormat": "arizona", 
+        "lockdown": "03-31-20", 
+        "population": 7278717
     },
     {
         "name": "Arkansas",
-        "abbreviation": "AR",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "AR", 
+        "htmlFormat": "arkansas", 
+        "lockdown": "none as of 03-31", 
+        "population": 3017804
     },
     {
         "name": "California",
-        "abbreviation": "CA",
-        "lockdown-order": "03/19/20"
+        "abbreviation": "CA", 
+        "htmlFormat": "california", 
+        "lockdown": "03-19-20", 
+        "population": 39512223
     },
     {
         "name": "Colorado",
-        "abbreviation": "CO",
-        "lockdown-order": "03-26-20"
+        "abbreviation": "CO", 
+        "htmlFormat": "colorado", 
+        "lockdown": "03-26-20", 
+        "population": 5758736
     },
     {
         "name": "Connecticut",
-        "abbreviation": "CT",
-        "lockdown-order": "03-23-20"
+        "abbreviation": "CT", 
+        "htmlFormat": "connecticut", 
+        "lockdown": "03-23-20", 
+        "population": 3565287
     },
     {
         "name": "Delaware",
-        "abbreviation": "DE",
-        "lockdown-order": "03-24-20"
+        "abbreviation": "DE", 
+        "htmlFormat": "delaware", 
+        "lockdown": "03-24-20", 
+        "population": 973764
     },
     {
-        "name": "District Of Columbia",
-        "abbreviation": "DC",
-        "lockdown-order": "none as of 03-31"
+        "name": "District of Columbia",
+        "abbreviation": "DC", 
+        "htmlFormat": "district-of columbia", 
+        "lockdown": "04-01-20", 
+        "population": 705749
     },
     {
         "name": "Florida",
-        "abbreviation": "FL",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "FL", 
+        "htmlFormat": "florida", 
+        "lockdown": "04-02-20", 
+        "population": 21477737
     },
     {
         "name": "Georgia",
-        "abbreviation": "GA",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "GA", 
+        "htmlFormat": "georgia", 
+        "lockdown": "none as of 03-31", 
+        "population": 10617423
     },
     {
         "name": "Hawaii",
-        "abbreviation": "HI",
-        "lockdown-order": "03-25-20"
+        "abbreviation": "HI", 
+        "htmlFormat": "hawaii", 
+        "lockdown": "03-25-20", 
+        "population": 1415872
     },
     {
         "name": "Idaho",
-        "abbreviation": "ID",
-        "lockdown-order": "03-25-20"
+        "abbreviation": "ID", 
+        "htmlFormat": "idaho", 
+        "lockdown": "03-25-20", 
+        "population": 1787065
     },
     {
         "name": "Illinois",
-        "abbreviation": "IL",
-        "lockdown-order": "03-21-20"
+        "abbreviation": "IL", 
+        "htmlFormat": "illinois", 
+        "lockdown": "03-21-20", 
+        "population": 12671821
     },
     {
         "name": "Indiana",
-        "abbreviation": "IN",
-        "lockdown-order": "03-24-20"
+        "abbreviation": "IN", 
+        "htmlFormat": "indiana", 
+        "lockdown": "03-24-20", 
+        "population": 6732219
     },
     {
         "name": "Iowa",
-        "abbreviation": "IA",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "IA", 
+        "htmlFormat": "iowa", 
+        "lockdown": "none as of 03-31", 
+        "population": 3155070
     },
     {
         "name": "Kansas",
-        "abbreviation": "KS",
-        "lockdown-order": "03-30-20"
+        "abbreviation": "KS", 
+        "htmlFormat": "kansas", 
+        "lockdown": "03-30-20", 
+        "population": 2913314
     },
     {
         "name": "Kentucky",
-        "abbreviation": "KY",
-        "lockdown-order": "03-26-20"
+        "abbreviation": "KY", 
+        "htmlFormat": "kentucky", 
+        "lockdown": "03-26-20", 
+        "population": 4467673
     },
     {
         "name": "Louisiana",
-        "abbreviation": "LA",
-        "lockdown-order": "03-23-20"
+        "abbreviation": "LA", 
+        "htmlFormat": "louisiana", 
+        "lockdown": "03-23-20", 
+        "population": 4648794
     },
     {
         "name": "Maine",
-        "abbreviation": "ME",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "ME", 
+        "htmlFormat": "maine", 
+        "lockdown": "04-02-20", 
+        "population": 1344212
     },
     {
         "name": "Maryland",
-        "abbreviation": "MD",
-        "lockdown-order": "03-30-20"
+        "abbreviation": "MD", 
+        "htmlFormat": "maryland", 
+        "lockdown": "03-30-20", 
+        "population": 6045680
     },
     {
         "name": "Massachusetts",
-        "abbreviation": "MA",
-        "lockdown-order": "03-24-20"
+        "abbreviation": "MA", 
+        "htmlFormat": "massachusetts", 
+        "lockdown": "03-24-20", 
+        "population": 6892503
     },
     {
         "name": "Michigan",
-        "abbreviation": "MI",
-        "lockdown-order": "03-24-20"
+        "abbreviation": "MI", 
+        "htmlFormat": "michigan", 
+        "lockdown": "03-24-20", 
+        "population": 9986857
     },
     {
         "name": "Minnesota",
-        "abbreviation": "MN",
-        "lockdown-order": "03-27-20"
+        "abbreviation": "MN", 
+        "htmlFormat": "minnesota", 
+        "lockdown": "03-27-20", 
+        "population": 5639632
     },
     {
         "name": "Mississippi",
-        "abbreviation": "MS",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "MS", 
+        "htmlFormat": "mississippi", 
+        "lockdown": "none as of 03-31", 
+        "population": 2976149
     },
     {
         "name": "Missouri",
-        "abbreviation": "MO",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "MO", 
+        "htmlFormat": "missouri", 
+        "lockdown": "none as of 03-31", 
+        "population": 6137428
     },
     {
         "name": "Montana",
-        "abbreviation": "MT",
-        "lockdown-order": "03-28-20"
+        "abbreviation": "MT", 
+        "htmlFormat": "montana", 
+        "lockdown": "03-28-20", 
+        "population": 1068778
     },
     {
         "name": "Nebraska",
-        "abbreviation": "NE",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "NE", 
+        "htmlFormat": "nebraska", 
+        "lockdown": "none as of 03-31", 
+        "population": 1934408
     },
     {
         "name": "Nevada",
-        "abbreviation": "NV",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "NV", 
+        "htmlFormat": "nevada", 
+        "lockdown": "none as of 03-31", 
+        "population": 3080156
     },
     {
         "name": "New Hampshire",
-        "abbreviation": "NH",
-        "lockdown-order": "03-27-20"
+        "abbreviation": "NH", 
+        "htmlFormat": "new-hampshire", 
+        "lockdown": "03-27-20", 
+        "population": 1359711
     },
     {
         "name": "New Jersey",
-        "abbreviation": "NJ",
-        "lockdown-order": "03-21-20"
+        "abbreviation": "NJ", 
+        "htmlFormat": "new-jersey", 
+        "lockdown": "03-21-20", 
+        "population": 8882190
     },
     {
         "name": "New Mexico",
-        "abbreviation": "NM",
-        "lockdown-order": "03-24-20"
+        "abbreviation": "NM", 
+        "htmlFormat": "new-mexico", 
+        "lockdown": "03-24-20", 
+        "population": 2096829
     },
     {
         "name": "New York",
-        "abbreviation": "NY",
-        "lockdown-order": "03-22-20"
+        "abbreviation": "NY", 
+        "htmlFormat": "new-york", 
+        "lockdown": "03-22-20", 
+        "population": 19453561
     },
     {
         "name": "North Carolina",
-        "abbreviation": "NC",
-        "lockdown-order": "03/30/20"
+        "abbreviation": "NC", 
+        "htmlFormat": "north-carolina", 
+        "lockdown": "03-30-20", 
+        "population": 10488084
     },
     {
         "name": "North Dakota",
-        "abbreviation": "ND",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "ND", 
+        "htmlFormat": "north-dakota", 
+        "lockdown": "none as of 03-31", 
+        "population": 762062
     },
     {
         "name": "Ohio",
-        "abbreviation": "OH",
-        "lockdown-order": "03-23-20"
+        "abbreviation": "OH", 
+        "htmlFormat": "ohio", 
+        "lockdown": "03-23-20", 
+        "population": 11689100
     },
     {
         "name": "Oklahoma",
-        "abbreviation": "OK",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "OK", 
+        "htmlFormat": "oklahoma", 
+        "lockdown": "none as of 03-31", 
+        "population": 3956971
     },
     {
         "name": "Oregon",
-        "abbreviation": "OR",
-        "lockdown-order": "03-23-20"
+        "abbreviation": "OR", 
+        "htmlFormat": "oregon", 
+        "lockdown": "03-23-20", 
+        "population": 4217737
     },
     {
         "name": "Pennsylvania",
-        "abbreviation": "PA",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "PA", 
+        "htmlFormat": "pennsylvania", 
+        "lockdown": "none as of 03-31", 
+        "population": 12801989
     },
     {
         "name": "Rhode Island",
-        "abbreviation": "RI",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "RI", 
+        "htmlFormat": "rhode-island", 
+        "lockdown": "none as of 03-31", 
+        "population": 1059361
     },
     {
         "name": "South Carolina",
-        "abbreviation": "SC",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "SC", 
+        "htmlFormat": "south-carolina", 
+        "lockdown": "none as of 03-31", 
+        "population": 5148714
     },
     {
         "name": "South Dakota",
-        "abbreviation": "SD",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "SD", 
+        "htmlFormat": "south-dakota", 
+        "lockdown": "none as of 03-31", 
+        "population": 884659
     },
     {
         "name": "Tennessee",
-        "abbreviation": "TN",
-        "lockdown-order": "03-31-20"
+        "abbreviation": "TN", 
+        "htmlFormat": "tennessee", 
+        "lockdown": "03-31-20", 
+        "population": 6829174
     },
     {
         "name": "Texas",
-        "abbreviation": "TX",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "TX", 
+        "htmlFormat": "texas", 
+        "lockdown": "none as of 03-31", 
+        "population": 28995881
     },
     {
         "name": "Utah",
-        "abbreviation": "UT",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "UT", 
+        "htmlFormat": "utah", 
+        "lockdown": "none as of 03-31", 
+        "population": 3205958
     },
     {
         "name": "Vermont",
-        "abbreviation": "VT",
-        "lockdown-order": "03-25-20"
+        "abbreviation": "VT", 
+        "htmlFormat": "vermont", 
+        "lockdown": "03-25-20", 
+        "population": 623989
     },
     {
         "name": "Virginia",
-        "abbreviation": "VA",
-        "lockdown-order": "03-30-20"
+        "abbreviation": "VA", 
+        "htmlFormat": "virginia", 
+        "lockdown": "03-30-20", 
+        "population": 8535519
     },
     {
         "name": "Washington",
-        "abbreviation": "WA",
-        "lockdown-order": "03-23-20"
+        "abbreviation": "WA", 
+        "htmlFormat": "washington", 
+        "lockdown": "03-23-20", 
+        "population": 7614893
     },
     {
         "name": "West Virginia",
-        "abbreviation": "WV",
-        "lockdown-order": "03-24-20"
+        "abbreviation": "WV", 
+        "htmlFormat": "west-virginia", 
+        "lockdown": "03-24-20", 
+        "population": 1792147
     },
     {
         "name": "Wisconsin",
-        "abbreviation": "WI",
-        "lockdown-order": "03-25-20"
+        "abbreviation": "WI", 
+        "htmlFormat": "wisconsin", 
+        "lockdown": "03-25-20", 
+        "population": 5822434
     },
     {
         "name": "Wyoming",
-        "abbreviation": "WY",
-        "lockdown-order": "none as of 03-31"
+        "abbreviation": "WY", 
+        "htmlFormat": "wyoming", 
+        "lockdown": "none as of 03-31", 
+        "population": 578759
     }
 ]
