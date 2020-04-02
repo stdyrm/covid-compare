@@ -166,7 +166,7 @@ const getData = () => {
                     .style('font-size', 14)
                     .on('click', () => {
                         let active = stateData.active ? false : true,
-                            lineOpacity = active ? .1 : 1,
+                            lineOpacity = active ? 0 : 1,
                             legendOpacity = active ? .1 : 1;
 
                         d3.selectAll(`#line-label-${stateHTML}, #line-${stateHTML}`)

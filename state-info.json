@@ -1,359 +1,410 @@
-[   
-    {
+{
+    "Alabama": {
         "name": "Alabama",
         "abbreviation": "AL", 
         "htmlFormat": "alabama", 
-        "lockdown": "none as of 03-31", 
-        "population": 4903185
+        "lockdown": "none as of 03-31",
+        "population": 4903185,
+        "selected": false
     },
-    {
+    "Alaska": {
         "name": "Alaska",
-        "abbreviation": "AK", 
+        "abbreviation": "AK",
         "htmlFormat": "alaska", 
-        "lockdown": "03-28-20", 
-        "population": 731545
+        "lockdown": "03-28-20",
+        "population": 731545,
+        "selected": false
     },
-    {
+    "Arizona": {
         "name": "Arizona",
         "abbreviation": "AZ", 
         "htmlFormat": "arizona", 
         "lockdown": "03-31-20", 
-        "population": 7278717
+        "population": 7278717,
+        "selected": false
     },
-    {
+    "Arkansas": {
         "name": "Arkansas",
         "abbreviation": "AR", 
         "htmlFormat": "arkansas", 
         "lockdown": "none as of 03-31", 
-        "population": 3017804
+        "population": 3017804,
+        "selected": false
     },
-    {
+    "California": {
         "name": "California",
         "abbreviation": "CA", 
         "htmlFormat": "california", 
         "lockdown": "03-19-20", 
-        "population": 39512223
+        "population": 39512223,
+        "selected": true
     },
-    {
+    "Colorado": {
         "name": "Colorado",
         "abbreviation": "CO", 
         "htmlFormat": "colorado", 
         "lockdown": "03-26-20", 
-        "population": 5758736
+        "population": 5758736,
+        "selected": false
     },
-    {
+    "Connecticut": {
         "name": "Connecticut",
         "abbreviation": "CT", 
         "htmlFormat": "connecticut", 
         "lockdown": "03-23-20", 
-        "population": 3565287
+        "population": 3565287,
+        "selected": false
     },
-    {
+    "Delaware": {
         "name": "Delaware",
         "abbreviation": "DE", 
         "htmlFormat": "delaware", 
         "lockdown": "03-24-20", 
-        "population": 973764
+        "population": 973764,
+        "selected": false
     },
-    {
+    "District of Columbia": {
         "name": "District of Columbia",
         "abbreviation": "DC", 
         "htmlFormat": "district-of columbia", 
         "lockdown": "04-01-20", 
-        "population": 705749
+        "population": 705749,
+        "selected": false
     },
-    {
+    "Florida": {
         "name": "Florida",
         "abbreviation": "FL", 
         "htmlFormat": "florida", 
         "lockdown": "04-02-20", 
-        "population": 21477737
+        "population": 21477737,
+        "selected": true
     },
-    {
+    "Georgia": {
         "name": "Georgia",
         "abbreviation": "GA", 
         "htmlFormat": "georgia", 
         "lockdown": "none as of 03-31", 
-        "population": 10617423
+        "population": 10617423,
+        "selected": false
     },
-    {
+    "Hawaii": {
         "name": "Hawaii",
         "abbreviation": "HI", 
         "htmlFormat": "hawaii", 
         "lockdown": "03-25-20", 
-        "population": 1415872
+        "population": 1415872,
+        "selected": true
     },
-    {
+    "Idaho": {
         "name": "Idaho",
         "abbreviation": "ID", 
         "htmlFormat": "idaho", 
         "lockdown": "03-25-20", 
-        "population": 1787065
+        "population": 1787065,
+        "selected": false
     },
-    {
+    "Illinois": {
         "name": "Illinois",
         "abbreviation": "IL", 
         "htmlFormat": "illinois", 
         "lockdown": "03-21-20", 
-        "population": 12671821
+        "population": 12671821,
+        "selected": true
     },
-    {
+    "Indiana": {
         "name": "Indiana",
         "abbreviation": "IN", 
         "htmlFormat": "indiana", 
         "lockdown": "03-24-20", 
-        "population": 6732219
+        "population": 6732219,
+        "selected": false
     },
-    {
+    "Iowa": {
         "name": "Iowa",
         "abbreviation": "IA", 
         "htmlFormat": "iowa", 
         "lockdown": "none as of 03-31", 
-        "population": 3155070
+        "population": 3155070,
+        "selected": false
     },
-    {
+    "Kansas": {
         "name": "Kansas",
         "abbreviation": "KS", 
         "htmlFormat": "kansas", 
         "lockdown": "03-30-20", 
-        "population": 2913314
+        "population": 2913314,
+        "selected": false
     },
-    {
+    "Kentucky": {
         "name": "Kentucky",
         "abbreviation": "KY", 
         "htmlFormat": "kentucky", 
         "lockdown": "03-26-20", 
-        "population": 4467673
+        "population": 4467673,
+        "selected": false
     },
-    {
+    "Louisiana": {
         "name": "Louisiana",
         "abbreviation": "LA", 
         "htmlFormat": "louisiana", 
         "lockdown": "03-23-20", 
-        "population": 4648794
+        "population": 4648794,
+        "selected": true
     },
-    {
+    "Maine": {
         "name": "Maine",
         "abbreviation": "ME", 
         "htmlFormat": "maine", 
         "lockdown": "04-02-20", 
-        "population": 1344212
+        "population": 1344212,
+        "selected": false
     },
-    {
+    "Maryland": {
         "name": "Maryland",
         "abbreviation": "MD", 
         "htmlFormat": "maryland", 
         "lockdown": "03-30-20", 
-        "population": 6045680
+        "population": 6045680,
+        "selected": false
     },
-    {
+    "Massachusetts": {
         "name": "Massachusetts",
         "abbreviation": "MA", 
         "htmlFormat": "massachusetts", 
         "lockdown": "03-24-20", 
-        "population": 6892503
+        "population": 6892503,
+        "selected": false
     },
-    {
+    "Michigan": {
         "name": "Michigan",
         "abbreviation": "MI", 
         "htmlFormat": "michigan", 
         "lockdown": "03-24-20", 
-        "population": 9986857
+        "population": 9986857,
+        "selected": true
     },
-    {
+    "Minnesota": {
         "name": "Minnesota",
         "abbreviation": "MN", 
         "htmlFormat": "minnesota", 
         "lockdown": "03-27-20", 
-        "population": 5639632
+        "population": 5639632,
+        "selected": false
     },
-    {
+    "Mississippi": {
         "name": "Mississippi",
         "abbreviation": "MS", 
         "htmlFormat": "mississippi", 
         "lockdown": "none as of 03-31", 
-        "population": 2976149
+        "population": 2976149,
+        "selected": false
     },
-    {
+    "Missouri": {
         "name": "Missouri",
         "abbreviation": "MO", 
         "htmlFormat": "missouri", 
         "lockdown": "none as of 03-31", 
-        "population": 6137428
+        "population": 6137428,
+        "selected": false
     },
-    {
+    "Montana": {
         "name": "Montana",
         "abbreviation": "MT", 
         "htmlFormat": "montana", 
         "lockdown": "03-28-20", 
-        "population": 1068778
+        "population": 1068778,
+        "selected": false
     },
-    {
+    "Nebraska": {
         "name": "Nebraska",
         "abbreviation": "NE", 
         "htmlFormat": "nebraska", 
         "lockdown": "none as of 03-31", 
-        "population": 1934408
+        "population": 1934408,
+        "selected": false
     },
-    {
+    "Nevada": {
         "name": "Nevada",
         "abbreviation": "NV", 
         "htmlFormat": "nevada", 
-        "lockdown": "none as of 03-31", 
-        "population": 3080156
+        "lockdown": "04-02-20", 
+        "population": 3080156,
+        "selected": false
     },
-    {
+    "New Hampshire": {
         "name": "New Hampshire",
         "abbreviation": "NH", 
         "htmlFormat": "new-hampshire", 
         "lockdown": "03-27-20", 
-        "population": 1359711
+        "population": 1359711,
+        "selected": false
     },
-    {
+    "New Jersey": {
         "name": "New Jersey",
         "abbreviation": "NJ", 
         "htmlFormat": "new-jersey", 
         "lockdown": "03-21-20", 
-        "population": 8882190
+        "population": 8882190,
+        "selected": true
     },
-    {
+    "New Mexico": {
         "name": "New Mexico",
         "abbreviation": "NM", 
         "htmlFormat": "new-mexico", 
         "lockdown": "03-24-20", 
-        "population": 2096829
+        "population": 2096829,
+        "selected": false
     },
-    {
+    "New York": {
         "name": "New York",
         "abbreviation": "NY", 
         "htmlFormat": "new-york", 
         "lockdown": "03-22-20", 
-        "population": 19453561
+        "population": 19453561,
+        "selected": true
     },
-    {
+    "North Carolina": {
         "name": "North Carolina",
         "abbreviation": "NC", 
         "htmlFormat": "north-carolina", 
         "lockdown": "03-30-20", 
-        "population": 10488084
+        "population": 10488084,
+        "selected": false
     },
-    {
+    "North Dakota": {
         "name": "North Dakota",
         "abbreviation": "ND", 
         "htmlFormat": "north-dakota", 
         "lockdown": "none as of 03-31", 
-        "population": 762062
+        "population": 762062,
+        "selected": false
     },
-    {
+    "Ohio": {
         "name": "Ohio",
         "abbreviation": "OH", 
         "htmlFormat": "ohio", 
         "lockdown": "03-23-20", 
-        "population": 11689100
+        "population": 11689100,
+        "selected": false
     },
-    {
+    "Oklahoma": {
         "name": "Oklahoma",
         "abbreviation": "OK", 
         "htmlFormat": "oklahoma", 
-        "lockdown": "none as of 03-31", 
-        "population": 3956971
+        "lockdown": "04-02-20", 
+        "population": 3956971,
+        "selected": false
     },
-    {
+    "Oregon": {
         "name": "Oregon",
         "abbreviation": "OR", 
         "htmlFormat": "oregon", 
         "lockdown": "03-23-20", 
-        "population": 4217737
+        "population": 4217737,
+        "selected": false
     },
-    {
+    "Pennsylvania": {
         "name": "Pennsylvania",
         "abbreviation": "PA", 
         "htmlFormat": "pennsylvania", 
-        "lockdown": "none as of 03-31", 
-        "population": 12801989
+        "lockdown": "04-02-20", 
+        "population": 12801989,
+        "selected": true
     },
-    {
+    "Rhode Island": {
         "name": "Rhode Island",
         "abbreviation": "RI", 
         "htmlFormat": "rhode-island", 
-        "lockdown": "none as of 03-31", 
-        "population": 1059361
+        "lockdown": "03-28-20", 
+        "population": 1059361,
+        "selected": false
     },
-    {
+    "South Carolina": {
         "name": "South Carolina",
         "abbreviation": "SC", 
         "htmlFormat": "south-carolina", 
         "lockdown": "none as of 03-31", 
-        "population": 5148714
+        "population": 5148714,
+        "selected": false
     },
-    {
+    "South Dakota": {
         "name": "South Dakota",
         "abbreviation": "SD", 
         "htmlFormat": "south-dakota", 
         "lockdown": "none as of 03-31", 
-        "population": 884659
+        "population": 884659,
+        "selected": false
     },
-    {
+    "Tennessee": {
         "name": "Tennessee",
         "abbreviation": "TN", 
         "htmlFormat": "tennessee", 
         "lockdown": "03-31-20", 
-        "population": 6829174
+        "population": 6829174,
+        "selected": false
     },
-    {
+    "Texas": {
         "name": "Texas",
         "abbreviation": "TX", 
         "htmlFormat": "texas", 
         "lockdown": "none as of 03-31", 
-        "population": 28995881
+        "population": 28995881,
+        "selected": false
     },
-    {
+    "Utah": {
         "name": "Utah",
         "abbreviation": "UT", 
         "htmlFormat": "utah", 
         "lockdown": "none as of 03-31", 
-        "population": 3205958
+        "population": 3205958,
+        "selected": false
     },
-    {
+    "Vermont": {
         "name": "Vermont",
         "abbreviation": "VT", 
         "htmlFormat": "vermont", 
         "lockdown": "03-25-20", 
-        "population": 623989
+        "population": 623989,
+        "selected": false
     },
-    {
+    "Virginia": {
         "name": "Virginia",
         "abbreviation": "VA", 
         "htmlFormat": "virginia", 
         "lockdown": "03-30-20", 
-        "population": 8535519
+        "population": 8535519,
+        "selected": false
     },
-    {
+    "Washington": {
         "name": "Washington",
         "abbreviation": "WA", 
         "htmlFormat": "washington", 
         "lockdown": "03-23-20", 
-        "population": 7614893
+        "population": 7614893,
+        "selected": true
     },
-    {
+    "West Virginia": {
         "name": "West Virginia",
         "abbreviation": "WV", 
         "htmlFormat": "west-virginia", 
         "lockdown": "03-24-20", 
-        "population": 1792147
+        "population": 1792147,
+        "selected": false
     },
-    {
+    "Wisconsin": {
         "name": "Wisconsin",
-        "abbreviation": "WI", 
-        "htmlFormat": "wisconsin", 
-        "lockdown": "03-25-20", 
-        "population": 5822434
+        "abbreviation": "WI",
+        "htmlFormat": "wisconsin",
+        "lockdown": "03-25-20",
+        "population": 5822434,
+        "selected": false
     },
-    {
+    "Wyoming": {
         "name": "Wyoming",
-        "abbreviation": "WY", 
-        "htmlFormat": "wyoming", 
-        "lockdown": "none as of 03-31", 
-        "population": 578759
+        "abbreviation": "WY",
+        "htmlFormat": "wyoming",
+        "lockdown": "none as of 03-31",
+        "population": 578759,
+        "selected": false
     }
-]
+}

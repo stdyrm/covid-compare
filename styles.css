@@ -7,14 +7,6 @@ body {
   fill: #f2ffcc
 }
 
-/* .bar {
-    fill: #ffb74d;
-  }
-  
-.bar:hover {
-  fill: #ffe0b2;  
-} */
-
 .legend:hover {
   cursor: pointer; 
 }

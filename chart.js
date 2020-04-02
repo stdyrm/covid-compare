@@ -61,6 +61,8 @@ const drawBarPlot = async () => {
         .html('*Data from Hawaii State Department of Health.')
 
     // Scales
+    const today = new Date();
+
     const xScale = d3.scaleTime()
         .domain([d3.min(data, d => dateParser(d.date)), d3.max(data, d => dateParser(d.date))])
         .range([0, boundedWidth]);
