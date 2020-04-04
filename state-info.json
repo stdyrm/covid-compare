@@ -3,7 +3,7 @@
         "name": "Alabama",
         "abbreviation": "AL", 
         "htmlFormat": "alabama", 
-        "lockdown": "none as of 03-31",
+        "lockdown": "04-04-20",
         "population": 4903185,
         "selected": false
     },
@@ -27,7 +27,7 @@
         "name": "Arkansas",
         "abbreviation": "AR", 
         "htmlFormat": "arkansas", 
-        "lockdown": "none as of 03-31", 
+        "lockdown": "none as of 04-04", 
         "population": 3017804,
         "selected": false
     },
@@ -83,7 +83,7 @@
         "name": "Georgia",
         "abbreviation": "GA", 
         "htmlFormat": "georgia", 
-        "lockdown": "none as of 03-31", 
+        "lockdown": "none as of 04-04", 
         "population": 10617423,
         "selected": false
     },
@@ -123,7 +123,7 @@
         "name": "Iowa",
         "abbreviation": "IA", 
         "htmlFormat": "iowa", 
-        "lockdown": "none as of 03-31", 
+        "lockdown": "none as of 04-04", 
         "population": 3155070,
         "selected": false
     },
@@ -195,7 +195,7 @@
         "name": "Mississippi",
         "abbreviation": "MS", 
         "htmlFormat": "mississippi", 
-        "lockdown": "none as of 03-31", 
+        "lockdown": "04-03-20", 
         "population": 2976149,
         "selected": false
     },
@@ -203,7 +203,7 @@
         "name": "Missouri",
         "abbreviation": "MO", 
         "htmlFormat": "missouri", 
-        "lockdown": "none as of 03-31", 
+        "lockdown": "04-06-20", 
         "population": 6137428,
         "selected": false
     },
@@ -219,7 +219,7 @@
         "name": "Nebraska",
         "abbreviation": "NE", 
         "htmlFormat": "nebraska", 
-        "lockdown": "none as of 03-31", 
+        "lockdown": "none as of 04-04", 
         "population": 1934408,
         "selected": false
     },
@@ -275,7 +275,7 @@
         "name": "North Dakota",
         "abbreviation": "ND", 
         "htmlFormat": "north-dakota", 
-        "lockdown": "none as of 03-31", 
+        "lockdown": "none as of 04-04", 
         "population": 762062,
         "selected": false
     },
@@ -323,7 +323,7 @@
         "name": "South Carolina",
         "abbreviation": "SC", 
         "htmlFormat": "south-carolina", 
-        "lockdown": "none as of 03-31", 
+        "lockdown": "none as of 04-04", 
         "population": 5148714,
         "selected": false
     },
@@ -331,7 +331,7 @@
         "name": "South Dakota",
         "abbreviation": "SD", 
         "htmlFormat": "south-dakota", 
-        "lockdown": "none as of 03-31", 
+        "lockdown": "none as of 04-04", 
         "population": 884659,
         "selected": false
     },
@@ -347,7 +347,7 @@
         "name": "Texas",
         "abbreviation": "TX", 
         "htmlFormat": "texas", 
-        "lockdown": "none as of 03-31", 
+        "lockdown": "04-02-20", 
         "population": 28995881,
         "selected": false
     },
@@ -355,7 +355,7 @@
         "name": "Utah",
         "abbreviation": "UT", 
         "htmlFormat": "utah", 
-        "lockdown": "none as of 03-31", 
+        "lockdown": "none as of 04-04", 
         "population": 3205958,
         "selected": false
     },
@@ -403,7 +403,7 @@
         "name": "Wyoming",
         "abbreviation": "WY",
         "htmlFormat": "wyoming",
-        "lockdown": "none as of 03-31",
+        "lockdown": "none as of 04-04",
         "population": 578759,
         "selected": false
     }
