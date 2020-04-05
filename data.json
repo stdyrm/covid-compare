@@ -329,12 +329,23 @@
     {
         "date": "04-03-20",
         "total": 319,
-        "hawaii": 30,
+        "hawaii": 20,
         "honolulu": 237,
         "kauai": 13,
         "maui": 36,
         "pending": 11,
         "required-hospitalization": 18,
+        "deaths": 3 
+    },
+    {
+        "date": "04-04-20",
+        "total": 351,
+        "hawaii": 22,
+        "honolulu": 266,
+        "kauai": 15,
+        "maui": 38,
+        "pending": 8,
+        "required-hospitalization": 19,
         "deaths": 3 
     }
 ]
