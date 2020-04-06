@@ -56,7 +56,7 @@ const getStatePopulation = () => {
 
 const getData = () => {
     // Get data
-    d3.csv('./covid-19-data/us-states.csv')
+    d3.csv('./us-states.csv')
         .then(data => {
             // Clean data: 
                 // 1. Change date to date value
