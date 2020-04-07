@@ -74,7 +74,7 @@ const getData = () => {
             // Filter only notable states
             // Prior to 02-27-20, Washington had 1 or 2 cases from January. 
             // However, these were isolated cases and this graph is trying to track Covid-19 spread 
-            data = data.filter((d) => Object.keys(notableStates).includes(d.state) && d.date > new Date("02-26-2020"));
+            data = data.filter((d) => Object.keys(notableStates).includes(d.state) && d.date > new Date(2020,1,26));
 
             // Normalize data: 
                 // 1. Add "dayOfOutbreak" to show elapsed time
