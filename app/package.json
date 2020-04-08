@@ -2,7 +2,7 @@
   "name": "covidcompare",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://stdyrm.github.io/covidcompare",
+  "homepage": "https://github.com/stdyrm/stdyrm.github.io",
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",
     "@material-ui/core": "^4.9.8",
@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "gh-pages -d app/public",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
