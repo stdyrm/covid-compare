@@ -31,9 +31,14 @@ body {
 }
 
 .line-label {
-  fill: '#f2ffcc';
-  font-size: 11
+  fill: #f2ffcc;
+  font-size: 11;
 }
+
+/* .footnote {
+  color: #f2ffcc;
+  font-size: 10px;
+} */
 
 .axes-label {
   font-size: 18px;
@@ -44,4 +49,14 @@ body {
   font-size: 12px;
 }
 
-
+@media screen and (orientation: landscape) {
+  .header {
+    position: fixed;
+    width: 2.65em;
+    height: 100%;
+  }
+  .chart
+   {
+    margin-left: 2em;
+  }
+}

@@ -6,13 +6,13 @@ const date = {
 };
 
 const dimensions = {
-  width: window.innerWidth * 0.9,
+  width: window.innerWidth,
   height: 800,
   margin: {
     top: 80,
-    right: 80,
-    bottom: 120,
-    left: 80,
+    right: 100,
+    bottom: 60,
+    left: 100,
   },
 };
 

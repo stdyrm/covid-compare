@@ -11,10 +11,15 @@ import stateInfo from "./data/stateInfo.json";
 // components
 import { ChartUSCompare } from "./components/chart/ChartUSCompare";
 import { FilterBar } from "./components/dataParams/FilterBar";
+import { Footnotes } from "./components/chart/Footnotes";
 
 // context
 import { dataContext } from "./context/dataContext";
 import { statesContext } from "./context/statesContext";
+
+// styles
+import './styles/styles.css';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -104,18 +109,19 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div minWidth="sm">
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <dataContext.Provider value={{ dataStates, setDataStates }}>
           <statesContext.Provider value={{ selectedStates, setSelectedStates }}>
             <ThemeProvider theme={theme}>
-              <FilterBar />
-              <ChartUSCompare />
+              <FilterBar className="header" />
+              <ChartUSCompare className="chart" />
+              <Footnotes />
             </ThemeProvider>
           </statesContext.Provider>
         </dataContext.Provider>
       </MuiPickersUtilsProvider>
-    </>
+    </div>
   );
 }
 
