@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "gh-pages -d app",
+    "deploy": "gh-pages -d app/public",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
