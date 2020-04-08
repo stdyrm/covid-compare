@@ -19,12 +19,14 @@ Including January would lengthen the days since first case in Washington and Cal
 **To do:**
 1. (data) Add additional state data:
     * Geographic region
+    * (population) Population density
 
 2. (COVID-19 US State Comparison graph):
     * Geographic region filter
     * Combine filters feature
-    * Responsive graph width
+    * Responsive graph width/mobile-friendly layout
     * Custom filters (save selected) feature
+    * Highlight line feature
 
 I am not a health expert or statistician; this is a passion project keeping me busy during isolation.
 This is not an official source for COVID-19 data and should not be cited without additional research, but hopefully it helps move the discussion along.

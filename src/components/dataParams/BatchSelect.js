@@ -52,32 +52,32 @@ const BatchSelect = () => {
         selectedStates[a].latestCaseCount / selectedStates[a].population
     );
 
-    if (e.target.id === "cases-top-15") {
+    if (e.target.id === "cases-top-12") {
       revisedOrder.forEach((s, i) => {
         revisedStates[s] = {
           ...selectedStates[s],
-          selected: i < 15 ? true : false,
+          selected: i < 12 ? true : false,
         };
       });
-    } else if (e.target.id === "cases-bottom-15") {
+    } else if (e.target.id === "cases-bottom-12") {
       revisedOrder.reverse().forEach((s, i) => {
         revisedStates[s] = {
           ...selectedStates[s],
-          selected: i < 15 ? true : false,
+          selected: i < 12 ? true : false,
         };
       });
-    } else if (e.target.id === "cases-top-15-per-1000") {
+    } else if (e.target.id === "cases-top-12-per-1000") {
       revisedOrderToPopulation.forEach((s, i) => {
         revisedStates[s] = {
           ...selectedStates[s],
-          selected: i < 15 ? true : false,
+          selected: i < 12 ? true : false,
         };
       });
-    } else if (e.target.id === "cases-bottom-15-per-1000") {
+    } else if (e.target.id === "cases-bottom-12-per-1000") {
       revisedOrderToPopulation.reverse().forEach((s, i) => {
         revisedStates[s] = {
           ...selectedStates[s],
-          selected: i < 15 ? true : false,
+          selected: i < 12 ? true : false,
         };
       });
     }
@@ -116,18 +116,18 @@ const BatchSelect = () => {
       (a, b) => selectedStates[b].population - selectedStates[a].population
     );
 
-    if (e.target.id === "population-top-15") {
+    if (e.target.id === "population-top-12") {
       revisedOrder.forEach((s, i) => {
         revisedStates[s] = {
           ...selectedStates[s],
-          selected: i < 15 ? true : false,
+          selected: i < 12 ? true : false,
         };
       });
     } else {
       revisedOrder.reverse().forEach((s, i) => {
         revisedStates[s] = {
           ...selectedStates[s],
-          selected: i < 15 ? true : false,
+          selected: i < 12 ? true : false,
         };
       });
     }
@@ -169,17 +169,17 @@ const BatchSelect = () => {
         open={Boolean(selectedFilter === "cases")}
         onClose={handleClose}
       >
-        <MenuItem id="cases-top-15" onClick={filterCases}>
-          Highest 15 (total)
+        <MenuItem id="cases-top-12" onClick={filterCases}>
+          Highest 12 (total)
         </MenuItem>
-        <MenuItem id="cases-bottom-15" onClick={filterCases}>
-          Lowest 15 (total)
+        <MenuItem id="cases-bottom-12" onClick={filterCases}>
+          Lowest 12 (total)
         </MenuItem>
-        <MenuItem id="cases-top-15-per-1000" onClick={filterCases}>
-          Highest 15 (per 1000)
+        <MenuItem id="cases-top-12-per-1000" onClick={filterCases}>
+          Highest 12 (per 1000)
         </MenuItem>
-        <MenuItem id="cases-bottom-15-per-1000" onClick={filterCases}>
-          Lowest 15 (per 1000)
+        <MenuItem id="cases-bottom-12-per-1000" onClick={filterCases}>
+          Lowest 12 (per 1000)
         </MenuItem>
       </Menu>
       <Button id="filter-lockdown" name="lockdown" onClick={handleClick}>
@@ -244,11 +244,11 @@ const BatchSelect = () => {
         open={Boolean(selectedFilter === "population")}
         onClose={handleClose}
       >
-        <MenuItem id="population-top-15" onClick={filterPopulation}>
-          Highest 15 States
+        <MenuItem id="population-top-12" onClick={filterPopulation}>
+          Highest 12
         </MenuItem>
-        <MenuItem id="population-bottom-15" onClick={filterPopulation}>
-          Lowest 15 States
+        <MenuItem id="population-bottom-12" onClick={filterPopulation}>
+          Lowest 12
         </MenuItem>
       </Menu>
     </>
