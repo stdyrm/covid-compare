@@ -2,7 +2,7 @@
 This purpose of this graph is to measure the spread of COVID-19 throughout each state.
 
 ### **Graph: COVID-19 US State Comparison**
-Comparison of Hawaii COVID-19 cases vs. ten states with highest number of cases, normalized for population and measured over number of days since first case (starting from 2/27/20).
+Comparison of COVID-19 cases in US states, normalized for population and measured over number of days since initial outbreak (from 2/27/20).
 
 *COVID-19 data from The New York Times, based on reports from state and local health agencies.*
 *Population data from US Census Bureau (2019).*
