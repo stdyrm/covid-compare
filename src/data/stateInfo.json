@@ -323,7 +323,7 @@
         "name": "South Carolina",
         "abbreviation": "SC", 
         "htmlFormat": "south-carolina", 
-        "lockdown": "none as of 04-06", 
+        "lockdown": "04-07-20", 
         "population": 5148714,
         "selected": false
     },
