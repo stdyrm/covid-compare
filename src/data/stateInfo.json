@@ -27,7 +27,7 @@
         "name": "Arkansas",
         "abbreviation": "AR", 
         "htmlFormat": "arkansas", 
-        "lockdown": "none as of 04-06", 
+        "lockdown": "none as of 04-08", 
         "population": 3017804,
         "selected": false
     },
@@ -83,7 +83,7 @@
         "name": "Georgia",
         "abbreviation": "GA", 
         "htmlFormat": "georgia", 
-        "lockdown": "none as of 04-06", 
+        "lockdown": "none as of 04-08", 
         "population": 10617423,
         "selected": false
     },
@@ -123,7 +123,7 @@
         "name": "Iowa",
         "abbreviation": "IA", 
         "htmlFormat": "iowa", 
-        "lockdown": "none as of 04-06", 
+        "lockdown": "none as of 04-08", 
         "population": 3155070,
         "selected": false
     },
@@ -219,7 +219,7 @@
         "name": "Nebraska",
         "abbreviation": "NE", 
         "htmlFormat": "nebraska", 
-        "lockdown": "none as of 04-06", 
+        "lockdown": "none as of 04-08", 
         "population": 1934408,
         "selected": false
     },
@@ -275,7 +275,7 @@
         "name": "North Dakota",
         "abbreviation": "ND", 
         "htmlFormat": "north-dakota", 
-        "lockdown": "none as of 04-06", 
+        "lockdown": "none as of 04-08", 
         "population": 762062,
         "selected": false
     },
@@ -331,7 +331,7 @@
         "name": "South Dakota",
         "abbreviation": "SD", 
         "htmlFormat": "south-dakota", 
-        "lockdown": "none as of 04-06", 
+        "lockdown": "none as of 04-08", 
         "population": 884659,
         "selected": false
     },
@@ -355,7 +355,7 @@
         "name": "Utah",
         "abbreviation": "UT", 
         "htmlFormat": "utah", 
-        "lockdown": "none as of 04-06", 
+        "lockdown": "none as of 04-08", 
         "population": 3205958,
         "selected": false
     },
@@ -403,7 +403,7 @@
         "name": "Wyoming",
         "abbreviation": "WY",
         "htmlFormat": "wyoming",
-        "lockdown": "none as of 04-06",
+        "lockdown": "none as of 04-08",
         "population": 578759,
         "selected": false
     }
