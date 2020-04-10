@@ -7,7 +7,7 @@ const date = {
 
 const dimensions = {
   width: window.innerWidth,
-  height: window.innerHeight * .8,
+  height: 750,
   margin: {
     top: 80,
     right: 100,
