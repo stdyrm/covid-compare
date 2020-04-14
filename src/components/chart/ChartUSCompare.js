@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
-import { saveSvgAsPng } from 'save-svg-as-png';
 
 // Components
 import { Line } from './Line';
@@ -12,10 +11,7 @@ import { dataContext } from '../../context/dataContext';
 import { dimensions, bounded } from '../util/constants';
 
 // Styles
-import { IconButton } from '@material-ui/core';
-import SaveIcon from '@material-ui/icons/Save';
 import '../../styles/styles.css';
-import { theme } from '../../styles/theme';
 
 const { width, height, margin } = dimensions;
 
@@ -36,19 +32,6 @@ const ChartUSCompare = () => {
         .attr('height', bounded.height)
         .on('mouseover', () => focus.style('display', null))
         .on('mouseout', () => focus.style('display', 'none'));
-
-    // const saveImage = () => {
-    //     saveSvgAsPng(document.querySelector("#chart"), "covid-19_chart.png",
-    //     {
-    //         backgroundColor: theme.palette.background.default
-    //     },
-    //     {
-    //         modifyCss() {
-    //             return {backgroundColor: 'red'};
-    //         }
-    //     }
-    //     )
-    // };
 
     useEffect(() => {
         // Scales
@@ -102,7 +85,6 @@ const ChartUSCompare = () => {
                     <Line focus={focus} overlay={overlay}/>
                 </g>
             </svg>
-
         </div>
     )
 };
