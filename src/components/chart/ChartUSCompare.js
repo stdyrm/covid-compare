@@ -31,7 +31,6 @@ const ChartUSCompare = () => {
         .attr('width', bounded.width)
         .attr('height', bounded.height)
         .on('mouseover', () => focus.style('display', null))
-        .on('mouseout', () => focus.style('display', 'none'));
 
     useEffect(() => {
         // Scales
@@ -60,7 +59,6 @@ const ChartUSCompare = () => {
                 <text
                     className="title"
                     textAnchor="middle"
-                    fill="gray"
                     transform={`translate (${margin.left + bounded.width / 2}, ${margin.top / 2})`}
                 >
                     COVID-19 US State Comparison
@@ -68,13 +66,15 @@ const ChartUSCompare = () => {
                 <text 
                     className="axes-label"
                     textAnchor="middle"
+                    style={{fill: "#f2ffcc"}}
                     transform={`translate(${margin.left + bounded.width / 2}, ${bounded.height + margin.top + 40})`}
                 >
                     Day of Outbreak
                 </text>
                 <text 
                     className="axes-label" 
-                    textAnchor="middle" 
+                    textAnchor="middle"
+                    style={{fill: "#f2ffcc"}}
                     transform={`translate(${width - bounded.width - margin.right - 40}, ${bounded.height / 2}) rotate(-90)`}
                 >
                     Cases per 1000 people

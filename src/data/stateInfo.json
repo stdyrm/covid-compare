@@ -5,6 +5,8 @@
         "htmlFormat": "alabama", 
         "lockdown": "04-04-20",
         "population": 4903185,
+        "region": "south",
+        "division": "east south central",
         "selected": false
     },
     "Alaska": {
@@ -13,6 +15,8 @@
         "htmlFormat": "alaska", 
         "lockdown": "03-28-20",
         "population": 731545,
+        "region": "west",
+        "division": "pacific",
         "selected": false
     },
     "Arizona": {
@@ -21,6 +25,8 @@
         "htmlFormat": "arizona", 
         "lockdown": "03-31-20", 
         "population": 7278717,
+        "region": "west",
+        "division": "mountain",
         "selected": false
     },
     "Arkansas": {
@@ -29,6 +35,8 @@
         "htmlFormat": "arkansas", 
         "lockdown": "none as of 04-12", 
         "population": 3017804,
+        "region": "south",
+        "division": "west south central",
         "selected": false
     },
     "California": {
@@ -37,6 +45,8 @@
         "htmlFormat": "california", 
         "lockdown": "03-19-20", 
         "population": 39512223,
+        "region": "west",
+        "division": "pacific",
         "selected": true
     },
     "Colorado": {
@@ -45,6 +55,8 @@
         "htmlFormat": "colorado", 
         "lockdown": "03-26-20", 
         "population": 5758736,
+        "region": "west",
+        "division": "mountain",
         "selected": false
     },
     "Connecticut": {
@@ -53,6 +65,8 @@
         "htmlFormat": "connecticut", 
         "lockdown": "03-23-20", 
         "population": 3565287,
+        "region": "northeast",
+        "division": "new england",
         "selected": false
     },
     "Delaware": {
@@ -61,6 +75,8 @@
         "htmlFormat": "delaware", 
         "lockdown": "03-24-20", 
         "population": 973764,
+        "region": "south",
+        "division": "south atlantic",
         "selected": false
     },
     "District of Columbia": {
@@ -69,6 +85,8 @@
         "htmlFormat": "district-of-columbia", 
         "lockdown": "04-01-20", 
         "population": 705749,
+        "region": "south",
+        "division": "south atlantic",
         "selected": false
     },
     "Florida": {
@@ -77,6 +95,8 @@
         "htmlFormat": "florida", 
         "lockdown": "04-02-20", 
         "population": 21477737,
+        "region": "south",
+        "division": "south atlantic",
         "selected": true
     },
     "Georgia": {
@@ -85,6 +105,8 @@
         "htmlFormat": "georgia", 
         "lockdown": "none as of 04-12", 
         "population": 10617423,
+        "region": "south",
+        "division": "south atlantic",
         "selected": false
     },
     "Hawaii": {
@@ -93,6 +115,8 @@
         "htmlFormat": "hawaii", 
         "lockdown": "03-25-20", 
         "population": 1415872,
+        "region": "west",
+        "division": "pacific",
         "selected": true
     },
     "Idaho": {
@@ -101,6 +125,8 @@
         "htmlFormat": "idaho", 
         "lockdown": "03-25-20", 
         "population": 1787065,
+        "region": "west",
+        "division": "mountain",
         "selected": false
     },
     "Illinois": {
@@ -109,6 +135,8 @@
         "htmlFormat": "illinois", 
         "lockdown": "03-21-20", 
         "population": 12671821,
+        "region": "midwest",
+        "division": "east north central",
         "selected": true
     },
     "Indiana": {
@@ -117,6 +145,8 @@
         "htmlFormat": "indiana", 
         "lockdown": "03-24-20", 
         "population": 6732219,
+        "region": "midwest",
+        "division": "east north central",
         "selected": false
     },
     "Iowa": {
@@ -125,6 +155,8 @@
         "htmlFormat": "iowa", 
         "lockdown": "none as of 04-12", 
         "population": 3155070,
+        "region": "midwest",
+        "division": "west north central",
         "selected": false
     },
     "Kansas": {
@@ -133,6 +165,8 @@
         "htmlFormat": "kansas", 
         "lockdown": "03-30-20", 
         "population": 2913314,
+        "region": "midwest",
+        "division": "west north central",
         "selected": false
     },
     "Kentucky": {
@@ -141,6 +175,8 @@
         "htmlFormat": "kentucky", 
         "lockdown": "03-26-20", 
         "population": 4467673,
+        "region": "south",
+        "division": "east south central",
         "selected": false
     },
     "Louisiana": {
@@ -149,6 +185,8 @@
         "htmlFormat": "louisiana", 
         "lockdown": "03-23-20", 
         "population": 4648794,
+        "region": "south",
+        "division": "west south central",
         "selected": true
     },
     "Maine": {
@@ -157,6 +195,8 @@
         "htmlFormat": "maine", 
         "lockdown": "04-02-20", 
         "population": 1344212,
+        "region": "northeast",
+        "division": "new england",
         "selected": false
     },
     "Maryland": {
@@ -165,6 +205,8 @@
         "htmlFormat": "maryland", 
         "lockdown": "03-30-20", 
         "population": 6045680,
+        "region": "south",
+        "division": "south atlantic",
         "selected": false
     },
     "Massachusetts": {
@@ -173,6 +215,8 @@
         "htmlFormat": "massachusetts", 
         "lockdown": "03-24-20", 
         "population": 6892503,
+        "region": "northeast",
+        "division": "new england",
         "selected": false
     },
     "Michigan": {
@@ -181,6 +225,8 @@
         "htmlFormat": "michigan", 
         "lockdown": "03-24-20", 
         "population": 9986857,
+        "region": "midwest",
+        "division": "east north central",
         "selected": true
     },
     "Minnesota": {
@@ -189,6 +235,8 @@
         "htmlFormat": "minnesota", 
         "lockdown": "03-27-20", 
         "population": 5639632,
+        "region": "midwest",
+        "division": "west north central",
         "selected": false
     },
     "Mississippi": {
@@ -197,6 +245,8 @@
         "htmlFormat": "mississippi", 
         "lockdown": "04-03-20", 
         "population": 2976149,
+        "region": "south",
+        "division": "east south central",
         "selected": false
     },
     "Missouri": {
@@ -205,6 +255,8 @@
         "htmlFormat": "missouri", 
         "lockdown": "04-06-20", 
         "population": 6137428,
+        "region": "midwest",
+        "division": "west north central",
         "selected": false
     },
     "Montana": {
@@ -213,6 +265,8 @@
         "htmlFormat": "montana", 
         "lockdown": "03-28-20", 
         "population": 1068778,
+        "region": "west",
+        "division": "mountain",
         "selected": false
     },
     "Nebraska": {
@@ -221,6 +275,8 @@
         "htmlFormat": "nebraska", 
         "lockdown": "none as of 04-12", 
         "population": 1934408,
+        "region": "midwest",
+        "division": "west north central",
         "selected": false
     },
     "Nevada": {
@@ -229,6 +285,8 @@
         "htmlFormat": "nevada", 
         "lockdown": "04-02-20", 
         "population": 3080156,
+        "region": "west",
+        "division": "mountain",
         "selected": false
     },
     "New Hampshire": {
@@ -237,6 +295,8 @@
         "htmlFormat": "new-hampshire", 
         "lockdown": "03-27-20", 
         "population": 1359711,
+        "region": "northeast",
+        "division": "new england",
         "selected": false
     },
     "New Jersey": {
@@ -245,6 +305,8 @@
         "htmlFormat": "new-jersey", 
         "lockdown": "03-21-20", 
         "population": 8882190,
+        "region": "northeast",
+        "division": "Mid-Atlantic",
         "selected": true
     },
     "New Mexico": {
@@ -253,6 +315,8 @@
         "htmlFormat": "new-mexico", 
         "lockdown": "03-24-20", 
         "population": 2096829,
+        "region": "west",
+        "division": "mountain",
         "selected": false
     },
     "New York": {
@@ -261,6 +325,8 @@
         "htmlFormat": "new-york", 
         "lockdown": "03-22-20", 
         "population": 19453561,
+        "region": "northeast",
+        "division": "Mid-Atlantic",
         "selected": true
     },
     "North Carolina": {
@@ -269,6 +335,8 @@
         "htmlFormat": "north-carolina", 
         "lockdown": "03-30-20", 
         "population": 10488084,
+        "region": "south",
+        "division": "south atlantic",
         "selected": false
     },
     "North Dakota": {
@@ -277,6 +345,8 @@
         "htmlFormat": "north-dakota", 
         "lockdown": "none as of 04-12", 
         "population": 762062,
+        "region": "midwest",
+        "division": "west north central",
         "selected": false
     },
     "Ohio": {
@@ -285,6 +355,8 @@
         "htmlFormat": "ohio", 
         "lockdown": "03-23-20", 
         "population": 11689100,
+        "region": "midwest",
+        "division": "east north central",
         "selected": false
     },
     "Oklahoma": {
@@ -293,6 +365,8 @@
         "htmlFormat": "oklahoma", 
         "lockdown": "04-02-20", 
         "population": 3956971,
+        "region": "south",
+        "division": "west south central",
         "selected": false
     },
     "Oregon": {
@@ -301,6 +375,8 @@
         "htmlFormat": "oregon", 
         "lockdown": "03-23-20", 
         "population": 4217737,
+        "region": "west",
+        "division": "pacific",
         "selected": false
     },
     "Pennsylvania": {
@@ -309,6 +385,8 @@
         "htmlFormat": "pennsylvania", 
         "lockdown": "04-02-20", 
         "population": 12801989,
+        "region": "northeast",
+        "division": "Mid-Atlantic",
         "selected": true
     },
     "Rhode Island": {
@@ -317,6 +395,8 @@
         "htmlFormat": "rhode-island", 
         "lockdown": "03-28-20", 
         "population": 1059361,
+        "region": "northeast",
+        "division": "new england",
         "selected": false
     },
     "South Carolina": {
@@ -325,6 +405,8 @@
         "htmlFormat": "south-carolina", 
         "lockdown": "04-07-20", 
         "population": 5148714,
+        "region": "south",
+        "division": "south atlantic",
         "selected": false
     },
     "South Dakota": {
@@ -333,6 +415,8 @@
         "htmlFormat": "south-dakota", 
         "lockdown": "none as of 04-12", 
         "population": 884659,
+        "region": "midwest",
+        "division": "west north central",
         "selected": false
     },
     "Tennessee": {
@@ -341,6 +425,8 @@
         "htmlFormat": "tennessee", 
         "lockdown": "03-31-20", 
         "population": 6829174,
+        "region": "south",
+        "division": "east south central",
         "selected": false
     },
     "Texas": {
@@ -349,6 +435,8 @@
         "htmlFormat": "texas", 
         "lockdown": "04-02-20", 
         "population": 28995881,
+        "region": "south",
+        "division": "west south central",
         "selected": false
     },
     "Utah": {
@@ -357,6 +445,8 @@
         "htmlFormat": "utah", 
         "lockdown": "none as of 04-12", 
         "population": 3205958,
+        "region": "west",
+        "division": "mountain",
         "selected": false
     },
     "Vermont": {
@@ -365,6 +455,8 @@
         "htmlFormat": "vermont", 
         "lockdown": "03-25-20", 
         "population": 623989,
+        "region": "northeast",
+        "division": "new england",
         "selected": false
     },
     "Virginia": {
@@ -373,6 +465,8 @@
         "htmlFormat": "virginia", 
         "lockdown": "03-30-20", 
         "population": 8535519,
+        "region": "south",
+        "division": "south atlantic",
         "selected": false
     },
     "Washington": {
@@ -381,6 +475,8 @@
         "htmlFormat": "washington", 
         "lockdown": "03-23-20", 
         "population": 7614893,
+        "region": "west",
+        "division": "pacific",
         "selected": true
     },
     "West Virginia": {
@@ -389,6 +485,8 @@
         "htmlFormat": "west-virginia", 
         "lockdown": "03-24-20", 
         "population": 1792147,
+        "region": "south",
+        "division": "south atlantic",
         "selected": false
     },
     "Wisconsin": {
@@ -397,6 +495,8 @@
         "htmlFormat": "wisconsin",
         "lockdown": "03-25-20",
         "population": 5822434,
+        "region": "midwest",
+        "division": "east north central",
         "selected": false
     },
     "Wyoming": {
@@ -405,6 +505,8 @@
         "htmlFormat": "wyoming",
         "lockdown": "none as of 04-12",
         "population": 578759,
+        "region": "west",
+        "division": "mountain",
         "selected": false
     }
 }

@@ -19,8 +19,18 @@ const Line = ({ focus, overlay }) => {
   const { dataStates } = useContext(dataContext);
   const [linesStates, setLinesStates] = useState([]);
 
+  const clearFocus = () => {
+    console.log("clearing focus");
+    focus.selectAll(['circle', 'text']).attr('display', 'none')
+  };
+
+  useEffect(() => {
+    return () => clearFocus();
+  }, [selectedStates]);
+
   useEffect(() => {
     if (dataStates.length > 0) {
+
       // Scales
       const xScale = d3
         .scaleLinear()
