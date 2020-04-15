@@ -135,6 +135,28 @@ const BatchSelect = () => {
     handleClose();
   };
 
+  const filterRegion = (e) => {
+	const revisedStates = {};
+	const filteredByRegion = Object.keys(selectedStates).filter(s => selectedStates[s].region === e.target.id);
+
+	Object.keys(selectedStates).forEach(s => {
+		if (filteredByRegion.includes(s)) {
+			revisedStates[s] = {
+				...selectedStates[s],
+				selected: true
+			};
+		} else {
+			revisedStates[s] = {
+				...selectedStates[s],
+				selected: false
+			};
+		}
+	});
+
+	setSelectedStates(revisedStates);
+	handleClose();
+  };
+
   useEffect(() => {
     const revisedStates = {};
 
@@ -250,6 +272,30 @@ const BatchSelect = () => {
         <MenuItem id="population-bottom-12" onClick={filterPopulation}>
           Lowest 12
         </MenuItem>
+      </Menu>
+
+      <Button id="filter-region" name="region" onClick={handleClick}>
+        Filter by Region
+      </Button>
+      <Menu
+        id="filter-region-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(selectedFilter === "region")}
+        onClose={handleClose}
+      >
+        <MenuItem id="northeast" onClick={filterRegion}>
+			Northeast
+        </MenuItem>
+		<MenuItem id="midwest" onClick={filterRegion}>
+			Midwest
+		</MenuItem>
+		<MenuItem id="south" onClick={filterRegion}>
+			South
+		</MenuItem>
+		<MenuItem id="west" onClick={filterRegion}>
+			West
+		</MenuItem>
       </Menu>
     </>
   );

@@ -15,46 +15,57 @@ export const MouseMove = ({ focus, overlay, linesStates }) => {
 
     useEffect(() => {
         if (overlay) {
-            overlay.on('mousemove', mousemove)
-        
-        function mousemove() {
-            let x0 = xScale.invert(d3.mouse(this)[0]);
-            const bisectDate = d3.bisector(d => d.dayOfOutbreak).left;
 
-            Object.keys(selectedStates).sort()
-                .filter(s => selectedStates[s].selected === true)
-                .forEach((state, index) => {
-                    const dataEachState = dataStates.filter(d => d.state === state);
-                    const stateHTML = selectedStates[state].htmlFormat;
-                    const i = bisectDate(dataEachState, x0, 0);
+            overlay.on('mousemove', mousemove);
 
-                    let dataEachStateRangeY = dataEachState[i] 
-                        ? dataEachState[i].casesPerThousand 
-                        : dataEachState[dataEachState.length - 1].casesPerThousand;
-                    let dataEachStateRangeX = dataEachState[i] 
-                        ? dataEachState[i].dayOfOutbreak 
-                        : dataEachState[dataEachState.length - 1].dayOfOutbreak;
-                    let dataEachStateRangeDate = dataEachState[i] 
-                        ? date.dateFormatter(dataEachState[i].date) 
-                        : date.dateFormatter(dataEachState[dataEachState.length - 1].date);
-                    let dataEachStateRangeCases = dataEachState[i]
-                        ? dataEachState[i].cases 
-                        : dataEachState[dataEachState.length - 1].cases;
+            let frozen = false;
 
-                    focus.select(`#circle-${stateHTML}`)
-                        .attr('cy', yScale(dataEachStateRangeY))
-                        .attr('cx', xScale(dataEachStateRangeX));
+            function mousemove() {
+                let x0 = xScale.invert(d3.mouse(this)[0]);
+                const bisectDate = d3.bisector(d => d.dayOfOutbreak).left;
 
-                    focus.select(`#d-label-${stateHTML}`)
-                        .text(`${selectedStates[state].abbreviation} => ${dataEachStateRangeDate} (Day: ${dataEachStateRangeX})`)
-                        .attr('fill', selectedStates[state].color)
+                Object.keys(selectedStates).sort()
+                    .filter(s => selectedStates[s].selected === true)
+                    .forEach((state, index) => {
+                        const dataEachState = dataStates.filter(d => d.state === state);
+                        const stateHTML = selectedStates[state].htmlFormat;
+                        const i = bisectDate(dataEachState, x0, 0);
 
-                    focus.select(`#d-label-b-${stateHTML}`)
-                        .text(`${dataEachStateRangeCases} cases (${dataEachStateRangeY.toFixed(3)} per 1000)`)
-                        .attr('fill', selectedStates[state].color)
-                });
+                        let dataEachStateRangeY = dataEachState[i]
+                            ? dataEachState[i].casesPerThousand 
+                            : dataEachState[dataEachState.length - 1].casesPerThousand;
+                        let dataEachStateRangeX = dataEachState[i] 
+                            ? dataEachState[i].dayOfOutbreak 
+                            : dataEachState[dataEachState.length - 1].dayOfOutbreak;
+                        let dataEachStateRangeDate = dataEachState[i] 
+                            ? date.dateFormatter(dataEachState[i].date) 
+                            : date.dateFormatter(dataEachState[dataEachState.length - 1].date);
+                        let dataEachStateRangeCases = dataEachState[i]
+                            ? dataEachState[i].cases 
+                            : dataEachState[dataEachState.length - 1].cases;
+
+                        const toggleFreeze = () => {
+                            frozen = !frozen;
+                        };
+
+                        overlay.on('click', toggleFreeze);
+
+                        if (!frozen) {
+                            focus.select(`#circle-${stateHTML}`)
+                                .attr('cy', yScale(dataEachStateRangeY))
+                                .attr('cx', xScale(dataEachStateRangeX));
+
+                            focus.select(`#d-label-${stateHTML}`)
+                                .text(`${selectedStates[state].abbreviation} => ${dataEachStateRangeDate} (Day: ${dataEachStateRangeX})`)
+                                .attr('fill', selectedStates[state].color)
+
+                            focus.select(`#d-label-b-${stateHTML}`)
+                                .text(`${dataEachStateRangeCases} cases (${dataEachStateRangeY.toFixed(3)} per 1000)`)
+                                .attr('fill', selectedStates[state].color)
+                        } 
+                    });
+                }
             }
-        }
     }, [linesStates]);
     return null;
 }

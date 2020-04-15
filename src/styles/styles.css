@@ -3,7 +3,7 @@
 body {
   background-color:#29293d;
   text-align: center;
-  font-family: Raleway;
+  font-family: Raleway, Arial, Sans-Serif;
   fill: #f2ffcc
 }
 
@@ -34,11 +34,6 @@ body {
   fill: #f2ffcc;
   font-size: 11;
 }
-
-/* .footnote {
-  color: #f2ffcc;
-  font-size: 10px;
-} */
 
 .axes-label {
   font-size: 18px;

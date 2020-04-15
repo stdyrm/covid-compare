@@ -12,6 +12,7 @@ import stateInfo from "./data/stateInfo.json";
 import { ChartUSCompare } from "./components/chart/ChartUSCompare";
 import { FilterBar } from "./components/dataParams/FilterBar";
 import { Footnotes } from "./components/chart/Footnotes";
+// import { FileSaver } from "./components/util/FileSaver";
 
 // context
 import { dataContext } from "./context/dataContext";
@@ -19,49 +20,7 @@ import { statesContext } from "./context/statesContext";
 
 // styles
 import './styles/styles.css';
-
-
-const theme = createMuiTheme({
-  palette: {
-    background: {
-      default: "#29293d",
-    },
-    text: {
-      primary: "#fff",
-      secondary: "#f2ffcc",
-    },
-    contrastThreshold: 3,
-  },
-  typography: {
-    fontFamily: "Raleway, Arial",
-  },
-  overrides: {
-    MuiMenu: {
-      paper: {
-        backgroundColor: "#29293d"
-      },
-    },
-    MuiPickersCalendarHeader: {
-      switchHeader: {
-        color: "#29293d",
-      },
-    },
-    MuiPickersDay: {
-      day: {
-        color: "#29293d",
-      },
-      daySelected: {
-        backgroundColor: "#29293d",
-      },
-      dayDisabled: {
-        color: "#29293d",
-      },
-      current: {
-        color: "#29293d",
-      },
-    },
-  },
-});
+import { theme } from './styles/theme';
 
 function App() {
   const [dataStates, setDataStates] = useState([]);
