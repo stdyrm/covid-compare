@@ -28,6 +28,17 @@ function App() {
 	const [theme, setTheme] = useState(themeDark);
 	const [darkTheme, setDarkTheme] = useState(true);
 
+	const changeTheme = () => {
+		setDarkTheme(!darkTheme);
+		if (!darkTheme) {
+			setTheme(themeDark);
+			console.log('setting to dark')
+		} else {
+			setTheme(themeLight);
+			console.log('setting to light')
+		}		
+	};
+
   useEffect(() => {
     // get COVID-19 state data
     d3.csv(USStates).then((data) => {
@@ -69,24 +80,16 @@ function App() {
     });
   }, []);
 
-//   useEffect(() => {
-// 	if (!darkTheme) {
-// 		setTheme(themeDark);
-// 	} else {
-// 		setTheme(themeLight)
-// 	}
-//   }, [darkTheme]);
-
   return (
-    <div minWidth="sm" style={{backgroundColor: theme.palette.background.default}}>
+    <div style={{backgroundColor: theme.palette.background.default, paddingBottom: 40}}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <dataContext.Provider value={{ dataStates, setDataStates }}>
           <statesContext.Provider value={{ selectedStates, setSelectedStates }}>
 			<themeContext.Provider value={{ theme, setTheme }}>
-				<ThemeProvider theme={themeDark}>
+				<ThemeProvider theme={theme}>
 				<FilterBar className="header" />
 				<ChartUSCompare className="chart" />
-				<Footnotes />
+				<Footnotes changeTheme={changeTheme} />
 				</ThemeProvider>
             </themeContext.Provider>
           </statesContext.Provider>

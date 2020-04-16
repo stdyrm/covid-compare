@@ -10,7 +10,7 @@ import { dimensions } from '../util/constants';
 // styles
 import { makeStyles } from '@material-ui/core/styles';
 import '../../styles/styles.css';
-import { IconButton, Tooltip } from '@material-ui/core';
+import { IconButton, Tooltip, Container } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 
@@ -38,28 +38,43 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Footnotes = () => {
+const Footnotes = ({changeTheme}) => {
     const classes = useStyles();
 	const {theme, selectTheme} = useContext(themeContext);
-	// const [darkTheme, setDarkTheme] = useState(true);
 
     const saveImage = () => {
         saveSvgAsPng(document.querySelector("#chart"), "covid-19_chart.png", {
 			backgroundColor: theme.palette.background.default,
-            encoderOptions: 1 
+			encoderOptions: 1,
+			fonts: [
+				{
+					url: "../../styles/ralewaylight/raleway-light-webfont.woff",
+					format: "application/font-woff",
+					text: "@font-face {font-family: 'ralewaylight'; src: url('./ralewaylight/raleway-light-webfont.woff2') format('woff2'), url('./ralewaylight/raleway-light-webfont.woff') format('woff'); font-weight: normal;font-style: normal;}"
+				}
+			]
         });
 	};
 
     return (
+		<>
         <div style={{backgroundColor: theme.palette.background.default}}>
-            <p className={classes.root}>Line marking indicates day of lockdown order/advisory</p>
-            <p className={classes.root}>Freeze/unfreeze focus by clicking on chart</p>
-            <Tooltip title="Save chart as image" placement="right">
-                <IconButton onClick={saveImage} className={classes.saveButton} style={{color: theme.palette.text.primary}}>
-                    <SaveIcon />
-                </IconButton>
+            <p className={classes.root} style={{color: theme.palette.text.primary}}>Line marking indicates day of lockdown order/advisory</p>
+			<p className={classes.root} style={{color: theme.palette.text.primary}}>Freeze/unfreeze focus by clicking on chart</p>
+		</div>
+		<div style={{backgroundColor: theme.palette.background.default}}>
+			<Tooltip title="Save chart as image" placement="right">
+				<IconButton onClick={saveImage} className={classes.saveButton} style={{color: theme.palette.text.primary}}>
+					<SaveIcon />
+				</IconButton>
 			</Tooltip>
-        </div>
+			<Tooltip title="Toggle dark/light theme" placement="right">
+				<IconButton onClick={changeTheme} className={classes.themeButton} style={{color: theme.palette.text.primary}}>
+					<Brightness7Icon />
+				</IconButton>
+			</Tooltip>
+		</div>
+		</>
     )
 };
 

@@ -69,7 +69,7 @@ export const MouseMove = ({ focus, overlay, linesStates }) => {
                         } 
                     });
                 }
-            }
+			}
     }, [linesStates]);
     return null;
 }

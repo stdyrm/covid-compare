@@ -5,6 +5,7 @@ import { IconButton, FormControlLabel, FormGroup, Checkbox, Typography, Divider 
 // context
 import { dataContext } from '../../context/dataContext';
 import { statesContext } from '../../context/statesContext';
+import { themeContext } from '../../context/themeContext';
 
 // data
 import stateInfo from '../../data/stateInfo.json';
@@ -17,6 +18,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 const Dashboard = () => {
     const {dataStates} = useContext(dataContext);
     const {selectedStates, setSelectedStates} = useContext(statesContext);
+	const {theme} = useContext(themeContext);
 
     const handleChange = (e) => {
         setSelectedStates({
@@ -82,7 +84,7 @@ const Dashboard = () => {
 
     return (
         <div>
-            <FormGroup style={{alignItems: 'left', backgroundColor: '#29293d'}}>
+            <FormGroup style={{alignItems: 'left', backgroundColor: theme.palette.primary.main, color: theme.palette.text.primary}}>
                 <FormControlLabel
                 id="select-all"
                 label="Select All"
@@ -113,8 +115,8 @@ const Dashboard = () => {
                         </IconButton>
                     }
                 /><br />
-                <Typography variant="h6">Selected</Typography>
-                <Divider style={{backgroundColor: "white"}} />
+                <Typography variant="h6" style={{color: theme.palette.primary.contrastText}}>Selected</Typography>
+                <Divider style={{backgroundColor: theme.palette.primary.contrastText}} />
                 {selectedStates
                     ? Object.keys(selectedStates).sort()
                         .filter(s => selectedStates[s].selected === true)
@@ -133,8 +135,8 @@ const Dashboard = () => {
                         })
                     : <div />
                 }<br />
-                <Typography variant="h6">Not Selected</Typography>
-                <Divider style={{backgroundColor: "white"}} />
+                <Typography variant="h6" style={{color: theme.palette.primary.contrastText}} >Not Selected</Typography>
+                <Divider style={{backgroundColor: theme.palette.primary.contrastText}} />
                 {selectedStates
                     ? Object.keys(selectedStates).sort()
                         .filter(s => selectedStates[s].selected === false)

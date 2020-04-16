@@ -111,19 +111,26 @@ const Line = ({ focus, overlay }) => {
               .attr("id", `d-label-${stateHTML}`)
               .attr("x", 10 + xShift)
               .attr("y", 10 + i * 40 - yShift)
-              .style("font-size", 12);
+			  .style("font-size", 12)
+			  .style("font-family", "ralewaylight, Helvetica, Arial, sans-serif");
 
             focus
               .append("text")
               .attr("id", `d-label-b-${stateHTML}`)
               .attr("x", 10 + xShift)
               .attr("y", 25 + i * 40 - yShift)
-              .style("font-size", 12);
+			  .style("font-size", 12)
+			  .style("font-family", "ralewaylight, Helvetica, Arial, sans-serif");
           }
         });
       setLinesStates(linesObject);
-    }
-  }, [dataStates, selectedStates]);
+	}
+	
+	return () => {
+		focus.selectAll('circle').remove();
+		focus.selectAll('text').remove();
+	}
+  }, [dataStates, selectedStates, theme]);
 
   return (
     <>
@@ -138,7 +145,7 @@ const Line = ({ focus, overlay }) => {
               <g key={i} id={`bounds-render-${stateHTML}`}>
                 <path
                   fill="none"
-                  stroke={selectedStates[state].color}
+				  stroke={selectedStates[state].color}
                   strokeWidth={2}
                   strokeLinejoin="round"
                   strokeLinecap="round"
@@ -158,7 +165,7 @@ const Line = ({ focus, overlay }) => {
                 <text
                   id={`line-label-${stateHTML}`}
 				  className="line-label"
-				  style={{fill: theme.palette.text.primary, fontSize: "14px"}}
+				  style={{fill: theme.palette.text.primary, fontSize: "14px", fontFamily: "ralewaylight, Helvetica, Arial, sans-serif"}}
                   x={linesStates[state].lineLabelX}
                   y={linesStates[state].lineLabelY}
                 >

@@ -12,7 +12,6 @@ import { themeContext } from '../../context/themeContext';
 import { dimensions, bounded } from '../util/constants';
 
 // Styles
-// import '../../styles/styles.css';
 import { makeStyles } from '@material-ui/core/styles';
 
 const { width, height, margin } = dimensions;
@@ -68,7 +67,7 @@ const ChartUSCompare = () => {
         const xAxisGenerator = d3.axisBottom().scale(xScale);
         d3.select(xAxisRef.current).call(xAxisGenerator);
         d3.select(yAxisRef.current).call(yAxisGenerator);
-	}, [dataStates, window.innerWidth]);
+	}, [dataStates, theme]);
 
     return (
         <div height={height} width={width}>
@@ -80,7 +79,7 @@ const ChartUSCompare = () => {
             >
                 <text
 					className={classes.title}
-					style={{fill: theme.palette.text.primary}}
+					style={{fill: theme.palette.text.primary, fontFamily: "ralewaylight, Helvetica, Arial, sans-serif"}}
 					textAnchor="middle"
                     transform={`translate (${margin.left + bounded.width / 2}, ${margin.top / 2})`}
                 >
@@ -88,7 +87,7 @@ const ChartUSCompare = () => {
                 </text>
                 <text 
 					className={classes.axisLabel}
-					style={{fill: theme.palette.text.primary}}
+					style={{fill: theme.palette.text.primary, fontFamily: "ralewaylight, Helvetica, Arial, sans-serif"}}
                     textAnchor="middle"
                     transform={`translate(${margin.left + bounded.width / 2}, ${bounded.height + margin.top + 40})`}
                 >
@@ -96,7 +95,7 @@ const ChartUSCompare = () => {
                 </text>
                 <text 
 					className={classes.axisLabel}
-					style={{fill: theme.palette.text.primary}}
+					style={{fill: theme.palette.text.primary, fontFamily: "ralewaylight, Helvetica, Arial, sans-serif"}}
                     textAnchor="middle"
                     transform={`translate(${width - bounded.width - margin.right - 40}, ${bounded.height / 2}) rotate(-90)`}
                 >
@@ -105,7 +104,7 @@ const ChartUSCompare = () => {
                 <text 
                     className={classes.footnotes}
                     textAnchor="left"
-                    style={{fill: theme.palette.text.primary}}
+                    style={{fill: theme.palette.text.primary, fontFamily: "ralewaylight, Helvetica, Arial, sans-serif"}}
                     transform={`translate(${margin.left}, ${bounded.height + margin.top + 60})`}
                 >
                     *Data from The New York Times, based on reports from state and local health agencies.
@@ -113,7 +112,7 @@ const ChartUSCompare = () => {
                 <text 
                     className={classes.footnotes} 
                     textAnchor="left"
-                    style={{fill: theme.palette.text.primary}}
+                    style={{fill: theme.palette.text.primary, fontFamily: "ralewaylight, Helvetica, Arial, sans-serif"}}
                     transform={`translate(${margin.left}, ${bounded.height + margin.top + 80})`}
                 >
                     **Population data from US Census Bureau (2019).
@@ -121,7 +120,7 @@ const ChartUSCompare = () => {
                 <text 
                     className={classes.footnotes} 
                     textAnchor="left"
-                    style={{fill: theme.palette.text.primary}}
+                    style={{fill: theme.palette.text.primary, fontFamily: "ralewaylight, Helvetica, Arial, sans-serif"}}
                     transform={`translate(${margin.left}, ${bounded.height + margin.top + 100})`}
                 >
                     ***2/27 is earliest possible 'Day 1,' since prior cases were isolated and may skew insights of "community spread"
@@ -130,12 +129,12 @@ const ChartUSCompare = () => {
 					<g 
 						ref={yAxisRef} 
 						id="y-axis"
-						style={{color: theme.palette.text.primary}} />
+						style={{color: theme.palette.text.primary, fontFamily: "ralewaylight, Helvetica, Arial, sans-serif"}} />
 					<g 
 						ref={xAxisRef} 
 						id="x-axis" 
 						transform={`translate(0,${bounded.height})`}
-						style={{color: theme.palette.text.primary}} />
+						style={{color: theme.palette.text.primary, fontFamily: "ralewaylight, Helvetica, Arial, sans-serif"}} />
                     <Line focus={focus} overlay={overlay}/>
                 </g>
             </svg>

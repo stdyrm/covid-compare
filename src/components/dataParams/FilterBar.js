@@ -101,7 +101,7 @@ const FilterBar = () => {
 			className={clsx(classes.menuButton, open && classes.hide)}
 			style={{color: theme.palette.text.primary}}
           >
-            <MenuOutlinedIcon />
+            <MenuOutlinedIcon style={{color: theme.palette.primary.contrastText}} />
           </IconButton>
           <BatchSelect />
         </Toolbar>
@@ -117,8 +117,8 @@ const FilterBar = () => {
 		  }}
 		  style={{color: theme.palette.text.primary}}
         >
-          <div className={classes.drawerHeader}>
-            <IconButton color="inherit" edge="end" onClick={handleDrawerClose}>
+          <div className={classes.drawerHeader} style={{backgroundColor: theme.palette.primary.main}}>
+            <IconButton color="inherit" edge="end" onClick={handleDrawerClose} style={{color: theme.palette.primary.contrastText}}>
               <ChevronLeftIcon />
             </IconButton>
           </div>

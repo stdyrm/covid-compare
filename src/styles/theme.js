@@ -3,49 +3,79 @@ import { createMuiTheme } from "@material-ui/core/styles";
 const themeDark = createMuiTheme({
   palette: {
     primary: {
-	  main: "#000018",
+      main: "#000018",
       contrastText: "#fff",
     },
     background: {
       default: "#29293d",
     },
     text: {
-      primary: "#f2ffcc",
+      primary: "#fff",
       secondary: "#fff",
     },
     contrastThreshold: 3,
   },
   typography: {
-    fontFamily: "Raleway, Arial",
+    fontFamily: ["ralewaylight", "Helvetica", "Arial", "sans-serif"].join(","),
   },
   overrides: {
-    MuiMenu: {
-		root: {
-			color: "#fff"
-		},
-      paper: {
-		backgroundColor: "#29293d",
-		textColor: "#fff"
+    MuiFormControlLabel: {
+      root: {
+        color: "#fff",
+        textColor: "#fff",
       },
-	},
-	MuiMenuItem: {
-		root: {
-		  backgroundColor: "#29293d",
-		  color: "#fff"
-		},
-	},
-	MuiButton: {
-		root: {
-		  color: "#fff",
-		},
-	},
-	MuiInputBase: {
-		root: {
-		  color: "#fff",
-		  maxWidth: 100,
-		  paddingLeft: 10,
-		},
-	  },
+      label: {
+        color: "#fff",
+        textColor: "#fff",
+      },
+    },
+    MuiTypography: {
+      root: {
+        color: "#fff",
+        textColor: "#fff",
+      },
+    },
+    MuiMenu: {
+      root: {
+        color: "#fff",
+      },
+      paper: {
+        backgroundColor: "#29293d",
+        textColor: "#fff",
+      },
+    },
+    MuiMenuItem: {
+      root: {
+        backgroundColor: "#29293d",
+        color: "#fff",
+      },
+    },
+    MuiButton: {
+      raisedPrimary: {
+        color: "#fff",
+      },
+      root: {
+        color: "#fff",
+      },
+      label: {
+        color: "#fff",
+      },
+      text: {
+        color: "#fff",
+      },
+    },
+    MuiBase: {
+      root: {
+        color: "#fff",
+      },
+    },
+    MuiInputBase: {
+      root: {
+        color: "#fff",
+        maxWidth: 100,
+        paddingLeft: 10,
+      },
+    },
     MuiPickersCalendarHeader: {
       switchHeader: {
         color: "#29293d",
@@ -69,49 +99,77 @@ const themeDark = createMuiTheme({
 });
 
 const themeLight = createMuiTheme({
-	palette: {
-	  primary: {
-		main: "#80deea",
-		contrastText: "#fff",
-	  },
-	  background: {
-		default: "#fff",
-	  },
-	  text: {
-		primary: "#29293d",
-		secondary: "#000018",
-	  },
-	  contrastThreshold: 3,
-	},
-	typography: {
-	  fontFamily: "Raleway, Arial",
-	},
-	overrides: {
-	  MuiMenu: {
-		paper: {
-		  backgroundColor: "#29293d",
-		},
-	  },
-	  MuiPickersCalendarHeader: {
-		switchHeader: {
-		  color: "#29293d",
-		},
-	  },
-	  MuiPickersDay: {
-		day: {
-		  color: "#29293d",
-		},
-		daySelected: {
-		  backgroundColor: "#29293d",
-		},
-		dayDisabled: {
-		  color: "#29293d",
-		},
-		current: {
-		  color: "#29293d",
-		},
-	  },
-	},
-  });
+  palette: {
+    primary: {
+      main: "#1c847f",
+      contrastText: "#fff",
+    },
+    background: {
+      default: "#fff",
+    },
+    text: {
+      primary: "#29293d",
+      secondary: "#000018",
+    },
+    contrastThreshold: 3,
+  },
+  typography: {
+    fontFamily: ["ralewaylight", "Helvetica", "Arial", "sans-serif"].join(","),
+  },
+  overrides: {
+    MuiFormControlLabel: {
+      label: {
+        color: "#fff",
+      },
+    },
+    MuiTypography: {
+      root: {
+        color: "#29293d",
+      },
+    },
+    MuiMenu: {
+      paper: {
+        backgroundColor: "#fff",
+        textColor: "#29293d",
+      },
+    },
+    MuiMenuItem: {
+      root: {
+        backgroundColor: "#fff",
+        color: "#29293d",
+      },
+    },
+    MuiButton: {
+      root: {
+        color: "#fff",
+      },
+      label: {
+        color: "#fff",
+      },
+      text: {
+        color: "#fff",
+      },
+    },
+    MuiPickersCalendarHeader: {
+      switchHeader: {
+        color: "#29293d",
+      },
+    },
+    MuiPickersDay: {
+      day: {
+        color: "#29293d",
+      },
+      daySelected: {
+        backgroundColor: "#29293d",
+      },
+      dayDisabled: {
+        color: "#29293d",
+      },
+      current: {
+        color: "#29293d",
+      },
+    },
+  },
+});
 
 export { themeDark, themeLight };
