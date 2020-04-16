@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   AppBar,
   Toolbar,
@@ -13,6 +13,9 @@ import clsx from "clsx";
 import { BatchSelect } from "./BatchSelect";
 import { Dashboard } from "./Dashboard";
 
+// context
+import { themeContext } from '../../context/themeContext';
+
 // styles
 import { makeStyles } from "@material-ui/core/styles";
 import MenuOutlinedIcon from "@material-ui/icons/MenuOutlined";
@@ -22,14 +25,14 @@ const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+	display: "flex",
+	backgroundColor: theme.palette.primary.main,
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-    }),
-    backgroundColor: "#000018",
+    })
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -41,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    color: "#ffffff",
+    color: theme.palette.text.primary,
   },
   hide: {
     display: "none",
@@ -65,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
 
 const FilterBar = () => {
   const [open, setOpen] = useState(false);
+  const {theme, setTheme} = useContext(themeContext);
   const classes = useStyles();
 
   const handleDrawerOpen = () => {
@@ -87,13 +91,15 @@ const FilterBar = () => {
         position="relative"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
-        })}
+		})}
+		style={{backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText}}
       >
         <Toolbar>
           <IconButton
             onClick={handleDrawerOpen}
             edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
+			className={clsx(classes.menuButton, open && classes.hide)}
+			style={{color: theme.palette.text.primary}}
           >
             <MenuOutlinedIcon />
           </IconButton>
@@ -108,7 +114,8 @@ const FilterBar = () => {
           open={open}
           classes={{
             paper: classes.drawerPaper,
-          }}
+		  }}
+		  style={{color: theme.palette.text.primary}}
         >
           <div className={classes.drawerHeader}>
             <IconButton color="inherit" edge="end" onClick={handleDrawerClose}>

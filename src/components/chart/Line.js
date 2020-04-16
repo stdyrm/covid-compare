@@ -10,6 +10,7 @@ import stateInfo from "../../data/stateInfo.json";
 // context
 import { dataContext } from "../../context/dataContext";
 import { statesContext } from "../../context/statesContext";
+import { themeContext } from '../../context/themeContext';
 
 // constants
 import { bounded } from "../util/constants";
@@ -17,10 +18,10 @@ import { bounded } from "../util/constants";
 const Line = ({ focus, overlay }) => {
   const { selectedStates } = useContext(statesContext);
   const { dataStates } = useContext(dataContext);
+  const { theme, setTheme } = useContext(themeContext);
   const [linesStates, setLinesStates] = useState([]);
 
   const clearFocus = () => {
-    console.log("clearing focus");
     focus.selectAll(['circle', 'text']).attr('display', 'none')
   };
 
@@ -92,9 +93,9 @@ const Line = ({ focus, overlay }) => {
           let xShift = 0;
           let yShift = 0;
 
-          if (i > 14) {
+          if (i > 12) {
             xShift += 200;
-            yShift = 15 * 40;
+            yShift = 13 * 40;
           }
 
           focus
@@ -102,9 +103,9 @@ const Line = ({ focus, overlay }) => {
             .attr("id", `circle-${stateHTML}`)
             .attr("r", 5)
             .attr("fill", selectedStates[state].color)
-            .attr("stroke", "white");
+			.attr("stroke", theme.palette.text.primary);
 
-          if (i < 30) {
+          if (i < 26) {
             focus
               .append("text")
               .attr("id", `d-label-${stateHTML}`)
@@ -156,10 +157,10 @@ const Line = ({ focus, overlay }) => {
                 />
                 <text
                   id={`line-label-${stateHTML}`}
-                  className="line-label"
+				  className="line-label"
+				  style={{fill: theme.palette.text.primary, fontSize: "14px"}}
                   x={linesStates[state].lineLabelX}
                   y={linesStates[state].lineLabelY}
-                  fontSize={14}
                 >
                   {selectedStates[state].abbreviation}
                 </text>

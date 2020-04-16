@@ -4,26 +4,19 @@ import { DatePicker } from "@material-ui/pickers";
 
 // context
 import { statesContext } from "../../context/statesContext";
+import { themeContext } from '../../context/themeContext';
 
 // styles
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles({
-  date: {
-    backgroundColor: "#29293d",
-    maxWidth: 100,
-    paddingLeft: 10,
-  },
-});
-
 const BatchSelect = () => {
-  const { selectedStates, setSelectedStates } = useContext(statesContext);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedFilter, setSelectedFilter] = useState(null);
-  const [selectedDate, setDateChange] = useState(new Date());
-  const lockdownRef = useRef(null);
-  const classes = useStyles();
-
+	const {selectedStates, setSelectedStates} = useContext(statesContext);
+	const {theme} = useContext(themeContext);
+	const [anchorEl, setAnchorEl] = useState(null);
+	const [selectedFilter, setSelectedFilter] = useState(null);
+	const [selectedDate, setDateChange] = useState(new Date());
+	const lockdownRef = useRef(null);
+	
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
     setSelectedFilter(e.currentTarget.name);
@@ -180,8 +173,8 @@ const BatchSelect = () => {
   }, [selectedDate]);
 
   return (
-    <>
-      <Button id="filter-cases" name="cases" onClick={handleClick}>
+    <span>
+      <Button id="filter-cases" name="cases" onClick={handleClick} >
         Filter by Case Counts
       </Button>
       <Menu
@@ -189,21 +182,14 @@ const BatchSelect = () => {
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(selectedFilter === "cases")}
-        onClose={handleClose}
+		onClose={handleClose}
       >
-        <MenuItem id="cases-top-12" onClick={filterCases}>
-          Highest 12 (total)
-        </MenuItem>
-        <MenuItem id="cases-bottom-12" onClick={filterCases}>
-          Lowest 12 (total)
-        </MenuItem>
-        <MenuItem id="cases-top-12-per-1000" onClick={filterCases}>
-          Highest 12 (per 1000)
-        </MenuItem>
-        <MenuItem id="cases-bottom-12-per-1000" onClick={filterCases}>
-          Lowest 12 (per 1000)
-        </MenuItem>
-      </Menu>
+        <MenuItem id="cases-top-12" onClick={filterCases}>Highest 12 (total)</MenuItem>
+        <MenuItem id="cases-bottom-12" onClick={filterCases}>Lowest 12 (total)</MenuItem>
+        <MenuItem id="cases-top-12-per-1000" onClick={filterCases}>Highest 12 (per 1000)</MenuItem>
+        <MenuItem id="cases-bottom-12-per-1000" onClick={filterCases}>Lowest 12 (per 1000)</MenuItem>
+	  </Menu>
+	  
       <Button id="filter-lockdown" name="lockdown" onClick={handleClick}>
         Filter by Lockdown Date
       </Button>
@@ -214,12 +200,8 @@ const BatchSelect = () => {
         open={Boolean(selectedFilter === "lockdown")}
         onClose={handleClose}
       >
-        <MenuItem id="all-with-lockdown" onClick={filterLockdown}>
-          All with lockdown
-        </MenuItem>
-        <MenuItem id="all-without-lockdown" onClick={filterLockdown}>
-          All without lockdown
-        </MenuItem>
+        <MenuItem id="all-with-lockdown" onClick={filterLockdown}>All with lockdown</MenuItem>
+        <MenuItem id="all-without-lockdown" onClick={filterLockdown}>All without lockdown</MenuItem>
         <MenuItem
           id="lockdown-before"
           ref={lockdownRef}
@@ -234,7 +216,6 @@ const BatchSelect = () => {
             onChange={handleDateChange}
             disableFuture={true}
             format="MM/dd/yyyy"
-            className={classes.date}
           />
         </MenuItem>
         <MenuItem
@@ -251,7 +232,6 @@ const BatchSelect = () => {
             onChange={(date) => setDateChange(date)}
             disableFuture={true}
             format="MM/dd/yyyy"
-            className={classes.date}
           />
         </MenuItem>
       </Menu>
@@ -260,18 +240,14 @@ const BatchSelect = () => {
         Filter by Total Population
       </Button>
       <Menu
-        id="filter-population-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(selectedFilter === "population")}
-        onClose={handleClose}
+		id="filter-population-menu"
+		anchorEl={anchorEl}
+		keepMounted
+		open={Boolean(selectedFilter === "population")}
+		onClose={handleClose}
       >
-        <MenuItem id="population-top-12" onClick={filterPopulation}>
-          Highest 12
-        </MenuItem>
-        <MenuItem id="population-bottom-12" onClick={filterPopulation}>
-          Lowest 12
-        </MenuItem>
+        <MenuItem id="population-top-12" onClick={filterPopulation}>Highest 12</MenuItem>
+        <MenuItem id="population-bottom-12" onClick={filterPopulation}>Lowest 12</MenuItem>
       </Menu>
 
       <Button id="filter-region" name="region" onClick={handleClick}>
@@ -284,20 +260,12 @@ const BatchSelect = () => {
         open={Boolean(selectedFilter === "region")}
         onClose={handleClose}
       >
-        <MenuItem id="northeast" onClick={filterRegion}>
-			Northeast
-        </MenuItem>
-		<MenuItem id="midwest" onClick={filterRegion}>
-			Midwest
-		</MenuItem>
-		<MenuItem id="south" onClick={filterRegion}>
-			South
-		</MenuItem>
-		<MenuItem id="west" onClick={filterRegion}>
-			West
-		</MenuItem>
+        <MenuItem id="northeast" onClick={filterRegion}>Northeast</MenuItem>
+		<MenuItem id="midwest" onClick={filterRegion}>Midwest</MenuItem>
+		<MenuItem id="south" onClick={filterRegion}>South</MenuItem>
+		<MenuItem id="west" onClick={filterRegion}>West</MenuItem>
       </Menu>
-    </>
+    </span>
   );
 };
 

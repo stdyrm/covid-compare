@@ -4,11 +4,15 @@ import * as d3 from 'd3';
 // context
 import { dataContext } from '../../context/dataContext';
 import { statesContext } from '../../context/statesContext';
+import { themeContext } from '../../context/themeContext';
+
+// constants
 import { date, bounded } from '../util/constants';
 
 export const MouseMove = ({ focus, overlay, linesStates }) => {
     const { dataStates } = useContext(dataContext);
-    const { selectedStates } = useContext(statesContext);
+	const { selectedStates } = useContext(statesContext);
+	const { theme } = useContext(themeContext);
 
     const xScale = d3.scaleLinear().domain(d3.extent(dataStates, d => d.dayOfOutbreak)).range([0, bounded.width]);
     const yScale = d3.scaleLinear().domain(d3.extent(dataStates, d => d.casesPerThousand)).range([bounded.height, 0]);
@@ -57,7 +61,7 @@ export const MouseMove = ({ focus, overlay, linesStates }) => {
 
                             focus.select(`#d-label-${stateHTML}`)
                                 .text(`${selectedStates[state].abbreviation} => ${dataEachStateRangeDate} (Day: ${dataEachStateRangeX})`)
-                                .attr('fill', selectedStates[state].color)
+								.attr('fill', selectedStates[state].color)
 
                             focus.select(`#d-label-b-${stateHTML}`)
                                 .text(`${dataEachStateRangeCases} cases (${dataEachStateRangeY.toFixed(3)} per 1000)`)

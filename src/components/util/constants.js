@@ -11,7 +11,7 @@ const dimensions = {
   margin: {
     top: 80,
     right: 100,
-    bottom: 60,
+    bottom: 120,
     left: 100,
   },
 };

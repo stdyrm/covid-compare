@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as d3 from "d3";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
@@ -12,19 +12,21 @@ import stateInfo from "./data/stateInfo.json";
 import { ChartUSCompare } from "./components/chart/ChartUSCompare";
 import { FilterBar } from "./components/dataParams/FilterBar";
 import { Footnotes } from "./components/chart/Footnotes";
-// import { FileSaver } from "./components/util/FileSaver";
 
 // context
 import { dataContext } from "./context/dataContext";
 import { statesContext } from "./context/statesContext";
+import { themeContext } from './context/themeContext';
 
 // styles
-import './styles/styles.css';
-import { theme } from './styles/theme';
+// import './styles/styles.css';
+import { themeDark, themeLight } from './styles/theme';
 
 function App() {
-  const [dataStates, setDataStates] = useState([]);
-  const [selectedStates, setSelectedStates] = useState([]);
+	const [dataStates, setDataStates] = useState([]);
+	const [selectedStates, setSelectedStates] = useState([]);
+	const [theme, setTheme] = useState(themeDark);
+	const [darkTheme, setDarkTheme] = useState(true);
 
   useEffect(() => {
     // get COVID-19 state data
@@ -67,16 +69,26 @@ function App() {
     });
   }, []);
 
+//   useEffect(() => {
+// 	if (!darkTheme) {
+// 		setTheme(themeDark);
+// 	} else {
+// 		setTheme(themeLight)
+// 	}
+//   }, [darkTheme]);
+
   return (
-    <div minWidth="sm">
+    <div minWidth="sm" style={{backgroundColor: theme.palette.background.default}}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <dataContext.Provider value={{ dataStates, setDataStates }}>
           <statesContext.Provider value={{ selectedStates, setSelectedStates }}>
-            <ThemeProvider theme={theme}>
-              <FilterBar className="header" />
-              <ChartUSCompare className="chart" />
-              <Footnotes />
-            </ThemeProvider>
+			<themeContext.Provider value={{ theme, setTheme }}>
+				<ThemeProvider theme={themeDark}>
+				<FilterBar className="header" />
+				<ChartUSCompare className="chart" />
+				<Footnotes />
+				</ThemeProvider>
+            </themeContext.Provider>
           </statesContext.Provider>
         </dataContext.Provider>
       </MuiPickersUtilsProvider>
