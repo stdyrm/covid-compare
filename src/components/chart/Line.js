@@ -93,9 +93,9 @@ const Line = ({ focus, overlay }) => {
           let xShift = 0;
           let yShift = 0;
 
-          if (i > 12) {
-            xShift += 200;
-            yShift = 13 * 40;
+          if (i > 11) {
+            xShift += 150;
+            yShift = 12 * 40;
           }
 
           focus
@@ -105,22 +105,22 @@ const Line = ({ focus, overlay }) => {
             .attr("fill", selectedStates[state].color)
 			.attr("stroke", theme.palette.text.primary);
 
-          if (i < 26) {
+          if (i < 24) {
             focus
               .append("text")
               .attr("id", `d-label-${stateHTML}`)
               .attr("x", 10 + xShift)
               .attr("y", 10 + i * 40 - yShift)
-			  .style("font-size", 12)
-			  .style("font-family", "ralewaylight, Helvetica, Arial, sans-serif");
+			  .style("font-size", 14)
+			  .style("font-family", "ralewaymedium, Helvetica, Arial, sans-serif");
 
             focus
               .append("text")
               .attr("id", `d-label-b-${stateHTML}`)
               .attr("x", 10 + xShift)
               .attr("y", 25 + i * 40 - yShift)
-			  .style("font-size", 12)
-			  .style("font-family", "ralewaylight, Helvetica, Arial, sans-serif");
+			  .style("font-size", 14)
+			  .style("font-family", "ralewaymedium, Helvetica, Arial, sans-serif");
           }
         });
       setLinesStates(linesObject);
@@ -146,7 +146,7 @@ const Line = ({ focus, overlay }) => {
                 <path
                   fill="none"
 				  stroke={selectedStates[state].color}
-                  strokeWidth={2}
+                  strokeWidth={2.5}
                   strokeLinejoin="round"
                   strokeLinecap="round"
                   d={linesStates[state].line}
@@ -165,7 +165,7 @@ const Line = ({ focus, overlay }) => {
                 <text
                   id={`line-label-${stateHTML}`}
 				  className="line-label"
-				  style={{fill: theme.palette.text.primary, fontSize: "14px", fontFamily: "ralewaylight, Helvetica, Arial, sans-serif"}}
+				  style={{fill: theme.palette.text.primary, fontSize: "14px", fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
                   x={linesStates[state].lineLabelX}
                   y={linesStates[state].lineLabelY}
                 >

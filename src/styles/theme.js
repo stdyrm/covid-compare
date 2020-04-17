@@ -16,7 +16,7 @@ const themeDark = createMuiTheme({
     contrastThreshold: 3,
   },
   typography: {
-    fontFamily: ["ralewaylight", "Helvetica", "Arial", "sans-serif"].join(","),
+    fontFamily: ["ralewaymedium", "Helvetica", "Arial", "sans-serif"].join(","),
   },
   overrides: {
     MuiFormControlLabel: {
@@ -114,7 +114,7 @@ const themeLight = createMuiTheme({
     contrastThreshold: 3,
   },
   typography: {
-    fontFamily: ["ralewaylight", "Helvetica", "Arial", "sans-serif"].join(","),
+    fontFamily: ["ralewaymedium", "Helvetica", "Arial", "sans-serif"].join(","),
   },
   overrides: {
     MuiFormControlLabel: {

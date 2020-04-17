@@ -60,11 +60,11 @@ export const MouseMove = ({ focus, overlay, linesStates }) => {
                                 .attr('cx', xScale(dataEachStateRangeX));
 
                             focus.select(`#d-label-${stateHTML}`)
-                                .text(`${selectedStates[state].abbreviation} => ${dataEachStateRangeDate} (Day: ${dataEachStateRangeX})`)
+                                .text(`${selectedStates[state].abbreviation} => Day ${dataEachStateRangeX} (${dataEachStateRangeDate.split("-").slice(0,2).join("-")})`)
 								.attr('fill', selectedStates[state].color)
 
                             focus.select(`#d-label-b-${stateHTML}`)
-                                .text(`${dataEachStateRangeCases} cases (${dataEachStateRangeY.toFixed(3)} per 1000)`)
+                                .text(`${dataEachStateRangeY.toFixed(3)} (${dataEachStateRangeCases} tot.)`)
                                 .attr('fill', selectedStates[state].color)
                         } 
                     });

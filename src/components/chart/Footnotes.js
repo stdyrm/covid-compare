@@ -48,9 +48,9 @@ const Footnotes = ({changeTheme}) => {
 			encoderOptions: 1,
 			fonts: [
 				{
-					url: "../../styles/ralewaylight/raleway-light-webfont.woff",
+					url: "../../styles/ralewaymedium/raleway-medium-webfont.woff",
 					format: "application/font-woff",
-					text: "@font-face {font-family: 'ralewaylight'; src: url('./ralewaylight/raleway-light-webfont.woff2') format('woff2'), url('./ralewaylight/raleway-light-webfont.woff') format('woff'); font-weight: normal;font-style: normal;}"
+					text: "@font-face {font-family: 'ralewaymedium'; src: url('./ralewaymedium/raleway-medium-webfont.woff2') format('woff2'), url('./ralewaymedium/raleway-medium-webfont.woff') format('woff'); font-weight: normal;font-style: normal;}"
 				}
 			]
         });
@@ -59,8 +59,8 @@ const Footnotes = ({changeTheme}) => {
     return (
 		<>
         <div style={{backgroundColor: theme.palette.background.default}}>
-            <p className={classes.root} style={{color: theme.palette.text.primary}}>Line marking indicates day of lockdown order/advisory</p>
-			<p className={classes.root} style={{color: theme.palette.text.primary}}>Freeze/unfreeze focus by clicking on chart</p>
+            <p className={classes.root} style={{color: theme.palette.text.primary, fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}>Line marking indicates day of lockdown order/advisory</p>
+			<p className={classes.root} style={{color: theme.palette.text.primary, fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}>Freeze/unfreeze focus by clicking on chart</p>
 		</div>
 		<div style={{backgroundColor: theme.palette.background.default}}>
 			<Tooltip title="Save chart as image" placement="right">
