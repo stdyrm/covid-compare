@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/covidcompare/static/css/main.d15f6936.chunk.css",
-    "main.js": "/covidcompare/static/js/main.c9777b8d.chunk.js",
-    "main.js.map": "/covidcompare/static/js/main.c9777b8d.chunk.js.map",
+    "main.js": "/covidcompare/static/js/main.9d548e81.chunk.js",
+    "main.js.map": "/covidcompare/static/js/main.9d548e81.chunk.js.map",
     "runtime-main.js": "/covidcompare/static/js/runtime-main.596165d2.js",
     "runtime-main.js.map": "/covidcompare/static/js/runtime-main.596165d2.js.map",
     "static/js/2.219af7f3.chunk.js": "/covidcompare/static/js/2.219af7f3.chunk.js",
     "static/js/2.219af7f3.chunk.js.map": "/covidcompare/static/js/2.219af7f3.chunk.js.map",
     "index.html": "/covidcompare/index.html",
-    "precache-manifest.6b923d5fa00e7231f27a95d96c9a7152.js": "/covidcompare/precache-manifest.6b923d5fa00e7231f27a95d96c9a7152.js",
+    "precache-manifest.48997eab218619106ca62c5d88e58c35.js": "/covidcompare/precache-manifest.48997eab218619106ca62c5d88e58c35.js",
     "service-worker.js": "/covidcompare/service-worker.js",
     "static/css/main.d15f6936.chunk.css.map": "/covidcompare/static/css/main.d15f6936.chunk.css.map",
     "static/js/2.219af7f3.chunk.js.LICENSE.txt": "/covidcompare/static/js/2.219af7f3.chunk.js.LICENSE.txt",
     "static/media/styles.css": "/covidcompare/static/media/raleway-medium-webfont.78c3ee5f.woff",
-    "static/media/us-states.csv": "/covidcompare/static/media/us-states.8c0dfbb7.csv"
+    "static/media/us-states.csv": "/covidcompare/static/media/us-states.e05584bb.csv"
   },
   "entrypoints": [
     "static/js/runtime-main.596165d2.js",
     "static/js/2.219af7f3.chunk.js",
     "static/css/main.d15f6936.chunk.css",
-    "static/js/main.c9777b8d.chunk.js"
+    "static/js/main.9d548e81.chunk.js"
   ]
 }
