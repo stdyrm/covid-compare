@@ -6,6 +6,8 @@ import {
   ClickAwayListener,
   Drawer,
   Divider,
+  Menu,
+  MenuItem
 } from "@material-ui/core";
 import clsx from "clsx";
 
@@ -96,7 +98,7 @@ const FilterBar = () => {
       >
         <Toolbar>
           <IconButton
-            onClick={handleDrawerOpen}
+			onClick={handleDrawerOpen}
             edge="start"
 			className={clsx(classes.menuButton, open && classes.hide)}
 			style={{color: theme.palette.text.primary}}

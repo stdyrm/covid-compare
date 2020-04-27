@@ -4,19 +4,33 @@ import { DatePicker } from "@material-ui/pickers";
 
 // context
 import { statesContext } from "../../context/statesContext";
-import { themeContext } from '../../context/themeContext';
+import { themeContext } from "../../context/themeContext";
 
 // styles
 import { makeStyles } from "@material-ui/core/styles";
 
-const BatchSelect = () => {
-	const {selectedStates, setSelectedStates} = useContext(statesContext);
-	const {theme} = useContext(themeContext);
-	const [anchorEl, setAnchorEl] = useState(null);
-	const [selectedFilter, setSelectedFilter] = useState(null);
-	const [selectedDate, setDateChange] = useState(new Date());
-	const lockdownRef = useRef(null);
-	
+const useStyles = makeStyles((theme) => ({
+  tab: {
+    opacity: 0.7,
+  },
+  menuItem: {
+    opacity: 0.7,
+    "&:hover": {
+      opacity: 1,
+    },
+  },
+}));
+
+export const BatchSelect = () => {
+  const { selectedStates, setSelectedStates } = useContext(statesContext);
+  const { theme } = useContext(themeContext);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedFilter, setSelectedFilter] = useState(null);
+  const [selectedDate, setDateChange] = useState(new Date());
+  const lockdownRef = useRef(null);
+
+  const classes = useStyles();
+
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
     setSelectedFilter(e.currentTarget.name);
@@ -32,8 +46,6 @@ const BatchSelect = () => {
   };
 
   const filterCases = (e) => {
-    // top/bottom by total cases
-    // top/bottom by cases per 1000 people
     const revisedStates = {};
     const revisedOrder = Object.keys(selectedStates).sort(
       (a, b) =>
@@ -77,6 +89,13 @@ const BatchSelect = () => {
     setSelectedStates(revisedStates);
     handleClose();
   };
+
+  const casesOptions = [
+	{id: "cases-top-12", name: "Highest 12 (total)"},
+	{id: "cases-bottom-12", name: "Lowest 12 (total"},
+	{id: "cases-top-12-per-1000", name: "Highest 12 (per 1000)"},
+	{id: "cases-bottom-12-per-1000", name: "Lowest 12 (per 1000)"}
+  ];
 
   const filterLockdown = (e) => {
     // before/after x date
@@ -129,26 +148,35 @@ const BatchSelect = () => {
   };
 
   const filterRegion = (e) => {
-	const revisedStates = {};
-	const filteredByRegion = Object.keys(selectedStates).filter(s => selectedStates[s].region === e.target.id);
+    const revisedStates = {};
+    const filteredByRegion = Object.keys(selectedStates).filter(
+      (s) => selectedStates[s].region === e.target.id
+    );
 
-	Object.keys(selectedStates).forEach(s => {
-		if (filteredByRegion.includes(s)) {
-			revisedStates[s] = {
-				...selectedStates[s],
-				selected: true
-			};
-		} else {
-			revisedStates[s] = {
-				...selectedStates[s],
-				selected: false
-			};
-		}
-	});
+    Object.keys(selectedStates).forEach((s) => {
+      if (filteredByRegion.includes(s)) {
+        revisedStates[s] = {
+          ...selectedStates[s],
+          selected: true,
+        };
+      } else {
+        revisedStates[s] = {
+          ...selectedStates[s],
+          selected: false,
+        };
+      }
+    });
 
-	setSelectedStates(revisedStates);
-	handleClose();
+    setSelectedStates(revisedStates);
+    handleClose();
   };
+
+	const regionOptions = [
+		{id: "northeast", name: "Northeast"},
+		{id: "midwest", name: "Midwest"},
+		{id: "south", name: "South"},
+		{id: "west", name: "West"}
+	];
 
   useEffect(() => {
     const revisedStates = {};
@@ -174,38 +202,75 @@ const BatchSelect = () => {
 
   return (
     <span>
-      <Button id="filter-cases" name="cases" onClick={handleClick} >
+      <Button
+		  aria-controls="filter-cases-menu"
+		  aria-haspopup="true"
+		  id="filter-cases"
+		  name="cases"
+		  onMouseOver={handleClick}
+		  className={classes.tab}
+      >
         Filter by Case Counts
       </Button>
       <Menu
         id="filter-cases-menu"
         anchorEl={anchorEl}
         keepMounted
-        open={Boolean(selectedFilter === "cases")}
-		onClose={handleClose}
+		open={Boolean(selectedFilter === "cases")}
+        onClose={handleClose}
+        MenuListProps={{ onMouseLeave: handleClose }}
       >
-        <MenuItem id="cases-top-12" onClick={filterCases}>Highest 12 (total)</MenuItem>
-        <MenuItem id="cases-bottom-12" onClick={filterCases}>Lowest 12 (total)</MenuItem>
-        <MenuItem id="cases-top-12-per-1000" onClick={filterCases}>Highest 12 (per 1000)</MenuItem>
-        <MenuItem id="cases-bottom-12-per-1000" onClick={filterCases}>Lowest 12 (per 1000)</MenuItem>
-	  </Menu>
+		  {casesOptions.map((c,i) => {
+			  return (
+					<MenuItem
+						key={i}
+						id={c.id}
+						onClick={filterCases}
+						className={classes.menuItem}				
+					>
+				  		{c.name}
+				  	</MenuItem>
+			  )
+		  })}
+      </Menu>
 	  
-      <Button id="filter-lockdown" name="lockdown" onClick={handleClick}>
+      <Button
+		aria-controls="filter-lockdown-menu"
+		aria-haspopup="true"
+        id="filter-lockdown"
+        name="lockdown"
+        onMouseOver={handleClick}
+        className={classes.tab}
+      >
         Filter by Lockdown Date
       </Button>
       <Menu
         id="filter-lockdown-menu"
         anchorEl={anchorEl}
         keepMounted
-        open={Boolean(selectedFilter === "lockdown")}
+		open={Boolean(selectedFilter === "lockdown")}
         onClose={handleClose}
+        MenuListProps={{ onMouseLeave: handleClose }}
       >
-        <MenuItem id="all-with-lockdown" onClick={filterLockdown}>All with lockdown</MenuItem>
-        <MenuItem id="all-without-lockdown" onClick={filterLockdown}>All without lockdown</MenuItem>
+        <MenuItem
+          id="all-with-lockdown"
+          onClick={filterLockdown}
+          className={classes.menuItem}
+        >
+          All with lockdown
+        </MenuItem>
+        <MenuItem
+          id="all-without-lockdown"
+          onClick={filterLockdown}
+          className={classes.menuItem}
+        >
+          All without lockdown
+        </MenuItem>
         <MenuItem
           id="lockdown-before"
           ref={lockdownRef}
           onClick={(e) => (lockdownRef.current = e.currentTarget.id)}
+          className={classes.menuItem}
         >
           Lockdown before:
           <DatePicker
@@ -222,6 +287,7 @@ const BatchSelect = () => {
           id="lockdown-after"
           ref={lockdownRef}
           onClick={(e) => (lockdownRef.current = e.currentTarget.id)}
+          className={classes.menuItem}
         >
           Lockdown after:
           <DatePicker
@@ -236,21 +302,44 @@ const BatchSelect = () => {
         </MenuItem>
       </Menu>
 
-      <Button id="filter-population" name="population" onClick={handleClick}>
+      <Button
+        id="filter-population"
+        name="population"
+        onMouseOver={handleClick}
+        className={classes.tab}
+      >
         Filter by Total Population
       </Button>
       <Menu
-		id="filter-population-menu"
-		anchorEl={anchorEl}
-		keepMounted
-		open={Boolean(selectedFilter === "population")}
-		onClose={handleClose}
+        id="filter-population-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(selectedFilter === "population")}
+        onClose={handleClose}
+        MenuListProps={{ onMouseLeave: handleClose }}
       >
-        <MenuItem id="population-top-12" onClick={filterPopulation}>Highest 12</MenuItem>
-        <MenuItem id="population-bottom-12" onClick={filterPopulation}>Lowest 12</MenuItem>
+        <MenuItem
+          id="population-top-12"
+          onClick={filterPopulation}
+          className={classes.menuItem}
+        >
+          Highest 12
+        </MenuItem>
+        <MenuItem
+          id="population-bottom-12"
+          onClick={filterPopulation}
+          className={classes.menuItem}
+        >
+          Lowest 12
+        </MenuItem>
       </Menu>
 
-      <Button id="filter-region" name="region" onClick={handleClick}>
+      <Button
+        id="filter-region"
+        name="region"
+        onMouseOver={handleClick}
+        className={classes.tab}
+      >
         Filter by Region
       </Button>
       <Menu
@@ -259,14 +348,22 @@ const BatchSelect = () => {
         keepMounted
         open={Boolean(selectedFilter === "region")}
         onClose={handleClose}
+        MenuListProps={{ onMouseLeave: handleClose }}
       >
-        <MenuItem id="northeast" onClick={filterRegion}>Northeast</MenuItem>
-		<MenuItem id="midwest" onClick={filterRegion}>Midwest</MenuItem>
-		<MenuItem id="south" onClick={filterRegion}>South</MenuItem>
-		<MenuItem id="west" onClick={filterRegion}>West</MenuItem>
+		  {regionOptions.map((r,i) => {
+			  return (
+				  	<MenuItem
+						key={i}					
+						id={r.id}
+						onClick={filterRegion}
+						className={classes.menuItem}
+					>
+						{r.name}
+				  	</MenuItem>
+			  );
+		  })
+		  }
       </Menu>
     </span>
   );
 };
-
-export { BatchSelect };
