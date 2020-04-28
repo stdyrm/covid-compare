@@ -144,7 +144,7 @@ const Line = ({ focus, overlay }) => {
             return (
               <g key={i} id={`bounds-render-${stateHTML}`}>
                 <path
-                  fill="none"
+				  fill="none"
 				  stroke={selectedStates[state].color}
                   strokeWidth={2.5}
                   strokeLinejoin="round"

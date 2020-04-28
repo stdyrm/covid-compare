@@ -4,7 +4,8 @@
         "abbreviation": "AL", 
         "htmlFormat": "alabama", 
         "lockdown": "04-04-20",
-        "population": 4903185,
+		"lockdownEnd": "none as of 04-28",
+		"population": 4903185,
         "region": "south",
         "division": "east south central",
         "selected": false
@@ -14,7 +15,8 @@
         "abbreviation": "AK",
         "htmlFormat": "alaska", 
         "lockdown": "03-28-20",
-        "population": 731545,
+		"lockdownEnd": "none as of 04-28",
+		"population": 731545,
         "region": "west",
         "division": "pacific",
         "selected": false
@@ -24,7 +26,8 @@
         "abbreviation": "AZ", 
         "htmlFormat": "arizona", 
         "lockdown": "03-31-20", 
-        "population": 7278717,
+		"lockdownEnd": "none as of 04-28",
+		"population": 7278717,
         "region": "west",
         "division": "mountain",
         "selected": false
@@ -34,7 +37,8 @@
         "abbreviation": "AR", 
         "htmlFormat": "arkansas", 
         "lockdown": "none as of 04-24", 
-        "population": 3017804,
+		"lockdownEnd": "none as of 04-28",
+		"population": 3017804,
         "region": "south",
         "division": "west south central",
         "selected": false
@@ -44,7 +48,8 @@
         "abbreviation": "CA", 
         "htmlFormat": "california", 
         "lockdown": "03-19-20", 
-        "population": 39512223,
+		"lockdownEnd": "none as of 04-28",
+		"population": 39512223,
         "region": "west",
         "division": "pacific",
         "selected": true
@@ -54,7 +59,8 @@
         "abbreviation": "CO", 
         "htmlFormat": "colorado", 
         "lockdown": "03-26-20", 
-        "population": 5758736,
+		"lockdownEnd": "none as of 04-28",
+		"population": 5758736,
         "region": "west",
         "division": "mountain",
         "selected": false
@@ -64,7 +70,8 @@
         "abbreviation": "CT", 
         "htmlFormat": "connecticut", 
         "lockdown": "03-23-20", 
-        "population": 3565287,
+		"lockdownEnd": "none as of 04-28",
+		"population": 3565287,
         "region": "northeast",
         "division": "new england",
         "selected": false
@@ -74,7 +81,8 @@
         "abbreviation": "DE", 
         "htmlFormat": "delaware", 
         "lockdown": "03-24-20", 
-        "population": 973764,
+		"lockdownEnd": "none as of 04-28",
+		"population": 973764,
         "region": "south",
         "division": "south atlantic",
         "selected": false
@@ -84,7 +92,8 @@
         "abbreviation": "DC", 
         "htmlFormat": "district-of-columbia", 
         "lockdown": "04-01-20", 
-        "population": 705749,
+		"lockdownEnd": "none as of 04-28",
+		"population": 705749,
         "region": "south",
         "division": "south atlantic",
         "selected": false
@@ -94,7 +103,8 @@
         "abbreviation": "FL", 
         "htmlFormat": "florida", 
         "lockdown": "04-02-20", 
-        "population": 21477737,
+		"lockdownEnd": "none as of 04-28",
+		"population": 21477737,
         "region": "south",
         "division": "south atlantic",
         "selected": true
@@ -103,8 +113,9 @@
         "name": "Georgia",
         "abbreviation": "GA", 
         "htmlFormat": "georgia", 
-        "lockdown": "none as of 04-24", 
-        "population": 10617423,
+        "lockdown": "04-03-20", 
+		"lockdownEnd": "04-24-20",
+		"population": 10617423,
         "region": "south",
         "division": "south atlantic",
         "selected": false
@@ -114,7 +125,8 @@
         "abbreviation": "HI", 
         "htmlFormat": "hawaii", 
         "lockdown": "03-25-20", 
-        "population": 1415872,
+		"lockdownEnd": "none as of 04-28",
+		"population": 1415872,
         "region": "west",
         "division": "pacific",
         "selected": true
@@ -124,7 +136,8 @@
         "abbreviation": "ID", 
         "htmlFormat": "idaho", 
         "lockdown": "03-25-20", 
-        "population": 1787065,
+		"lockdownEnd": "none as of 04-28",
+		"population": 1787065,
         "region": "west",
         "division": "mountain",
         "selected": false
@@ -134,7 +147,8 @@
         "abbreviation": "IL", 
         "htmlFormat": "illinois", 
         "lockdown": "03-21-20", 
-        "population": 12671821,
+		"lockdownEnd": "none as of 04-28",
+		"population": 12671821,
         "region": "midwest",
         "division": "east north central",
         "selected": true
@@ -144,7 +158,8 @@
         "abbreviation": "IN", 
         "htmlFormat": "indiana", 
         "lockdown": "03-24-20", 
-        "population": 6732219,
+		"lockdownEnd": "none as of 04-28",
+		"population": 6732219,
         "region": "midwest",
         "division": "east north central",
         "selected": false
@@ -154,7 +169,8 @@
         "abbreviation": "IA", 
         "htmlFormat": "iowa", 
         "lockdown": "none as of 04-24", 
-        "population": 3155070,
+		"lockdownEnd": "none as of 04-28",
+		"population": 3155070,
         "region": "midwest",
         "division": "west north central",
         "selected": false
@@ -164,7 +180,8 @@
         "abbreviation": "KS", 
         "htmlFormat": "kansas", 
         "lockdown": "03-30-20", 
-        "population": 2913314,
+		"lockdownEnd": "none as of 04-28",
+		"population": 2913314,
         "region": "midwest",
         "division": "west north central",
         "selected": false
@@ -174,7 +191,8 @@
         "abbreviation": "KY", 
         "htmlFormat": "kentucky", 
         "lockdown": "03-26-20", 
-        "population": 4467673,
+		"lockdownEnd": "none as of 04-28",
+		"population": 4467673,
         "region": "south",
         "division": "east south central",
         "selected": false
@@ -184,7 +202,8 @@
         "abbreviation": "LA", 
         "htmlFormat": "louisiana", 
         "lockdown": "03-23-20", 
-        "population": 4648794,
+		"lockdownEnd": "none as of 04-28",
+		"population": 4648794,
         "region": "south",
         "division": "west south central",
         "selected": true
@@ -194,7 +213,8 @@
         "abbreviation": "ME", 
         "htmlFormat": "maine", 
         "lockdown": "04-02-20", 
-        "population": 1344212,
+		"lockdownEnd": "none as of 04-28",
+		"population": 1344212,
         "region": "northeast",
         "division": "new england",
         "selected": false
@@ -204,7 +224,8 @@
         "abbreviation": "MD", 
         "htmlFormat": "maryland", 
         "lockdown": "03-30-20", 
-        "population": 6045680,
+		"lockdownEnd": "none as of 04-28",
+		"population": 6045680,
         "region": "south",
         "division": "south atlantic",
         "selected": false
@@ -214,7 +235,8 @@
         "abbreviation": "MA", 
         "htmlFormat": "massachusetts", 
         "lockdown": "03-24-20", 
-        "population": 6892503,
+		"lockdownEnd": "none as of 04-28",
+		"population": 6892503,
         "region": "northeast",
         "division": "new england",
         "selected": false
@@ -224,7 +246,8 @@
         "abbreviation": "MI", 
         "htmlFormat": "michigan", 
         "lockdown": "03-24-20", 
-        "population": 9986857,
+		"lockdownEnd": "none as of 04-28",
+		"population": 9986857,
         "region": "midwest",
         "division": "east north central",
         "selected": true
@@ -234,7 +257,8 @@
         "abbreviation": "MN", 
         "htmlFormat": "minnesota", 
         "lockdown": "03-27-20", 
-        "population": 5639632,
+		"lockdownEnd": "none as of 04-28",
+		"population": 5639632,
         "region": "midwest",
         "division": "west north central",
         "selected": false
@@ -244,7 +268,8 @@
         "abbreviation": "MS", 
         "htmlFormat": "mississippi", 
         "lockdown": "04-03-20", 
-        "population": 2976149,
+		"lockdownEnd": "none as of 04-28",
+		"population": 2976149,
         "region": "south",
         "division": "east south central",
         "selected": false
@@ -254,7 +279,8 @@
         "abbreviation": "MO", 
         "htmlFormat": "missouri", 
         "lockdown": "04-06-20", 
-        "population": 6137428,
+		"lockdownEnd": "none as of 04-28",
+		"population": 6137428,
         "region": "midwest",
         "division": "west north central",
         "selected": false
@@ -264,7 +290,8 @@
         "abbreviation": "MT", 
         "htmlFormat": "montana", 
         "lockdown": "03-28-20", 
-        "population": 1068778,
+		"lockdownEnd": "none as of 04-28",
+		"population": 1068778,
         "region": "west",
         "division": "mountain",
         "selected": false
@@ -274,7 +301,8 @@
         "abbreviation": "NE", 
         "htmlFormat": "nebraska", 
         "lockdown": "none as of 04-24", 
-        "population": 1934408,
+		"lockdownEnd": "none as of 04-28",
+		"population": 1934408,
         "region": "midwest",
         "division": "west north central",
         "selected": false
@@ -284,7 +312,8 @@
         "abbreviation": "NV", 
         "htmlFormat": "nevada", 
         "lockdown": "04-02-20", 
-        "population": 3080156,
+		"lockdownEnd": "none as of 04-28",
+		"population": 3080156,
         "region": "west",
         "division": "mountain",
         "selected": false
@@ -294,7 +323,8 @@
         "abbreviation": "NH", 
         "htmlFormat": "new-hampshire", 
         "lockdown": "03-27-20", 
-        "population": 1359711,
+		"lockdownEnd": "none as of 04-28",
+		"population": 1359711,
         "region": "northeast",
         "division": "new england",
         "selected": false
@@ -304,7 +334,8 @@
         "abbreviation": "NJ", 
         "htmlFormat": "new-jersey", 
         "lockdown": "03-21-20", 
-        "population": 8882190,
+		"lockdownEnd": "none as of 04-28",
+		"population": 8882190,
         "region": "northeast",
         "division": "Mid-Atlantic",
         "selected": true
@@ -314,7 +345,8 @@
         "abbreviation": "NM", 
         "htmlFormat": "new-mexico", 
         "lockdown": "03-24-20", 
-        "population": 2096829,
+		"lockdownEnd": "none as of 04-28",
+		"population": 2096829,
         "region": "west",
         "division": "mountain",
         "selected": false
@@ -324,7 +356,8 @@
         "abbreviation": "NY", 
         "htmlFormat": "new-york", 
         "lockdown": "03-22-20", 
-        "population": 19453561,
+		"lockdownEnd": "none as of 04-28",
+		"population": 19453561,
         "region": "northeast",
         "division": "Mid-Atlantic",
         "selected": true
@@ -334,7 +367,8 @@
         "abbreviation": "NC", 
         "htmlFormat": "north-carolina", 
         "lockdown": "03-30-20", 
-        "population": 10488084,
+		"lockdownEnd": "none as of 04-28",
+		"population": 10488084,
         "region": "south",
         "division": "south atlantic",
         "selected": false
@@ -344,7 +378,8 @@
         "abbreviation": "ND", 
         "htmlFormat": "north-dakota", 
         "lockdown": "none as of 04-24", 
-        "population": 762062,
+		"lockdownEnd": "none as of 04-28",
+		"population": 762062,
         "region": "midwest",
         "division": "west north central",
         "selected": false
@@ -354,7 +389,8 @@
         "abbreviation": "OH", 
         "htmlFormat": "ohio", 
         "lockdown": "03-23-20", 
-        "population": 11689100,
+		"lockdownEnd": "none as of 04-28",
+		"population": 11689100,
         "region": "midwest",
         "division": "east north central",
         "selected": false
@@ -364,7 +400,8 @@
         "abbreviation": "OK", 
         "htmlFormat": "oklahoma", 
         "lockdown": "04-02-20", 
-        "population": 3956971,
+		"lockdownEnd": "none as of 04-28",
+		"population": 3956971,
         "region": "south",
         "division": "west south central",
         "selected": false
@@ -374,7 +411,8 @@
         "abbreviation": "OR", 
         "htmlFormat": "oregon", 
         "lockdown": "03-23-20", 
-        "population": 4217737,
+		"lockdownEnd": "none as of 04-28",
+		"population": 4217737,
         "region": "west",
         "division": "pacific",
         "selected": false
@@ -384,7 +422,8 @@
         "abbreviation": "PA", 
         "htmlFormat": "pennsylvania", 
         "lockdown": "04-02-20", 
-        "population": 12801989,
+		"lockdownEnd": "none as of 04-28",
+		"population": 12801989,
         "region": "northeast",
         "division": "Mid-Atlantic",
         "selected": true
@@ -394,7 +433,8 @@
         "abbreviation": "RI", 
         "htmlFormat": "rhode-island", 
         "lockdown": "03-28-20", 
-        "population": 1059361,
+		"lockdownEnd": "none as of 04-28",
+		"population": 1059361,
         "region": "northeast",
         "division": "new england",
         "selected": false
@@ -404,7 +444,8 @@
         "abbreviation": "SC", 
         "htmlFormat": "south-carolina", 
         "lockdown": "04-07-20", 
-        "population": 5148714,
+		"lockdownEnd": "none as of 04-28",
+		"population": 5148714,
         "region": "south",
         "division": "south atlantic",
         "selected": false
@@ -414,7 +455,8 @@
         "abbreviation": "SD", 
         "htmlFormat": "south-dakota", 
         "lockdown": "none as of 04-24", 
-        "population": 884659,
+		"lockdownEnd": "none as of 04-28",
+		"population": 884659,
         "region": "midwest",
         "division": "west north central",
         "selected": false
@@ -424,7 +466,8 @@
         "abbreviation": "TN", 
         "htmlFormat": "tennessee", 
         "lockdown": "03-31-20", 
-        "population": 6829174,
+		"lockdownEnd": "none as of 04-28",
+		"population": 6829174,
         "region": "south",
         "division": "east south central",
         "selected": false
@@ -434,7 +477,8 @@
         "abbreviation": "TX", 
         "htmlFormat": "texas", 
         "lockdown": "04-02-20", 
-        "population": 28995881,
+		"lockdownEnd": "none as of 04-28",
+		"population": 28995881,
         "region": "south",
         "division": "west south central",
         "selected": false
@@ -444,7 +488,8 @@
         "abbreviation": "UT", 
         "htmlFormat": "utah", 
         "lockdown": "none as of 04-24", 
-        "population": 3205958,
+		"lockdownEnd": "none as of 04-28",
+		"population": 3205958,
         "region": "west",
         "division": "mountain",
         "selected": false
@@ -454,7 +499,8 @@
         "abbreviation": "VT", 
         "htmlFormat": "vermont", 
         "lockdown": "03-25-20", 
-        "population": 623989,
+		"lockdownEnd": "none as of 04-28",
+		"population": 623989,
         "region": "northeast",
         "division": "new england",
         "selected": false
@@ -464,7 +510,8 @@
         "abbreviation": "VA", 
         "htmlFormat": "virginia", 
         "lockdown": "03-30-20", 
-        "population": 8535519,
+		"lockdownEnd": "none as of 04-28",
+		"population": 8535519,
         "region": "south",
         "division": "south atlantic",
         "selected": false
@@ -474,7 +521,8 @@
         "abbreviation": "WA", 
         "htmlFormat": "washington", 
         "lockdown": "03-23-20", 
-        "population": 7614893,
+		"lockdownEnd": "none as of 04-28",
+		"population": 7614893,
         "region": "west",
         "division": "pacific",
         "selected": true
@@ -484,7 +532,8 @@
         "abbreviation": "WV", 
         "htmlFormat": "west-virginia", 
         "lockdown": "03-24-20", 
-        "population": 1792147,
+		"lockdownEnd": "none as of 04-28",
+		"population": 1792147,
         "region": "south",
         "division": "south atlantic",
         "selected": false
@@ -494,7 +543,8 @@
         "abbreviation": "WI",
         "htmlFormat": "wisconsin",
         "lockdown": "03-25-20",
-        "population": 5822434,
+		"lockdownEnd": "none as of 04-28",
+		"population": 5822434,
         "region": "midwest",
         "division": "east north central",
         "selected": false
@@ -504,7 +554,8 @@
         "abbreviation": "WY",
         "htmlFormat": "wyoming",
         "lockdown": "none as of 04-24",
-        "population": 578759,
+		"lockdownEnd": "none as of 04-28",
+		"population": 578759,
         "region": "west",
         "division": "mountain",
         "selected": false

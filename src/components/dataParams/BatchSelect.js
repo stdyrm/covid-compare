@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
-import { Button, Menu, MenuItem } from "@material-ui/core";
+import { Button, Menu, MenuItem, Typography, Divider } from "@material-ui/core";
 import { DatePicker } from "@material-ui/pickers";
 
 // context
@@ -42,7 +42,7 @@ export const BatchSelect = () => {
   };
 
   const handleDateChange = (e) => {
-    setDateChange(e);
+	setDateChange(e);
   };
 
   const filterCases = (e) => {
@@ -179,25 +179,42 @@ export const BatchSelect = () => {
 	];
 
   useEffect(() => {
-    const revisedStates = {};
-
-    if (lockdownRef.current === "lockdown-before") {
-      Object.keys(selectedStates).forEach((s) => {
-        revisedStates[s] = {
-          ...selectedStates[s],
-          selected: selectedStates[s].lockdown < selectedDate ? true : false,
-        };
-      });
-    } else if (lockdownRef.current === "lockdown-after") {
-      Object.keys(selectedStates).forEach((s) => {
-        revisedStates[s] = {
-          ...selectedStates[s],
-          selected: selectedStates[s].lockdown > selectedDate ? true : false,
-        };
-      });
-    }
-    setSelectedStates(revisedStates);
-    handleClose();
+	const revisedStates = {};
+	
+	if (lockdownRef.current) {
+		console.log(lockdownRef.current.id)
+		if (lockdownRef.current.id === "lockdown-before") {
+			Object.keys(selectedStates).forEach((s) => {
+				revisedStates[s] = {
+				...selectedStates[s],
+				selected: selectedStates[s].lockdown < selectedDate ? true : false,
+				};
+			});
+		} else if (lockdownRef.current.id === "lockdown-after") {
+			Object.keys(selectedStates).forEach((s) => {
+				revisedStates[s] = {
+				...selectedStates[s],
+				selected: selectedStates[s].lockdown > selectedDate ? true : false,
+				};
+			});
+		} else if (lockdownRef.current.id === "lockdown-end-before") {
+			Object.keys(selectedStates).forEach((s) => {
+				revisedStates[s] = {
+					...selectedStates[s],
+					selected: selectedStates[s].lockdownEnd < selectedDate ? true : false,
+				};
+			});
+		} else if (lockdownRef.current.id === "lockdown-end-after") {
+			Object.keys(selectedStates).forEach((s) => {
+				revisedStates[s] = {
+					...selectedStates[s],
+					selected: selectedStates[s].lockdownEnd > selectedDate ? true : false,
+				};
+			});
+		}
+		setSelectedStates(revisedStates);
+		handleClose();
+	}
   }, [selectedDate]);
 
   return (
@@ -226,7 +243,7 @@ export const BatchSelect = () => {
 						key={i}
 						id={c.id}
 						onClick={filterCases}
-						className={classes.menuItem}				
+						className={classes.menuItem}		
 					>
 				  		{c.name}
 				  	</MenuItem>
@@ -250,29 +267,36 @@ export const BatchSelect = () => {
         keepMounted
 		open={Boolean(selectedFilter === "lockdown")}
         onClose={handleClose}
-        MenuListProps={{ onMouseLeave: handleClose }}
+		MenuListProps={{ onMouseLeave: handleClose }}
       >
+		<Typography style={{textAlign: 'center'}}>
+			Lockdown start
+		</Typography>
+		<Divider style={{backgroundColor: theme.palette.primary.contrastText, margin: 4}} />
         <MenuItem
-          id="all-with-lockdown"
-          onClick={filterLockdown}
-          className={classes.menuItem}
+		  id="lockdown-before"
+		  ref={lockdownRef}
+		  className={classes.menuItem}
+		  onClick={(e) => lockdownRef.current = e.currentTarget}
         >
-          All with lockdown
+          Before:
+          <DatePicker
+            variant="inline"
+            disableToolbar
+            autoOk
+            value={selectedDate}
+            onChange={handleDateChange}
+            disableFuture={true}
+			format="MM/dd/yyyy"
+          />
         </MenuItem>
         <MenuItem
-          id="all-without-lockdown"
-          onClick={filterLockdown}
-          className={classes.menuItem}
+		  id="lockdown-after"
+		  ref={lockdownRef}
+		  className={classes.menuItem}
+		  onClick={(e) => lockdownRef.current = e.currentTarget}
         >
-          All without lockdown
-        </MenuItem>
-        <MenuItem
-          id="lockdown-before"
-          ref={lockdownRef}
-          onClick={(e) => (lockdownRef.current = e.currentTarget.id)}
-          className={classes.menuItem}
-        >
-          Lockdown before:
+          After:
           <DatePicker
             variant="inline"
             disableToolbar
@@ -282,23 +306,45 @@ export const BatchSelect = () => {
             disableFuture={true}
             format="MM/dd/yyyy"
           />
-        </MenuItem>
-        <MenuItem
-          id="lockdown-after"
-          ref={lockdownRef}
-          onClick={(e) => (lockdownRef.current = e.currentTarget.id)}
-          className={classes.menuItem}
+        </MenuItem><br/>
+
+		<Typography style={{textAlign: 'center'}}>
+			Lockdown End
+		</Typography>
+		<Divider style={{backgroundColor: theme.palette.primary.contrastText, margin: 4}} />
+		<MenuItem
+			id="lockdown-end-before"
+			ref={lockdownRef}
+			className={classes.menuItem}
+			onClick={(e) => lockdownRef.current = e.currentTarget}
         >
-          Lockdown after:
-          <DatePicker
-            variant="inline"
-            disableToolbar
-            autoOk
-            value={selectedDate}
-            onChange={(date) => setDateChange(date)}
-            disableFuture={true}
-            format="MM/dd/yyyy"
-          />
+			Before:
+			<DatePicker
+				variant="inline"
+				disableToolbar
+				autoOk
+				value={selectedDate}
+				onChange={handleDateChange}
+				disableFuture={true}
+				format="MM/dd/yyyy"
+			/>
+        </MenuItem>
+		<MenuItem
+			id="lockdown-end-after"
+			ref={lockdownRef}
+			className={classes.menuItem}
+			onClick={(e) => lockdownRef.current = e.currentTarget}
+        >
+          After:
+			<DatePicker
+				variant="inline"
+				disableToolbar
+				autoOk
+				value={selectedDate}
+				onChange={handleDateChange}
+				disableFuture={true}
+				format="MM/dd/yyyy"
+			/>
         </MenuItem>
       </Menu>
 

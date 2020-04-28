@@ -72,7 +72,7 @@ const themeDark = createMuiTheme({
     MuiInputBase: {
       root: {
         color: "#fff",
-        maxWidth: 100,
+        maxWidth: 115,
         paddingLeft: 10,
       },
     },

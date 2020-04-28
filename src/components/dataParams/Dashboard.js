@@ -60,7 +60,8 @@ const Dashboard = () => {
         Object.keys(stateInfo).forEach((s,i) => {
             revisedStates[s] = {
                 ...stateInfo[s],
-                lockdown: stateInfo[s].lockdown.startsWith("none") ? stateInfo[s].lockdown : dateParser(stateInfo[s].lockdown),
+				lockdown: stateInfo[s].lockdown.startsWith("none") ? stateInfo[s].lockdown : dateParser(stateInfo[s].lockdown),
+				lockdownEnd: stateInfo[s].lockdownEnd.startsWith("none") ? stateInfo[s].lockdownEnd : dateParser(stateInfo[s].lockdownEnd),
                 color: colors[i],
             }
         });
