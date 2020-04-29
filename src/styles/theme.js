@@ -1,5 +1,13 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
+const darkPrimary = "#000018";
+const darkText = "#fff";
+const darkBackground = "#29293d";
+
+const lightPrimary = "#1c847f";
+const lightText = "#29293d";
+const lightBackground = "#fff";
+
 const themeDark = createMuiTheme({
   palette: {
     primary: {
@@ -75,11 +83,11 @@ const themeDark = createMuiTheme({
         maxWidth: 115,
         paddingLeft: 10,
       },
-    },
+	},
     MuiPickersCalendarHeader: {
       switchHeader: {
-        color: "#29293d",
-      },
+		backgroundColor: darkPrimary,
+	  },
     },
     MuiPickersDay: {
       day: {
@@ -149,24 +157,32 @@ const themeLight = createMuiTheme({
       text: {
         color: "#fff",
       },
-    },
+	},
+	MuiInputBase: {
+		root: {
+		  color: "#29293d",
+		  maxWidth: 115,
+		  paddingLeft: 10,
+		},
+	},
     MuiPickersCalendarHeader: {
       switchHeader: {
-        color: "#29293d",
+		color: "#fff",
+        // backgroundColor: lightPrimary,
       },
     },
     MuiPickersDay: {
       day: {
-        color: "#29293d",
+        color: lightPrimary,
       },
       daySelected: {
-        backgroundColor: "#29293d",
+        backgroundColor: lightPrimary,
       },
       dayDisabled: {
-        color: "#29293d",
+        color: lightPrimary,
       },
       current: {
-        color: "#29293d",
+        color: lightPrimary,
       },
     },
   },
