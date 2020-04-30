@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "27097f0fd94b0558d1fcdc5561eb0558",
+    "revision": "bcf3a63c0b137c95611edaf73752b3d3",
     "url": "/covidcompare/index.html"
   },
   {
-    "revision": "bdfc4bc6a6697c623efd",
+    "revision": "7bd29ea83bd4a03c0ca8",
     "url": "/covidcompare/static/css/main.d15f6936.chunk.css"
   },
   {
-    "revision": "c9c66f99e25d0d836a27",
-    "url": "/covidcompare/static/js/2.1db0ef93.chunk.js"
+    "revision": "77422f64c36ab1021c66",
+    "url": "/covidcompare/static/js/2.2e2d38f5.chunk.js"
   },
   {
     "revision": "eac4cf64bf573541fd6dba29c78393a0",
-    "url": "/covidcompare/static/js/2.1db0ef93.chunk.js.LICENSE.txt"
+    "url": "/covidcompare/static/js/2.2e2d38f5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bdfc4bc6a6697c623efd",
-    "url": "/covidcompare/static/js/main.522aaa66.chunk.js"
+    "revision": "7bd29ea83bd4a03c0ca8",
+    "url": "/covidcompare/static/js/main.2ea1a1d5.chunk.js"
   },
   {
     "revision": "3b7759b90d7bde89c1fb",
@@ -40,7 +40,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/covidcompare/static/media/raleway-medium-webfont.78c3ee5f.woff"
   },
   {
-    "revision": "78cc2e88cb0b5e6d469860daf6e76c07",
-    "url": "/covidcompare/static/media/us-states.78cc2e88.csv"
+    "revision": "18d3c16ee4963864ad7e78040b427a98",
+    "url": "/covidcompare/static/media/us-states.18d3c16e.csv"
   }
 ]);
