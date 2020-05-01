@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as d3 from "d3";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ThemeProvider } from "@material-ui/core/styles";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
@@ -21,6 +22,9 @@ import { themeContext } from './context/themeContext';
 // styles
 // import './styles/styles.css';
 import { themeDark, themeLight } from './styles/theme';
+
+// gapminder
+import { AppGapminder } from './components/appGapminder/AppGapminder';
 
 function App() {
 	const [dataStates, setDataStates] = useState([]);
@@ -75,7 +79,7 @@ function App() {
           d.deathsPerThousand = (d.deaths / stateInfo[state].population) * 1000;
         });
       });
-      setDataStates(data);
+	  setDataStates(data);
       console.log("imported dataset");
     });
   }, []);
@@ -86,11 +90,15 @@ function App() {
         <dataContext.Provider value={{ dataStates, setDataStates }}>
           <statesContext.Provider value={{ selectedStates, setSelectedStates }}>
 			<themeContext.Provider value={{ theme, setTheme }}>
-				<ThemeProvider theme={theme}>
-				<FilterBar className="header" />
-				<ChartUSCompare className="chart" />
-				<Footnotes changeTheme={changeTheme} />
-				</ThemeProvider>
+				<Router>
+					<ThemeProvider theme={theme}>
+					<FilterBar className="header" />
+					{/* <ChartUSCompare className="chart" /> */}
+					<Route path="/covidcompare" className="chart" component={ChartUSCompare} />
+ 					<Footnotes changeTheme={changeTheme} />
+					<Route path="/gapminder" component={AppGapminder} />
+					</ThemeProvider>
+				</Router>
             </themeContext.Provider>
           </statesContext.Provider>
         </dataContext.Provider>
