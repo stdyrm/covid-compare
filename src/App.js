@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import * as d3 from "d3";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -12,6 +13,7 @@ import stateInfo from "./data/stateInfo.json";
 import { ChartUSCompare } from "./components/chart/ChartUSCompare";
 import { FilterBar } from "./components/dataParams/FilterBar";
 import { Footnotes } from "./components/chart/Footnotes";
+import { AppGapminder } from './components/appGapminder/AppGapminder';
 
 // context
 import { dataContext } from "./context/dataContext";
@@ -87,9 +89,13 @@ function App() {
           <statesContext.Provider value={{ selectedStates, setSelectedStates }}>
 			<themeContext.Provider value={{ theme, setTheme }}>
 				<ThemeProvider theme={theme}>
-				<FilterBar className="header" />
-				<ChartUSCompare className="chart" />
-				<Footnotes changeTheme={changeTheme} />
+				<Router>
+					<FilterBar className="header" />
+					{/* <ChartUSCompare className="chart" /> */}
+					<Route to="/covidcompare" component={ChartUSCompare} />
+					<Footnotes changeTheme={changeTheme} />
+					<Route to="/gapminder" component={AppGapminder} />
+				</Router>
 				</ThemeProvider>
             </themeContext.Provider>
           </statesContext.Provider>
