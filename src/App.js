@@ -23,9 +23,6 @@ import { themeContext } from './context/themeContext';
 // import './styles/styles.css';
 import { themeDark, themeLight } from './styles/theme';
 
-// gapminder
-import { AppGapminder } from './components/appGapminder/AppGapminder';
-
 function App() {
 	const [dataStates, setDataStates] = useState([]);
 	const [selectedStates, setSelectedStates] = useState([]);
@@ -93,10 +90,8 @@ function App() {
 				<Router>
 					<ThemeProvider theme={theme}>
 					<FilterBar className="header" />
-					{/* <ChartUSCompare className="chart" /> */}
-					<Route path="/covidcompare" className="chart" component={ChartUSCompare} />
+					<ChartUSCompare className="chart" />
  					<Footnotes changeTheme={changeTheme} />
-					<Route path="/gapminder" component={AppGapminder} />
 					</ThemeProvider>
 				</Router>
             </themeContext.Provider>
