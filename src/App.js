@@ -67,14 +67,15 @@ function App() {
       // Normalize data:
       // Add "dayOfOutbreak" to show elapsed time
       // Add state population
-      // Add "casesPerThousand" and "deathsPerThousand"
+      // Add "casesPerThousand", "deathsPerThousand", "mortalityRate"
       Object.keys(stateInfo).forEach((state) => {
         const stateData = data.filter((d) => d.state === state);
         stateData.forEach((d) => {
           d.dayOfOutbreak =
             (d.date - stateData[0].date) / (24 * 60 * 60 * 10 * 10 * 10) + 1; // day - day one, convert ms to days
           d.casesPerThousand = (d.cases / stateInfo[state].population) * 1000;
-          d.deathsPerThousand = (d.deaths / stateInfo[state].population) * 1000;
+		  d.deathsPerThousand = (d.deaths / stateInfo[state].population) * 1000;
+		  d.mortalityRate = (d.deaths / d.cases) * 100;
         });
       });
       setDataStates(data);
@@ -91,10 +92,9 @@ function App() {
 				<ThemeProvider theme={theme}>
 				<Router>
 					<FilterBar className="header" />
-					{/* <ChartUSCompare className="chart" /> */}
-					<Route to="/covidcompare" component={ChartUSCompare} />
+					<Route path="/covidcompare" className="covid-chart" component={ChartUSCompare} />
+					<Route path="/gapminder" component={AppGapminder} />
 					<Footnotes changeTheme={changeTheme} />
-					<Route to="/gapminder" component={AppGapminder} />
 				</Router>
 				</ThemeProvider>
             </themeContext.Provider>

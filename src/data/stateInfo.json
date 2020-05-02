@@ -6,9 +6,11 @@
         "lockdown": "04-04-20",
 		"lockdownEnd": "none as of 04-28",
 		"population": 4903185,
-        "region": "south",
+		"populationDensity": 97,
+		"region": "south",
         "division": "east south central",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Alaska": {
         "name": "Alaska",
@@ -17,9 +19,11 @@
         "lockdown": "03-28-20",
 		"lockdownEnd": "none as of 04-28",
 		"population": 731545,
-        "region": "west",
+		"populationDensity": 1,
+		"region": "west",
         "division": "pacific",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Arizona": {
         "name": "Arizona",
@@ -28,9 +32,11 @@
         "lockdown": "03-31-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 7278717,
-        "region": "west",
+		"populationDensity": 65,
+		"region": "west",
         "division": "mountain",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Arkansas": {
         "name": "Arkansas",
@@ -39,9 +45,11 @@
         "lockdown": "none as of 04-24", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 3017804,
-        "region": "south",
+		"populationDensity": 58,
+		"region": "south",
         "division": "west south central",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "California": {
         "name": "California",
@@ -50,9 +58,11 @@
         "lockdown": "03-19-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 39512223,
-        "region": "west",
+		"populationDensity": 256,
+		"region": "west",
         "division": "pacific",
-        "selected": true
+		"governor": "democrat",
+		"selected": true
     },
     "Colorado": {
         "name": "Colorado",
@@ -61,9 +71,11 @@
         "lockdown": "03-26-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 5758736,
-        "region": "west",
+		"populationDensity": 56,
+		"region": "west",
         "division": "mountain",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Connecticut": {
         "name": "Connecticut",
@@ -72,9 +84,11 @@
         "lockdown": "03-23-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 3565287,
-        "region": "northeast",
+		"populationDensity": 736,
+		"region": "northeast",
         "division": "new england",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "Delaware": {
         "name": "Delaware",
@@ -83,9 +97,11 @@
         "lockdown": "03-24-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 973764,
-        "region": "south",
+		"populationDensity": 504,
+		"region": "south",
         "division": "south atlantic",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "District of Columbia": {
         "name": "District of Columbia",
@@ -94,9 +110,11 @@
         "lockdown": "04-01-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 705749,
-        "region": "south",
+		"populationDensity": 11815,
+		"region": "south",
         "division": "south atlantic",
-        "selected": false
+		"governor": "n/a",
+		"selected": false
     },
     "Florida": {
         "name": "Florida",
@@ -105,9 +123,11 @@
         "lockdown": "04-02-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 21477737,
-        "region": "south",
+		"populationDensity": 410,
+		"region": "south",
         "division": "south atlantic",
-        "selected": true
+		"governor": "republican",
+		"selected": true
     },
     "Georgia": {
         "name": "Georgia",
@@ -116,9 +136,11 @@
         "lockdown": "04-03-20", 
 		"lockdownEnd": "04-24-20",
 		"population": 10617423,
-        "region": "south",
+		"populationDensity": 187,
+		"region": "south",
         "division": "south atlantic",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Hawaii": {
         "name": "Hawaii",
@@ -127,9 +149,11 @@
         "lockdown": "03-25-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 1415872,
-        "region": "west",
+		"populationDensity": 220,
+		"region": "west",
         "division": "pacific",
-        "selected": true
+		"governor": "democrat",
+		"selected": true
     },
     "Idaho": {
         "name": "Idaho",
@@ -138,9 +162,11 @@
         "lockdown": "03-25-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 1787065,
-        "region": "west",
+		"populationDensity": 22,
+		"region": "west",
         "division": "mountain",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Illinois": {
         "name": "Illinois",
@@ -149,9 +175,11 @@
         "lockdown": "03-21-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 12671821,
-        "region": "midwest",
+		"populationDensity": 228,
+		"region": "midwest",
         "division": "east north central",
-        "selected": true
+		"governor": "democrat",
+		"selected": true
     },
     "Indiana": {
         "name": "Indiana",
@@ -160,9 +188,11 @@
         "lockdown": "03-24-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 6732219,
-        "region": "midwest",
+		"populationDensity": 188,
+		"region": "midwest",
         "division": "east north central",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Iowa": {
         "name": "Iowa",
@@ -171,9 +201,11 @@
         "lockdown": "none as of 04-24", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 3155070,
-        "region": "midwest",
+		"populationDensity": 57,
+		"region": "midwest",
         "division": "west north central",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Kansas": {
         "name": "Kansas",
@@ -182,9 +214,11 @@
         "lockdown": "03-30-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 2913314,
-        "region": "midwest",
+		"populationDensity": 36,
+		"region": "midwest",
         "division": "west north central",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "Kentucky": {
         "name": "Kentucky",
@@ -193,9 +227,11 @@
         "lockdown": "03-26-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 4467673,
-        "region": "south",
+		"populationDensity": 114,
+		"region": "south",
         "division": "east south central",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "Louisiana": {
         "name": "Louisiana",
@@ -204,9 +240,11 @@
         "lockdown": "03-23-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 4648794,
-        "region": "south",
+		"populationDensity": 108,
+		"region": "south",
         "division": "west south central",
-        "selected": true
+		"governor": "democrat",
+		"selected": true
     },
     "Maine": {
         "name": "Maine",
@@ -215,9 +253,11 @@
         "lockdown": "04-02-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 1344212,
-        "region": "northeast",
+		"populationDensity": 44,
+		"region": "northeast",
         "division": "new england",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "Maryland": {
         "name": "Maryland",
@@ -226,9 +266,11 @@
         "lockdown": "03-30-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 6045680,
-        "region": "south",
+		"populationDensity": 627,
+		"region": "south",
         "division": "south atlantic",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Massachusetts": {
         "name": "Massachusetts",
@@ -237,9 +279,11 @@
         "lockdown": "03-24-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 6892503,
-        "region": "northeast",
+		"populationDensity": 894,
+		"region": "northeast",
         "division": "new england",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Michigan": {
         "name": "Michigan",
@@ -248,9 +292,11 @@
         "lockdown": "03-24-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 9986857,
-        "region": "midwest",
+		"populationDensity": 178,
+		"region": "midwest",
         "division": "east north central",
-        "selected": true
+		"governor": "democrat",
+		"selected": true
     },
     "Minnesota": {
         "name": "Minnesota",
@@ -259,9 +305,11 @@
         "lockdown": "03-27-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 5639632,
-        "region": "midwest",
+		"populationDensity": 72,
+		"region": "midwest",
         "division": "west north central",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "Mississippi": {
         "name": "Mississippi",
@@ -270,9 +318,11 @@
         "lockdown": "04-03-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 2976149,
-        "region": "south",
+		"populationDensity": 64,
+		"region": "south",
         "division": "east south central",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Missouri": {
         "name": "Missouri",
@@ -281,9 +331,11 @@
         "lockdown": "04-06-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 6137428,
-        "region": "midwest",
+		"populationDensity": 90,
+		"region": "midwest",
         "division": "west north central",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Montana": {
         "name": "Montana",
@@ -292,9 +344,11 @@
         "lockdown": "03-28-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 1068778,
-        "region": "west",
+		"populationDensity": 7,
+		"region": "west",
         "division": "mountain",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "Nebraska": {
         "name": "Nebraska",
@@ -303,9 +357,11 @@
         "lockdown": "none as of 04-24", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 1934408,
-        "region": "midwest",
+		"populationDensity": 25,
+		"region": "midwest",
         "division": "west north central",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Nevada": {
         "name": "Nevada",
@@ -314,9 +370,11 @@
         "lockdown": "04-02-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 3080156,
-        "region": "west",
+		"populationDensity": 29,
+		"region": "west",
         "division": "mountain",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "New Hampshire": {
         "name": "New Hampshire",
@@ -325,9 +383,11 @@
         "lockdown": "03-27-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 1359711,
-        "region": "northeast",
+		"populationDensity": 153,
+		"region": "northeast",
         "division": "new england",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "New Jersey": {
         "name": "New Jersey",
@@ -336,9 +396,11 @@
         "lockdown": "03-21-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 8882190,
-        "region": "northeast",
+		"populationDensity": 1215,
+		"region": "northeast",
         "division": "Mid-Atlantic",
-        "selected": true
+		"governor": "democrat",
+		"selected": true
     },
     "New Mexico": {
         "name": "New Mexico",
@@ -347,9 +409,11 @@
         "lockdown": "03-24-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 2096829,
-        "region": "west",
+		"populationDensity": 17,
+		"region": "west",
         "division": "mountain",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "New York": {
         "name": "New York",
@@ -358,9 +422,11 @@
         "lockdown": "03-22-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 19453561,
-        "region": "northeast",
+		"populationDensity": 413,
+		"region": "northeast",
         "division": "Mid-Atlantic",
-        "selected": true
+		"governor": "democrat",
+		"selected": true
     },
     "North Carolina": {
         "name": "North Carolina",
@@ -369,9 +435,11 @@
         "lockdown": "03-30-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 10488084,
-        "region": "south",
+		"populationDensity": 218,
+		"region": "south",
         "division": "south atlantic",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "North Dakota": {
         "name": "North Dakota",
@@ -380,9 +448,11 @@
         "lockdown": "none as of 04-24", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 762062,
-        "region": "midwest",
+		"populationDensity": 11,
+		"region": "midwest",
         "division": "west north central",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Ohio": {
         "name": "Ohio",
@@ -391,9 +461,11 @@
         "lockdown": "03-23-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 11689100,
-        "region": "midwest",
+		"populationDensity": 288,
+		"region": "midwest",
         "division": "east north central",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Oklahoma": {
         "name": "Oklahoma",
@@ -402,9 +474,11 @@
         "lockdown": "04-02-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 3956971,
-        "region": "south",
+		"populationDensity": 58,
+		"region": "south",
         "division": "west south central",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Oregon": {
         "name": "Oregon",
@@ -413,9 +487,11 @@
         "lockdown": "03-23-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 4217737,
-        "region": "west",
+		"populationDensity": 45,
+		"region": "west",
         "division": "pacific",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "Pennsylvania": {
         "name": "Pennsylvania",
@@ -424,9 +500,11 @@
         "lockdown": "04-02-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 12801989,
-        "region": "northeast",
+		"populationDensity": 287,
+		"region": "northeast",
         "division": "Mid-Atlantic",
-        "selected": true
+		"governor": "democrat",
+		"selected": true
     },
     "Rhode Island": {
         "name": "Rhode Island",
@@ -435,9 +513,11 @@
         "lockdown": "03-28-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 1059361,
-        "region": "northeast",
+		"populationDensity": 1021,
+		"region": "northeast",
         "division": "new england",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "South Carolina": {
         "name": "South Carolina",
@@ -446,9 +526,11 @@
         "lockdown": "04-07-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 5148714,
-        "region": "south",
+		"populationDensity": 173,
+		"region": "south",
         "division": "south atlantic",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "South Dakota": {
         "name": "South Dakota",
@@ -457,9 +539,11 @@
         "lockdown": "none as of 04-24", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 884659,
-        "region": "midwest",
+		"populationDensity": 12,
+		"region": "midwest",
         "division": "west north central",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Tennessee": {
         "name": "Tennessee",
@@ -468,9 +552,11 @@
         "lockdown": "03-31-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 6829174,
-        "region": "south",
+		"populationDensity": 167,
+		"region": "south",
         "division": "east south central",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Texas": {
         "name": "Texas",
@@ -479,9 +565,11 @@
         "lockdown": "04-02-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 28995881,
-        "region": "south",
+		"populationDensity": 113,
+		"region": "south",
         "division": "west south central",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Utah": {
         "name": "Utah",
@@ -490,9 +578,11 @@
         "lockdown": "none as of 04-24", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 3205958,
-        "region": "west",
+		"populationDensity": 40,
+		"region": "west",
         "division": "mountain",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Vermont": {
         "name": "Vermont",
@@ -501,9 +591,11 @@
         "lockdown": "03-25-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 623989,
-        "region": "northeast",
+		"populationDensity": 68,
+		"region": "northeast",
         "division": "new england",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Virginia": {
         "name": "Virginia",
@@ -512,9 +604,11 @@
         "lockdown": "03-30-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 8535519,
-        "region": "south",
+		"populationDensity": 218,
+		"region": "south",
         "division": "south atlantic",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "Washington": {
         "name": "Washington",
@@ -523,9 +617,11 @@
         "lockdown": "03-23-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 7614893,
-        "region": "west",
+		"populationDensity": 117,
+		"region": "west",
         "division": "pacific",
-        "selected": true
+		"governor": "democrat",
+		"selected": true
     },
     "West Virginia": {
         "name": "West Virginia",
@@ -534,9 +630,11 @@
         "lockdown": "03-24-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 1792147,
-        "region": "south",
+		"populationDensity": 74,
+		"region": "south",
         "division": "south atlantic",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     },
     "Wisconsin": {
         "name": "Wisconsin",
@@ -545,9 +643,11 @@
         "lockdown": "03-25-20",
 		"lockdownEnd": "none as of 04-28",
 		"population": 5822434,
-        "region": "midwest",
+		"populationDensity": 108,
+		"region": "midwest",
         "division": "east north central",
-        "selected": false
+		"governor": "democrat",
+		"selected": false
     },
     "Wyoming": {
         "name": "Wyoming",
@@ -556,8 +656,10 @@
         "lockdown": "none as of 04-24",
 		"lockdownEnd": "none as of 04-28",
 		"population": 578759,
-        "region": "west",
+		"populationDensity": 6,
+		"region": "west",
         "division": "mountain",
-        "selected": false
+		"governor": "republican",
+		"selected": false
     }
 }
