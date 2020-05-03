@@ -11,13 +11,17 @@ import { CirclesGapminder } from './CirclesGapminder';
 // data
 import stateInfo from '../../data/stateInfo.json';
 
-// Styles
+// style
 import { IconButton, Slider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 
-
+const useStyles = makeStyles((theme) => ({
+	axes: {
+		color: theme.palette.text.primary,
+	},
+}));
 
 export const ChartGapminder = (props) => {
 	const { data } = props;
@@ -31,6 +35,8 @@ export const ChartGapminder = (props) => {
 	const [dayCounter, setDayCounter] = useState(1);
 	const [animate, setAnimate] = useState(false);
 
+	const classes = useStyles();
+
 	const yAxisRef = useRef(null);
 	const xAxisRef = useRef(null);
 
@@ -39,9 +45,11 @@ export const ChartGapminder = (props) => {
 	};
 
 	const handleDayCounter = (e, newVal) => {
-		console.log(newVal);
 		setDayCounter(newVal);
-	}
+	};
+
+	const colorScaleDomain = [];
+	const colorScaleRange = [];
 
 	// define scales
 	useEffect(() => {
@@ -76,7 +84,13 @@ export const ChartGapminder = (props) => {
 					.attr('y', 40)
 					.attr('text-anchor', 'end')
 					.attr('fill', 'white')
-					.text(xParam));
+					.text(xParam))
+				.call(axis => axis.append('text')
+					.attr('x', width)
+					.attr('y', -20)
+					.attr('text-anchor', 'end')
+					.attr('fill', 'white')
+					.classed('counter-display', true));
 
 			d3.select(yAxisRef.current).call(yAxisGenerator)
 				.call(axis => axis.append('text')
@@ -89,24 +103,33 @@ export const ChartGapminder = (props) => {
 		}
 	}, [dataStates]);
 
+	useEffect(() => {
+		d3.select('.counter-display')
+			.join('text')
+			.text(`Day ${dayCounter}`);
+	}, [dayCounter]);
+
 	return (
 		<>
 			<svg className="wrapper" height={wrapperHeight} width={wrapperWidth}>
 				<g className="bounds" transform={`translate(${marginLeft}, ${marginTop})`}>
-					<g ref={xAxisRef} transform={`translate(0, ${height})`} />
-					<g ref={yAxisRef} />
-					{data && scales ? <CirclesGapminder {...props} scales={scales} dayCounter={dayCounter} setDayCounter={setDayCounter} /> : <></>}
+					<g ref={xAxisRef} transform={`translate(0, ${height})`} className={classes.axes} />
+					<g ref={yAxisRef} className={classes.axes} />
+					{data && scales ? <CirclesGapminder 
+						{...props} 
+						scales={scales} 
+						dayCounter={dayCounter} 
+						setDayCounter={setDayCounter}
+					/> : <></>}
 				</g>
 			</svg>
 			<IconButton onClick={handleAnimate}>
 				{animate ? <PauseIcon /> : <PlayArrowIcon />}
 			</IconButton>
 			<Slider 
-				// defaultValue={1}
 				value={dayCounter}
 				valueLabelDisplay="auto"
 				step={1}
-				marks
 				min={1}
 				max={60}
 				onChange={handleDayCounter}

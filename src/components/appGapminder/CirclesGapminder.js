@@ -1,32 +1,39 @@
-import React, { useState, useEffect, useContext, useRef, Fragment } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import * as d3 from 'd3';
 
 // context
 import { statesContext } from '../../context/statesContext';
 
+// style 
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+	circle: {
+		stroke: 'none',
+		opacity: .8
+	},
+	circleSelected: {
+		stroke: theme.palette.text.primary,
+		strokeWidth: 2,
+		opacity: 1,
+	}
+}));
+
 export const CirclesGapminder = (props) => {
-	const { data, dayCounter, setDayCounter } = props;
+	const { data, dayCounter } = props;
 	const { xParam, yParam, cParam } = props.chartParams;
 	const { xScale, yScale, colorScale } = props.scales;
+	const [selectedCircles, setSelectedCircles] = useState([]);
+
+	// styles
+	const classes = useStyles();
+	const theme = useTheme();
 
 	const {selectedStates} = useContext(statesContext);
 
 	const circlesRef = useRef(null);
 
-	const bisectDay = d3.bisector(d => d[0]).left
-
-	const renderCircles = () => {
-		const circle = d3.select(circlesRef.current).selectAll('circle')
-			.data(dataAt(dayCounter))
-			.join('circle')
-				.attr('r', d => selectedStates[d.state].population / 1500000)
-				.attr('cx', d => xScale(d[xParam]))
-				.attr('cy', d => yScale(d[yParam]))
-				.attr('fill', d => colorScale(selectedStates[d.state][cParam]))
-				.attr('stroke', 'black')
-				// .call(circle => circle.append("title"))
-				// 	.text(d => [d.state, d[xParam]].join("\n"))
-	};
+	const bisectDay = d3.bisector(d => d[0]).left;
 
 	function dataAt(day) {
 		return data.map(d => ({
@@ -51,13 +58,73 @@ export const CirclesGapminder = (props) => {
 
 	useEffect(() => {
 		if (data) {
-			renderCircles();
+			let selected = [...selectedCircles];
+			const circle = d3.select(circlesRef.current).selectAll('circle')
+			.data(dataAt(dayCounter), d => d)
+			.join(
+				enter => enter.append('circle')
+					.attr('r', d => selectedStates[d.state].population / 1000000)
+					.attr('cx', d => xScale(d[xParam]))
+					.attr('cy', d => yScale(d[yParam]))
+					.attr('fill', d => colorScale(selectedStates[d.state][cParam]))
+					.attr('stroke', theme.palette.text.primary)
+					.attr('id', d => `circle-${selectedStates[d.state].htmlFormat}`)
+					.attr('class', d =>  
+						selected.includes(d.state) ? classes.circleSelected : classes.circle
+					)
+					.call(circle => circle.append('title')
+						.text(d => [
+							d.state,
+							`Cases/1000: ${d.casesPerThousand && d.casesPerThousand.toFixed(2)}`,
+							`Deaths/1000: ${d.deathsPerThousand && d.deathsPerThousand.toFixed(2)}`
+						].join("\n"))
+					)
+					.call(circle => {
+						circle.transition()
+						.duration(250)
+					})
+			);
+
+			circle.on('mouseover', d => { 
+				d3.select(`#circle-${selectedStates[d.state].htmlFormat}`)
+					.attr('stroke', theme.palette.primary.main)
+					.attr('opacity', 1)
+					.attr('cursor', 'pointer')
+					.call(circle => {
+						circle.transition()
+						.duration(250)
+					})
+			});
+
+			circle.on('mouseout', d => { 
+				d3.select(`#circle-${selectedStates[d.state].htmlFormat}`)
+					.attr('stroke', theme.palette.text.primary)
+					.attr('opacity', .8)
+					.call(circle => {
+						circle.transition()
+						.duration(250)
+					})
+			});
+
+			circle.on('click', d => { 
+				if (selected.includes(d.state)) {
+					const i = selected.indexOf(d.state);
+					selected.splice(i,1);
+					d3.select(`#circle-${selectedStates[d.state].htmlFormat}`)
+						.attr('class', classes.circle)
+				} else {
+					selected.push(d.state);
+					d3.select(`#circle-${selectedStates[d.state].htmlFormat}`)
+						.attr('class', classes.circleSelected)
+				}
+				setSelectedCircles(selected);
+			});
 		};
-	}, [dayCounter, xScale, yScale])
+	}, [dayCounter, xScale, yScale]);
 
 	return (
-		<>
-			<g ref={circlesRef}></g>
+		<>		
+			<g ref={circlesRef} />
 		</>
 	)
 };

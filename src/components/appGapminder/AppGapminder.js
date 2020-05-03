@@ -12,8 +12,8 @@ import stateInfo from '../../data/stateInfo.json';
 import { gapminderData } from '../dataParams/gapminderData';
 
 const wrapper = {
-	wrapperWidth: window.innerWidth * .9,
-	wrapperHeight: window.innerHeight * .9,
+	wrapperWidth: window.innerWidth * .8,
+	wrapperHeight: window.innerHeight * .8,
 	marginTop: 30,
 	marginRight: 30,
 	marginBottom: 60,

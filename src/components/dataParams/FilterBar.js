@@ -22,6 +22,10 @@ import { themeContext } from '../../context/themeContext';
 import { makeStyles } from "@material-ui/core/styles";
 import MenuOutlinedIcon from "@material-ui/icons/MenuOutlined";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import AssessmentIcon from '@material-ui/icons/Assessment';
+import TimelineIcon from '@material-ui/icons/Timeline';
+import BubbleChartIcon from '@material-ui/icons/BubbleChart';
+
 
 const drawerWidth = 250;
 
@@ -65,11 +69,22 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
     backgroundColor: theme.palette.background.default,
-  }
+  },
+  tab: {
+    opacity: 0.7,
+  },
+  menuItem: {
+    opacity: 0.7,
+    "&:hover": {
+      opacity: 1,
+    },
+  },
 }));
 
 const FilterBar = () => {
   const [open, setOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const {theme, setTheme} = useContext(themeContext);
   const classes = useStyles();
 
@@ -86,6 +101,14 @@ const FilterBar = () => {
       setOpen(false);
     }
   };
+
+  const handleMenuClick = (e) => {
+	  setAnchorEl(e.currentTarget);
+  };
+
+  const handleMenuClickAway = () => {
+	setAnchorEl(null);
+};
 
   return (
     <div className={classes.root}>
@@ -106,6 +129,30 @@ const FilterBar = () => {
             <MenuOutlinedIcon style={{color: theme.palette.primary.contrastText}} />
           </IconButton>
           <BatchSelect />
+		  <IconButton
+			aria-controls="viz-menu"
+			aria-haspopup="true"
+			onMouseOver={handleMenuClick}
+			className={classes.tab}
+		  >
+			  <AssessmentIcon style={{color: theme.palette.primary.contrastText}} />
+		  </IconButton>
+		  <Menu
+			id="viz-menu"
+			anchorEl={anchorEl}
+			open={Boolean(anchorEl)}
+			onClick={handleMenuClickAway}
+			MenuListProps={{ onMouseLeave: handleMenuClickAway }}
+			>
+				<MenuItem component="a" href="/covidcompare">
+					<TimelineIcon />
+					Line chart
+				</MenuItem>
+				<MenuItem component="a" href="/gapminder">
+					<BubbleChartIcon />
+					Gapminder chart
+				</MenuItem>
+		  </Menu>
         </Toolbar>
       </AppBar>
       <ClickAwayListener onClickAway={handleClickAway}>
