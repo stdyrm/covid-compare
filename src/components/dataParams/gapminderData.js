@@ -5,14 +5,20 @@ export const gapminderData = async (data, stateInfo, chartParams) => {
 		let eachState = {
 			state: state,
 			region: stateInfo[state].region,
-			[xParam]: [],
-			[yParam]: []
+			[tParam.selected]: [],
+			[xParam.selected]: [],
+			[xParam.alt1]: [],
+			[yParam.selected]: [],
+			[yParam.alt1]: [],
 		};
 
 		const filtered = data.filter(d => d.state === state);
 		filtered.forEach((d,i) => {
-			eachState[xParam].push([d[tParam], d[xParam]]);
-			eachState[yParam].push([d[tParam], d[yParam]]);
+			eachState[tParam.selected].push([d[tParam.selected], d[tParam.selected]]);
+			eachState[xParam.selected].push([d[tParam.selected], d[xParam.selected]]);
+			eachState[yParam.selected].push([d[tParam.selected], d[yParam.selected]]);
+			eachState[xParam.alt1].push([d[tParam.selected], d[xParam.alt1]]);
+			eachState[yParam.alt1].push([d[tParam.selected], d[yParam.alt1]]);
 		});
 		newData.push(eachState);
 	});

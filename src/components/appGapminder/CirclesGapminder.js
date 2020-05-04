@@ -20,18 +20,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const CirclesGapminder = (props) => {
-	const { data, dayCounter } = props;
-	const { xParam, yParam, cParam } = props.chartParams;
-	const { xScale, yScale, colorScale } = props.scales;
+	const { data, dayCounter, selector, scales } = props;
+	const { xParam, yParam, zParam, cParam } = selector;
+	const { xScale, yScale, colorScale } = scales;
+
+	// context and ref
+	const {selectedStates} = useContext(statesContext);
+	const circlesRef = useRef(null);
+
+	// new state
 	const [selectedCircles, setSelectedCircles] = useState([]);
 
 	// styles
 	const classes = useStyles();
 	const theme = useTheme();
-
-	const {selectedStates} = useContext(statesContext);
-
-	const circlesRef = useRef(null);
 
 	const bisectDay = d3.bisector(d => d[0]).left;
 
@@ -39,8 +41,8 @@ export const CirclesGapminder = (props) => {
 		return data.map(d => ({
 			state: d.state,
 			region: d.region,
-			[xParam]: valueAt(d[xParam], day),
-			[yParam]: valueAt(d[yParam], day)
+			[xParam.selected]: valueAt(d[xParam.selected], day),
+			[yParam.selected]: valueAt(d[yParam.selected], day)
 		}));
 	};
 
@@ -63,46 +65,67 @@ export const CirclesGapminder = (props) => {
 			.data(dataAt(dayCounter), d => d)
 			.join(
 				enter => enter.append('circle')
-					.attr('r', d => selectedStates[d.state].population / 1000000)
-					.attr('cx', d => xScale(d[xParam]))
-					.attr('cy', d => yScale(d[yParam]))
-					.attr('fill', d => colorScale(selectedStates[d.state][cParam]))
+					.attr('r', d => zParam.selected === "population" 
+						? selectedStates[d.state][zParam.selected] / 1000000 
+						: selectedStates[d.state][zParam.selected] / 100
+					)
+					.attr('cx', d => xScale(d[xParam.selected]))
+					.attr('cy', d => yScale(d[yParam.selected]))
+					.attr('fill', d => colorScale(selectedStates[d.state][cParam.selected]))
 					.attr('stroke', theme.palette.text.primary)
 					.attr('id', d => `circle-${selectedStates[d.state].htmlFormat}`)
-					.attr('class', d =>  
+					.attr('class', d =>
 						selected.includes(d.state) ? classes.circleSelected : classes.circle
 					)
 					.call(circle => circle.append('title')
 						.text(d => [
 							d.state,
-							`Cases/1000: ${d.casesPerThousand && d.casesPerThousand.toFixed(2)}`,
-							`Deaths/1000: ${d.deathsPerThousand && d.deathsPerThousand.toFixed(2)}`
+							`Day ${dayCounter}`,
+							xParam.selected === "casesPerThousand" 
+								? `Cases/1000: ${d.casesPerThousand && d.casesPerThousand.toFixed(2)}`
+								: xParam.selected === "cases"
+								? `Cases: ${d.cases && d.cases.toLocaleString()}`
+								: xParam.selected === "deathsPerThousand"
+								? `Deaths/1000: ${d.deathsPerThousand && d.deathsPerThousand.toFixed(2)}`
+								: xParam.selected === "deaths"
+								? `Deaths: ${d.deaths && d.deaths.toLocaleString()}`
+								: "error",
+							yParam.selected === "casesPerThousand" 
+								? `Cases/1000: ${d.casesPerThousand && d.casesPerThousand.toFixed(2)}`
+								: yParam.selected === "cases"
+								? `Cases: ${d.cases && d.cases.toLocaleString()}`
+								: yParam.selected === "deathsPerThousand"
+								? `Deaths/1000: ${d.deathsPerThousand && d.deathsPerThousand.toFixed(2)}`
+								: yParam.selected === "deaths"
+								? `Deaths: ${d.deaths && d.deaths.toLocaleString()}`
+								: "error"
 						].join("\n"))
-					)
-					.call(circle => {
-						circle.transition()
-						.duration(250)
-					})
+					),
+					exit => exit
+						.attr('fill', 'gray')
+						.attr('stroke', 'black')
+						.call(exit => exit
+							.transition()
+							.duration(500)
+						)
 			);
 
 			circle.on('mouseover', d => { 
 				d3.select(`#circle-${selectedStates[d.state].htmlFormat}`)
-					.attr('stroke', theme.palette.primary.main)
-					.attr('opacity', 1)
+					.attr('class', classes.circleSelected)
 					.attr('cursor', 'pointer')
 					.call(circle => {
 						circle.transition()
-						.duration(250)
+						.duration(750)
 					})
 			});
 
 			circle.on('mouseout', d => { 
 				d3.select(`#circle-${selectedStates[d.state].htmlFormat}`)
-					.attr('stroke', theme.palette.text.primary)
-					.attr('opacity', .8)
+					.attr('class', !selected.includes(d.state) && classes.circle)
 					.call(circle => {
 						circle.transition()
-						.duration(250)
+						.duration(750)
 					})
 			});
 
@@ -120,7 +143,7 @@ export const CirclesGapminder = (props) => {
 				setSelectedCircles(selected);
 			});
 		};
-	}, [dayCounter, xScale, yScale]);
+	}, [dayCounter, selector, scales]);
 
 	return (
 		<>		
