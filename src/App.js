@@ -10,10 +10,10 @@ import USStates from "./data/us-states.csv";
 import stateInfo from "./data/stateInfo.json";
 
 // components
-import { ChartUSCompare } from "./components/chart/ChartUSCompare";
 import { FilterBar } from "./components/dataParams/FilterBar";
 import { Footnotes } from "./components/chart/Footnotes";
 import { AppGapminder } from './components/appGapminder/AppGapminder';
+import { AppCovidCompare } from './components/appCovidCompare/AppCovidCompare';
 
 // context
 import { dataContext } from "./context/dataContext";
@@ -21,11 +21,12 @@ import { statesContext } from "./context/statesContext";
 import { themeContext } from './context/themeContext';
 
 // styles
-// import './styles/styles.css';
 import { themeDark, themeLight } from './styles/theme';
+import { colors } from './styles/colors';
 
 function App() {
 	const [dataStates, setDataStates] = useState([]);
+	const [infoStates, setInfoStates] = useState([]);
 	const [selectedStates, setSelectedStates] = useState([]);
 	const [theme, setTheme] = useState(themeDark);
 	const [darkTheme, setDarkTheme] = useState(true);
@@ -40,6 +41,37 @@ function App() {
 			console.log('setting to light')
 		}		
 	};
+
+	useEffect(() => {
+        // clean stateInfo data and assign selectedStates
+        const dateParser = d3.timeParse('%m-%d-%y');
+        const revisedStates = {};
+
+        Object.keys(stateInfo).forEach((s,i) => {
+            revisedStates[s] = {
+                ...stateInfo[s],
+				lockdown: stateInfo[s].lockdown.startsWith("none") ? stateInfo[s].lockdown : dateParser(stateInfo[s].lockdown),
+				lockdownEnd: stateInfo[s].lockdownEnd.startsWith("none") ? stateInfo[s].lockdownEnd : dateParser(stateInfo[s].lockdownEnd),
+                color: colors[i],
+            }
+        });
+
+        const nested = d3.nest()
+            .key(d => d.state)
+            .entries(dataStates);
+
+        Object.keys(nested).forEach(i => {
+            const s = nested[i].key;
+
+            const lastIndex = nested[i].values.length - 1;
+            const latestCaseCount = nested[i].values[lastIndex].cases;
+            revisedStates[s] = {
+                ...revisedStates[s],
+                latestCaseCount: latestCaseCount
+            };
+        });
+        setInfoStates(revisedStates);
+    }, []);
 
   useEffect(() => {
     // get COVID-19 state data
@@ -87,12 +119,12 @@ function App() {
     <div style={{backgroundColor: theme.palette.background.default, paddingBottom: 40}}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <dataContext.Provider value={{ dataStates, setDataStates }}>
-          <statesContext.Provider value={{ selectedStates, setSelectedStates }}>
+          <statesContext.Provider value={{ infoStates, setInfoStates }}>
 			<themeContext.Provider value={{ theme, setTheme }}>
 				<ThemeProvider theme={theme}>
 				<Router>
-					<FilterBar className="header" />
-					<Route path="/covidcompare" className="covid-chart" component={ChartUSCompare} />
+					{/* <FilterBar className="header" /> */}
+					<Route path="/covidcompare" className="covid-chart" component={AppCovidCompare} />
 					<Route path="/gapminder" component={AppGapminder} />
 					<Footnotes changeTheme={changeTheme} />
 				</Router>

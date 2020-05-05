@@ -1,15 +1,25 @@
 import React, { Fragment } from 'react';
 
 // style
-import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
+import { FormControl, InputLabel, Select, MenuItem, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+	container: {
+		display: 'flex',
+		justifyContent: 'flex-start'
+	},
 	filterSelector: {
-		minWidth: 200
+		minWidth: 200,
+		fontWeight: 500,
+		fontSize: ".8rem",
+		marginRight: 30
+
 	},
 	filterMenuItem: {
 		color: theme.palette.text.primary,
+		fontWeight: 500,
+		fontSize: ".8rem"
 	}
 }));
 
@@ -20,7 +30,8 @@ export const FilterGapminder = (props) => {
 	const classes = useStyles();
 
 	return (
-		<Fragment>
+		<Grid container className={classes.container}>
+			<Grid item>
 			<FormControl>
 				<InputLabel>X-axis</InputLabel>
 				<Select
@@ -42,6 +53,8 @@ export const FilterGapminder = (props) => {
 					})}
 				</Select>
 			</FormControl>
+			</Grid>
+			<Grid item>
 			<FormControl>
 				<InputLabel>Y-axis</InputLabel>
 				<Select
@@ -52,13 +65,19 @@ export const FilterGapminder = (props) => {
 				>
 					{yParam.options.map((d,i) => {
 						return (
-							<MenuItem key={d} value={d}>
+							<MenuItem 
+								key={d} 
+								value={d}
+								className={classes.filterMenuItem}
+							>
 								{d}
 							</MenuItem>
 						)
 					})}
 				</Select>
 			</FormControl>
+			</Grid>
+			<Grid item>
 			<FormControl>
 				<InputLabel>Size parameter</InputLabel>
 				<Select
@@ -69,13 +88,19 @@ export const FilterGapminder = (props) => {
 				>
 					{zParam.options.map((d,i) => {
 						return (
-							<MenuItem key={d} value={d}>
+							<MenuItem 
+								key={d} 
+								value={d}
+								className={classes.filterMenuItem}
+							>
 								{d}
 							</MenuItem>
 						)
 					})}
 				</Select>
 			</FormControl>
+			</Grid>
+			<Grid item>
 			<FormControl>
 				<InputLabel>Color categories</InputLabel>
 				<Select
@@ -86,14 +111,19 @@ export const FilterGapminder = (props) => {
 				>
 					{cParam.options.map((d,i) => {
 						return (
-							<MenuItem key={d} value={d}>
+							<MenuItem 
+								key={d} 
+								value={d} 
+								className={classes.filterMenuItem}
+							>
 								{d}
 							</MenuItem>
 						)
 					})}
 				</Select>
 			</FormControl>
-		</Fragment>
+			</Grid>
+		</Grid>
 	);
 };
 

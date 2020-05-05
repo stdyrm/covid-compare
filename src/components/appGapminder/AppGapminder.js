@@ -4,16 +4,19 @@ import React, { useState, useEffect, useContext } from 'react';
 import { DataReader } from './DataReader';
 import { ChartGapminder } from './ChartGapminder'; 
 import { FilterGapminder } from './FilterGapminder';
+import { Dashboard } from './Dashboard';
+import { FilterBar } from './FilterBar';
 
 // context
 import { dataContext } from '../../context/dataContext';
+import { selectionContext } from '../../context/selectionContext';
 
 // data
 import stateInfo from '../../data/stateInfo.json';
 import { gapminderData } from '../dataParams/gapminderData';
 
 // style
-import { Container } from '@material-ui/core';
+import { Container, Drawer, List, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const wrapper = {
@@ -66,7 +69,8 @@ const chartParams = {
 		selected: "population",
 		options: [ 
 			"population",
-			"populationDensity"
+			"populationDensity",
+			"none"
 		]
 	},
 	cParam: { // color axis (categorical/ordinal data) (eg. gender, birthplace, etc.)
@@ -96,11 +100,13 @@ const labelParams = {
 };
 
 const useStyles = makeStyles((theme) => ({
-	container: {
+	filterBar: {
 		width: bounded.width,
 		marginLeft: wrapper.marginLeft,
 		display: 'flex',
-		justifyContent: 'space-evenly'
+		justifyContent: 'flex-start',
+		color: "red",
+		backgroundColor: "pink"
 	}
 }))
 
@@ -113,6 +119,11 @@ export const AppGapminder = () => {
 		zParam: chartParams.zParam, 
 		cParam: chartParams.cParam, 
 		tParam: chartParams.tParam
+	});
+	const [selectedCircles, setSelectedCircles] = useState({
+		selected: [], 
+		notSelected: Object.keys(stateInfo), 
+		all: Object.keys(stateInfo)
 	});
 
 	// style
@@ -141,23 +152,23 @@ export const AppGapminder = () => {
 	}, [dataStates]);
 
 	return (
-		<div transform={`translate(${marginLeft}, ${marginTop})`}>
-			{data 
-				&& <ChartGapminder 
-					selector={selector}
-					data={data} 
-					wrapper={wrapper} 
-					bounded={bounded} 
-				/> 
-			}
-			{selector
-				&& <>
-					<Container className={classes.container}>
-						<FilterGapminder data={data} selector={selector} handleSelector={handleSelector} />
-					</Container>
-					{/* <button onClick={() => console.log(selector)}>Check Selector</button> */}
-				</>
-			}
-		</div>
+		<selectionContext.Provider value={{selectedCircles, setSelectedCircles}}>
+			<FilterBar 								
+				data={data} 
+				selector={selector} 
+				handleSelector={handleSelector}
+				className={classes.filterBar} 
+			/>
+			<div transform={`translate(${marginLeft}, ${marginTop})`}>
+				{data 
+					&& <ChartGapminder 
+						selector={selector}
+						data={data}
+						wrapper={wrapper} 
+						bounded={bounded} 
+						/>
+				}
+			</div>
+		</selectionContext.Provider>
 	)
 };

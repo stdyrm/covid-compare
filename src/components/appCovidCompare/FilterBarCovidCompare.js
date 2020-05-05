@@ -13,7 +13,7 @@ import clsx from "clsx";
 
 // components
 import { BatchSelect } from "./BatchSelect";
-import { Dashboard } from "./Dashboard2";
+import { Dashboard } from "./Dashboard";
 
 // context
 import { themeContext } from "../../context/themeContext";
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FilterBar = () => {
+export const FilterBarCovidCompare = (props) => {
   const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -186,11 +186,9 @@ const FilterBar = () => {
             </IconButton>
           </div>
           <Divider />
-          <Dashboard />
+          <Dashboard {...props} />
         </Drawer>
       </ClickAwayListener>
     </div>
   );
 };
-
-export { FilterBar };

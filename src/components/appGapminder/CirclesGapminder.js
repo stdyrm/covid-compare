@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 
 // context
 import { statesContext } from '../../context/statesContext';
+import { selectionContext } from '../../context/selectionContext';
 
 // style 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -13,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 		opacity: .8
 	},
 	circleSelected: {
-		stroke: theme.palette.text.primary,
+		stroke: "#e91e63",
 		strokeWidth: 2,
 		opacity: 1,
 	}
@@ -25,11 +26,9 @@ export const CirclesGapminder = (props) => {
 	const { xScale, yScale, colorScale } = scales;
 
 	// context and ref
-	const {selectedStates} = useContext(statesContext);
+	const { infoStates } = useContext(statesContext);
+	const { selectedCircles, setSelectedCircles } = useContext(selectionContext); 
 	const circlesRef = useRef(null);
-
-	// new state
-	const [selectedCircles, setSelectedCircles] = useState([]);
 
 	// styles
 	const classes = useStyles();
@@ -60,90 +59,90 @@ export const CirclesGapminder = (props) => {
 
 	useEffect(() => {
 		if (data) {
-			let selected = [...selectedCircles];
 			const circle = d3.select(circlesRef.current).selectAll('circle')
-			.data(dataAt(dayCounter), d => d)
-			.join(
-				enter => enter.append('circle')
-					.attr('r', d => zParam.selected === "population" 
-						? selectedStates[d.state][zParam.selected] / 1000000 
-						: selectedStates[d.state][zParam.selected] / 100
-					)
-					.attr('cx', d => xScale(d[xParam.selected]))
-					.attr('cy', d => yScale(d[yParam.selected]))
-					.attr('fill', d => colorScale(selectedStates[d.state][cParam.selected]))
-					.attr('stroke', theme.palette.text.primary)
-					.attr('id', d => `circle-${selectedStates[d.state].htmlFormat}`)
-					.attr('class', d =>
-						selected.includes(d.state) ? classes.circleSelected : classes.circle
-					)
-					.call(circle => circle.append('title')
-						.text(d => [
-							d.state,
-							`Day ${dayCounter}`,
-							xParam.selected === "casesPerThousand" 
-								? `Cases/1000: ${d.casesPerThousand && d.casesPerThousand.toFixed(2)}`
-								: xParam.selected === "cases"
-								? `Cases: ${d.cases && d.cases.toLocaleString()}`
-								: xParam.selected === "deathsPerThousand"
-								? `Deaths/1000: ${d.deathsPerThousand && d.deathsPerThousand.toFixed(2)}`
-								: xParam.selected === "deaths"
-								? `Deaths: ${d.deaths && d.deaths.toLocaleString()}`
-								: "error",
-							yParam.selected === "casesPerThousand" 
-								? `Cases/1000: ${d.casesPerThousand && d.casesPerThousand.toFixed(2)}`
-								: yParam.selected === "cases"
-								? `Cases: ${d.cases && d.cases.toLocaleString()}`
-								: yParam.selected === "deathsPerThousand"
-								? `Deaths/1000: ${d.deathsPerThousand && d.deathsPerThousand.toFixed(2)}`
-								: yParam.selected === "deaths"
-								? `Deaths: ${d.deaths && d.deaths.toLocaleString()}`
-								: "error"
-						].join("\n"))
-					),
-					exit => exit
-						.attr('fill', 'gray')
-						.attr('stroke', 'black')
-						.call(exit => exit
-							.transition()
-							.duration(500)
+				.data(dataAt(dayCounter), d => d)
+				.join(
+					enter => enter.append('circle')
+						.attr('r', d => zParam.selected === "population" 
+							? infoStates[d.state][zParam.selected] / 1000000 
+							: zParam.selected === "populationDensity"
+							? infoStates[d.state][zParam.selected] / 100
+							: 10
 						)
-			);
+						.attr('cx', d => xScale(d[xParam.selected]))
+						.attr('cy', d => yScale(d[yParam.selected]))
+						.attr('fill', d => colorScale(infoStates[d.state][cParam.selected]))
+						.attr('stroke', theme.palette.text.primary)
+						.attr('id', d => `circle-${infoStates[d.state].htmlFormat}`)
+						.attr('class', d =>
+							selectedCircles.selected.includes(d.state) 
+								? classes.circleSelected 
+								: classes.circle
+						)
+						.call(circle => circle.append('title')
+							.text(d => [
+								d.state,
+								`Day ${dayCounter}`,
+								xParam.selected === "casesPerThousand" 
+									? `Cases/1000: ${d.casesPerThousand && d.casesPerThousand.toFixed(2)}`
+									: xParam.selected === "cases"
+									? `Cases: ${d.cases && d.cases.toLocaleString()}`
+									: xParam.selected === "deathsPerThousand"
+									? `Deaths/1000: ${d.deathsPerThousand && d.deathsPerThousand.toFixed(2)}`
+									: xParam.selected === "deaths"
+									? `Deaths: ${d.deaths && d.deaths.toLocaleString()}`
+									: "error",
+								yParam.selected === "casesPerThousand" 
+									? `Cases/1000: ${d.casesPerThousand && d.casesPerThousand.toFixed(2)}`
+									: yParam.selected === "cases"
+									? `Cases: ${d.cases && d.cases.toLocaleString()}`
+									: yParam.selected === "deathsPerThousand"
+									? `Deaths/1000: ${d.deathsPerThousand && d.deathsPerThousand.toFixed(2)}`
+									: yParam.selected === "deaths"
+									? `Deaths: ${d.deaths && d.deaths.toLocaleString()}`
+									: "error"
+							].join("\n"))
+						).call(enter => enter
+							.transition()
+							.duration(1000)
+						)
+				);
 
 			circle.on('mouseover', d => { 
-				d3.select(`#circle-${selectedStates[d.state].htmlFormat}`)
+				d3.select(`#circle-${infoStates[d.state].htmlFormat}`)
 					.attr('class', classes.circleSelected)
 					.attr('cursor', 'pointer')
-					.call(circle => {
-						circle.transition()
-						.duration(750)
-					})
 			});
 
 			circle.on('mouseout', d => { 
-				d3.select(`#circle-${selectedStates[d.state].htmlFormat}`)
-					.attr('class', !selected.includes(d.state) && classes.circle)
-					.call(circle => {
-						circle.transition()
-						.duration(750)
-					})
+				d3.select(`#circle-${infoStates[d.state].htmlFormat}`)
+					.attr('class', d => !selectedCircles.selected.includes(d.state) 
+						? classes.circle 
+						: classes.circleSelected
+					)
 			});
 
 			circle.on('click', d => { 
-				if (selected.includes(d.state)) {
-					const i = selected.indexOf(d.state);
-					selected.splice(i,1);
-					d3.select(`#circle-${selectedStates[d.state].htmlFormat}`)
+				if (selectedCircles.selected.includes(d.state)) {
+					setSelectedCircles({
+						...selectedCircles,
+						selected: selectedCircles.selected.filter(s => s !== d.state),
+						notSelected: [...selectedCircles.notSelected, d.state]
+					})
+					d3.select(`#circle-${infoStates[d.state].htmlFormat}`)
 						.attr('class', classes.circle)
 				} else {
-					selected.push(d.state);
-					d3.select(`#circle-${selectedStates[d.state].htmlFormat}`)
+					setSelectedCircles({
+						...selectedCircles,
+						selected: [...selectedCircles.selected, d.state],
+						notSelected: selectedCircles.notSelected.filter(s => s !== d.state)
+					})
+					d3.select(`#circle-${infoStates[d.state].htmlFormat}`)
 						.attr('class', classes.circleSelected)
 				}
-				setSelectedCircles(selected);
 			});
 		};
-	}, [dayCounter, selector, scales]);
+	}, [dayCounter, selector, scales, selectedCircles]);
 
 	return (
 		<>		

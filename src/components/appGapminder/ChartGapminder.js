@@ -3,14 +3,9 @@ import * as d3 from 'd3';
 
 // context
 import { dataContext } from '../../context/dataContext';
-import { statesContext } from '../../context/statesContext';
 
 // components
 import { CirclesGapminder } from './CirclesGapminder';
-import { FilterGapminder } from './FilterGapminder';
-
-// data
-import stateInfo from '../../data/stateInfo.json';
 
 // style
 import { IconButton, Slider } from '@material-ui/core';
@@ -23,9 +18,38 @@ const useStyles = makeStyles((theme) => ({
 		color: theme.palette.text.primary,
 	},
 	legend: {
-		fontSize: '.7rem'
+		fontWeight: 700,
+		fontSize: '.8rem'
+	},
+	slider: {
+		// color: theme.palette.primary.contrastText,
 	}
 }));
+
+const cParamCategories = {
+	region: [
+		"Northeast", 
+		"Midwest", 
+		"South", 
+		"West"
+	],
+	division: [
+		"New England", 
+		"Mid-Atlantic", 
+		"East North Central", 
+		"West North Central",
+		"South Atlantic",
+		"East South Central",
+		"West South Central",
+		"Mountain",
+		"Pacific"
+	],
+	governor: [
+		"Republican", 
+		"Democrat", 
+		"n/a"
+	]
+};
 
 export const ChartGapminder = (props) => {
 	const { data, selector, wrapper, bounded } = props;
@@ -34,7 +58,6 @@ export const ChartGapminder = (props) => {
 	const { width, height } = bounded;
 
 	const {dataStates} = useContext(dataContext);
-	const {selectedStates} = useContext(statesContext);
 	const [scales, setScales] = useState(null);
 	const [dayCounter, setDayCounter] = useState(1);
 	const [animate, setAnimate] = useState(false);
@@ -63,31 +86,6 @@ export const ChartGapminder = (props) => {
 			.range([height, 0]);
 		let colorScale;
 
-		const cParamCategories = {
-			region: [
-				"Northeast", 
-				"Midwest", 
-				"South", 
-				"West"
-			],
-			division: [
-				"New England", 
-				"Mid-Atlantic", 
-				"East North Central", 
-				"West North Central",
-				"South Atlantic",
-				"East South Central",
-				"West South Central",
-				"Mountain",
-				"Pacific"
-			],
-			governor: [
-				"Republican", 
-				"Democrat", 
-				"n/a"
-			]
-		};
-
 		if (cParam.selected === "region") {
 			colorScale = d3.scaleOrdinal()
 				.domain(cParamCategories.region)
@@ -99,7 +97,11 @@ export const ChartGapminder = (props) => {
 		} else if (cParam.selected === "governor") {
 			colorScale = d3.scaleOrdinal()
 				.domain(cParamCategories.governor)
-				.range(["#B61515", "#2E84D5", "#009C72"])
+				.range([
+					"#B61515", 
+					"#2E84D5", 
+					"#009C72"
+				])
 		}
 
 		setScales({
@@ -111,29 +113,48 @@ export const ChartGapminder = (props) => {
 		// Axes
 		const yAxisGenerator = d3.axisLeft().scale(yScale);
 		const xAxisGenerator = d3.axisBottom().scale(xScale);
-		d3.select(xAxisRef.current).call(xAxisGenerator)
-			.call(axis => axis.append('text')
+
+		const xAxis = d3.select(xAxisRef.current).call(xAxisGenerator)
+			.call(axis => axis
+				.append('text')
+				.attr('class', 'xLabel')
+			);
+
+		xAxis.selectAll('.xLabel')
+			.data(xParam.selected, d => d)
+			.join('text')
 				.attr('x', width)
 				.attr('y', 40)
+				.attr('class', 'xLabel')
 				.attr('text-anchor', 'end')
 				.attr('fill', 'white')
-				.text(xParam.selected)
-			)
-			.call(axis => axis.append('text')
-				.attr('x', width)
-				.attr('y', -20)
-				.attr('text-anchor', 'end')
-				.attr('fill', 'white')
-				.classed('counter-display', true)
-			)
+				.text(xParam.selected);
 
+		const yAxis = d3.select(yAxisRef.current).call(yAxisGenerator)
+			.call(axis => axis
+				.append('text')
+				.attr('class', 'yLabel')
+			);
+
+		yAxis.selectAll('.yLabel')
+			.data(yParam.selected, d => d)
+			.join('text')
+				.attr('x', 0)
+				.attr('y', -40)
+				.attr('class', 'yLabel')
+				.attr('text-anchor', 'end')
+				.attr('transform', 'rotate(-90)')
+				.attr('fill', 'white')
+				.text(yParam.selected);
+
+		// legend
 		d3.select(legendRef.current)
 			.selectAll('text')
 				.data(cParamCategories[cParam.selected], d => d)
 				.join(
 					enter => enter.append('text')
 						.attr('x', "1rem")
-						.attr("y", -100)
+						.attr("y", -1000)
 						.attr('fill', d => colorScale(d))
 						.attr('text-anchor', 'start')
 						.text(d => d)
@@ -144,17 +165,16 @@ export const ChartGapminder = (props) => {
 						),
 					update => update.append('text')
 						.attr('fill', d => colorScale(d))
-						.attr('text-anchor', 'middle')
+						.attr('text-anchor', 'start')
 						.attr('y', 60)
 						.text(d => d)
 						.call(update => update
 							.transition()
 							.duration(750)
-							// .attr('x', (d,i) => i * 100)
 						),
 					exit => exit
 						.attr('fill', 'gray')
-						.attr('text-anchor', 'middle')
+						.attr('text-anchor', 'start')
 						.text(d => d)
 						.call(exit => exit
 							.transition()
@@ -163,15 +183,6 @@ export const ChartGapminder = (props) => {
 							.remove()
 						)
 				)
-
-		d3.select(yAxisRef.current).call(yAxisGenerator)
-			.call(axis => axis.append('text')
-				.attr('x', 0)
-				.attr('y', -40)
-				.attr('text-anchor', 'end')
-				.attr('transform', 'rotate(-90)')
-				.attr('fill', 'white')
-				.text(yParam.selected));
 	};
 
 	useEffect(() => {
@@ -193,20 +204,17 @@ export const ChartGapminder = (props) => {
 					<g ref={xAxisRef} transform={`translate(0, ${height})`} className={classes.axes} />
 					<g ref={yAxisRef} className={classes.axes} />
 					<g ref={legendRef} transform={`translate(0, ${height})`} className={classes.legend} />
-					{data && scales ? <CirclesGapminder 
-						{...props} 
-						scales={scales} 
-						dayCounter={dayCounter} 
-						setDayCounter={setDayCounter}
-					/> : <></>}
+					{data && scales 
+						? <CirclesGapminder 
+							{...props} 
+							scales={scales} 
+							dayCounter={dayCounter} 
+							setDayCounter={setDayCounter}
+						/> 
+						: <></>}
 				</g>
 			</svg>
 			<div style={{marginLeft}}>
-				<div>
-					<IconButton onClick={handleAnimate} disableRipple edge="start">
-						{animate ? <PauseIcon disableRipple edge="start" /> : <PlayArrowIcon disableRipple edge="start" />}
-					</IconButton>
-				</div>
 				<div>
 				<Slider 
 					value={dayCounter}
@@ -216,7 +224,13 @@ export const ChartGapminder = (props) => {
 					max={60}
 					onChange={handleDayCounter}
 					style={{width: width}}
+					className={classes.slider}
 				/>
+				</div>
+				<div>
+					<IconButton onClick={handleAnimate} disableRipple edge="start">
+						{animate ? <PauseIcon disableRipple edge="start" /> : <PlayArrowIcon disableRipple edge="start" />}
+					</IconButton>
 				</div>
 			</div>
 		</>
