@@ -4,10 +4,9 @@ import { DatePicker } from "@material-ui/pickers";
 
 // context
 import { statesContext } from "../../context/statesContext";
-import { themeContext } from "../../context/themeContext";
 
 // styles
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   tab: {
@@ -21,15 +20,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const BatchSelect = () => {
-  const { selectedStates, setSelectedStates } = useContext(statesContext);
-  const { theme } = useContext(themeContext);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedFilter, setSelectedFilter] = useState(null);
-  const [selectedDate, setDateChange] = useState(new Date());
-  const lockdownRef = useRef(null);
+export const BatchSelect = (props) => {
+	const { selectedStates, setSelectedStates } = props;
 
-  const classes = useStyles();
+	// ref
+	const lockdownRef = useRef(null);
+
+	// assign
+	const [anchorEl, setAnchorEl] = useState(null);
+	const [selectedFilter, setSelectedFilter] = useState(null);
+	const [selectedDate, setDateChange] = useState(new Date());
+	
+	// style
+	const theme = useTheme();
+	const classes = useStyles();
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);

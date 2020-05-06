@@ -4,9 +4,6 @@ import * as d3 from "d3";
 // functions
 import { MouseMove } from "../util/MouseMove";
 
-// data
-import stateInfo from "../../data/stateInfo.json";
-
 // context
 import { dataContext } from "../../context/dataContext";
 import { statesContext } from "../../context/statesContext";
@@ -15,32 +12,38 @@ import { themeContext } from '../../context/themeContext';
 // constants
 import { bounded } from "../util/constants";
 
-const Line = ({ focus, overlay }) => {
-  const { selectedStates } = useContext(statesContext);
-  const { dataStates } = useContext(dataContext);
-  const { theme, setTheme } = useContext(themeContext);
-  const [linesStates, setLinesStates] = useState([]);
+const Line = (props) => {
+	const { chartParams, labelParams, focus, overlay, selectedStates } = props;
+	const { xParam, yParam } = chartParams;	
+	
+	// context
+	const { dataStates } = useContext(dataContext);
+	const { theme, setTheme } = useContext(themeContext);
+	const { infoStates } = useContext(statesContext);
 
-  const clearFocus = () => {
-    focus.selectAll(['circle', 'text']).attr('display', 'none')
-  };
+	// assign
+	const [linesStates, setLinesStates] = useState([]);
+
+	// const clearFocus = () => {
+	// 	focus.selectAll(['circle', 'text'])
+	// 		.attr('display', 'none')
+	// };
+
+	// useEffect(() => {
+	// 	return () => clearFocus();
+	// }, [selectedStates]);
 
   useEffect(() => {
-    return () => clearFocus();
-  }, [selectedStates]);
-
-  useEffect(() => {
-    if (dataStates.length > 0) {
-
-      // Scales
-      const xScale = d3
-        .scaleLinear()
-        .domain(d3.extent(dataStates, (d) => d.dayOfOutbreak))
-        .range([0, bounded.width]);
-      const yScale = d3
-        .scaleLinear()
-        .domain(d3.extent(dataStates, (d) => d.casesPerThousand))
-        .range([bounded.height, 0]);
+    if (selectedStates && dataStates.length > 0) {
+	// Scales
+	const xScale = d3
+		.scaleLinear()
+		.domain(d3.extent(dataStates, (d) => d.dayOfOutbreak))
+		.range([0, bounded.width]);
+	const yScale = d3
+		.scaleLinear()
+		.domain(d3.extent(dataStates, (d) => d.casesPerThousand))
+		.range([bounded.height, 0]);
 
       // Lines
       const lineGenerator = d3
@@ -54,9 +57,8 @@ const Line = ({ focus, overlay }) => {
         .sort()
         .filter((s) => selectedStates[s].selected === true)
         .forEach((state, i) => {
-          const dataEachState = dataStates.filter((d) => d.state === state);
-          const stateHTML = stateInfo[state].htmlFormat;
-
+          const dataEachState = dataStates.filter(d => d.state === state);
+          const stateHTML = infoStates[state].htmlFormat;
           // Line label placement
           const lastDayOfOutbreak =
             dataEachState[dataEachState.length - 1].dayOfOutbreak;
@@ -134,12 +136,12 @@ const Line = ({ focus, overlay }) => {
 
   return (
     <>
-      <MouseMove focus={focus} overlay={overlay} linesStates={linesStates} />
+      <MouseMove focus={focus} overlay={overlay} linesStates={linesStates} {...props} />
       {dataStates.length > 0 ? (
         Object.keys(linesStates)
           .sort()
           .map((state, i) => {
-            const stateHTML = stateInfo[state].htmlFormat;
+            const stateHTML = infoStates[state].htmlFormat;
 
             return (
               <g key={i} id={`bounds-render-${stateHTML}`}>

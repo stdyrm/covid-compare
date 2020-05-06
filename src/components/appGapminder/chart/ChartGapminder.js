@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import * as d3 from 'd3';
 
 // context
-import { dataContext } from '../../context/dataContext';
+import { dataContext } from '../../../context/dataContext';
 
 // components
 import { CirclesGapminder } from './CirclesGapminder';
@@ -199,7 +199,7 @@ export const ChartGapminder = (props) => {
 
 	return (
 		<>
-			<svg className="wrapper" height={wrapperHeight} width={wrapperWidth}>
+			<svg id="gapminder" className="wrapper" height={wrapperHeight} width={wrapperWidth}>
 				<g ref={boundsRef} className="bounds" transform={`translate(${marginLeft}, ${marginTop})`}>
 					<g ref={xAxisRef} transform={`translate(0, ${height})`} className={classes.axes} />
 					<g ref={yAxisRef} className={classes.axes} />
@@ -227,11 +227,11 @@ export const ChartGapminder = (props) => {
 					className={classes.slider}
 				/>
 				</div>
-				<div>
+				{/* <div>
 					<IconButton onClick={handleAnimate} disableRipple edge="start">
 						{animate ? <PauseIcon disableRipple edge="start" /> : <PlayArrowIcon disableRipple edge="start" />}
 					</IconButton>
-				</div>
+				</div> */}
 			</div>
 		</>
 	)

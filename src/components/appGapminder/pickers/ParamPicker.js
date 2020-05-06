@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 // style
 import { FormControl, InputLabel, Select, MenuItem, Grid } from '@material-ui/core';
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export const FilterGapminder = (props) => {
+export const ParamPicker = (props) => {
 	const { data, selector, handleSelector } = props;
 	const { xParam, yParam, zParam, cParam, tParam } = selector;
 

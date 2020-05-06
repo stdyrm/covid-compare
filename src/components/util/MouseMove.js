@@ -9,9 +9,9 @@ import { themeContext } from '../../context/themeContext';
 // constants
 import { date, bounded } from '../util/constants';
 
-export const MouseMove = ({ focus, overlay, linesStates }) => {
+export const MouseMove = (props) => {
+	const { focus, overlay, linesStates, selectedStates } = props;
     const { dataStates } = useContext(dataContext);
-	const { selectedStates } = useContext(statesContext);
 	const { theme } = useContext(themeContext);
 
     const xScale = d3.scaleLinear().domain(d3.extent(dataStates, d => d.dayOfOutbreak)).range([0, bounded.width]);

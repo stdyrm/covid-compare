@@ -20,7 +20,6 @@ import { themeContext } from "../../context/themeContext";
 
 // styles
 import { makeStyles } from "@material-ui/core/styles";
-import MenuOutlinedIcon from "@material-ui/icons/MenuOutlined";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import TimelineIcon from "@material-ui/icons/Timeline";
@@ -49,7 +48,10 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    color: theme.palette.text.primary,
+	color: theme.palette.primary.contrastText,
+	'&:hover': {
+		backgroundColor: 'transparent'
+	},
   },
   hide: {
     display: "none",
@@ -124,15 +126,15 @@ export const FilterBarCovidCompare = (props) => {
         <Toolbar>
           <IconButton
             onClick={handleDrawerOpen}
-            edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
-            style={{ color: theme.palette.text.primary }}
+			style={{ color: theme.palette.text.primary }}
+			disableRipple
           >
-            <MenuOutlinedIcon
-              style={{ color: theme.palette.primary.contrastText }}
+            <TimelineIcon
+			  className={classes.menuButton}
             />
           </IconButton>
-          <BatchSelect />
+          <BatchSelect {...props} />
           <IconButton
             aria-controls="viz-menu"
             aria-haspopup="true"

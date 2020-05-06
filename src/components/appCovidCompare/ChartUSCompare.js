@@ -74,7 +74,7 @@ const ChartUSCompare = (props) => {
     return (
         <div height={height} width={width}>
             <svg 
-                id="chart" 
+                id="covidcompare" 
                 height={height} 
                 width={width} 
                 ref={svgRef}
@@ -145,7 +145,11 @@ const ChartUSCompare = (props) => {
 						id="x-axis" 
 						transform={`translate(0,${bounded.height})`}
 						style={{color: theme.palette.text.primary, fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}} />
-                    <Line focus={focus} overlay={overlay}/>
+					<Line 
+						focus={focus} 
+						overlay={overlay} 
+						{...props} 
+					/>
                 </g>
             </svg>
         </div>

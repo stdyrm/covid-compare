@@ -17,8 +17,8 @@ import Brightness7Icon from '@material-ui/icons/Brightness7';
 const { margin } = dimensions;
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        color: '#f2ffcc',
+    footnoteText: {
+        color: theme.palette.text.primary,
         textAlign: 'left',
         padding: 0,
         fontSize: 10,
@@ -41,9 +41,12 @@ const useStyles = makeStyles((theme) => ({
 const Footnotes = ({changeTheme}) => {
     const classes = useStyles();
 	const {theme, selectTheme} = useContext(themeContext);
+	const path = window.location.pathname.replace('/','');
+
+	console.log(path)
 
     const saveImage = () => {
-        saveSvgAsPng(document.querySelector("#chart"), "covid-19_chart.png", {
+        saveSvgAsPng(document.querySelector(`#${path}`), "covid-19_chart.png", {
 			backgroundColor: theme.palette.background.default,
 			encoderOptions: 1,
 			fonts: [
@@ -59,8 +62,7 @@ const Footnotes = ({changeTheme}) => {
     return (
 		<>
         <div style={{backgroundColor: theme.palette.background.default}}>
-            <p className={classes.root} style={{color: theme.palette.text.primary, fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}>Line marking indicates day of lockdown order/advisory</p>
-			<p className={classes.root} style={{color: theme.palette.text.primary, fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}>Freeze/unfreeze focus by clicking on chart</p>
+			<p className={classes.footnoteText}></p>
 		</div>
 		<div style={{backgroundColor: theme.palette.background.default}}>
 			<Tooltip title="Save chart as image" placement="right">

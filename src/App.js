@@ -10,10 +10,9 @@ import USStates from "./data/us-states.csv";
 import stateInfo from "./data/stateInfo.json";
 
 // components
-import { FilterBar } from "./components/dataParams/FilterBar";
 import { Footnotes } from "./components/chart/Footnotes";
-import { AppGapminder } from './components/appGapminder/AppGapminder';
-import { AppCovidCompare } from './components/appCovidCompare/AppCovidCompare';
+import { AppGapminder } from './components/AppGapminder/AppGapminder';
+import { AppCovidCompare } from './components/AppCovidCompare/AppCovidCompare';
 
 // context
 import { dataContext } from "./context/dataContext";
@@ -26,8 +25,8 @@ import { colors } from './styles/colors';
 
 function App() {
 	const [dataStates, setDataStates] = useState([]);
-	const [infoStates, setInfoStates] = useState([]);
-	const [selectedStates, setSelectedStates] = useState([]);
+	const [infoStates, setInfoStates] = useState(null);
+
 	const [theme, setTheme] = useState(themeDark);
 	const [darkTheme, setDarkTheme] = useState(true);
 

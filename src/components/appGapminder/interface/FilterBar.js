@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 
 // components
-import { Dashboard } from './Dashboard';
-import { FilterGapminder } from './FilterGapminder';
+import { Dashboard } from '../Dashboard';
+import { ParamPicker } from '../pickers/ParamPicker';
+import { FilterPicker } from '../pickers/FilterPicker';
 
 // style
-import { AppBar, Toolbar, IconButton, Drawer, ClickAwayListener } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Drawer, ClickAwayListener, Menu, MenuItem } from '@material-ui/core';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import BubbleChartIcon from "@material-ui/icons/BubbleChart";
@@ -19,9 +20,8 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: theme.palette.primary.main,
   },
   appBar: {
-	backgroundColor: theme.palette.background.default,
+	backgroundColor: theme.palette.primary.main,
 	color: theme.palette.primary.contrastText,
-	maxHeight: 60,
 	transition: theme.transitions.create(["margin", "width"], {
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.leavingScreen,
@@ -37,7 +37,10 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    color: theme.palette.text.primary,
+	color: theme.palette.text.primary,
+	"&:hover": {
+		backgroundColor: "transparent"
+	},
   },
   hide: {
     display: "none",
@@ -68,7 +71,6 @@ const useStyles = makeStyles((theme) => ({
 	toolbar: {
 		display: 'flex',
 		justifyContent: 'flex-start',
-		backgroundColor: 'red'
 	}
   },
 }));
@@ -103,16 +105,36 @@ export const FilterBar = (props) => {
 					<IconButton
 						onClick={handleDrawer}
 						edge="start"
+						disableRipple
 						className={clsx(classes.menuButton, open && classes.hide)}
 					>
-						<BubbleChartIcon className={classes.menuButton}/>
+						<BubbleChartIcon className={classes.menuButton} />
 					</IconButton>
-					<FilterGapminder 
+					<ParamPicker 
 						data={data} 
 						selector={selector} 
 						handleSelector={handleSelector}
 						className={classes.filters}
 					/>
+					<FilterPicker 
+						{...props}
+					/>
+					{/* <Menu
+						id="viz-menu"
+						anchorEl={anchorEl}
+						open={Boolean(anchorEl)}
+						onClick={handleMenuClickAway}
+						MenuListProps={{ onMouseLeave: handleMenuClickAway }}
+					>
+						<MenuItem component="a" href="/covidcompare">
+							<TimelineIcon />
+							Line chart
+						</MenuItem>
+						<MenuItem component="a" href="/gapminder">
+							<BubbleChartIcon />
+							Gapminder chart
+						</MenuItem>
+					</Menu> */}
 				</Toolbar>
 				<ClickAwayListener onClickAway={handleClickAway}>
 					<Drawer

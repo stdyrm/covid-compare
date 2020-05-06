@@ -521,8 +521,8 @@
     },
     "South Carolina": {
         "name": "South Carolina",
-        "abbreviation": "SC", 
-        "htmlFormat": "South-carolina", 
+        "abbreviation": "SC",
+        "htmlFormat": "south-carolina", 
         "lockdown": "04-07-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 5148714,
@@ -535,7 +535,7 @@
     "South Dakota": {
         "name": "South Dakota",
         "abbreviation": "SD", 
-        "htmlFormat": "South-dakota", 
+        "htmlFormat": "south-dakota", 
         "lockdown": "none as of 04-24", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 884659,
@@ -626,7 +626,7 @@
     "West Virginia": {
         "name": "West Virginia",
         "abbreviation": "WV", 
-        "htmlFormat": "West-virginia", 
+        "htmlFormat": "west-virginia", 
         "lockdown": "03-24-20", 
 		"lockdownEnd": "none as of 04-28",
 		"population": 1792147,
