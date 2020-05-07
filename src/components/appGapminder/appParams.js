@@ -19,6 +19,7 @@ export const chartParams = {
 	multiple: true,
 	normalize: true,
 	xParam: { // x-axis
+		output: 'x-axis',
 		type: 'linear',
 		format: 'none',
 		selected: 'casesPerThousand',
@@ -31,6 +32,7 @@ export const chartParams = {
 		]
 	},
 	yParam: { // y-axis
+		output: 'y-axis',
 		type: 'linear',
 		format: 'none',
 		selected: 'deathsPerThousand',
@@ -43,6 +45,7 @@ export const chartParams = {
 		], 
 	},
 	zParam: {// z-axis (3rd dimension) (eg. size)
+		output: 'z-axis',
 		type: "linear",
 		format: "none",
 		selected: "population",
@@ -53,6 +56,7 @@ export const chartParams = {
 		]
 	},
 	cParam: { // color axis (categorical/ordinal data) (eg. gender, birthplace, etc.)
+		output: 'color grouping',
 		type: "categorical",
 		selected: "region",
 		options: [ 
@@ -62,6 +66,7 @@ export const chartParams = {
 		],
 	},
 	tParam: { // time axis (4th dimension) (ie. for animated charts)
+		output: 'time',
 		type: 'time',
 		selected: "dayOfOutbreak",
 		options: [

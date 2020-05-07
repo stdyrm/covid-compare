@@ -1,5 +1,4 @@
-import React, { useContext, useEffect } from 'react';
-import { timeParse, nest } from 'd3';
+import React, { useContext } from 'react';
 import { IconButton, FormControlLabel, FormGroup, Checkbox, Typography, Divider } from '@material-ui/core';
 
 // context
@@ -7,11 +6,8 @@ import { dataContext } from '../../context/dataContext';
 import { statesContext } from '../../context/statesContext';
 import { themeContext } from '../../context/themeContext';
 
-// data
-import stateInfo from '../../data/stateInfo.json';
 
 // styles
-import { colors } from '../../styles/colors';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 

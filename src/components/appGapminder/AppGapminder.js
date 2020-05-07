@@ -4,10 +4,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { wrapper, bounded, chartParams, labelParams } from "./appParams";
 
 // components
-import { DataReader } from './DataReader';
 import { ChartGapminder } from './chart/ChartGapminder'; 
-import { Dashboard } from './Dashboard';
-import { FilterBar } from './interface/FilterBar';
+import { Navbar } from './interface/Navbar';
 
 // context
 import { dataContext } from '../../context/dataContext';
@@ -15,14 +13,13 @@ import { selectionContext } from '../../context/selectionContext';
 
 // data
 import stateInfo from '../../data/stateInfo.json';
-import { gapminderData } from '../dataParams/gapminderData';
+import { gapminderData } from './gapminderData';
 
 // style
-import { Container, Drawer, List, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-	filterBar: {
+	navbar: {
 		width: bounded.width,
 		marginLeft: wrapper.marginLeft,
 		display: 'flex',
@@ -38,7 +35,6 @@ export const AppGapminder = () => {
 		yParam: chartParams.yParam, 
 		zParam: chartParams.zParam, 
 		cParam: chartParams.cParam, 
-		tParam: chartParams.tParam
 	});
 	const [selectedCircles, setSelectedCircles] = useState({
 		selected: [], 
@@ -73,11 +69,11 @@ export const AppGapminder = () => {
 
 	return (
 		<selectionContext.Provider value={{selectedCircles, setSelectedCircles}}>
-			<FilterBar 								
+			<Navbar 								
 				data={data} 
 				selector={selector} 
 				handleSelector={handleSelector}
-				className={classes.filterBar}
+				className={classes.navbar}
 			/>
 			<div transform={`translate(${marginLeft}, ${marginTop})`}>
 				{data 

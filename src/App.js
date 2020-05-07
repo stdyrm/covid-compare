@@ -11,8 +11,8 @@ import stateInfo from "./data/stateInfo.json";
 
 // components
 import { Footnotes } from "./components/chart/Footnotes";
-import { AppGapminder } from './components/AppGapminder/AppGapminder';
-import { AppCovidCompare } from './components/AppCovidCompare/AppCovidCompare';
+import { AppGapminder } from './components/appGapminder/AppGapminder';
+import { AppCovidCompare } from './components/appCovidCompare/AppCovidCompare';
 
 // context
 import { dataContext } from "./context/dataContext";

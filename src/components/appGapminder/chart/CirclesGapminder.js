@@ -11,7 +11,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
 	circle: {
 		stroke: 'none',
-		opacity: .8
+		opacity: .7
 	},
 	circleSelected: {
 		stroke: "#e91e63",
