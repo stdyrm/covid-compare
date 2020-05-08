@@ -14,20 +14,21 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: theme.palette.secondary.main,
 		margin: "auto",
 	}
-}))
+}));
 
 export const FilterOperator = (props) => {
 	const { filters, setFilters } = props;
 
+	const classes = useStyles();
+
 	return (
-		<div>
-			<Button variant="contained">
+		<div container>
+			<Button variant="contained" className={classes.button}>
 				Or
 			</Button>
-
-			<Button variant="contained">
+			<Button variant="contained" className={classes.button}>
 				And
 			</Button>
 		</div>
-	)
+	);
 };

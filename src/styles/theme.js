@@ -1,6 +1,7 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
 const darkPrimary = "#000018";
+const darkSecondary = "#1c847f"; 
 const darkText = "#fff";
 const darkBackground = "#29293d";
 
@@ -14,7 +15,11 @@ const themeDark = createMuiTheme({
     primary: {
       main: "#000018",
       contrastText: "#fff",
-    },
+	},
+	secondary: {
+		main: darkSecondary,
+		contrastText: darkText,
+	},
     background: {
       default: "#29293d",
     },

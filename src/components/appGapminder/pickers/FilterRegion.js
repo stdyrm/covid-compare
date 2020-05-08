@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 
 // context
 import { selectionContext } from '../../../context/selectionContext';
@@ -9,39 +9,28 @@ import { Menu, MenuItem, Button } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
+const regionOptions = [
+	{id: "northeast", name: "Northeast", type: "Region"},
+	{id: "midwest", name: "Midwest", type: "Region"},
+	{id: "south", name: "South", type: "Region"},
+	{id: "west", name: "West", type: "Region"}
+];
+
+
 export const FilterRegion = (props) => {
-	const { filters, setFilters, anchorEl, setAnchorEl, handleMenu, handleMenuClose } = props;
+	const { filters, setFilters, chainOperator, handleFilterRegion } = props;
 
 	const { selectedCircles, setSelectedCircles } = useContext(selectionContext);
 	const { infoStates } = useContext(statesContext);
+	const [anchorEl, setAnchorEl] = useState(null);
 
-	const filterRegion = (e) => {
-		const filtered = Object.keys(infoStates)
-			.filter(s => infoStates[s].region.toLowerCase() === e.target.id);
+	const handleMenu = (e) => {
+		setAnchorEl(e.currentTarget);
+	};
 
-		setFilters({
-			...filters,
-			selected: `Region: ${e.target.id}`,
-			list: [
-				...filters.list, 
-				`Region: ${e.target.id}`
-			]
-		});
-	
-		setSelectedCircles({
-			...selectedCircles,
-			selected: filtered,
-			notSelected: selectedCircles.all.filter(s => !filtered.includes(s))
-		});
+	const handleMenuClose = () => {
 		setAnchorEl(null);
-	  };
-	
-	const regionOptions = [
-		{id: "northeast", name: "Northeast"},
-		{id: "midwest", name: "Midwest"},
-		{id: "south", name: "South"},
-		{id: "west", name: "West"}
-	];
+	};
 
 	return (
 		<div>
@@ -55,10 +44,18 @@ export const FilterRegion = (props) => {
 				onClose={handleMenuClose}
 			>
 				{infoStates 
-					&& regionOptions.map((d,i) => {
+					&& regionOptions.map(o => {
 						return (
-							<MenuItem key={d.id} id={d.id} onClick={filterRegion}>
-								{d.name}
+							// <MenuItem key={o.id} id={o.id} onClick={() => handleFilterRegion(o)}>
+							<MenuItem 
+								key={o.id} 
+								id={o.id} 
+								onClick={() => filters.length > 0 
+									? setFilters(prevState => ([...prevState, o])) 
+									: setFilters([o])
+								}
+							>
+								{o.name}
 							</MenuItem>
 						)
 					})

@@ -9,26 +9,28 @@ import { IconButton, FormControlLabel, FormGroup, Checkbox, Typography, Divider,
 import { makeStyles } from "@material-ui/core/styles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
+const populationOptions = [
+	{id: "pop-high", name: "Top 12 (total)", type: "Pop."},
+	{id: "pop-low", name: "Bottom 12 (total)", type: "Pop."},
+	{id: "pop-density-high", name: "Top 12 (density)", type: "Pop."},
+	{id: "pop-density-low", name: "Bottom 12 (density)", type: "Pop."}
+];
+
 export const FilterPopulation = (props) => {
-	const { filters, setFilters, anchorEl, setAnchorEl, handleMenu, handleMenuClose } = props;
+	const { filters, setFilters, chainOperator, handleFilterPopulation } = props;
 
 	const { selectedCircles, setSelectedCircles } = useContext(selectionContext);
 	const { infoStates } = useContext(statesContext);
 
-	const filterPopulation = (e) => {
-		const n = 12;
-		const sorted = Object.keys(infoStates)
-			.sort((a,b) => infoStates[b].population - infoStates[a].population)
-			.slice(0,n);
+	const [anchorEl, setAnchorEl] = useState(null);
 	
-		setSelectedCircles({
-			...selectedCircles,
-			selected: sorted,
-			notSelected: selectedCircles.all.filter(s => !sorted.includes(s))
-		});
+	const handleMenu = (e) => {
+		setAnchorEl(e.currentTarget);
+	};
+
+	const handleMenuClose = () => {
 		setAnchorEl(null);
-		console.log(sorted)
-	  };
+	};
 
 	return (
 		<div>
@@ -42,9 +44,21 @@ export const FilterPopulation = (props) => {
 				open={anchorEl && Boolean(anchorEl.id === "pop-btn")}
 				onClose={handleMenuClose}
 			>
-				<MenuItem id="pop-high" onClick={filterPopulation}>
-					Top 12 (total)
-				</MenuItem>
+				{populationOptions.map(o => {
+					return (
+						<MenuItem 
+							key={o.id} 
+							id={o.id} 
+							onClick={() => filters.length > 0 
+								? setFilters(prevState => ([...prevState, o])) 
+								: setFilters([o])
+							}
+						>
+							{o.name}
+						</MenuItem>
+					)
+				})
+				}
 			</Menu>
 		</div>
 	);

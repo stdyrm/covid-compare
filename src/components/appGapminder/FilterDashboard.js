@@ -10,9 +10,6 @@ import {
 
 // components
 import {FilterBatch} from "./pickers/FilterBatch";
-import { FilterRegion } from "./pickers/FilterRegion";
-import { FilterPopulation } from "./pickers/FilterPopulation";
-import { FilterOperator } from "./pickers/FilterOperator";
 
 // context
 import { selectionContext } from "../../context/selectionContext";
@@ -47,21 +44,7 @@ export const FilterDashboard = () => {
     const classes = useStyles();
 	const theme = useTheme();
 	
-	const [filters, setFilters] = useState({
-		selected: '',
-		operator: '',
-		list: []
-	});
-	const [anchorEl, setAnchorEl] = useState(null);
-
-	const handleMenu = (e) => {
-		setAnchorEl(e.currentTarget);
-	};
-
-	const handleMenuClose = () => {
-		setAnchorEl(null);
-	};
-
+	const [filters, setFilters] = useState([]);
 
     const handleChange = e => {
         const state = e.target.name;
@@ -84,11 +67,13 @@ export const FilterDashboard = () => {
     };
 
     const handleDeselectAll = () => {
-        setSelectedCircles({
-            ...selectedCircles,
+		setFilters([]);
+
+        setSelectedCircles(prevState => ({
+            ...prevState,
             selected: [],
-            notSelected: selectedCircles.all,
-        });
+            notSelected: prevState.all,
+        }));
     };
 
     return (
@@ -119,25 +104,7 @@ export const FilterDashboard = () => {
 					className={classes.filterBatch}
 					filters={filters}
 					setFilters={setFilters}
-				>
-					<FilterRegion 
-						filters={filters} 
-						setFilters={setFilters}
-						anchorEl={anchorEl}
-						setAnchorEl={setAnchorEl}
-						handleMenu={handleMenu} 
-						handleMenuClose={handleMenuClose} 
-					/>
-					<FilterPopulation 
-						filters={filters} 
-						setFilters={setFilters}
-						anchorEl={anchorEl}
-						setAnchorEl={setAnchorEl}
-						handleMenu={handleMenu} 
-						handleMenuClose={handleMenuClose} 
-					/>
-				</FilterBatch>
-				<FilterOperator filters={filters} setFilters={setFilters} />
+				/>
 
                 <Typography className={classes.dashboardTitle}>
                     Selected
