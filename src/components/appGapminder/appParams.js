@@ -45,18 +45,19 @@ export const chartParams = {
 		], 
 	},
 	zParam: {// z-axis (3rd dimension) (eg. size)
-		output: 'z-axis',
+		output: 'circle-area',
 		type: "linear",
 		format: "none",
 		selected: "population",
 		options: [ 
 			"population",
 			"populationDensity",
+			"gdp",
 			"none"
 		]
 	},
 	cParam: { // color axis (categorical/ordinal data) (eg. gender, birthplace, etc.)
-		output: 'color grouping',
+		output: 'color-grouping',
 		type: "categorical",
 		selected: "region",
 		options: [ 

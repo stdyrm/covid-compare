@@ -6,28 +6,14 @@ import { statesContext } from "../../../context/statesContext";
 
 // components
 import { FilterRegion } from "./FilterRegion";
+import { FilterGovernor } from "./FilterGovernor";
 import { FilterPopulation } from "./FilterPopulation";
-import { FilterOperator } from "./FilterOperator";
+import { FilterGdp } from "./FilterGdp";
 
 // style
-import {
-    IconButton,
-    FormControlLabel,
-    FormGroup,
-    Checkbox,
-    Typography,
-    Divider,
-    Menu,
-    MenuItem,
-    MenuList,
-    Button,
-    Switch,
-    Chip,
-    Paper,
-} from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { Typography, Menu, Button, Chip, Paper, MenuList } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import TagFacesIcon from "@material-ui/icons/TagFaces";
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -37,127 +23,90 @@ const useStyles = makeStyles(theme => ({
     },
     chipContainer: {
         listStyle: "none",
+        backgroundColor: theme.palette.primary.main,
     },
     chip: {
         backgroundColor: theme.palette.secondary.main,
         padding: theme.spacing(0.5),
+        margin: theme.spacing(0.5),
+        fontSize: ".7rem",
     },
 }));
 
 export const FilterBatch = props => {
-    const { filters, setFilters } = props;
-
-    const { selectedCircles, setSelectedCircles } = useContext(selectionContext);
+    const {
+        filters,
+        handleDeleteFilter,
+        handleFilter,
+        nStates,
+    } = props;
+    const { setSelectedCircles } = useContext(
+        selectionContext
+    );
     const { infoStates } = useContext(statesContext);
-
     const [anchorEl, setAnchorEl] = useState(null);
-    const [selectedDate, setDateChange] = useState(new Date());
-    const [operator, setOperator] = useState("and");
-
     const classes = useStyles();
 
     const handleMenu = e => {
         !anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
     };
 
-    const handleDeleteFilter = deletedFilter => {
-		const newFilterList = filters.filter(f => f.id !== deletedFilter.id)
-
-		setFilters(newFilterList);
-		
-		newFilterList.forEach(f => {
-            if (f.type === "Region") {
-                handleFilterRegion(f);
-            } else if (f.type === "Pop.") {
-                handleFilterPopulation(f);
-            }
-        });
-    };
-
-    const chainOperator = query => {
-
-        let newSelection = selectedCircles.selected;
-
-        if (operator === "or") {
-            query.forEach(s => {
-                if (!selectedCircles.selected.includes(s)) {
-                    newSelection.push(s);
-                }
-            });
-        } else if (operator === "and") {
-            return newSelection.filter(s => query.includes(s)); 
-        }
-
-        return newSelection;
-    };
-
-    const handleFilterRegion = newFilter => {
+    const handleFilterCategories = newFilter => {
         const filtered = Object.keys(infoStates).filter(
-            s => infoStates[s].region === newFilter.name
+            s => infoStates[s][newFilter.chartParam] === newFilter.name
         );
 
-        // setFilters(prevState => [...prevState, newFilter]);
-
-        // const chained = filters.length > 1 ? chainOperator(filtered) : filtered;
-
-        // setSelectedCircles({
-        //     ...selectedCircles,
-        //     selected: chained,
-        //     notSelected: selectedCircles.all.filter(s => !chained.includes(s)),
-		// });
-		setAnchorEl(null);
-		return filtered;
+        setAnchorEl(null);
+        return filtered;
     };
 
-    const handleFilterPopulation = newFilter => {
-        const n = 12;
+    const handleFilterValues = newFilter => {
+        const n = newFilter.n;
         const filtered = Object.keys(infoStates)
-            .sort((a, b) => infoStates[b].population - infoStates[a].population)
+            .sort((a, b) =>
+                newFilter.sort === "descending"
+                    ? infoStates[b][newFilter.chartParam] -
+                      infoStates[a][newFilter.chartParam]
+                    : infoStates[a][newFilter.chartParam] -
+                      infoStates[b][newFilter.chartParam]
+            )
             .slice(0, n);
 
-        // setFilters(prevState => [...prevState, newFilter]);
+        setAnchorEl(null);
+        return filtered;
+    };
 
-        // const chained = filters.length > 1 ? chainOperator(filtered) : filtered;
+    const handleFilters = () => {
+        let selected = [];
+        let currSelection = [];
+        filters.forEach((d, i) => {
+            if (d.type === "Region" || d.type === "Governor") {
+                currSelection = handleFilterCategories(d);
+            } else if (d.type === "Pop." || d.type === "GDP") {
+                currSelection = handleFilterValues(d);
+            }
 
-        // setSelectedCircles({
-        //     ...selectedCircles,
-        //     selected: chained,
-        //     notSelected: selectedCircles.all.filter(s => !chained.includes(s)),
-		// });
-		setAnchorEl(null);
+            selected =
+                selected.length < 1
+                    ? currSelection
+                    : currSelection.filter(s => selected.includes(s));
+        });
 
-		return filtered;
-	};
-	
-	const handleFilters = () => {
-		let prevFilters = [];
-		let newFilters = [];
-		let newestFilters = [];
-
-		filters.forEach((d,i) => {
-			prevFilters = newFilters;
-			if (d.type === "Region") {
-				newFilters = handleFilterRegion(d)
-			} else if (d.type === "Pop.") {
-				newFilters = handleFilterPopulation(d)
-			}
-			newestFilters = newFilters.filter(s => prevFilters.includes(s));
-			console.log(newestFilters);
-		});
-
-		setSelectedCircles(prevState => ({
-			...prevState,
-			selected: newestFilters,
-			notSelected: prevState.all.filter(s => !newestFilters.includes(s))
-		}));
-	};
+        setSelectedCircles(prevState => ({
+            ...prevState,
+            selected: selected,
+            notSelected: prevState.all.filter(s => !selected.includes(s)),
+        }));
+    };
 
     useEffect(() => {
-        console.log(filters);
-	}, [filters]);
-	
-	useEffect(() => {
-		filters.length > 0 && handleFilters();
+        filters.length > 0
+            ? handleFilters()
+            : setSelectedCircles(prevState => ({
+                  ...prevState,
+                  selected: [],
+                  notSelected: prevState.all,
+              }));
     }, [filters]);
 
     return (
@@ -173,32 +122,26 @@ export const FilterBatch = props => {
 
             <Menu
                 anchorEl={anchorEl}
-                open={anchorEl && Boolean(anchorEl.id === "select-filter")}
+                open={
+                    anchorEl ? Boolean(anchorEl.id === "select-filter") : false
+                }
                 onClose={handleMenu}
             >
-                <FilterRegion
-                    filters={filters}
-                    setFilters={setFilters}
-                    chainOperator={chainOperator}
-                    handleFilterRegion={handleFilterRegion}
-                />
-                <FilterPopulation
-                    filters={filters}
-                    setFilters={setFilters}
-                    chainOperator={chainOperator}
-                    handleFilterPopulation={handleFilterPopulation}
-                />
-                <FilterOperator filters={filters} setFilters={setFilters} />
+				<MenuList>
+					<FilterRegion handleFilter={handleFilter} />
+					<FilterGovernor handleFilter={handleFilter} />
+					<FilterPopulation handleFilter={handleFilter} nStates={nStates} />
+					<FilterGdp handleFilter={handleFilter} nStates={nStates} />
+				</MenuList>
             </Menu>
 
             <Paper component="ul" className={classes.chipContainer}>
                 {filters.length > 0 ? (
                     filters.map(f => {
                         return (
-                            <li>
+                            <li key={f.id}>
                                 <Chip
-                                    key={f.id}
-                                    variant="small"
+                                    size="small"
                                     className={classes.chip}
                                     label={f.name}
                                     onDelete={() => handleDeleteFilter(f)}

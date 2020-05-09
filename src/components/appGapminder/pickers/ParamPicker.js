@@ -25,7 +25,7 @@ export const ParamPicker = ({ selector, handleSelector }) => {
         <>
             {Object.keys(selector).map((p) => {
                 return (
-                    <FormControl>
+                    <FormControl key={selector[p].output}>
                         <InputLabel>{selector[p].output}</InputLabel>
                         <Select
                             name={p}

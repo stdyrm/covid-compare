@@ -1,9 +1,7 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button, Menu, MenuItem, Typography, Divider } from "@material-ui/core";
 import { DatePicker } from "@material-ui/pickers";
 
-// context
-import { statesContext } from "../../context/statesContext";
 
 // styles
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -162,7 +160,7 @@ export const BatchSelect = (props) => {
   const filterRegion = (e) => {
     const revisedStates = {};
     const filteredByRegion = Object.keys(selectedStates).filter(
-      (s) => selectedStates[s].region === e.target.id
+      s => selectedStates[s].region.toLowerCase() === e.target.id
     );
 
     Object.keys(selectedStates).forEach((s) => {

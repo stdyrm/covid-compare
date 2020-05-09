@@ -61,7 +61,6 @@ export const AppGapminder = () => {
 
 	useEffect(() => {
 		if (dataStates.length > 0) {
-			console.log(dataStates);
 			gapminderData(dataStates, stateInfo, chartParams)
 				.then(res => setData(res))
 		}

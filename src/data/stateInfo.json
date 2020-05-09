@@ -10,6 +10,7 @@
 		"region": "South",
         "division": "East South Central",
 		"governor": "Republican",
+		"gdp": 230968.2,
 		"selected": false
     },
     "Alaska": {
@@ -23,6 +24,7 @@
 		"region": "West",
         "division": "Pacific",
 		"governor": "Republican",
+		"gdp": 55406.1,
 		"selected": false
     },
     "Arizona": {
@@ -36,6 +38,7 @@
 		"region": "West",
         "division": "Mountain",
 		"governor": "Republican",
+		"gdp": 366189.9,
 		"selected": false
     },
     "Arkansas": {
@@ -49,6 +52,7 @@
 		"region": "South",
         "division": "West South central",
 		"governor": "Republican",
+		"gdp": 133180.9,
 		"selected": false
     },
     "California": {
@@ -62,6 +66,7 @@
 		"region": "West",
         "division": "Pacific",
 		"governor": "Democrat",
+		"gdp": 3137469.0,
 		"selected": true
     },
     "Colorado": {
@@ -75,6 +80,7 @@
 		"region": "West",
         "division": "Mountain",
 		"governor": "Republican",
+		"gdp": 390283.9,
 		"selected": false
     },
     "Connecticut": {
@@ -88,6 +94,7 @@
 		"region": "Northeast",
         "division": "New England",
 		"governor": "Democrat",
+		"gdp": 285640.4,
 		"selected": false
     },
     "Delaware": {
@@ -101,6 +108,7 @@
 		"region": "South",
         "division": "South Atlantic",
 		"governor": "Democrat",
+		"gdp": 75415.5,
 		"selected": false
     },
     "District of Columbia": {
@@ -114,6 +122,7 @@
 		"region": "South",
         "division": "South Atlantic",
 		"governor": "n/a",
+		"gdp": 146194.3,
 		"selected": false
     },
     "Florida": {
@@ -127,6 +136,7 @@
 		"region": "South",
         "division": "South Atlantic",
 		"governor": "Republican",
+		"gdp": 1093350.7,
 		"selected": true
     },
     "Georgia": {
@@ -140,6 +150,7 @@
 		"region": "South",
         "division": "South Atlantic",
 		"governor": "Republican",
+		"gdp": 616333.3,
 		"selected": false
     },
     "Hawaii": {
@@ -153,6 +164,7 @@
 		"region": "West",
         "division": "Pacific",
 		"governor": "Democrat",
+		"gdp": 97281.7,
 		"selected": true
     },
     "Idaho": {
@@ -166,6 +178,7 @@
 		"region": "West",
         "division": "Mountain",
 		"governor": "Republican",
+		"gdp": 80911.0,
 		"selected": false
     },
     "Illinois": {
@@ -179,6 +192,7 @@
 		"region": "Midwest",
         "division": "East North Central",
 		"governor": "Democrat",
+		"gdp": 897123.5,
 		"selected": true
     },
     "Indiana": {
@@ -192,6 +206,7 @@
 		"region": "Midwest",
         "division": "East North Central",
 		"governor": "Republican",
+		"gdp": 377104.3,
 		"selected": false
     },
     "Iowa": {
@@ -205,6 +220,7 @@
 		"region": "Midwest",
         "division": "West North Central",
 		"governor": "Republican",
+		"gdp": 194788.7,
 		"selected": false
     },
     "Kansas": {
@@ -218,6 +234,7 @@
 		"region": "Midwest",
         "division": "West North Central",
 		"governor": "Democrat",
+		"gdp": 173142.5,
 		"selected": false
     },
     "Kentucky": {
@@ -231,6 +248,7 @@
 		"region": "South",
         "division": "East South Central",
 		"governor": "Democrat",
+		"gdp": 214671.2,
 		"selected": false
     },
     "Louisiana": {
@@ -244,6 +262,7 @@
 		"region": "South",
         "division": "West South central",
 		"governor": "Democrat",
+		"gdp": 263856.8,
 		"selected": true
     },
     "Maine": {
@@ -257,6 +276,7 @@
 		"region": "Northeast",
         "division": "New England",
 		"governor": "Democrat",
+		"gdp": 67518.6,
 		"selected": false
     },
     "Maryland": {
@@ -270,6 +290,7 @@
 		"region": "South",
         "division": "South Atlantic",
 		"governor": "Republican",
+		"gdp": 428338.6,
 		"selected": false
     },
     "Massachusetts": {
@@ -283,6 +304,7 @@
 		"region": "Northeast",
         "division": "New England",
 		"governor": "Republican",
+		"gdp": 595558.7,
 		"selected": false
     },
     "Michigan": {
@@ -296,6 +318,7 @@
 		"region": "Midwest",
         "division": "East North Central",
 		"governor": "Democrat",
+		"gdp": 541550.6,
 		"selected": true
     },
     "Minnesota": {
@@ -309,6 +332,7 @@
 		"region": "Midwest",
         "division": "West North Central",
 		"governor": "Democrat",
+		"gdp": 380854.9,
 		"selected": false
     },
     "Mississippi": {
@@ -322,6 +346,7 @@
 		"region": "South",
         "division": "East South Central",
 		"governor": "Republican",
+		"gdp": 118779.9,
 		"selected": false
     },
     "Missouri": {
@@ -335,6 +360,7 @@
 		"region": "Midwest",
         "division": "West North Central",
 		"governor": "Republican",
+		"gdp": 332082.1,
 		"selected": false
     },
     "Montana": {
@@ -348,6 +374,7 @@
 		"region": "West",
         "division": "Mountain",
 		"governor": "Democrat",
+		"gdp": 332082.1,
 		"selected": false
     },
     "Nebraska": {
@@ -361,6 +388,7 @@
 		"region": "Midwest",
         "division": "West North Central",
 		"governor": "Republican",
+		"gdp": 127036.5,
 		"selected": false
     },
     "Nevada": {
@@ -374,6 +402,7 @@
 		"region": "West",
         "division": "Mountain",
 		"governor": "Democrat",
+		"gdp": 177614.6,
 		"selected": false
     },
     "New Hampshire": {
@@ -387,6 +416,7 @@
 		"region": "Northeast",
         "division": "New England",
 		"governor": "Republican",
+		"gdp": 88595.0,
 		"selected": false
     },
     "New Jersey": {
@@ -400,6 +430,7 @@
 		"region": "Northeast",
         "division": "Mid-Atlantic",
 		"governor": "Democrat",
+		"gdp": 644841.4,
 		"selected": true
     },
     "New Mexico": {
@@ -413,6 +444,7 @@
 		"region": "West",
         "division": "Mountain",
 		"governor": "Democrat",
+		"gdp": 104001.5,
 		"selected": false
     },
     "New York": {
@@ -426,6 +458,7 @@
 		"region": "Northeast",
         "division": "Mid-Atlantic",
 		"governor": "Democrat",
+		"gdp": 1731910.4,
 		"selected": true
     },
     "North Carolina": {
@@ -439,6 +472,7 @@
 		"region": "South",
         "division": "South Atlantic",
 		"governor": "Democrat",
+		"gdp": 587711.0,
 		"selected": false
     },
     "North Dakota": {
@@ -452,6 +486,7 @@
 		"region": "Midwest",
         "division": "West North Central",
 		"governor": "Republican",
+		"gdp": 57036.8,
 		"selected": false
     },
     "Ohio": {
@@ -465,6 +500,7 @@
 		"region": "Midwest",
         "division": "East North Central",
 		"governor": "Republican",
+		"gdp": 698458.2,
 		"selected": false
     },
     "Oklahoma": {
@@ -478,6 +514,7 @@
 		"region": "South",
         "division": "West South central",
 		"governor": "Republican",
+		"gdp": 206058.1,
 		"selected": false
     },
     "Oregon": {
@@ -491,6 +528,7 @@
 		"region": "West",
         "division": "Pacific",
 		"governor": "Democrat",
+		"gdp": 251604.5,
 		"selected": false
     },
     "Pennsylvania": {
@@ -504,6 +542,7 @@
 		"region": "Northeast",
         "division": "Mid-Atlantic",
 		"governor": "Democrat",
+		"gdp": 813513.6,
 		"selected": true
     },
     "Rhode Island": {
@@ -517,6 +556,7 @@
 		"region": "Northeast",
         "division": "New England",
 		"governor": "Democrat",
+		"gdp": 63541.1,
 		"selected": false
     },
     "South Carolina": {
@@ -530,6 +570,7 @@
 		"region": "South",
         "division": "South Atlantic",
 		"governor": "Republican",
+		"gdp": 246308.9,
 		"selected": false
     },
     "South Dakota": {
@@ -543,6 +584,7 @@
 		"region": "Midwest",
         "division": "West North Central",
 		"governor": "Republican",
+		"gdp": 53305.7,
 		"selected": false
     },
     "Tennessee": {
@@ -556,6 +598,7 @@
 		"region": "South",
         "division": "East South Central",
 		"governor": "Republican",
+		"gdp": 380137.9,
 		"selected": false
     },
     "Texas": {
@@ -569,6 +612,7 @@
 		"region": "South",
         "division": "West South central",
 		"governor": "Republican",
+		"gdp": 1886956.1,
 		"selected": false
     },
     "Utah": {
@@ -582,6 +626,7 @@
 		"region": "West",
         "division": "Mountain",
 		"governor": "Republican",
+		"gdp": 188501.4,
 		"selected": false
     },
     "Vermont": {
@@ -595,6 +640,7 @@
 		"region": "Northeast",
         "division": "New England",
 		"governor": "Republican",
+		"gdp": 34785.1,
 		"selected": false
     },
     "Virginia": {
@@ -608,6 +654,7 @@
 		"region": "South",
         "division": "South Atlantic",
 		"governor": "Democrat",
+		"gdp": 554211.0,
 		"selected": false
     },
     "Washington": {
@@ -621,6 +668,7 @@
 		"region": "West",
         "division": "Pacific",
 		"governor": "Democrat",
+		"gdp": 599607.7,
 		"selected": true
     },
     "West Virginia": {
@@ -634,6 +682,7 @@
 		"region": "South",
         "division": "South Atlantic",
 		"governor": "Republican",
+		"gdp": 78189.5,
 		"selected": false
     },
     "Wisconsin": {
@@ -647,6 +696,7 @@
 		"region": "Midwest",
         "division": "East North Central",
 		"governor": "Democrat",
+		"gdp": 347306.1,
 		"selected": false
     },
     "Wyoming": {
@@ -660,6 +710,7 @@
 		"region": "West",
         "division": "Mountain",
 		"governor": "Republican",
+		"gdp": 39646.2,
 		"selected": false
     }
 }

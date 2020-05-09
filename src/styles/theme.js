@@ -50,9 +50,6 @@ const themeDark = createMuiTheme({
       },
     },
     MuiMenu: {
-      root: {
-        color: "#fff",
-      },
       paper: {
         backgroundColor: "#29293d",
         textColor: "#fff",
@@ -65,9 +62,6 @@ const themeDark = createMuiTheme({
       },
     },
     MuiButton: {
-      raisedPrimary: {
-        color: "#fff",
-      },
       root: {
         color: "#fff",
       },

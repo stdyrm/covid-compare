@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 
 // components
 import { FilterDashboard } from "../FilterDashboard";
 import { ParamPicker } from "../pickers/ParamPicker";
-import { FilterBatch } from "../pickers/FilterBatch";
 
 // style
 import {
@@ -13,9 +12,6 @@ import {
     IconButton,
     Drawer,
     ClickAwayListener,
-    Menu,
-    MenuItem,
-    useMediaQuery,
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -156,7 +152,7 @@ export const Navbar = (props) => {
                                 <ChevronLeftIcon />
                             </IconButton>
                         </div>
-                        <FilterDashboard />
+                        <FilterDashboard data={data} />
                     </Drawer>
                 </ClickAwayListener>
             </AppBar>

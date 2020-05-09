@@ -1,8 +1,8 @@
 import React from 'react';
 
 // context
-import { selectionContext } from '../../../context/selectionContext';
-import { statesContext } from '../../../context/statesContext';
+import { selectionContext } from '../../context/selectionContext';
+import { statesContext } from '../../context/statesContext';
 
 // style
 import { IconButton, FormControlLabel, FormGroup, Checkbox, Typography, Divider, Menu, MenuItem, MenuList, Button, Switch, Chip } from '@material-ui/core';

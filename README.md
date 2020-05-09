@@ -30,3 +30,12 @@ Including January would lengthen the days since first case in Washington and Cal
 
 I am not a health expert or statistician; this is a passion project keeping me busy during isolation.
 This is not an official source for COVID-19 data and should not be cited without additional research, but hopefully it helps move the discussion along.
+
+## **COVID-19 Gapminder Visualization**
+
+## **Data sources**
+1. State COVID-19 data: New York Times
+2. State population: U.S. Census Bureau
+3. State GDP: Bureau of Economic Analysis (BEA) 
+	*Gross domestic product (GDP) by state: All industry total (Millions of current dollars)
+	*https://apps.bea.gov/iTable/iTable.cfm?reqid=70&step=1&isuri=1&acrdn=1#reqid=70&step=1&isuri=1&acrdn=1

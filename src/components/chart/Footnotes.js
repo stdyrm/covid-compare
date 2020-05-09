@@ -1,16 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { saveSvgAsPng } from 'save-svg-as-png';
-
-// context
-import { themeContext } from '../../context/themeContext';
 
 // constants
 import { dimensions } from '../util/constants';
 
 // styles
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import '../../styles/styles.css';
-import { IconButton, Tooltip, Container } from '@material-ui/core';
+import { IconButton, Tooltip } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 
@@ -40,10 +37,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Footnotes = ({changeTheme}) => {
     const classes = useStyles();
-	const {theme, selectTheme} = useContext(themeContext);
+	const theme = useTheme();
 	const path = window.location.pathname.replace('/','');
-
-	console.log(path)
 
     const saveImage = () => {
         saveSvgAsPng(document.querySelector(`#${path}`), "covid-19_chart.png", {

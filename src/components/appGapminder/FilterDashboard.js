@@ -5,7 +5,8 @@ import {
     FormGroup,
     Checkbox,
     Typography,
-    Divider,
+	Divider,
+	TextField,
 } from "@material-ui/core";
 
 // components
@@ -16,7 +17,7 @@ import { selectionContext } from "../../context/selectionContext";
 
 // styles
 import ClearIcon from "@material-ui/icons/Clear";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
     dashboard: {
@@ -39,12 +40,12 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-export const FilterDashboard = () => {
+export const FilterDashboard = (props) => {
     const { selectedCircles, setSelectedCircles } = useContext(selectionContext);
     const classes = useStyles();
-	const theme = useTheme();
-	
+
 	const [filters, setFilters] = useState([]);
+	const [nStates, setNStates] = useState(12);
 
     const handleChange = e => {
         const state = e.target.name;
@@ -64,11 +65,23 @@ export const FilterDashboard = () => {
                 ),
             });
         }
+	};
+
+	const handleFilter = (newFilter) => {
+		if (filters.length > 0) {
+			setFilters(prevState => [...prevState, newFilter])
+		} else (
+			setFilters([newFilter])
+		)	
+	};
+	
+	const handleDeleteFilter = deletedFilter => {
+        const newFilterList = filters.filter(f => f.id !== deletedFilter.id);
+        setFilters(newFilterList);
     };
 
     const handleDeselectAll = () => {
 		setFilters([]);
-
         setSelectedCircles(prevState => ({
             ...prevState,
             selected: [],
@@ -95,6 +108,22 @@ export const FilterDashboard = () => {
                         </IconButton>
                     }
                 /><br />
+
+				<TextField 
+					id="n-states"
+					variant="outlined"
+					size="small"
+					type="number"
+					label="Filter n states"
+					InputProps={{
+						inputProps: {
+							min: 1,
+							max: 50
+						}
+					}}
+					defaultValue={nStates}
+					onChange={(e) => setNStates(e.target.value)}
+				/>
 				
 				<Typography className={classes.dashboardTitle}>
 					Filters
@@ -102,8 +131,12 @@ export const FilterDashboard = () => {
 				<Divider className={classes.dashboardDivider} />
 				<FilterBatch 
 					className={classes.filterBatch}
+					nStates={nStates}
+					setNStates={setNStates}
 					filters={filters}
 					setFilters={setFilters}
+					handleDeleteFilter={handleDeleteFilter}
+					handleFilter={handleFilter}
 				/>
 
                 <Typography className={classes.dashboardTitle}>

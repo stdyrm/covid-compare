@@ -1,26 +1,11 @@
-import React, { useState, useContext } from 'react';
-
-// context
-import { selectionContext } from '../../../context/selectionContext';
-import { statesContext } from '../../../context/statesContext';
+import React, { useState } from 'react';
 
 // style
-import { IconButton, FormControlLabel, FormGroup, Checkbox, Typography, Divider, Menu, MenuItem, MenuList, Button, Switch, Chip } from '@material-ui/core';
-import { makeStyles } from "@material-ui/core/styles";
+import { Menu, MenuItem, Button } from '@material-ui/core';
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
-const populationOptions = [
-	{id: "pop-high", name: "Top 12 (total)", type: "Pop."},
-	{id: "pop-low", name: "Bottom 12 (total)", type: "Pop."},
-	{id: "pop-density-high", name: "Top 12 (density)", type: "Pop."},
-	{id: "pop-density-low", name: "Bottom 12 (density)", type: "Pop."}
-];
-
 export const FilterPopulation = (props) => {
-	const { filters, setFilters, chainOperator, handleFilterPopulation } = props;
-
-	const { selectedCircles, setSelectedCircles } = useContext(selectionContext);
-	const { infoStates } = useContext(statesContext);
+	const { handleFilter, nStates } = props;
 
 	const [anchorEl, setAnchorEl] = useState(null);
 	
@@ -32,27 +17,28 @@ export const FilterPopulation = (props) => {
 		setAnchorEl(null);
 	};
 
-	return (
-		<div>
-			<Button id="pop-btn" onClick={handleMenu} fullWidth>
-				Population
-				<ChevronRightIcon style={{marginLeft: "auto"}}/>
-			</Button>
+	const populationOptions = [
+		{id: "pop-high", name: `Top ${nStates} (pop. total)`, type: "Pop.", chartParam: "population", sort: "descending", n: nStates},
+		{id: "pop-low", name: `Bottom ${nStates} (pop. total)`, type: "Pop.", chartParam: "population", sort: "ascending", n: nStates},
+		{id: "pop-density-high", name: `Top ${nStates} (pop. density)`, type: "Pop.", chartParam: "populationDensity", sort: "descending", n: nStates},
+		{id: "pop-density-low", name: `Bottom ${nStates} (pop. density)`, type: "Pop.", chartParam: "populationDensity", sort: "ascending", n: nStates}
+	];
 
+	return (
+		<MenuItem id="pop-btn" dense={true} onClick={handleMenu}>
+			Population
+			<ChevronRightIcon style={{marginLeft: "auto"}}/>
 			<Menu
 				anchorEl={anchorEl}
-				open={anchorEl && Boolean(anchorEl.id === "pop-btn")}
+				open={anchorEl ? Boolean(anchorEl.id === "pop-btn") : false}
 				onClose={handleMenuClose}
 			>
 				{populationOptions.map(o => {
 					return (
 						<MenuItem 
 							key={o.id} 
-							id={o.id} 
-							onClick={() => filters.length > 0 
-								? setFilters(prevState => ([...prevState, o])) 
-								: setFilters([o])
-							}
+							id={o.id}
+							onClick={() => handleFilter(o)}
 						>
 							{o.name}
 						</MenuItem>
@@ -60,6 +46,6 @@ export const FilterPopulation = (props) => {
 				})
 				}
 			</Menu>
-		</div>
+		</MenuItem>
 	);
 };

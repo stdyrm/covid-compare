@@ -8,13 +8,12 @@ import { Menu, MenuItem } from '@material-ui/core';
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 const regionOptions = [
-	{id: "northeast", name: "Northeast", type: "Region", chartParam: "region"},
-	{id: "midwest", name: "Midwest", type: "Region", chartParam: "region"},
-	{id: "south", name: "South", type: "Region", chartParam: "region"},
-	{id: "west", name: "West", type: "Region", chartParam: "region"}
+	{id: "democrat", name: "Democrat", type: "Governor", chartParam: "governor"},
+	{id: "republican", name: "Republican", type: "Governor", chartParam: "governor"},
 ];
 
-export const FilterRegion = (props) => {
+
+export const FilterGovernor = (props) => {
 	const { handleFilter } = props;
 
 	const { infoStates } = useContext(statesContext);
@@ -29,12 +28,12 @@ export const FilterRegion = (props) => {
 	};
 
 	return (
-		<MenuItem id="region-btn" dense={true} onClick={handleMenu}>
-				Region
+		<MenuItem id="governor-btn" dense={true} onClick={handleMenu}>
+			Gov. party
 			<ChevronRightIcon style={{marginLeft: "auto"}}/>
 			<Menu
 				anchorEl={anchorEl}
-				open={anchorEl ? Boolean(anchorEl.id === "region-btn") : false}
+				open={anchorEl ? Boolean(anchorEl.id === "governor-btn") : false}
 				onClose={handleMenuClose}
 			>
 				{infoStates 
