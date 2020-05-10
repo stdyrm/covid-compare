@@ -20,7 +20,6 @@ import { Dashboard } from "./Dashboard";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MenuIcon from "@material-ui/icons/Menu";
-import AssessmentIcon from "@material-ui/icons/Assessment";
 import TimelineIcon from "@material-ui/icons/Timeline";
 import BubbleChartIcon from "@material-ui/icons/BubbleChart";
 
@@ -133,12 +132,12 @@ export const FilterBarCovidCompare = props => {
                     <BatchSelect {...props} />
 					<span style={{marginLeft: "auto"}}>
 						<Tooltip title="Line chart">
-							<IconButton component="a" href="/covidcompare" className={classes.menuButton}>
+							<IconButton component="a" href="/covidcompare/line" className={classes.menuButton}>
 								<TimelineIcon />
 							</IconButton>
 						</Tooltip>
 						<Tooltip title="Gapminder chart">
-							<IconButton component="a" href="/gapminder" className={classes.menuButton}>
+							<IconButton component="a" href="/covidcompare/gapminder" className={classes.menuButton}>
 								<BubbleChartIcon />
 							</IconButton>
 						</Tooltip>

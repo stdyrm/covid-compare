@@ -126,12 +126,13 @@ function App() {
                         >
                             <Router>
                                 <Route
-                                    path="/covidcompare"
-                                    className="covid-chart"
+                                    path="/covidcompare/line"
+                                    className="line-app"
                                     component={AppCovidCompare}
                                 />
                                 <Route
-                                    path="/gapminder"
+									path={["/covidcompare", "/covidcompare/gapminder"]}
+									clasName="gapminder-app"
                                     component={AppGapminder}
                                 />
                                 <Footnotes

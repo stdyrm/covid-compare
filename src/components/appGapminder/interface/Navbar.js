@@ -127,12 +127,12 @@ export const Navbar = (props) => {
                     />
 					<span style={{marginLeft: "auto"}}>
 						<Tooltip title="Line chart">
-							<IconButton component="a" href="/covidcompare" className={classes.menuButton}>
+							<IconButton component="a" href="/covidcompare/line" className={classes.menuButton}>
 								<TimelineIcon />
 							</IconButton>
 						</Tooltip>
 						<Tooltip title="Gapminder chart">
-							<IconButton component="a" href="/gapminder" className={classes.menuButton}>
+							<IconButton component="a" href="/covidcompare/gapminder" className={classes.menuButton}>
 								<BubbleChartIcon />
 							</IconButton>
 						</Tooltip>
