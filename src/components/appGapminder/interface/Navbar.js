@@ -11,12 +11,15 @@ import {
     Toolbar,
     IconButton,
     Drawer,
-    ClickAwayListener,
+	ClickAwayListener,
+	Tooltip,
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import BubbleChartIcon from "@material-ui/icons/BubbleChart";
-
+import MenuIcon from "@material-ui/icons/Menu";
+import TimelineIcon from "@material-ui/icons/Timeline";
+ 
 const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
     },
     appBar: {
-        backgroundColor: theme.palette.primary.main,
+		backgroundColor: theme.palette.primary.main,
         color: theme.palette.primary.contrastText,
         transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.sharp,
@@ -40,8 +43,7 @@ const useStyles = makeStyles((theme) => ({
         }),
     },
     menuButton: {
-        marginRight: theme.spacing(2),
-        color: theme.palette.text.primary,
+        color: theme.palette.primary.contrastText,
         "&:hover": {
             backgroundColor: "transparent",
         },
@@ -115,7 +117,7 @@ export const Navbar = (props) => {
                             open && classes.hide
                         )}
                     >
-                        <BubbleChartIcon className={classes.menuButton} />
+                        <MenuIcon className={classes.menuButton} />
                     </IconButton>
                     <ParamPicker
                         data={data}
@@ -123,6 +125,18 @@ export const Navbar = (props) => {
                         handleSelector={handleSelector}
                         className={classes.filters}
                     />
+					<span style={{marginLeft: "auto"}}>
+						<Tooltip title="Line chart">
+							<IconButton component="a" href="/covidcompare" className={classes.menuButton}>
+								<TimelineIcon />
+							</IconButton>
+						</Tooltip>
+						<Tooltip title="Gapminder chart">
+							<IconButton component="a" href="/gapminder" className={classes.menuButton}>
+								<BubbleChartIcon />
+							</IconButton>
+						</Tooltip>
+					</span>
                 </Toolbar>
 
                 <ClickAwayListener onClickAway={handleClickAway}>

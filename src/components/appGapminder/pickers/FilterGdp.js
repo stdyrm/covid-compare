@@ -1,11 +1,7 @@
-import React, { useState, useContext } from 'react';
-
-// context
-import { selectionContext } from '../../../context/selectionContext';
-import { statesContext } from '../../../context/statesContext';
+import React, { useState } from 'react';
 
 // style
-import { Menu, MenuItem, Button } from '@material-ui/core';
+import { Menu, MenuItem } from '@material-ui/core';
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 export const FilterGdp = (props) => {
@@ -26,7 +22,6 @@ export const FilterGdp = (props) => {
 		{id: "gdp-low", name: `Bottom ${nStates} (2019 GDP)`, type: "GDP", chartParam: "gdp", sort: "ascending", n: nStates},
 	];
 	
-
 	return (
 		<MenuItem id="gdp-btn" dense={true} onClick={handleMenu}>
 				GDP

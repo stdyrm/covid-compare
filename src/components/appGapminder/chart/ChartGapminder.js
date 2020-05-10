@@ -10,6 +10,7 @@ import { OpacitySlider } from "../interface/OpacitySlider";
 import { DayCounterSlider } from "../interface/DayCounterSlider";
 
 // style
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -189,7 +190,7 @@ export const ChartGapminder = props => {
     }, [dayCounter]);
 
     return (
-        <>
+        <>			
             <svg
                 id="gapminder"
                 className="wrapper"
@@ -224,19 +225,20 @@ export const ChartGapminder = props => {
                     )}
                 </g>
             </svg>
-            <div style={{ marginLeft: marginLeft, width: width }}>
-                <div>
+            <Grid container style={{ marginLeft: marginLeft, width: width, justifyContent: "space-evenly" }}>
+                <Grid item style={{marginRight: 32, flexGrow: 2}}>
 					<DayCounterSlider 
 						dayCounter={dayCounter}
 						setDayCounter={setDayCounter}
 					/>
-                </div>
-				<div>
+                </Grid>
+				<Grid item style={{flexGrow: 1}}>
 					<OpacitySlider 
 						opacityNotSel={opacityNotSel} 
-						setOpacityNotSel={setOpacityNotSel}/>
-				</div>
-            </div>
+						setOpacityNotSel={setOpacityNotSel}
+					/>
+				</Grid>
+            </Grid>
         </>
     );
 };

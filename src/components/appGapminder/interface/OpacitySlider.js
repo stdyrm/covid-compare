@@ -15,6 +15,7 @@ export const OpacitySlider = (props) => {
 				min={0}
 				max={1}
 				onChange={(e, newVal) => setOpacityNotSel(newVal)}
+				{...props}
 			/>
 		</>
 	)

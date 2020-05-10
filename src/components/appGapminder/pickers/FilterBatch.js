@@ -54,7 +54,7 @@ export const FilterBatch = props => {
     const handleFilterCategories = newFilter => {
         const filtered = Object.keys(infoStates).filter(
             s => infoStates[s][newFilter.chartParam] === newFilter.name
-        );
+		);
 
         setAnchorEl(null);
         return filtered;

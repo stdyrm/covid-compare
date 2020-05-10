@@ -3,19 +3,25 @@ import * as d3 from 'd3';
 
 // context
 import { dataContext } from '../../context/dataContext';
-import { statesContext } from '../../context/statesContext';
-import { themeContext } from '../../context/themeContext';
 
 // constants
-import { date, bounded } from '../util/constants';
+import { date } from '../util/constants';
 
 export const MouseMove = (props) => {
-	const { focus, overlay, linesStates, selectedStates } = props;
-    const { dataStates } = useContext(dataContext);
-	const { theme } = useContext(themeContext);
-
-    const xScale = d3.scaleLinear().domain(d3.extent(dataStates, d => d.dayOfOutbreak)).range([0, bounded.width]);
-    const yScale = d3.scaleLinear().domain(d3.extent(dataStates, d => d.casesPerThousand)).range([bounded.height, 0]);
+	const { focus, overlay, linesStates, selectedStates, wrapperDim, boundedDim } = props;
+	const {
+        wrapperWidth,
+        wrapperHeight,
+        marginLeft,
+        marginRight,
+        marginBottom,
+        marginTop,
+    } = wrapperDim;
+    const { width, height } = boundedDim;
+	const { dataStates } = useContext(dataContext);
+	
+    const xScale = d3.scaleLinear().domain(d3.extent(dataStates, d => d.dayOfOutbreak)).range([0, width]);
+    const yScale = d3.scaleLinear().domain(d3.extent(dataStates, d => d.casesPerThousand)).range([height, 0]);
 
     useEffect(() => {
         if (overlay) {

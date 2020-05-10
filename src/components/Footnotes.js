@@ -2,11 +2,11 @@ import React from 'react';
 import { saveSvgAsPng } from 'save-svg-as-png';
 
 // constants
-import { dimensions } from '../util/constants';
+import { dimensions } from './util/constants';
 
 // styles
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import '../../styles/styles.css';
+import '../styles/styles.css';
 import { IconButton, Tooltip } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
         marginRight: margin.right
     },
     saveButton: {
+		color: theme.palette.text.secondary,
         float: 'left',
         marginLeft: margin.left,
         padding: 0
@@ -35,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Footnotes = ({changeTheme}) => {
+const Footnotes = (props) => {
+	const {darkMode, setDarkMode} = props;
     const classes = useStyles();
 	const theme = useTheme();
 	const path = window.location.pathname.replace('/','');
@@ -56,21 +58,16 @@ const Footnotes = ({changeTheme}) => {
 
     return (
 		<>
-        <div style={{backgroundColor: theme.palette.background.default}}>
-			<p className={classes.footnoteText}></p>
-		</div>
-		<div style={{backgroundColor: theme.palette.background.default}}>
 			<Tooltip title="Save chart as image" placement="right">
-				<IconButton onClick={saveImage} className={classes.saveButton} style={{color: theme.palette.text.primary}}>
+				<IconButton onClick={saveImage} className={classes.saveButton}>
 					<SaveIcon />
 				</IconButton>
 			</Tooltip>
 			<Tooltip title="Toggle dark/light theme" placement="right">
-				<IconButton onClick={changeTheme} className={classes.themeButton} style={{color: theme.palette.text.primary}}>
+				<IconButton onClick={() => setDarkMode(!darkMode)} className={classes.themeButton}>
 					<Brightness7Icon />
 				</IconButton>
 			</Tooltip>
-		</div>
 		</>
     )
 };

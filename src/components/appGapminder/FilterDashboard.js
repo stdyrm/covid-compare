@@ -17,7 +17,7 @@ import { selectionContext } from "../../context/selectionContext";
 
 // styles
 import ClearIcon from "@material-ui/icons/Clear";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
     dashboard: {
@@ -42,7 +42,8 @@ const useStyles = makeStyles(theme => ({
 
 export const FilterDashboard = (props) => {
     const { selectedCircles, setSelectedCircles } = useContext(selectionContext);
-    const classes = useStyles();
+	const classes = useStyles();
+	const theme = useTheme();
 
 	const [filters, setFilters] = useState([]);
 	const [nStates, setNStates] = useState(12);
@@ -153,7 +154,7 @@ export const FilterDashboard = (props) => {
                                     state
                                 )}
                                 onChange={handleChange}
-                                control={<Checkbox name={state} />}
+                                control={<Checkbox name={state} style={{color: theme.palette.primary.contrastText}} />}
                                 label={state}
                             />
                         );
@@ -177,7 +178,7 @@ export const FilterDashboard = (props) => {
                                     state
                                 )}
                                 onChange={handleChange}
-                                control={<Checkbox name={state} />}
+                                control={<Checkbox name={state} style={{color: theme.palette.primary.contrastText}} />}
                                 label={state}
                             />
                         );
