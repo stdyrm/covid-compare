@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as d3 from "d3";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -125,20 +125,22 @@ function App() {
                             value={{ infoStates, setInfoStates }}
                         >
                             <Router>
-                                <Route
-                                    path="/covidcompare/line"
-                                    className="line-app"
-                                    component={AppCovidCompare}
-                                />
-                                <Route
-									path={["/covidcompare", "/covidcompare/gapminder"]}
-									clasName="gapminder-app"
-                                    component={AppGapminder}
-                                />
-                                <Footnotes
-                                    darkMode={darkMode}
-                                    setDarkMode={setDarkMode}
-                                />
+								<Switch>
+									<Route
+										path="/covidcompare/line"
+										className="line-app"
+										component={AppCovidCompare}
+									/>
+									<Route
+										path={["/covidcompare", "/covidcompare/gapminder"]}
+										clasName="gapminder-app"
+										component={AppGapminder}
+									/>
+									<Footnotes
+										darkMode={darkMode}
+										setDarkMode={setDarkMode}
+									/>
+								</Switch>
                             </Router>
                         </statesContext.Provider>
                     </dataContext.Provider>
