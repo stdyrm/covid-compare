@@ -1,24 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { saveSvgAsPng } from 'save-svg-as-png';
 
-// context
-import { themeContext } from '../../context/themeContext';
-
 // constants
-import { dimensions } from '../util/constants';
+import { dimensions } from './util/constants';
 
 // styles
-import { makeStyles } from '@material-ui/core/styles';
-import '../../styles/styles.css';
-import { IconButton, Tooltip, Container } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import '../styles/styles.css';
+import { IconButton, Tooltip } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 
 const { margin } = dimensions;
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        color: '#f2ffcc',
+    footnoteText: {
+        color: theme.palette.text.primary,
         textAlign: 'left',
         padding: 0,
         fontSize: 10,
@@ -26,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
         marginRight: margin.right
     },
     saveButton: {
+		color: theme.palette.text.secondary,
         float: 'left',
         marginLeft: margin.left,
         padding: 0
@@ -38,12 +36,14 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Footnotes = ({changeTheme}) => {
+const Footnotes = (props) => {
+	const {darkMode, setDarkMode} = props;
     const classes = useStyles();
-	const {theme, selectTheme} = useContext(themeContext);
+	const theme = useTheme();
+	const path = window.location.pathname.replace('/','');
 
     const saveImage = () => {
-        saveSvgAsPng(document.querySelector("#chart"), "covid-19_chart.png", {
+        saveSvgAsPng(document.querySelector(`#${path}`), "covid-19_chart.png", {
 			backgroundColor: theme.palette.background.default,
 			encoderOptions: 1,
 			fonts: [
@@ -58,22 +58,16 @@ const Footnotes = ({changeTheme}) => {
 
     return (
 		<>
-        <div style={{backgroundColor: theme.palette.background.default}}>
-            <p className={classes.root} style={{color: theme.palette.text.primary, fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}>Line marking indicates day of lockdown order/advisory</p>
-			<p className={classes.root} style={{color: theme.palette.text.primary, fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}>Freeze/unfreeze focus by clicking on chart</p>
-		</div>
-		<div style={{backgroundColor: theme.palette.background.default}}>
 			<Tooltip title="Save chart as image" placement="right">
-				<IconButton onClick={saveImage} className={classes.saveButton} style={{color: theme.palette.text.primary}}>
+				<IconButton onClick={saveImage} className={classes.saveButton}>
 					<SaveIcon />
 				</IconButton>
 			</Tooltip>
 			<Tooltip title="Toggle dark/light theme" placement="right">
-				<IconButton onClick={changeTheme} className={classes.themeButton} style={{color: theme.palette.text.primary}}>
+				<IconButton onClick={() => setDarkMode(!darkMode)} className={classes.themeButton}>
 					<Brightness7Icon />
 				</IconButton>
 			</Tooltip>
-		</div>
 		</>
     )
 };

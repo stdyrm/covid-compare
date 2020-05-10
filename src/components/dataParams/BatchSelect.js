@@ -124,25 +124,33 @@ export const BatchSelect = () => {
   const filterPopulation = (e) => {
     // above/below x population
     const revisedStates = {};
-    const revisedOrder = Object.keys(selectedStates).sort(
-      (a, b) => selectedStates[b].population - selectedStates[a].population
-    );
+	let revisedOrder;
 
     if (e.target.id === "population-top-12") {
-      revisedOrder.forEach((s, i) => {
+		revisedOrder = Object.keys(selectedStates).sort(
+			(a, b) => selectedStates[b].population - selectedStates[a].population
+		  );
+    } else if (e.target.id === "population-bottom-12") {
+		revisedOrder = Object.keys(selectedStates).sort(
+			(a, b) => selectedStates[a].population - selectedStates[b].population
+		  );
+	} else if (e.target.id === "pop-density-top-12") {
+		revisedOrder = Object.keys(selectedStates).sort(
+			(a, b) => selectedStates[b].populationDensity - selectedStates[a].populationDensity
+		  );
+	} else if (e.target.id === "pop-density-bottom-12") {
+		revisedOrder = Object.keys(selectedStates).sort(
+			(a, b) => selectedStates[a].populationDensity - selectedStates[b].populationDensity
+		  );
+	}
+
+	revisedOrder.forEach((s, i) => {
         revisedStates[s] = {
           ...selectedStates[s],
           selected: i < 12 ? true : false,
         };
-      });
-    } else {
-      revisedOrder.reverse().forEach((s, i) => {
-        revisedStates[s] = {
-          ...selectedStates[s],
-          selected: i < 12 ? true : false,
-        };
-      });
-    }
+	});
+
     setSelectedStates(revisedStates);
     handleClose();
   };
@@ -354,7 +362,7 @@ export const BatchSelect = () => {
         onMouseOver={handleClick}
         className={classes.tab}
       >
-        Filter by Total Population
+        Filter by Population
       </Button>
       <Menu
         id="filter-population-menu"
@@ -369,14 +377,28 @@ export const BatchSelect = () => {
           onClick={filterPopulation}
           className={classes.menuItem}
         >
-          Highest 12
+          Highest 12 (total)
         </MenuItem>
         <MenuItem
           id="population-bottom-12"
           onClick={filterPopulation}
           className={classes.menuItem}
         >
-          Lowest 12
+          Lowest 12 (total)
+        </MenuItem>
+		<MenuItem
+          id="pop-density-top-12"
+          onClick={filterPopulation}
+          className={classes.menuItem}
+        >
+          Highest 12 (density)
+        </MenuItem>
+		<MenuItem
+          id="pop-density-bottom-12"
+          onClick={filterPopulation}
+          className={classes.menuItem}
+        >
+          Lowest 12 (density)
         </MenuItem>
       </Menu>
 
