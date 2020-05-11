@@ -24,19 +24,19 @@ export const MouseMove = (props) => {
     const yScale = d3.scaleLinear().domain(d3.extent(dataStates, d => d.casesPerThousand)).range([height, 0]);
 
     useEffect(() => {
-        if (overlay) {
-
+        if (overlay && selectedStates) {
+			
             overlay.on('mousemove', mousemove);
 
             let frozen = false;
 
             function mousemove() {
                 let x0 = xScale.invert(d3.mouse(this)[0]);
-                const bisectDate = d3.bisector(d => d.dayOfOutbreak).left;
+				const bisectDate = d3.bisector(d => d.dayOfOutbreak).left;
 
                 Object.keys(selectedStates).sort()
                     .filter(s => selectedStates[s].selected === true)
-                    .forEach((state, index) => {
+                    .forEach(state => {
                         const dataEachState = dataStates.filter(d => d.state === state);
                         const stateHTML = selectedStates[state].htmlFormat;
                         const i = bisectDate(dataEachState, x0, 0);
@@ -76,6 +76,7 @@ export const MouseMove = (props) => {
                     });
                 }
 			}
-    }, [linesStates]);
+	}, [linesStates]);
+	
     return null;
-}
+};

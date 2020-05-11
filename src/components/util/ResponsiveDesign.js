@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useMediaQuery } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 
@@ -10,7 +10,8 @@ export const ResponsiveDesign = (props) => {
 	const mqMedium = useMediaQuery(theme.breakpoints.up("md"));
 	  
 	const dimensions = {
-		wrapperWidth: mqMedium ? window.innerWidth * .8 : window.innerWidth * .9,
+		// wrapperWidth: mqMedium ? window.innerWidth * .8 : window.innerWidth * .9,
+		wrapperWidth: window.innerWidth * .8,
 		wrapperHeight: window.innerHeight * .9,
 		marginTop: 60,
 		marginRight: 20,

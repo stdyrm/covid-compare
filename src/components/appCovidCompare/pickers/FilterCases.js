@@ -22,7 +22,7 @@ export const FilterCases = (props) => {
 
 	return (
 		<>
-			<Button id="cases-btn" dense={true} onClick={handleMenu}>
+			<Button id="cases-btn" onClick={handleMenu}>
 				Filter By Case
 			</Button>
 			<Menu

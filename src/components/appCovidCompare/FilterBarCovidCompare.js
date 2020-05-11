@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import {
     AppBar,
     Toolbar,
@@ -8,7 +9,7 @@ import {
     Divider,
     Menu,
 	MenuItem,
-	Tooltip
+	Tooltip,
 } from "@material-ui/core";
 import clsx from "clsx";
 
@@ -132,15 +133,25 @@ export const FilterBarCovidCompare = props => {
                     <BatchSelect {...props} />
 					<span style={{marginLeft: "auto"}}>
 						<Tooltip title="Line chart">
-							<IconButton component="a" href="/covidcompare/line" className={classes.menuButton}>
+							<IconButton component="a" href="/covidcompare/#/line" className={classes.menuButton}>
 								<TimelineIcon />
 							</IconButton>
 						</Tooltip>
 						<Tooltip title="Gapminder chart">
-							<IconButton component="a" href="/covidcompare/gapminder" className={classes.menuButton}>
+							<IconButton component="a" href="/covidcompare/#/gapminder" className={classes.menuButton}>
 								<BubbleChartIcon />
 							</IconButton>
 						</Tooltip>
+						{/* <Tooltip title="Line chart">
+							<IconButton component="Link" to="/covidcompare/#/line" className={classes.menuButton}>
+								<TimelineIcon />
+							</IconButton>
+						</Tooltip>
+						<Tooltip title="Gapminder chart">
+							<IconButton component="Link" to="/covidcompare/#/gapminder" className={classes.menuButton}>
+								<BubbleChartIcon />
+							</IconButton>
+						</Tooltip> */}
 					</span>
                 </Toolbar>
             </AppBar>

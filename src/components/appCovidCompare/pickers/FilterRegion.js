@@ -25,7 +25,7 @@ export const FilterRegion = (props) => {
 	
 	return (
 		<>
-			<Button id="region-btn" dense={true} onClick={handleMenu}>
+			<Button id="region-btn" onClick={handleMenu}>
 				Filter By Region
 			</Button>
 			<Menu

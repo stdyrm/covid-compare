@@ -57,7 +57,7 @@ const Footnotes = (props) => {
 	};
 
     return (
-		<>
+		<div>
 			<Tooltip title="Save chart as image" placement="right">
 				<IconButton onClick={saveImage} className={classes.saveButton}>
 					<SaveIcon />
@@ -68,7 +68,7 @@ const Footnotes = (props) => {
 					<Brightness7Icon />
 				</IconButton>
 			</Tooltip>
-		</>
+		</div>
     )
 };
 

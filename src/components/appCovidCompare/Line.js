@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import * as d3 from "d3";
 
 // functions
@@ -15,12 +15,12 @@ import { useMediaQuery } from "@material-ui/core";
 export const Line = props => {
     const {
         chartParams,
-        labelParams,
+		labelParams,
         focus,
-        overlay,
+		overlay,
         selectedStates,
         wrapperDim,
-        boundedDim,
+		boundedDim,
     } = props;
     const { xParam, yParam } = chartParams;
     const {
@@ -35,18 +35,18 @@ export const Line = props => {
 
     // context
     const { dataStates } = useContext(dataContext);
-    const { infoStates } = useContext(statesContext);
+	const { infoStates } = useContext(statesContext);
 
     // style
     const theme = useTheme();
 	const mqMedium = useMediaQuery(theme.breakpoints.up("md"));
 	const mqLarge = useMediaQuery(theme.breakpoints.up("lg"));
 
-    const [linesStates, setLinesStates] = useState([]);
+	const [linesStates, setLinesStates] = useState([]);
 
     useEffect(() => {
         if (selectedStates && dataStates.length > 0) {
-            // Scales
+			// Scales
             const xScale = d3
                 .scaleLinear()
                 .domain(d3.extent(dataStates, d => d.dayOfOutbreak))
@@ -119,7 +119,7 @@ export const Line = props => {
 							xShift = 120;
 							yShift = 12 * 40;
 						} 
-                    }
+					}
 
                     focus
                         .append("circle")
@@ -140,8 +140,8 @@ export const Line = props => {
                                 "ralewaymedium, Helvetica, Arial, sans-serif"
                             );
 
-                        focus
-                            .append("text")
+						focus
+							.append("text")
                             .attr("id", `d-label-b-${stateHTML}`)
                             .attr("x", 10 + xShift)
                             .attr("y", d => mqMedium ? 25 + i * 40 - yShift : 25 + i * 30)
@@ -149,7 +149,7 @@ export const Line = props => {
                             .style(
                                 "font-family",
                                 "ralewaymedium, Helvetica, Arial, sans-serif"
-                            );
+							);
                     }
                 });
             setLinesStates(linesObject);
@@ -159,14 +159,14 @@ export const Line = props => {
             focus.selectAll("circle").remove();
             focus.selectAll("text").remove();
         };
-    }, [dataStates, selectedStates, theme]);
+	}, [dataStates, selectedStates, theme]);
 
     return (
-        <>
+        <>	
             <MouseMove
                 focus={focus}
-                overlay={overlay}
-                linesStates={linesStates}
+				overlay={overlay}
+				linesStates={linesStates}
                 {...props}
             />
             {dataStates.length > 0 ? (
@@ -176,6 +176,7 @@ export const Line = props => {
                         const stateHTML = infoStates[state].htmlFormat;
 
                         return (
+							<>
                             <g key={i} id={`bounds-render-${stateHTML}`}>
                                 <path
                                     fill="none"
@@ -211,6 +212,7 @@ export const Line = props => {
                                     {selectedStates[state].abbreviation}
                                 </text>
                             </g>
+							</>
                         );
                     })
             ) : (

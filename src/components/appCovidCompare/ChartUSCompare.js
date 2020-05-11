@@ -31,30 +31,38 @@ export const ChartUSCompare = props => {
 	const { wrapperDim, boundedDim } = props;
 	const { wrapperWidth, wrapperHeight, marginLeft, marginRight, marginBottom, marginTop } = wrapperDim;
 	const { width, height } = boundedDim;
-    const { dataStates } = useContext(dataContext);
-    const theme = useTheme();
+	const { dataStates } = useContext(dataContext);
+
+	const theme = useTheme();
+	let classes = useStyles();
 
     const yAxisRef = useRef(null);
     const xAxisRef = useRef(null);
     const svgRef = useRef(null);
-    const boundsRef = useRef(null);
+	const boundsRef = useRef(null);
 
-    let classes = useStyles();
+	const getFocus = () => {
+		return d3
+			// .select(boundsRef.current)
+			.select("#bounds")
+			.append("g")
+			.attr("class", "focus")
+			.style("display", "none");
+	};
+	const focus = getFocus();
 
-    const focus = d3
-        .select(boundsRef.current)
-        .append("g")
-		.attr("class", "focus")
-        .style("display", "none");
-
-    const overlay = d3
-        .select(boundsRef.current)
-        .append("rect")
-        .attr("class", "overlay")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("opacity", "0")
-        .on("mouseover", () => focus.style("display", null));
+	const getOverlay = () => {
+		return d3
+			// .select(boundsRef.current)
+			.select("#bounds")
+			.append("rect")
+			.attr("class", "overlay")
+			.attr("width", width)
+			.attr("height", height)
+			.attr("opacity", "0")
+			.on("mouseover", () => focus.style("display", null));
+	};
+	const overlay = getOverlay();
 
     useEffect(() => {
         // Scales
@@ -72,11 +80,10 @@ export const ChartUSCompare = props => {
         const xAxisGenerator = d3.axisBottom().scale(xScale);
         d3.select(xAxisRef.current).call(xAxisGenerator);
         d3.select(yAxisRef.current).call(yAxisGenerator);
-    }, [dataStates, theme]);
+	}, [dataStates, theme]);
 
     return (
 		<>
-        {/* <div height={wrapperHeight} width={wrapperWidth}> */}
             <svg id="covidcompare" height={wrapperHeight} width={wrapperWidth} ref={svgRef}>
                 <text
                     className={classes.title}
@@ -190,7 +197,7 @@ export const ChartUSCompare = props => {
                             color: theme.palette.text.primary,
                             fontFamily:
                                 "ralewaymedium, Helvetica, Arial, sans-serif",
-                        }}
+                        }}s
                     />
                     <g
                         ref={xAxisRef}
@@ -205,7 +212,6 @@ export const ChartUSCompare = props => {
                     <Line focus={focus} overlay={overlay} {...props} />
                 </g>
             </svg>
-        {/* </div> */}
 		</>
     );
 };

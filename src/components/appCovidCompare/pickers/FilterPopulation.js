@@ -23,7 +23,7 @@ export const FilterPopulation = (props) => {
 
 	return (
 		<>
-			<Button id="population-btn" dense={true} onClick={handleMenu}>
+			<Button id="population-btn" onClick={handleMenu}>
 				Filter By Population
 			</Button>
 			<Menu

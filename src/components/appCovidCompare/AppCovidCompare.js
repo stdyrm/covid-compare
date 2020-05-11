@@ -121,7 +121,7 @@ export const AppCovidCompare = () => {
 		if (infoStates) {
 			setSelectedStates(infoStates);
 		}
- 	}, [infoStates]);
+	 }, [infoStates]);
 
   return (
     <>

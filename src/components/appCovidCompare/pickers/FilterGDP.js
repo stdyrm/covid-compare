@@ -24,7 +24,7 @@ export const FilterGDP = (props) => {
 
 	return (
 		<>
-			<Button id="gdp-btn" dense={true} onClick={handleMenu}>
+			<Button id="gdp-btn" onClick={handleMenu}>
 				Filter By Case
 			</Button>
 			<Menu
