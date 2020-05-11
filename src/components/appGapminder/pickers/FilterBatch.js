@@ -26,7 +26,8 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.primary.main,
     },
     chip: {
-        backgroundColor: theme.palette.secondary.main,
+		color: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.contrastText,
         padding: theme.spacing(0.5),
         margin: theme.spacing(0.5),
         fontSize: ".7rem",

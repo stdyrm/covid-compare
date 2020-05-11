@@ -13,12 +13,19 @@ import {
     Drawer,
 	ClickAwayListener,
 	Tooltip,
+	useMediaQuery,
+	Menu,
+	MenuList,
+	Typography,
+	Button,
+	List
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import BubbleChartIcon from "@material-ui/icons/BubbleChart";
 import MenuIcon from "@material-ui/icons/Menu";
 import TimelineIcon from "@material-ui/icons/Timeline";
+import AssessmentIcon from '@material-ui/icons/Assessment';
  
 const drawerWidth = 250;
 
@@ -84,14 +91,20 @@ const useStyles = makeStyles((theme) => ({
 export const Navbar = (props) => {
     const { data, selector, handleSelector } = props;
 
-    const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(false);
+	const [anchorEl, setAnchorEl] = useState(null);
 
     const classes = useStyles();
     const theme = useTheme();
+	const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
     const handleDrawer = () => {
         setOpen(!open);
-    };
+	};
+	
+	const handleParamMenu = (e) => {
+		!anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
+	};
 
     const handleClickAway = (e) => {
         if (e.x > drawerWidth && e.y > 70 && open) {
@@ -119,12 +132,39 @@ export const Navbar = (props) => {
                     >
                         <MenuIcon className={classes.menuButton} />
                     </IconButton>
-                    <ParamPicker
-                        data={data}
-                        selector={selector}
-                        handleSelector={handleSelector}
-                        className={classes.filters}
-                    />
+					{mqSmall 
+						? <span>
+								<Tooltip title="Chart parameters">
+									<IconButton 
+										id="parameters-btn" 
+										className={classes.menuButton} 
+										onClick={handleParamMenu}
+									>
+										<AssessmentIcon />
+									</IconButton>
+								</Tooltip>
+								<Menu
+									anchorEl={anchorEl}
+									open={anchorEl ? Boolean(anchorEl.id === "parameters-btn") : false}
+									onClose={handleParamMenu}
+								>
+									<List>
+									<ParamPicker
+										data={data}
+										selector={selector}
+										handleSelector={handleSelector}
+										className={classes.filters}
+									/>
+									</List>
+								</Menu>
+							</span>
+						: <ParamPicker
+							data={data}
+							selector={selector}
+							handleSelector={handleSelector}
+							className={classes.filters}
+						/>
+					}
 					<span style={{marginLeft: "auto"}}>
 						<Tooltip title="Line chart">
 							<IconButton component="a" href="/covidcompare/#/line" className={classes.menuButton}>

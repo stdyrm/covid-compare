@@ -142,16 +142,6 @@ export const FilterBarCovidCompare = props => {
 								<BubbleChartIcon />
 							</IconButton>
 						</Tooltip>
-						{/* <Tooltip title="Line chart">
-							<IconButton component="Link" to="/covidcompare/#/line" className={classes.menuButton}>
-								<TimelineIcon />
-							</IconButton>
-						</Tooltip>
-						<Tooltip title="Gapminder chart">
-							<IconButton component="Link" to="/covidcompare/#/gapminder" className={classes.menuButton}>
-								<BubbleChartIcon />
-							</IconButton>
-						</Tooltip> */}
 					</span>
                 </Toolbar>
             </AppBar>

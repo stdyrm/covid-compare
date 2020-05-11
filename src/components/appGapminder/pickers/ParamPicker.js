@@ -1,15 +1,23 @@
 import React from "react";
 
 // style
-import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { FormControl, InputLabel, Select, MenuItem, MenuList, Grid, useMediaQuery } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+
 
 const useStyles = makeStyles((theme) => ({
-    filterSelector: {
+	rootContainer: {
+		maxWidth: 750,
+		minWidth: 175,
+		justifyContent: "space-evenly",
+		padding: 0,
+		margin: 0,
+	},
+	filterSelector: {
         minWidth: 150,
         fontWeight: 500,
         fontSize: ".8rem",
-        marginRight: 30,
+        // marginRight: 30,
     },
     filterMenuItem: {
         color: theme.palette.text.primary,
@@ -18,11 +26,18 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const ParamPicker = ({ selector, handleSelector }) => {
-    const classes = useStyles();
+export const ParamPicker = (props) => {
+	const { selector, handleSelector } = props;
+	const theme = useTheme();
+
+	const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
+	const classes = useStyles();
 
     return (
-        <>
+		<Grid container className={classes.rootContainer} style={mqSmall 
+			? {flexDirection: "column", alignItems: "center"} 
+			: {flexDirection: "row"}}
+		>
             {Object.keys(selector).map((p) => {
                 return (
                     <FormControl key={selector[p].output}>
@@ -48,6 +63,6 @@ export const ParamPicker = ({ selector, handleSelector }) => {
                     </FormControl>
                 );
             })}
-        </>
+        </Grid>
     );
 };

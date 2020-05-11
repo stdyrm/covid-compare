@@ -10,18 +10,8 @@ import { OpacitySlider } from "../interface/OpacitySlider";
 import { DayCounterSlider } from "../interface/DayCounterSlider";
 
 // style
-import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles(theme => ({
-    axes: {
-        color: theme.palette.text.primary,
-    },
-    legend: {
-        fontWeight: 700,
-        fontSize: ".8rem",
-    },
-}));
+import { Grid, useMediaQuery } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const cParamCategories = {
     region: ["Northeast", "Midwest", "South", "West"],
@@ -56,6 +46,39 @@ export const ChartGapminder = props => {
     const [scales, setScales] = useState(null);
 	const [dayCounter, setDayCounter] = useState(1);
 	const [opacityNotSel, setOpacityNotSel] = useState(0.6);
+
+	const theme = useTheme();
+	const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
+	const useStyles = makeStyles(theme => ({
+		rootSVG: {
+			display: "inline-block",
+			position: "relative",
+			width: "100%",
+			verticalAlign: "middle",
+			overflow: "hidden",
+		},
+		bounds: {
+			width: width,
+			height: height,
+		},
+		axes: {
+			color: theme.palette.text.primary,
+		},
+		legend: {
+			fontWeight: 700,
+			fontSize: ".8rem",
+		},
+		sliderContainer: {
+			flexDirection: mqSmall ? "column" : "row",
+			justifyContent: mqSmall ? "center" : "space-between",
+			width: width,
+			margin: "0 auto",
+			alignItems: "center",
+		},
+		slider: {
+			width: mqSmall ? width : width / 2.2,
+		},
+	}));
 
     const classes = useStyles();
 
@@ -193,14 +216,17 @@ export const ChartGapminder = props => {
         <>			
             <svg
                 id="gapminder"
-                className="wrapper"
+                // className="wrapper"
                 height={wrapperHeight}
-                width={wrapperWidth}
+				width={wrapperWidth}
+				className={classes.rootSVG}
+				viewBox={`0 0 ${wrapperWidth} ${wrapperHeight}`}
+				// preserveAspectRatio
             >
                 <g
                     ref={boundsRef}
-                    className="bounds"
-                    transform={`translate(${marginLeft}, ${marginTop})`}
+                    className={classes.bounds}
+					transform={`translate(${marginLeft}, ${marginTop})`}
                 >
                     <g
                         ref={xAxisRef}
@@ -225,14 +251,14 @@ export const ChartGapminder = props => {
                     )}
                 </g>
             </svg>
-            <Grid container style={{ marginLeft: marginLeft, width: width, justifyContent: "space-evenly" }}>
-                <Grid item style={{marginRight: 32, flexGrow: 2}}>
+            <Grid container className={classes.sliderContainer}>
+                <Grid item className={classes.slider}>
 					<DayCounterSlider 
 						dayCounter={dayCounter}
 						setDayCounter={setDayCounter}
 					/>
                 </Grid>
-				<Grid item style={{flexGrow: 1}}>
+				<Grid item className={classes.slider}>
 					<OpacitySlider 
 						opacityNotSel={opacityNotSel} 
 						setOpacityNotSel={setOpacityNotSel}

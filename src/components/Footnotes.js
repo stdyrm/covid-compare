@@ -2,18 +2,23 @@ import React from 'react';
 import { saveSvgAsPng } from 'save-svg-as-png';
 
 // constants
-import { dimensions } from './util/constants';
+import { dimensions, bounded } from './util/constants';
 
 // styles
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import '../styles/styles.css';
-import { IconButton, Tooltip } from '@material-ui/core';
+import { IconButton, Tooltip, Grid } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 
 const { margin } = dimensions;
+const { width, height } = bounded;
 
 const useStyles = makeStyles((theme) => ({
+	rootGrid: {
+		width: width - margin.left,
+		margin: "0 auto"
+	},
     footnoteText: {
         color: theme.palette.text.primary,
         textAlign: 'left',
@@ -22,18 +27,11 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: margin.left,
         marginRight: margin.right
     },
-    saveButton: {
+    footerButton: {
 		color: theme.palette.text.secondary,
-        float: 'left',
-        marginLeft: margin.left,
-        padding: 0
+        marginRight: "auto",
+        padding: 6
     },
-    themeButton: {
-        color: theme.palette.text.secondary,
-        float: 'left',
-        marginLeft: 20,
-        padding: 0
-    }
 }));
 
 const Footnotes = (props) => {
@@ -57,18 +55,22 @@ const Footnotes = (props) => {
 	};
 
     return (
-		<div>
-			<Tooltip title="Save chart as image" placement="right">
-				<IconButton onClick={saveImage} className={classes.saveButton}>
-					<SaveIcon />
-				</IconButton>
-			</Tooltip>
-			<Tooltip title="Toggle dark/light theme" placement="right">
-				<IconButton onClick={() => setDarkMode(!darkMode)} className={classes.themeButton}>
-					<Brightness7Icon />
-				</IconButton>
-			</Tooltip>
-		</div>
+		<Grid container className={classes.rootGrid}>
+			<Grid item>
+				<Tooltip title="Save chart as image" placement="right">
+					<IconButton onClick={saveImage} className={classes.footerButton}>
+						<SaveIcon />
+					</IconButton>
+				</Tooltip>
+			</Grid>
+			<Grid item>
+				<Tooltip title="Toggle dark/light theme" placement="right">
+					<IconButton onClick={() => setDarkMode(!darkMode)} className={classes.footerButton}>
+						<Brightness7Icon />
+					</IconButton>
+				</Tooltip>
+			</Grid>
+		</Grid>
     )
 };
 
