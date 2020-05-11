@@ -54,8 +54,15 @@ export const ChartGapminder = props => {
 			display: "inline-block",
 			position: "relative",
 			width: "100%",
+			// paddingBottom: "100%",
 			verticalAlign: "middle",
 			overflow: "hidden",
+		},
+		chartWrapper: {
+			display: "inline-block",
+			position: "absolute",
+			top: 0,
+			left: 0,
 		},
 		bounds: {
 			width: width,
@@ -213,15 +220,15 @@ export const ChartGapminder = props => {
     }, [dayCounter]);
 
     return (
-        <>			
+        <>
+			<div>			
             <svg
                 id="gapminder"
-                // className="wrapper"
                 height={wrapperHeight}
 				width={wrapperWidth}
 				className={classes.rootSVG}
 				viewBox={`0 0 ${wrapperWidth} ${wrapperHeight}`}
-				// preserveAspectRatio
+				preserveAspectRatio
             >
                 <g
                     ref={boundsRef}
@@ -251,6 +258,7 @@ export const ChartGapminder = props => {
                     )}
                 </g>
             </svg>
+			</div>
             <Grid container className={classes.sliderContainer}>
                 <Grid item className={classes.slider}>
 					<DayCounterSlider 
