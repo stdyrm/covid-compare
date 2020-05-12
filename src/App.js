@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import * as d3 from "d3";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -19,6 +19,7 @@ import { dataContext } from "./context/dataContext";
 import { statesContext } from "./context/statesContext";
 
 // styles
+import { wrapper, bounds } from "./styles/dimensions";
 import { theme, getTheme } from "./styles/theme";
 import { colors } from "./styles/colors";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -26,7 +27,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 function App() {
     const [dataStates, setDataStates] = useState([]);
     const [infoStates, setInfoStates] = useState(null);
-    const [darkMode, setDarkMode] = useState(true);
+	const [darkMode, setDarkMode] = useState(true);
 
     useEffect(() => {
         // clean stateInfo data and assign selectedStates
@@ -124,23 +125,25 @@ function App() {
                         <statesContext.Provider
                             value={{ infoStates, setInfoStates }}
                         >
-							{/* <Router> */}
-									<Route
-										path="/line"
-										className="line-app"
-										component={AppCovidCompare}
-									/>
-									<Route
-										exact
-										path={["/", "/gapminder"]}
-										className="gapminder-app"
-										component={AppGapminder}
-									/>
-									<Footnotes
-										darkMode={darkMode}
-										setDarkMode={setDarkMode}
-									/>
-                            {/* </Router> */}
+							<Route
+								path="/line-app"
+								className="line-app"
+								render={() => <AppCovidCompare wrapper={wrapper} bounds={bounds} />}
+							/>
+							<Route
+								path="/gapminder-app"
+								className="gapminder-app"
+								render={() => <AppGapminder />}
+							/>
+							<Switch>
+								<Redirect exact from="/" to="/gapminder-app" />
+							</Switch>
+							<Footnotes
+								darkMode={darkMode}
+								setDarkMode={setDarkMode}
+								wrapper={wrapper}
+								bounds={bounds}
+							/>
                         </statesContext.Provider>
                     </dataContext.Provider>
                 </MuiPickersUtilsProvider>

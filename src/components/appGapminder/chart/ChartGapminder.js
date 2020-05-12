@@ -30,17 +30,10 @@ const cParamCategories = {
 };
 
 export const ChartGapminder = props => {
-    const { data, selector, wrapper, bounded } = props;
+    const { data, selector, wrapper, bounds } = props;
     const { xParam, yParam, cParam } = selector;
-    const {
-        wrapperWidth,
-        wrapperHeight,
-        marginTop,
-        marginBottom,
-        marginLeft,
-        marginRight,
-    } = wrapper;
-	const { width, height } = bounded;
+    const { wrapperWidth, wrapperHeight, margin } = wrapper;
+	const { width, height } = bounds;
 
     const { dataStates } = useContext(dataContext);
     const [scales, setScales] = useState(null);
@@ -54,7 +47,6 @@ export const ChartGapminder = props => {
 			display: "inline-block",
 			position: "relative",
 			width: "100%",
-			// paddingBottom: "100%",
 			verticalAlign: "middle",
 			overflow: "hidden",
 		},
@@ -78,12 +70,12 @@ export const ChartGapminder = props => {
 		sliderContainer: {
 			flexDirection: mqSmall ? "column" : "row",
 			justifyContent: mqSmall ? "center" : "space-between",
-			width: width,
+			maxWidth: width,
 			margin: "0 auto",
 			alignItems: "center",
 		},
 		slider: {
-			width: mqSmall ? width : width / 2.2,
+			width: mqSmall ? "95%" : "45%",
 		},
 	}));
 
@@ -223,7 +215,7 @@ export const ChartGapminder = props => {
         <>
 			<div>			
             <svg
-                id="gapminder"
+                id="gapminder-app"
                 height={wrapperHeight}
 				width={wrapperWidth}
 				className={classes.rootSVG}
@@ -233,7 +225,7 @@ export const ChartGapminder = props => {
                 <g
                     ref={boundsRef}
                     className={classes.bounds}
-					transform={`translate(${marginLeft}, ${marginTop})`}
+					transform={`translate(${margin.left}, ${margin.top})`}
                 >
                     <g
                         ref={xAxisRef}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 
 // params
-import { wrapper, bounded, chartParams, labelParams } from "./appParams";
+import { chartParams, labelParams } from "./appParams";
 
 // components
 import { ChartGapminder } from './chart/ChartGapminder'; 
@@ -17,17 +17,14 @@ import { gapminderData } from './gapminderData';
 
 // style
 import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-	navbar: {
-		width: bounded.width,
-		marginLeft: wrapper.marginLeft,
-		display: 'flex',
-		justifyContent: 'flex-start',
-	}
-}))
+import { wrapper, bounds } from "./styles/dimensions";
 
 export const AppGapminder = () => {
+	const { margin } = wrapper;
+	const { width } = bounds;
+
+	console.log(wrapper);
+
 	const {dataStates} = useContext(dataContext);
 	const [data, setData] = useState(null);
 	const [selector, setSelector] = useState({
@@ -43,8 +40,14 @@ export const AppGapminder = () => {
 	});
 
 	// style
-	const { wrapperWidth, wrapperHeight, marginTop, marginBottom, marginLeft, marginRight } = wrapper;
-	const { width, height } = bounded;
+	const useStyles = makeStyles((theme) => ({
+		navbar: {
+			width: width,
+			marginLeft: margin.left,
+			display: 'flex',
+			justifyContent: 'flex-start',
+		}
+	}));
 	const classes = useStyles();
 
 	const handleSelector = (e) => {
@@ -74,13 +77,13 @@ export const AppGapminder = () => {
 				handleSelector={handleSelector}
 				className={classes.navbar}
 			/>
-			<div transform={`translate(${marginLeft}, ${marginTop})`}>
+			<div transform={`translate(${margin.left}, ${margin.top})`}>
 				{data 
 					&& <ChartGapminder 
 						selector={selector}
 						data={data}
 						wrapper={wrapper} 
-						bounded={bounded} 
+						bounds={bounds} 
 						/>
 				}
 			</div>

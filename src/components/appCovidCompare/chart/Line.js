@@ -19,19 +19,11 @@ export const Line = props => {
         focus,
 		overlay,
         selectedStates,
-        wrapperDim,
-		boundedDim,
+        wrapper,
+		bounds,
     } = props;
     const { xParam, yParam } = chartParams;
-    const {
-        wrapperWidth,
-        wrapperHeight,
-        marginLeft,
-        marginRight,
-        marginBottom,
-        marginTop,
-    } = wrapperDim;
-    const { width, height } = boundedDim;
+    const { width, height } = bounds;
 
     // context
     const { dataStates } = useContext(dataContext);
@@ -117,9 +109,7 @@ export const Line = props => {
 	}, [dataStates, selectedStates, theme]);
 
 	useEffect(() => {
-		console.log("Planning to append focus")
 		if (selectedStates) {
-			console.log("Appending focus")
 			const filtered = filterStates(selectedStates);
 
 			filtered
@@ -183,6 +173,7 @@ export const Line = props => {
                 focus={focus}
 				overlay={overlay}
 				linesStates={linesStates}
+				bounds={bounds}
                 {...props}
             />
             {dataStates.length > 0 ? (

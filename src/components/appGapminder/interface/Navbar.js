@@ -15,9 +15,6 @@ import {
 	Tooltip,
 	useMediaQuery,
 	Menu,
-	MenuList,
-	Typography,
-	Button,
 	List
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -81,10 +78,10 @@ const useStyles = makeStyles((theme) => ({
         "&:hover": {
             opacity: 1,
         },
-        toolbar: {
-            display: "flex",
-            justifyContent: "flex-start",
-        },
+		toolbar: {
+			display: "flex",
+			justifyContent: "flex-start",
+		},
     },
 }));
 
@@ -149,12 +146,11 @@ export const Navbar = (props) => {
 									onClose={handleParamMenu}
 								>
 									<List>
-									<ParamPicker
-										data={data}
-										selector={selector}
-										handleSelector={handleSelector}
-										className={classes.filters}
-									/>
+										<ParamPicker
+											data={data}
+											selector={selector}
+											handleSelector={handleSelector}
+										/>
 									</List>
 								</Menu>
 							</span>
@@ -162,23 +158,21 @@ export const Navbar = (props) => {
 							data={data}
 							selector={selector}
 							handleSelector={handleSelector}
-							className={classes.filters}
 						/>
 					}
 					<span style={{marginLeft: "auto"}}>
 						<Tooltip title="Line chart">
-							<IconButton component="a" href="/covidcompare/#/line" className={classes.menuButton}>
+							<IconButton component="a" href="/covidcompare/#/line-app" className={classes.menuButton}>
 								<TimelineIcon />
 							</IconButton>
 						</Tooltip>
 						<Tooltip title="Gapminder chart">
-							<IconButton component="a" href="/covidcompare/#/gapminder" className={classes.menuButton}>
+							<IconButton component="a" href="/covidcompare/#/gapminder-app" className={classes.menuButton}>
 								<BubbleChartIcon />
 							</IconButton>
 						</Tooltip>
 					</span>
                 </Toolbar>
-
                 <ClickAwayListener onClickAway={handleClickAway}>
                     <Drawer
                         className={classes.drawer}

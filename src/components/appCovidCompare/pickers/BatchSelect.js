@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
-import { Button, Menu, MenuItem, Typography, Divider } from "@material-ui/core";
-import { DatePicker } from "@material-ui/pickers";
+import React, { useState, useEffect, useContext } from "react";
+import { useMediaQuery, Grid } from "@material-ui/core";
 
 // components
 import { FilterCases } from "./FilterCases";
-import { FilterGDP } from "./FilterGDP";
 import { FilterPopulation } from "./FilterPopulation";
 import { FilterRegion } from "./FilterRegion";
 
@@ -12,9 +10,16 @@ import { FilterRegion } from "./FilterRegion";
 import { statesContext } from "../../../context/statesContext";
 
 // styles
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
+	rootContainer: {
+		maxWidth: 550,
+		minWidth: 175,
+		justifyContent: "space-evenly",
+		padding: 0,
+		margin: 0,
+	},
     tab: {
         opacity: 0.7,
     },
@@ -35,18 +40,15 @@ export const BatchSelect = props => {
     // assign
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedFilter, setSelectedFilter] = useState(null);
-    const [selectedDate, setDateChange] = useState(new Date());
 
-    // style
-    const classes = useStyles();
+	// style
+	const theme = useTheme();
+	const classes = useStyles();
+	const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
     const handleMenu = e => {
 		!anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
     };
-
-    const handleDateChange = e => {
-        setDateChange(e);
-	};
 	
 	const handleSelectedFilter = (newSelectedFilter) => {
 		setSelectedFilter(newSelectedFilter);
@@ -106,7 +108,11 @@ export const BatchSelect = props => {
 	},[selectedFilter]);
 
     return (
-        <span>
+		<Grid container className={classes.rootContainer}
+			style={mqSmall
+			? {flexDirection: "column", alignItems: "center"}
+			: {flexDirection: "row"}}
+		>
 			<FilterCases
 				aria-controls="cases-btn"
 				aria-haspopup="true"
@@ -115,7 +121,6 @@ export const BatchSelect = props => {
 				selectedStates={selectedStates}
 				setSelectedStates={setSelectedStates}
 				handleSelectedFilter={handleSelectedFilter}
-				onClose={handleMenu}
 			/>
 			<FilterPopulation
 				aria-controls="population-btn"
@@ -134,6 +139,6 @@ export const BatchSelect = props => {
 				setSelectedStates={setSelectedStates}
 				handleSelectedFilter={handleSelectedFilter}
 			/>
-        </span>
+        </Grid>
     );
 };

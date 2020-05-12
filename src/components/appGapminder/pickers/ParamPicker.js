@@ -1,7 +1,7 @@
 import React from "react";
 
 // style
-import { FormControl, InputLabel, Select, MenuItem, MenuList, Grid, useMediaQuery } from "@material-ui/core";
+import { FormControl, InputLabel, Select, MenuItem, Grid, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 
@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 150,
         fontWeight: 500,
         fontSize: ".8rem",
-        // marginRight: 30,
     },
     filterMenuItem: {
         color: theme.palette.text.primary,

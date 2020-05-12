@@ -1,48 +1,39 @@
+// Chart params: define params for drawing axes and chart
 export const chartParams = {
-	chartType: "bubble",
+	chartType: "line",
 	toTimestamp: null,
 	multiple: true,
 	normalize: true,
 	xParam: { // x-axis
-		output: 'x-axis',
 		type: 'linear',
-		format: 'none',
-		selected: 'casesPerThousand',
-		alt1: 'cases',
+		format: 'number',
+		selected: 'dayOfOutbreak',
+		alt1: null,
 		options: [
-			"casesPerThousand",
-			"cases",
-			"deathsPerThousand",
-			"deaths"
+			"dayOfOutbreak",
 		]
 	},
 	yParam: { // y-axis
-		output: 'y-axis',
 		type: 'linear',
-		format: 'none',
-		selected: 'deathsPerThousand',
-		alt1: 'deaths',
+		format: 'number',
+		selected: 'casesPerThousand',
+		alt1: 'deathsPerThousand',
 		options: [ 
 			"casesPerThousand",
 			"cases",
 			"deathsPerThousand",
 			"deaths"
-		], 
+		],
 	},
 	zParam: {// z-axis (3rd dimension) (eg. size)
-		output: 'circle-area',
-		type: "linear",
-		format: "none",
-		selected: "population",
+		type: null,
+		format: null,
+		selected: null,
 		options: [ 
-			"population",
-			"populationDensity",
-			"gdp",
-			"none"
+			null
 		]
 	},
 	cParam: { // color axis (categorical/ordinal data) (eg. gender, birthplace, etc.)
-		output: 'color-grouping',
 		type: "categorical",
 		selected: "region",
 		options: [ 
@@ -52,12 +43,10 @@ export const chartParams = {
 		],
 	},
 	tParam: { // time axis (4th dimension) (ie. for animated charts)
-		output: 'time',
-		type: 'time',
-		selected: "dayOfOutbreak",
+		type: null,
+		selected: null,
 		options: [
-			"dayOfOutbreak",
-			"date"
+			null
 		]
 	},
 };

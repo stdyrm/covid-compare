@@ -10,30 +10,40 @@ import { dataContext } from "../../../context/dataContext";
 // Styles
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(theme => ({
-    title: {
-        fill: theme.palette.text.primary,
-        fontSize: "1.2rem",
-    },
-    axes: {
-        fill: theme.palette.text.primary,
-    },
-    axisLabel: {
-        fill: theme.palette.text.primary,
-        fontSize: ".8rem",
-    },
-    footnotes: {
-        fontSize: ".6rem",
-    },
-}));
-
-export const ChartUSCompare = props => {
-	const { wrapperDim, boundedDim } = props;
-	const { wrapperWidth, wrapperHeight, marginLeft, marginRight, marginBottom, marginTop } = wrapperDim;
-	const { width, height } = boundedDim;
+export const ChartCovidCompare = props => {
+	const { wrapper, bounds } = props;
+	const { wrapperWidth, wrapperHeight, margin } = wrapper;
+	const { width, height } = bounds;
 	const { dataStates } = useContext(dataContext);
 
-	const theme = useTheme();
+	const useStyles = makeStyles(theme => ({
+		rootSVG: {
+			display: "inline-block",
+			position: "relative",
+			width: "100%",
+			verticalAlign: "middle",
+			overflow: "hidden",
+		},
+		bounds: {
+			width: width,
+			height: height,
+		},
+		title: {
+			fill: theme.palette.text.primary,
+			fontSize: "1.2rem",
+		},
+		axes: {
+			fill: theme.palette.text.primary,
+		},
+		axisLabel: {
+			fill: theme.palette.text.primary,
+			fontSize: ".8rem",
+		},
+		footnotes: {
+			fill: theme.palette.text.primary,
+			fontSize: ".6rem",
+		},
+	}));
 	let classes = useStyles();
 
     const yAxisRef = useRef(null);
@@ -78,49 +88,45 @@ export const ChartUSCompare = props => {
         const xAxisGenerator = d3.axisBottom().scale(xScale);
         d3.select(xAxisRef.current).call(xAxisGenerator);
         d3.select(yAxisRef.current).call(yAxisGenerator);
-	}, [dataStates, theme]);
+	}, [dataStates]);
 
     return (
 		<>
-            <svg id="covidcompare" height={wrapperHeight} width={wrapperWidth} ref={svgRef}>
+			<svg 
+				id="line-app" 
+				height={wrapperHeight} 
+				width={wrapperWidth} 
+				ref={svgRef}
+				className={classes.rootSVG}
+				viewBox={`0 0 ${wrapperWidth} ${wrapperHeight}`}
+				preserveAspectRatio
+			>
                 <text
                     className={classes.title}
-                    style={{
-                        fill: theme.palette.text.primary,
-                        fontFamily:
-                            "ralewaymedium, Helvetica, Arial, sans-serif",
-                    }}
+                    style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
                     textAnchor="middle"
                     transform={`translate (${
-                        marginLeft + width / 2
-                    }, ${marginTop / 2})`}
+                        margin.left + width / 2
+                    }, ${margin.top / 2})`}
                 >
                     COVID-19 US State Comparison
                 </text>
                 <text
                     className={classes.axisLabel}
-                    style={{
-                        fill: theme.palette.text.primary,
-                        fontFamily:
-                            "ralewaymedium, Helvetica, Arial, sans-serif",
-                    }}
+                    style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
                     textAnchor="middle"
-                    transform={`translate(${marginLeft + width / 2}, ${
-                        height + marginTop + 40
+                    transform={`translate(${margin.left + width / 2}, ${
+                        height + margin.top + 40
                     })`}
                 >
                     Day of Outbreak
                 </text>
                 <text
                     className={classes.axisLabel}
-                    style={{
-                        fill: theme.palette.text.primary,
-                        fontFamily:
-                            "ralewaymedium, Helvetica, Arial, sans-serif",
-                    }}
+                    style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
                     textAnchor="middle"
                     transform={`translate(${
-                        marginLeft * .6
+                        margin.left * .6
                     }, ${height / 2}) rotate(-90)`}
                 >
                     Cases per 1000 people
@@ -128,13 +134,9 @@ export const ChartUSCompare = props => {
                 <text
                     className={classes.footnotes}
                     textAnchor="left"
-                    style={{
-                        fill: theme.palette.text.primary,
-                        fontFamily:
-                            "ralewaymedium, Helvetica, Arial, sans-serif",
-                    }}
-                    transform={`translate(${marginLeft}, ${
-                        height + marginTop + 60
+                    style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
+                    transform={`translate(${margin.left}, ${
+                        height + margin.top + 60
                     })`}
                 >
                     *Data from The New York Times, based on reports from state
@@ -143,13 +145,9 @@ export const ChartUSCompare = props => {
                 <text
                     className={classes.footnotes}
                     textAnchor="left"
-                    style={{
-                        fill: theme.palette.text.primary,
-                        fontFamily:
-                            "ralewaymedium, Helvetica, Arial, sans-serif",
-                    }}
-                    transform={`translate(${marginLeft}, ${
-                        height + marginTop + 80
+                    style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
+                    transform={`translate(${margin.left}, ${
+                        height + margin.top + 80
                     })`}
                 >
                     **Population data from US Census Bureau (2019).
@@ -157,13 +155,9 @@ export const ChartUSCompare = props => {
                 <text
                     className={classes.footnotes}
                     textAnchor="left"
-                    style={{
-                        fill: theme.palette.text.primary,
-                        fontFamily:
-                            "ralewaymedium, Helvetica, Arial, sans-serif",
-                    }}
-                    transform={`translate(${marginLeft}, ${
-                        height + marginTop + 100
+                    style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
+                    transform={`translate(${margin.left}, ${
+                        height + margin.top + 100
                     })`}
                 >
                     ***2/27 is earliest possible 'Day 1,' since prior cases were
@@ -172,40 +166,28 @@ export const ChartUSCompare = props => {
                 <text
                     className={classes.footnotes}
                     textAnchor="left"
-                    style={{
-                        fill: theme.palette.text.primary,
-                        fontFamily:
-                            "ralewaymedium, Helvetica, Arial, sans-serif",
-                    }}
-                    transform={`translate(${marginLeft}, ${
-                        height + marginTop + 120
+                    style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
+                    transform={`translate(${margin.left}, ${
+                        height + margin.top + 120
                     })`}
                 >
                     †Legend will display up to 24 states (alphabetical order)
                 </text>
                 <g
                     id="bounds"
-                    transform={`translate(${marginLeft}, ${marginTop})`}
+                    transform={`translate(${margin.left}, ${margin.top})`}
                     ref={boundsRef}
                 >
                     <g
                         ref={yAxisRef}
                         id="y-axis"
-                        style={{
-                            color: theme.palette.text.primary,
-                            fontFamily:
-                                "ralewaymedium, Helvetica, Arial, sans-serif",
-                        }}s
+                        style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
                     />
                     <g
                         ref={xAxisRef}
                         id="x-axis"
                         transform={`translate(0,${height})`}
-                        style={{
-                            color: theme.palette.text.primary,
-                            fontFamily:
-                                "ralewaymedium, Helvetica, Arial, sans-serif",
-                        }}
+                        style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
                     />
                     <Line focus={focus} overlay={overlay} {...props} />
                 </g>

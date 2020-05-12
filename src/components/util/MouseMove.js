@@ -8,16 +8,8 @@ import { dataContext } from '../../context/dataContext';
 import { date } from '../util/constants';
 
 export const MouseMove = (props) => {
-	const { focus, overlay, linesStates, selectedStates, wrapperDim, boundedDim } = props;
-	const {
-        wrapperWidth,
-        wrapperHeight,
-        marginLeft,
-        marginRight,
-        marginBottom,
-        marginTop,
-    } = wrapperDim;
-    const { width, height } = boundedDim;
+	const { focus, overlay, linesStates, selectedStates, bounds } = props;
+    const { width, height } = bounds;
 	const { dataStates } = useContext(dataContext);
 	
     const xScale = d3.scaleLinear().domain(d3.extent(dataStates, d => d.dayOfOutbreak)).range([0, width]);

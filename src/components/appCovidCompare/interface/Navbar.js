@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import {
     AppBar,
     Toolbar,
@@ -8,8 +7,8 @@ import {
     Drawer,
     Divider,
     Menu,
-	MenuItem,
 	Tooltip,
+	useMediaQuery
 } from "@material-ui/core";
 import clsx from "clsx";
 
@@ -23,6 +22,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MenuIcon from "@material-ui/icons/Menu";
 import TimelineIcon from "@material-ui/icons/Timeline";
 import BubbleChartIcon from "@material-ui/icons/BubbleChart";
+import AssessmentIcon from '@material-ui/icons/Assessment';
 
 const drawerWidth = 250;
 
@@ -80,13 +80,13 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const FilterBarCovidCompare = props => {
+export const Navbar = props => {
     const [open, setOpen] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
 	
 	const theme = useTheme();
-    const classes = useStyles();
+	const classes = useStyles();
+	const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -102,7 +102,7 @@ export const FilterBarCovidCompare = props => {
         }
     };
 
-    const handleMenu = e => {
+    const handleFilterMenu = e => {
         !anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
     };
 
@@ -130,15 +130,35 @@ export const FilterBarCovidCompare = props => {
                     >
                         <MenuIcon className={classes.menuButton} />
                     </IconButton>
-                    <BatchSelect {...props} />
+					{mqSmall
+						? <>
+							<Tooltip title="Chart filters"> 
+								<IconButton
+									id="filters-btn-cc"
+									onClick={handleFilterMenu}
+									className={classes.menuButton}
+								>
+									<AssessmentIcon />
+								</IconButton>
+							</Tooltip>
+							<Menu
+								anchorEl={anchorEl}
+								open={anchorEl ? Boolean(anchorEl.id === "filters-btn-cc") : null}
+								onClose={handleFilterMenu}
+							>
+								<BatchSelect handleFilterMenu={handleFilterMenu} {...props} />
+							</Menu>
+						</> 
+						: <BatchSelect {...props} />
+					}
 					<span style={{marginLeft: "auto"}}>
 						<Tooltip title="Line chart">
-							<IconButton component="a" href="/covidcompare/#/line" className={classes.menuButton}>
+							<IconButton component="a" href="/covidcompare/#/line-app" className={classes.menuButton}>
 								<TimelineIcon />
 							</IconButton>
 						</Tooltip>
 						<Tooltip title="Gapminder chart">
-							<IconButton component="a" href="/covidcompare/#/gapminder" className={classes.menuButton}>
+							<IconButton component="a" href="/covidcompare/#/gapminder-app" className={classes.menuButton}>
 								<BubbleChartIcon />
 							</IconButton>
 						</Tooltip>
