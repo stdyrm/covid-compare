@@ -3,13 +3,13 @@ import { Button, Menu, MenuItem, Typography, Divider } from "@material-ui/core";
 import { DatePicker } from "@material-ui/pickers";
 
 // components
-import { FilterCases } from "./pickers/FilterCases";
-import { FilterGDP } from "./pickers/FilterGDP";
-import { FilterPopulation } from "./pickers/FilterPopulation";
-import { FilterRegion } from "./pickers/FilterRegion";
+import { FilterCases } from "./FilterCases";
+import { FilterGDP } from "./FilterGDP";
+import { FilterPopulation } from "./FilterPopulation";
+import { FilterRegion } from "./FilterRegion";
 
 // context
-import { statesContext } from "../../context/statesContext";
+import { statesContext } from "../../../context/statesContext";
 
 // styles
 import { makeStyles } from "@material-ui/core/styles";

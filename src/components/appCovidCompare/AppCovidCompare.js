@@ -4,8 +4,8 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
 // components
-import { ChartUSCompare } from "./ChartUSCompare";
-import { FilterBarCovidCompare } from './FilterBarCovidCompare';
+import { ChartUSCompare } from "./chart/ChartUSCompare";
+import { FilterBarCovidCompare } from './interface/FilterBarCovidCompare';
 import { ResponsiveDesign } from "../util/ResponsiveDesign";
 
 // context

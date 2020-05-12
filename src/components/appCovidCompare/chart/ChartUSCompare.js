@@ -5,7 +5,7 @@ import * as d3 from "d3";
 import { Line } from "./Line";
 
 // Context
-import { dataContext } from "../../context/dataContext";
+import { dataContext } from "../../../context/dataContext";
 
 // Styles
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -43,8 +43,7 @@ export const ChartUSCompare = props => {
 
 	const getFocus = () => {
 		return d3
-			// .select(boundsRef.current)
-			.select("#bounds")
+			.select(boundsRef.current)
 			.append("g")
 			.attr("class", "focus")
 			.style("display", "none");
@@ -53,8 +52,7 @@ export const ChartUSCompare = props => {
 
 	const getOverlay = () => {
 		return d3
-			// .select(boundsRef.current)
-			.select("#bounds")
+			.select(boundsRef.current)
 			.append("rect")
 			.attr("class", "overlay")
 			.attr("width", width)

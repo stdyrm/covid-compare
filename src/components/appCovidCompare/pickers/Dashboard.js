@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 
 // context
-import { dataContext } from "../../context/dataContext";
+import { dataContext } from "../../../context/dataContext";
 
 // styles
 import CheckIcon from "@material-ui/icons/Check";

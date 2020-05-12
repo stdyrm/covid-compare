@@ -55,7 +55,7 @@ export const MouseMove = (props) => {
                             : dataEachState[dataEachState.length - 1].cases;
 
                         const toggleFreeze = () => {
-                            frozen = !frozen;
+							frozen = !frozen;
                         };
 
                         overlay.on('click', toggleFreeze);

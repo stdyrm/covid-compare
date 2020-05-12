@@ -1,12 +1,12 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import * as d3 from "d3";
 
 // functions
-import { MouseMove } from "../util/MouseMove";
+import { MouseMove } from "../../util/MouseMove";
 
 // context
-import { dataContext } from "../../context/dataContext";
-import { statesContext } from "../../context/statesContext";
+import { dataContext } from "../../../context/dataContext";
+import { statesContext } from "../../../context/statesContext";
 
 // style
 import { useTheme } from "@material-ui/core/styles";
@@ -44,6 +44,13 @@ export const Line = props => {
 
 	const [linesStates, setLinesStates] = useState([]);
 
+	const filterStates = statesObject => {
+		let filtered = Object.keys(statesObject)
+			.sort()
+			.filter(s => statesObject[s].selected === true);
+		return filtered;
+	};
+
     useEffect(() => {
         if (selectedStates && dataStates.length > 0) {
 			// Scales
@@ -64,14 +71,12 @@ export const Line = props => {
 
             const linesObject = {};
 
-            Object.keys(selectedStates)
-                .sort()
-                .filter(s => selectedStates[s].selected === true)
+			const filtered = filterStates(selectedStates)
+			filtered
                 .forEach((state, i) => {
                     const dataEachState = dataStates.filter(
                         d => d.state === state
                     );
-                    const stateHTML = infoStates[state].htmlFormat;
                     // Line label placement
                     const lastDayOfOutbreak =
                         dataEachState[dataEachState.length - 1].dayOfOutbreak;
@@ -106,60 +111,71 @@ export const Line = props => {
                             lineLabelY: yScale(lastCasesPerThousand),
                         };
                     }
-
-                    // for mousemove
-                    let xShift = 0;
-                    let yShift = 0;
-
-                    if (i > 11) {
-						if (mqLarge) {
-							xShift = 180;
-							yShift = 12 * 40;
-						} else if (mqMedium) {
-							xShift = 120;
-							yShift = 12 * 40;
-						} 
-					}
-
-                    focus
-                        .append("circle")
-                        .attr("id", `circle-${stateHTML}`)
-                        .attr("r", 5)
-						.attr("fill", selectedStates[state].color)
-                        .attr("stroke", theme.palette.text.primary);
-
-                    if (mqMedium ? i < 24 : i < 12) {
-                        focus
-                            .append("text")
-                            .attr("id", `d-label-${stateHTML}`)
-                            .attr("x", 10 + xShift)
-                            .attr("y", d => mqMedium ? 10 + i * 40 - yShift : 10 + i * 30)
-                            .style("font-size", d => mqLarge ? ".8rem" : ".6rem")
-                            .style(
-                                "font-family",
-                                "ralewaymedium, Helvetica, Arial, sans-serif"
-                            );
-
-						focus
-							.append("text")
-                            .attr("id", `d-label-b-${stateHTML}`)
-                            .attr("x", 10 + xShift)
-                            .attr("y", d => mqMedium ? 25 + i * 40 - yShift : 25 + i * 30)
-                            .style("font-size", d => mqLarge ? ".8rem" : ".6rem")
-                            .style(
-                                "font-family",
-                                "ralewaymedium, Helvetica, Arial, sans-serif"
-							);
-                    }
                 });
             setLinesStates(linesObject);
-        }
-
-        return () => {
-            focus.selectAll("circle").remove();
-            focus.selectAll("text").remove();
         };
 	}, [dataStates, selectedStates, theme]);
+
+	useEffect(() => {
+		console.log("Planning to append focus")
+		if (selectedStates) {
+			console.log("Appending focus")
+			const filtered = filterStates(selectedStates);
+
+			filtered
+			.forEach((state, i) => {
+				const stateHTML = infoStates[state].htmlFormat;
+				// for mousemove
+				let xShift = 0;
+				let yShift = 0;
+
+				if (i > 11) {
+					if (mqLarge) {
+						xShift = 180;
+						yShift = 12 * 40;
+					} else if (mqMedium) {
+						xShift = 120;
+						yShift = 12 * 40;
+					} 
+				}
+
+				focus
+					.append("circle")
+					.attr("id", `circle-${stateHTML}`)
+					.attr("r", 5)
+					.attr("fill", selectedStates[state].color)
+					.attr("stroke", theme.palette.text.primary);
+
+				if (mqMedium ? i < 24 : i < 12) {
+					focus
+						.append("text")
+						.attr("id", `d-label-${stateHTML}`)
+						.attr("x", 10 + xShift)
+						.attr("y", d => mqMedium ? 10 + i * 40 - yShift : 10 + i * 30)
+						.style("font-size", d => mqLarge ? ".8rem" : ".6rem")
+						.style(
+							"font-family",
+							"ralewaymedium, Helvetica, Arial, sans-serif"
+						);
+
+					focus
+						.append("text")
+						.attr("id", `d-label-b-${stateHTML}`)
+						.attr("x", 10 + xShift)
+						.attr("y", d => mqMedium ? 25 + i * 40 - yShift : 25 + i * 30)
+						.style("font-size", d => mqLarge ? ".8rem" : ".6rem")
+						.style(
+							"font-family",
+							"ralewaymedium, Helvetica, Arial, sans-serif"
+						);
+				}
+			});
+		}
+		return () => {
+			focus.selectAll("circle").remove();
+			focus.selectAll("text").remove();
+        };
+	}, [linesStates]);
 
     return (
         <>	

@@ -14,8 +14,8 @@ import {
 import clsx from "clsx";
 
 // components
-import { BatchSelect } from "./BatchSelect";
-import { Dashboard } from "./Dashboard";
+import { BatchSelect } from "../pickers/BatchSelect";
+import { Dashboard } from "../pickers/Dashboard";
 
 // styles
 import { makeStyles, useTheme } from "@material-ui/core/styles";
