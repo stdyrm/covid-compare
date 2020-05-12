@@ -10,11 +10,7 @@ export const FilterPopulation = (props) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	
 	const handleMenu = (e) => {
-		setAnchorEl(e.currentTarget);
-	};
-
-	const handleMenuClose = () => {
-		setAnchorEl(null);
+		!anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
 	};
 
 	const populationOptions = [
@@ -31,7 +27,7 @@ export const FilterPopulation = (props) => {
 			<Menu
 				anchorEl={anchorEl}
 				open={anchorEl ? Boolean(anchorEl.id === "pop-btn") : false}
-				onClose={handleMenuClose}
+				onClose={handleMenu}
 			>
 				{populationOptions.map(o => {
 					return (
@@ -39,6 +35,7 @@ export const FilterPopulation = (props) => {
 							key={o.id} 
 							id={o.id}
 							onClick={() => handleFilter(o)}
+							onClose={handleMenu}
 						>
 							{o.name}
 						</MenuItem>

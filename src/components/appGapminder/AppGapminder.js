@@ -23,8 +23,6 @@ export const AppGapminder = () => {
 	const { margin } = wrapper;
 	const { width } = bounds;
 
-	console.log(wrapper);
-
 	const {dataStates} = useContext(dataContext);
 	const [data, setData] = useState(null);
 	const [selector, setSelector] = useState({

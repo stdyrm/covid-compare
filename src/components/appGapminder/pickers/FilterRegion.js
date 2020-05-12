@@ -21,11 +21,7 @@ export const FilterRegion = (props) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 
 	const handleMenu = (e) => {
-		setAnchorEl(e.currentTarget);
-	};
-
-	const handleMenuClose = () => {
-		setAnchorEl(null);
+		!anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
 	};
 
 	return (
@@ -34,8 +30,8 @@ export const FilterRegion = (props) => {
 			<ChevronRightIcon style={{marginLeft: "auto"}}/>
 			<Menu
 				anchorEl={anchorEl}
-				open={anchorEl ? Boolean(anchorEl.id === "region-btn") : false}
-				onClose={handleMenuClose}
+				open={anchorEl ? Boolean(anchorEl.id === "region-btn") : null}
+				onClose={handleMenu}
 			>
 				{infoStates 
 					&& regionOptions.map(o => {
@@ -44,6 +40,7 @@ export const FilterRegion = (props) => {
 								key={o.id} 
 								id={o.id} 
 								onClick={() => handleFilter(o)}
+								onClose={handleMenu}
 							>
 								{o.name}
 							</MenuItem>

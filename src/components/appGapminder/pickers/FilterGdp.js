@@ -10,11 +10,7 @@ export const FilterGdp = (props) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	
 	const handleMenu = (e) => {
-		setAnchorEl(e.currentTarget);
-	};
-
-	const handleMenuClose = () => {
-		setAnchorEl(null);
+		!anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
 	};
 
 	const gdpOptions = [
@@ -30,7 +26,7 @@ export const FilterGdp = (props) => {
 			<Menu
 				anchorEl={anchorEl}
 				open={anchorEl ? Boolean(anchorEl.id === "gdp-btn") : false}
-				onClose={handleMenuClose}
+				onClose={handleMenu}
 			>
 				{gdpOptions.map(o => {
 					return (
@@ -38,6 +34,7 @@ export const FilterGdp = (props) => {
 							key={o.id} 
 							id={o.id} 
 							onClick={() => handleFilter(o)}
+							onClose={handleMenu}
 						>
 							{o.name}
 						</MenuItem>

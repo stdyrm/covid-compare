@@ -20,11 +20,7 @@ export const FilterGovernor = (props) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 
 	const handleMenu = (e) => {
-		setAnchorEl(e.currentTarget);
-	};
-
-	const handleMenuClose = () => {
-		setAnchorEl(null);
+		!anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
 	};
 
 	return (
@@ -34,7 +30,7 @@ export const FilterGovernor = (props) => {
 			<Menu
 				anchorEl={anchorEl}
 				open={anchorEl ? Boolean(anchorEl.id === "governor-btn") : false}
-				onClose={handleMenuClose}
+				onClose={handleMenu}
 			>
 				{infoStates 
 					&& regionOptions.map(o => {
@@ -43,6 +39,7 @@ export const FilterGovernor = (props) => {
 								key={o.id} 
 								id={o.id} 
 								onClick={() => handleFilter(o)}
+								onClose={handleMenu}
 							>
 								{o.name}
 							</MenuItem>

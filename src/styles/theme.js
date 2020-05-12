@@ -64,7 +64,7 @@ export const theme = createMuiTheme({
         },
         MuiInputBase: {
             root: {
-                color: "#fff",
+				color: "#fff",
                 maxWidth: 115,
                 paddingLeft: 10,
             },
@@ -110,6 +110,20 @@ export const getTheme = (theme, darkMode) => {
 					secondary: "#fff",
 				},
 			},
+			overrides: {
+				...theme.overrides,
+				MuiButton: {
+					root: {
+						color: "#fff",
+					},
+					label: {
+						color: "#fff",
+					},
+					text: {
+						color: "#fff",
+					},
+				},
+			}
 		});		
 	} else {
 		return createMuiTheme({
@@ -129,6 +143,25 @@ export const getTheme = (theme, darkMode) => {
 					secondary: "#000018",
         		},
 			},
+			overrides: {
+				...theme.overrides,
+				MuiButton: {
+					root: {
+						color: "#29293d",
+					},
+					label: {
+						color: "#29293d",
+					},
+					text: {
+						color: "#29293d",
+					},
+				},
+				MuiInputBase: {
+					input: {
+						color: "#29293d",
+					}
+				}
+			}
 		});
 	}
   }
