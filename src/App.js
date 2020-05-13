@@ -22,12 +22,15 @@ import { statesContext } from "./context/statesContext";
 import { wrapper, bounds } from "./styles/dimensions";
 import { theme, getTheme } from "./styles/theme";
 import { colors } from "./styles/colors";
-import { CssBaseline, Grid, Container } from "@material-ui/core";
+import { CssBaseline, Grid, Container, useMediaQuery } from "@material-ui/core";
 
 function App() {
     const [dataStates, setDataStates] = useState([]);
     const [infoStates, setInfoStates] = useState(null);
 	const [darkMode, setDarkMode] = useState(true);
+	const mqOrientPortrait = useMediaQuery("(orientation: portrait)");
+	const mqOrientLandscape = useMediaQuery("(orientation: landscape)");
+	const [orientation, setOrientation] = useState(null)
 
     useEffect(() => {
         // clean stateInfo data and assign selectedStates
@@ -114,7 +117,17 @@ function App() {
             setDataStates(data);
             console.log("imported dataset");
         });
-    }, []);
+	}, []);
+	
+	useEffect(() => {
+		ScreenOrientation.onChange = (e) => {
+			console.log(e);
+			setOrientation({
+				type: e.type,
+				angle: e.angle
+			});
+		};	
+	}, []);
 
     return (
         <>
@@ -144,6 +157,15 @@ function App() {
 								wrapper={wrapper}
 								bounds={bounds}
 							/>
+							{orientation
+								? <div>
+									<p>{orientation.type}</p>
+									<p>{orientation.angle}</p>
+								</div>
+								: <div>
+									<p>CovidCompare</p>
+								</div>
+							}
                         </statesContext.Provider>
                     </dataContext.Provider>
                 </MuiPickersUtilsProvider>

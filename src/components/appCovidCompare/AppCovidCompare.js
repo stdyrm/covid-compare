@@ -35,7 +35,6 @@ export const AppCovidCompare = ({ wrapper, bounds }) => {
 					? "row"
 					: "column",
 			justifyContent: "center",
-			backgroundColor: mqOrientPortrait ?  "#FFC0CB" : theme.palette.background.default,
 		},
 		item: {
 			width: "100%",
