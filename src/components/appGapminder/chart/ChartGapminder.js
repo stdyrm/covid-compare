@@ -68,14 +68,14 @@ export const ChartGapminder = props => {
 			fontSize: ".8rem",
 		},
 		sliderContainer: {
-			flexDirection: mqSmall ? "column" : "row",
-			justifyContent: mqSmall ? "center" : "space-between",
+			flexDirection: ()  => mqSmall ? "column" : "row",
+			justifyContent: () => mqSmall ? "center" : "space-between",
 			maxWidth: width,
 			margin: "0 auto",
 			alignItems: "center",
 		},
 		slider: {
-			width: mqSmall ? "95%" : "45%",
+			width: () => mqSmall ? "95%" : "45%",
 		},
 	}));
 

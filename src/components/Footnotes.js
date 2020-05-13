@@ -9,13 +9,12 @@ import SaveIcon from "@material-ui/icons/Save";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 
 export const Footnotes = props => {
-    const { darkMode, setDarkMode, wrapper, bounds } = props;
-    const { margin } = wrapper;
+    const { darkMode, setDarkMode, bounds } = props;
 	const { width } = bounds;
 	
     const useStyles = makeStyles(theme => ({
         rootGrid: {
-            maxWidth: width,
+            maxWidth: window.innerWidth,
 			margin: "0 auto",
         },
         footerButton: {

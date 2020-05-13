@@ -28,10 +28,11 @@ const drawerWidth = 250;
 
 const useStyles = makeStyles(theme => ({
     root: {
-        display: "flex",
-        backgroundColor: theme.palette.primary.main,
+		display: "flex",
     },
     appBar: {
+		backgroundColor: theme.palette.primary.main,
+		color: theme.palette.primary.contrastText,
         transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -113,10 +114,6 @@ export const Navbar = props => {
                 className={clsx(classes.appBar, {
                     [classes.appBarShift]: open,
                 })}
-                style={{
-                    backgroundColor: theme.palette.primary.main,
-                    color: theme.palette.primary.contrastText,
-                }}
             >
                 <Toolbar>
                     <IconButton
@@ -125,7 +122,6 @@ export const Navbar = props => {
                             classes.menuButton,
                             open && classes.hide
                         )}
-                        style={{ color: theme.palette.text.primary }}
                         disableRipple
                     >
                         <MenuIcon className={classes.menuButton} />

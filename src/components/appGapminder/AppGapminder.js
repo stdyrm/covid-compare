@@ -16,8 +16,9 @@ import stateInfo from '../../data/stateInfo.json';
 import { gapminderData } from './gapminderData';
 
 // style
-import { makeStyles } from '@material-ui/core/styles';
 import { wrapper, bounds } from "./styles/dimensions";
+import { Grid, Container, useMediaQuery } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 export const AppGapminder = () => {
 	const { margin } = wrapper;

@@ -22,7 +22,7 @@ import { statesContext } from "./context/statesContext";
 import { wrapper, bounds } from "./styles/dimensions";
 import { theme, getTheme } from "./styles/theme";
 import { colors } from "./styles/colors";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import { CssBaseline, Grid, Container } from "@material-ui/core";
 
 function App() {
     const [dataStates, setDataStates] = useState([]);

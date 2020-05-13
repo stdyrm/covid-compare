@@ -1,5 +1,5 @@
 export const wrapper = {
-	wrapperWidth: window.innerWidth * .8,
+	wrapperWidth: window.innerWidth * .9,
 	wrapperHeight: window.innerHeight * .9,
 	margin: { 
 		top: 40,
