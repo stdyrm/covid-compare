@@ -31,7 +31,7 @@ export const AppCovidCompare = ({ wrapper, bounds }) => {
 			width: "100%",
 			height: "100%",
 			display: "flex",
-			flexDirection: () => mqOrientPortrait 
+			flexDirection: () => mqOrientPortrait
 					? "row"
 					: "column",
 			justifyContent: "center",

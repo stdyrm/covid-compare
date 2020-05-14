@@ -118,16 +118,29 @@ function App() {
             console.log("imported dataset");
         });
 	}, []);
+
+	screen.orientation.addEventListener("change", () => {
+		const { type, angle } = screen.orientation;
+		console.log(`Changed: ${type}, ${angle}`);
+		setOrientation({
+			type,
+			angle
+		});
+	});
 	
+	// useEffect(() => {
+	// 	ScreenOrientation.onchange = (e) => {
+	// 		console.log(e);
+	// 		setOrientation({
+	// 			type: e.type,
+	// 			angle: e.angle
+	// 		});
+	// 	};	
+	// }, []);
+
 	useEffect(() => {
-		ScreenOrientation.onChange = (e) => {
-			console.log(e);
-			setOrientation({
-				type: e.type,
-				angle: e.angle
-			});
-		};	
-	}, []);
+		console.log("Orientation changed!")
+	}, [orientation]);
 
     return (
         <>
