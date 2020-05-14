@@ -6,7 +6,7 @@ import { statesContext } from '../../../context/statesContext';
 import { selectionContext } from '../../../context/selectionContext';
 
 // style 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 export const CirclesGapminder = (props) => {
 	const { data, dayCounter, selector, scales, opacityNotSel } = props;
@@ -28,9 +28,14 @@ export const CirclesGapminder = (props) => {
 			stroke: "#e91e63",
 			strokeWidth: 2,
 			opacity: .8,
-		}
+		},
+		circleLabel: {
+			fill: theme.palette.text.primary,
+			fontSize: ".6rem",
+		},
 	}));
 	const classes = useStyles();
+	const theme = useTheme();
 
 	const bisectDay = d3.bisector(([d]) => d).left;
 
@@ -60,7 +65,8 @@ export const CirclesGapminder = (props) => {
 			const circle = d3.select(circlesRef.current).selectAll('circle')
 			.data(dataAt(dayCounter), d => d)
 			.join('circle')
-				.sort((a,b) => d3.descending(a[zParam], b[zParam]))
+				// .sort((a,b) => d3.descending(a[zParam.selected], b[zParam.selected]))
+				.sort((a,b) => d3.descending(infoStates[a.state][zParam.selected], infoStates[b.state][zParam.selected]))
 				.attr('r', d => zParam.selected === "population" 
 					? infoStates[d.state][zParam.selected] / 1000000 
 					: zParam.selected === "populationDensity"
@@ -147,8 +153,34 @@ export const CirclesGapminder = (props) => {
 						.style("stroke-width", 2)
 				}
 			});
+
+			const circleLabel = d3.select(circlesRef.current).selectAll("text")
+				.data(dataAt(dayCounter), d => d)
+				.join("text")
+					.call(label => {
+						const length = d => {
+							if (zParam.selected === "population") {
+								return infoStates[d.state][zParam.selected] / 1000000
+							} else if (zParam.selected === "populationDensity") {
+								return infoStates[d.state][zParam.selected] / 100
+							} else if (zParam.selected === "gdp") {
+								return infoStates[d.state][zParam.selected] / 100000
+							} else {
+								return 4 
+							}
+						};
+						label
+							.attr("x", d => xScale(d[xParam.selected]) + length(d))
+							.attr("y", d => yScale(d[yParam.selected]) - length(d))
+					})
+					.attr("opacity", d => selectedCircles.selected.includes(d.state)
+						? .8
+						: 0)
+					.attr("class", classes.circleLabel)
+					.attr('cursor', 'context-menu')
+					.text(d => infoStates[d.state].abbreviation);
 		};
-	}, [dayCounter, selector, scales, selectedCircles, opacityNotSel]);
+	}, [dayCounter, selector, scales, selectedCircles, opacityNotSel, theme]);
 
 	return (
 		<>		

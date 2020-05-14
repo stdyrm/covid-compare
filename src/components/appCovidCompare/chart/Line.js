@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, Fragment } from "react";
 import * as d3 from "d3";
 
 // functions
@@ -14,15 +14,11 @@ import { useMediaQuery } from "@material-ui/core";
 
 export const Line = props => {
     const {
-        chartParams,
-		labelParams,
         focus,
 		overlay,
         selectedStates,
-        wrapper,
 		bounds,
     } = props;
-    const { xParam, yParam } = chartParams;
     const { width, height } = bounds;
 
     // context
@@ -183,43 +179,43 @@ export const Line = props => {
                         const stateHTML = infoStates[state].htmlFormat;
 
                         return (
-							<>
-                            <g key={i} id={`bounds-render-${stateHTML}`}>
-                                <path
-                                    fill="none"
-                                    stroke={selectedStates[state].color}
-                                    strokeWidth={2.5}
-                                    strokeLinejoin="round"
-                                    strokeLinecap="round"
-                                    d={linesStates[state].line}
-                                />
-                                <circle
-                                    id="line-marker-lockdown"
-                                    r={4}
-                                    fill={
-                                        linesStates[state].lockdownMarkerX
-                                            ? selectedStates[state].color
-                                            : "none"
-                                    }
-                                    cx={linesStates[state].lockdownMarkerX}
-                                    cy={linesStates[state].lockdownMarkerY}
-                                />
-                                <text
-                                    id={`line-label-${stateHTML}`}
-                                    className="line-label"
-                                    style={{
-                                        fill: theme.palette.text.primary,
-                                        fontSize: "14px",
-                                        fontFamily:
-                                            "ralewaymedium, Helvetica, Arial, sans-serif",
-                                    }}
-                                    x={linesStates[state].lineLabelX}
-                                    y={linesStates[state].lineLabelY}
-                                >
-                                    {selectedStates[state].abbreviation}
-                                </text>
-                            </g>
-							</>
+							<Fragment key={state}>
+								<g id={`bounds-render-${stateHTML}`}>
+									<path
+										fill="none"
+										stroke={selectedStates[state].color}
+										strokeWidth={2.5}
+										strokeLinejoin="round"
+										strokeLinecap="round"
+										d={linesStates[state].line}
+									/>
+									<circle
+										id="line-marker-lockdown"
+										r={4}
+										fill={
+											linesStates[state].lockdownMarkerX
+												? selectedStates[state].color
+												: "none"
+										}
+										cx={linesStates[state].lockdownMarkerX}
+										cy={linesStates[state].lockdownMarkerY}
+									/>
+									<text
+										id={`line-label-${stateHTML}`}
+										className="line-label"
+										style={{
+											fill: theme.palette.text.primary,
+											fontSize: "14px",
+											fontFamily:
+												"ralewaymedium, Helvetica, Arial, sans-serif",
+										}}
+										x={linesStates[state].lineLabelX}
+										y={linesStates[state].lineLabelY}
+									>
+										{selectedStates[state].abbreviation}
+									</text>
+								</g>
+							</Fragment>
                         );
                     })
             ) : (

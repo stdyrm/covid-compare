@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, forwardRef } from 'react'
 
 // context
 import { statesContext } from '../../../context/statesContext';
@@ -14,7 +14,7 @@ const regionOptions = [
 	{id: "west", name: "West", type: "Region", chartParam: "region"}
 ];
 
-export const FilterRegion = (props) => {
+export const FilterRegion = forwardRef((props, ref) => {
 	const { handleFilter } = props;
 
 	const { infoStates } = useContext(statesContext);
@@ -25,12 +25,12 @@ export const FilterRegion = (props) => {
 	};
 
 	return (
-		<MenuItem id="region-btn" dense={true} onClick={handleMenu}>
+		<MenuItem id="region-btn" ref={ref} dense={true} onClick={handleMenu}>
 				Region
 			<ChevronRightIcon style={{marginLeft: "auto"}}/>
 			<Menu
 				anchorEl={anchorEl}
-				open={anchorEl ? Boolean(anchorEl.id === "region-btn") : null}
+				open={anchorEl ? Boolean(anchorEl.id === "region-btn") : false}
 				onClose={handleMenu}
 			>
 				{infoStates 
@@ -50,4 +50,4 @@ export const FilterRegion = (props) => {
 			</Menu>
 		</MenuItem>
 	)
-};
+});

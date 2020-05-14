@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 
 // style
 import { Menu, MenuItem, Button } from '@material-ui/core';
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
-export const FilterPopulation = (props) => {
+export const FilterPopulation = forwardRef((props, ref) => {
 	const { handleFilter, nStates } = props;
 
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -45,4 +45,4 @@ export const FilterPopulation = (props) => {
 			</Menu>
 		</MenuItem>
 	);
-};
+});

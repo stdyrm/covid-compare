@@ -139,7 +139,7 @@ export const Navbar = props => {
 							</Tooltip>
 							<Menu
 								anchorEl={anchorEl}
-								open={anchorEl ? Boolean(anchorEl.id === "filters-btn-cc") : null}
+								open={anchorEl ? Boolean(anchorEl.id === "filters-btn-cc") : false}
 								onClose={handleFilterMenu}
 							>
 								<BatchSelect handleFilterMenu={handleFilterMenu} {...props} />

@@ -9,8 +9,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 
 export const Footnotes = props => {
-    const { darkMode, setDarkMode, bounds } = props;
-	const { width } = bounds;
+    const { darkMode, setDarkMode } = props;
 	
     const useStyles = makeStyles(theme => ({
         rootGrid: {

@@ -214,42 +214,41 @@ export const ChartGapminder = props => {
     return (
         <>
 			<div>			
-            <svg
-                id="gapminder-app"
-                height={wrapperHeight}
-				width={wrapperWidth}
-				className={classes.rootSVG}
-				viewBox={`0 0 ${wrapperWidth} ${wrapperHeight}`}
-				preserveAspectRatio
-            >
-                <g
-                    ref={boundsRef}
-                    className={classes.bounds}
-					transform={`translate(${margin.left}, ${margin.top})`}
-                >
-                    <g
-                        ref={xAxisRef}
-                        transform={`translate(0, ${height})`}
-                        className={classes.axes}
-                    />
-                    <g ref={yAxisRef} className={classes.axes} />
-                    <g
-                        ref={legendRef}
-                        transform={`translate(0, ${height})`}
-                        className={classes.legend}
-                    />
-                    {data && scales ? (
-                        <CirclesGapminder
-                            {...props}
-                            scales={scales}
-                            dayCounter={dayCounter}
-                            opacityNotSel={opacityNotSel}
-                        />
-                    ) : (
-                        <></>
-                    )}
-                </g>
-            </svg>
+				<svg
+					id="gapminder-app"
+					height={wrapperHeight}
+					width={wrapperWidth}
+					className={classes.rootSVG}
+					viewBox={`0 0 ${wrapperWidth} ${wrapperHeight}`}
+				>
+					<g
+						ref={boundsRef}
+						className={classes.bounds}
+						transform={`translate(${margin.left}, ${margin.top})`}
+					>
+						<g
+							ref={xAxisRef}
+							transform={`translate(0, ${height})`}
+							className={classes.axes}
+						/>
+						<g ref={yAxisRef} className={classes.axes} />
+						<g
+							ref={legendRef}
+							transform={`translate(0, ${height})`}
+							className={classes.legend}
+						/>
+						{data && scales ? (
+							<CirclesGapminder
+								{...props}
+								scales={scales}
+								dayCounter={dayCounter}
+								opacityNotSel={opacityNotSel}
+							/>
+						) : (
+							<></>
+						)}
+					</g>
+				</svg>
 			</div>
             <Grid container className={classes.sliderContainer}>
                 <Grid item className={classes.slider}>

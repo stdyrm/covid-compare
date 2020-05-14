@@ -123,9 +123,7 @@ export const FilterBatch = props => {
 
             <Menu
                 anchorEl={anchorEl}
-                open={
-                    anchorEl ? Boolean(anchorEl.id === "select-filter") : false
-                }
+                open={anchorEl ? Boolean(anchorEl.id === "select-filter") : false}
                 onClose={handleMenu}
             >
 				<MenuList>

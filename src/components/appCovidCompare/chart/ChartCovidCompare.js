@@ -8,7 +8,7 @@ import { Line } from "./Line";
 import { dataContext } from "../../../context/dataContext";
 
 // Styles
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 export const ChartCovidCompare = props => {
 	const { wrapper, bounds } = props;
@@ -99,7 +99,7 @@ export const ChartCovidCompare = props => {
 				ref={svgRef}
 				className={classes.rootSVG}
 				viewBox={`0 0 ${wrapperWidth} ${wrapperHeight}`}
-				preserveAspectRatio
+				// preserveAspectRatio="xMinYMin meet"
 			>
                 <text
                     className={classes.title}

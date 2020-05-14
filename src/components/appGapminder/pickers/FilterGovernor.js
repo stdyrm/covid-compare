@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, forwardRef } from 'react'
 
 // context
 import { statesContext } from '../../../context/statesContext';
@@ -13,7 +13,7 @@ const regionOptions = [
 ];
 
 
-export const FilterGovernor = (props) => {
+export const FilterGovernor = forwardRef((props, ref) => {
 	const { handleFilter } = props;
 
 	const { infoStates } = useContext(statesContext);
@@ -49,4 +49,4 @@ export const FilterGovernor = (props) => {
 			</Menu>
 		</MenuItem>
 	)
-};
+});

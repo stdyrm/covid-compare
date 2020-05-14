@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 
 // params
-import { chartParams, labelParams } from "./appParams";
+import { chartParams } from "./appParams";
 
 // components
 import { ChartGapminder } from './chart/ChartGapminder'; 
@@ -17,8 +17,7 @@ import { gapminderData } from './gapminderData';
 
 // style
 import { wrapper, bounds } from "./styles/dimensions";
-import { Grid, Container, useMediaQuery } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 export const AppGapminder = () => {
 	const { margin } = wrapper;

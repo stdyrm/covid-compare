@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
     IconButton,
     FormControlLabel,
@@ -7,9 +7,6 @@ import {
     Typography,
     Divider,
 } from "@material-ui/core";
-
-// context
-import { dataContext } from "../../../context/dataContext";
 
 // styles
 import CheckIcon from "@material-ui/icons/Check";

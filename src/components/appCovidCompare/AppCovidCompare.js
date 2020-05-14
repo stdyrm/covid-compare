@@ -14,16 +14,14 @@ import { statesContext } from "../../context/statesContext";
 
 // styles
 import { Grid, useMediaQuery } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 export const AppCovidCompare = ({ wrapper, bounds }) => {
 	const { infoStates } = useContext(statesContext);
 
 	const [selectedStates, setSelectedStates] = useState(null);
 
-	const theme = useTheme();
 	const mqOrientPortrait = useMediaQuery("(orientation: portrait)");
-	const mqOrientLandscape = useMediaQuery("(orientation: landscape)");
 
 	const useStyles = makeStyles((theme) => ({
 		container: {
@@ -35,11 +33,6 @@ export const AppCovidCompare = ({ wrapper, bounds }) => {
 					? "row"
 					: "column",
 			justifyContent: "center",
-			backgroundColor: () => mqOrientPortrait	
-				? "red"
-				: mqOrientLandscape
-				? "green"
-				: "white"
 		},
 		item: {
 			width: "100%",
