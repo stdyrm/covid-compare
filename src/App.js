@@ -119,13 +119,13 @@ function App() {
         });
 	}, []);
 
-	screen.orientation.addEventListener("change", () => {
-		const { type, angle } = screen.orientation;
+	window.screen.orientation.addEventListener("change", () => {
+		const { type, angle } = window.screen.orientation;
 		console.log(`Changed: ${type}, ${angle}`);
-		setOrientation({
+		setOrientation(() => ({
 			type,
 			angle
-		});
+		}));
 	});
 	
 	// useEffect(() => {
@@ -139,7 +139,12 @@ function App() {
 	// }, []);
 
 	useEffect(() => {
-		console.log("Orientation changed!")
+		console.log(window.screen.orientation.type);
+		console.log(window.screen.orientation.angle);
+	}, []);
+
+	useEffect(() => {
+		console.log("Orientation changed!");
 	}, [orientation]);
 
     return (

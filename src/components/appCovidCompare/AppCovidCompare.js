@@ -13,7 +13,7 @@ import { chartParams, labelParams } from "./appParams";
 import { statesContext } from "../../context/statesContext";
 
 // styles
-import { Grid, Container, useMediaQuery } from "@material-ui/core";
+import { Grid, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 export const AppCovidCompare = ({ wrapper, bounds }) => {
@@ -35,6 +35,11 @@ export const AppCovidCompare = ({ wrapper, bounds }) => {
 					? "row"
 					: "column",
 			justifyContent: "center",
+			backgroundColor: () => mqOrientPortrait	
+				? "red"
+				: mqOrientLandscape
+				? "green"
+				: "white"
 		},
 		item: {
 			width: "100%",
