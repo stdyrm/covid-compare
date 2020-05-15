@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fe70a4981a172493a88303e9d2a2ab29",
+    "revision": "39cbe79d322aa2ae27378ce2685f9633",
     "url": "/covidcompare/index.html"
   },
   {
-    "revision": "59929e83adf62e728203",
+    "revision": "4b13ed078188661dc145",
     "url": "/covidcompare/static/css/main.21bcf1a4.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/covidcompare/static/js/2.1fc13e4e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "59929e83adf62e728203",
-    "url": "/covidcompare/static/js/main.7fc3bac3.chunk.js"
+    "revision": "4b13ed078188661dc145",
+    "url": "/covidcompare/static/js/main.75be9b1b.chunk.js"
   },
   {
     "revision": "3b7759b90d7bde89c1fb",
@@ -40,7 +40,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/covidcompare/static/media/raleway-medium-webfont.78c3ee5f.woff"
   },
   {
-    "revision": "c3702092f49bd091ec4484e3a6397876",
-    "url": "/covidcompare/static/media/us-states.c3702092.csv"
+    "revision": "8eddce76c99ef4f473332b292224edaa",
+    "url": "/covidcompare/static/media/us-states.8eddce76.csv"
   }
 ]);
