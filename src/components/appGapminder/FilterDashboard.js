@@ -93,8 +93,7 @@ export const FilterDashboard = (props) => {
     return (
         <>
             <FormGroup className={classes.dashboard}>
-
-			<FormControlLabel
+				<FormControlLabel
                     id="deselect-all"
                     label="Deselect All"
                     name="Deselect All"
