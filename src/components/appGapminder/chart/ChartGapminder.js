@@ -49,7 +49,13 @@ export const ChartGapminder = props => {
             width: "100%",
             verticalAlign: "middle",
             overflow: "hidden",
-        },
+		},
+		chartTitle: {
+			textAnchor: "middle",
+			fill: theme.palette.text.primary,
+			fontWeight: 700,
+			fontSize: "1rem",
+		},
         chartWrapper: {
             display: "inline-block",
             position: "absolute",
@@ -82,6 +88,7 @@ export const ChartGapminder = props => {
 
     const classes = useStyles();
 
+	const svgRef = useRef(null);
     const boundsRef = useRef(null);
     const yAxisRef = useRef(null);
     const xAxisRef = useRef(null);
@@ -159,7 +166,7 @@ export const ChartGapminder = props => {
             .attr("transform", "rotate(-90)")
             .attr("class", "yLabel")
             .attr("fill", theme.palette.text.primary)
-            .text(yParam.selected);
+			.text(yParam.selected);
 
         // legend
         d3.select(legendRef.current)
@@ -225,6 +232,7 @@ export const ChartGapminder = props => {
         <>
             <div>
                 <svg
+					ref={svgRef}
                     id="gapminder-app"
                     height={wrapperHeight}
                     width={wrapperWidth}
@@ -236,6 +244,18 @@ export const ChartGapminder = props => {
                         className={classes.bounds}
                         transform={`translate(${margin.left}, ${margin.top})`}
                     >
+						<text
+							transform={`translate(${width / 2})`}
+							className={classes.chartTitle}
+						>
+							COVID-19 in the United States
+						</text>
+						<text
+							transform={`translate(${width / 2}, 24)`}
+							className={classes.chartTitle}
+						>
+							by Day of Outbreak
+						</text>
                         <g
                             ref={xAxisRef}
                             transform={`translate(0, ${height})`}
