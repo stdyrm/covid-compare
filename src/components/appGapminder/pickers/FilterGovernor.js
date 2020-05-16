@@ -12,7 +12,6 @@ const regionOptions = [
 	{id: "republican", name: "Republican", type: "Governor", chartParam: "governor"},
 ];
 
-
 export const FilterGovernor = forwardRef((props, ref) => {
 	const { handleFilter } = props;
 

@@ -120,7 +120,6 @@ export const FilterBatch = props => {
                 New Filter
                 <ChevronRightIcon style={{ marginLeft: "auto" }} />
             </Button>
-
             <Menu
                 anchorEl={anchorEl}
                 open={anchorEl ? Boolean(anchorEl.id === "select-filter") : false}
@@ -133,7 +132,6 @@ export const FilterBatch = props => {
 					<FilterGdp handleFilter={handleFilter} nStates={nStates} />
 				</MenuList>
             </Menu>
-
             <Paper component="ul" className={classes.chipContainer}>
                 {filters.length > 0 ? (
                     filters.map(f => {

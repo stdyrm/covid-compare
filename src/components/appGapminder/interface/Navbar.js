@@ -2,36 +2,23 @@ import React, { useState } from "react";
 import clsx from "clsx";
 
 // components
-import { FilterDashboard } from "../FilterDashboard";
-import { ParamPicker } from "../pickers/ParamPicker";
+import { ParamDashboard } from "./ParamDashboard";
+import { ChartPicker } from "./ChartPicker";
+import { MenuDrawer } from "./MenuDrawer";
 
 // style
-import {
-    AppBar,
-    Toolbar,
-    IconButton,
-    Drawer,
-	ClickAwayListener,
-	Tooltip,
-	useMediaQuery,
-	Menu,
-	List
-} from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import BubbleChartIcon from "@material-ui/icons/BubbleChart";
 import MenuIcon from "@material-ui/icons/Menu";
-import TimelineIcon from "@material-ui/icons/Timeline";
-import AssessmentIcon from '@material-ui/icons/Assessment';
- 
+
 const drawerWidth = 250;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     root: {
         display: "flex",
     },
     appBar: {
-		backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.main,
         color: theme.palette.primary.contrastText,
         transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.sharp,
@@ -55,55 +42,27 @@ const useStyles = makeStyles((theme) => ({
     hide: {
         display: "none",
     },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 1,
-    },
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    drawerHeader: {
-        display: "flex",
-        alignItems: "center",
-        padding: theme.spacing(0, 1),
-        ...theme.mixins.toolbar,
-        justifyContent: "flex-end",
-        backgroundColor: theme.palette.background.default,
-    },
-    tab: {
-        opacity: 0.7,
-    },
-    menuItem: {
-        opacity: 0.7,
-        "&:hover": {
-            opacity: 1,
-        },
-		toolbar: {
-			display: "flex",
-			justifyContent: "flex-start",
-		},
-    },
 }));
 
-export const Navbar = (props) => {
+export const Navbar = props => {
     const { data, selector, handleSelector } = props;
 
-	const [open, setOpen] = useState(false);
-	const [anchorEl, setAnchorEl] = useState(null);
+    const [open, setOpen] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const classes = useStyles();
     const theme = useTheme();
-	const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
+    const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
     const handleDrawer = () => {
         setOpen(!open);
-	};
-	
-	const handleParamMenu = (e) => {
-		!anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
-	};
+    };
 
-    const handleClickAway = (e) => {
+    const handleParamMenu = e => {
+        !anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
+    };
+
+    const handleClickAway = e => {
         if (e.x > drawerWidth && e.y > 70 && open) {
             setOpen(false);
         }
@@ -129,80 +88,24 @@ export const Navbar = (props) => {
                     >
                         <MenuIcon className={classes.menuButton} />
                     </IconButton>
-					{mqSmall 
-						? <span>
-								<Tooltip title="Chart parameters">
-									<IconButton 
-										id="parameters-btn" 
-										className={classes.menuButton} 
-										onClick={handleParamMenu}
-									>
-										<AssessmentIcon />
-									</IconButton>
-								</Tooltip>
-								<Menu
-									anchorEl={anchorEl}
-									open={anchorEl ? Boolean(anchorEl.id === "parameters-btn") : false}
-									onClose={handleParamMenu}
-								>
-									<List>
-										<ParamPicker
-											data={data}
-											selector={selector}
-											handleSelector={handleSelector}
-										/>
-									</List>
-								</Menu>
-							</span>
-						: <ParamPicker
-							data={data}
-							selector={selector}
-							handleSelector={handleSelector}
-						/>
-					}
-					<span style={{marginLeft: "auto"}}>
-						<Tooltip title="Line chart">
-							<IconButton component="a" href="/covidcompare/#/line-app" className={classes.menuButton}>
-								<TimelineIcon />
-							</IconButton>
-						</Tooltip>
-						<Tooltip title="Gapminder chart">
-							<IconButton component="a" href="/covidcompare/#/gapminder-app" className={classes.menuButton}>
-								<BubbleChartIcon />
-							</IconButton>
-						</Tooltip>
-					</span>
+                    <ParamDashboard
+                        mqSmall={mqSmall}
+                        data={data}
+                        selector={selector}
+                        handleSelector={handleSelector}
+                        handleParamMenu={handleParamMenu}
+                        anchorEl={anchorEl}
+                    />
+                    <span style={{ marginLeft: "auto" }}>
+                        <ChartPicker />
+                    </span>
                 </Toolbar>
-                <ClickAwayListener onClickAway={handleClickAway}>
-                    <Drawer
-                        className={classes.drawer}
-                        variant="persistent"
-                        anchor="left"
-                        open={open}
-                        classes={{
-                            paper: classes.drawerPaper,
-                        }}
-                    >
-                        <div
-                            className={classes.drawerHeader}
-                            style={{
-                                backgroundColor: theme.palette.primary.main,
-                            }}
-                        >
-                            <IconButton
-                                color="inherit"
-                                edge="end"
-                                onClick={handleDrawer}
-                                style={{
-                                    color: theme.palette.primary.contrastText,
-                                }}
-                            >
-                                <ChevronLeftIcon />
-                            </IconButton>
-                        </div>
-                        <FilterDashboard data={data} />
-                    </Drawer>
-                </ClickAwayListener>
+                <MenuDrawer
+                    data={data}
+                    handleDrawer={handleDrawer}
+                    open={open}
+                    handleClickAway={handleClickAway}
+                />
             </AppBar>
         </>
     );
