@@ -68,3 +68,20 @@ export const labelParams = {
 	xLabel: "Cases per Thousand",
 	yLabel: "Deaths per Thousand"
 };
+
+// color param categories
+export const cParamCategories = {
+    region: ["Northeast", "Midwest", "South", "West"],
+    division: [
+        "New England",
+        "Mid-Atlantic",
+        "East North Central",
+        "West North Central",
+        "South Atlantic",
+        "East South Central",
+        "West South Central",
+        "Mountain",
+        "Pacific",
+    ],
+    governor: ["Republican", "Democrat", "n/a"],
+};

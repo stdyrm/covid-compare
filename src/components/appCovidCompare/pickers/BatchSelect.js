@@ -45,10 +45,6 @@ export const BatchSelect = props => {
 	const theme = useTheme();
 	const classes = useStyles();
 	const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
-
-    const handleMenu = e => {
-		!anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
-    };
 	
 	const handleSelectedFilter = (newSelectedFilter) => {
 		setSelectedFilter(newSelectedFilter);

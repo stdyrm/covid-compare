@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 
 // params
-import { chartParams } from "./appParams";
+import { chartParams, cParamCategories } from "./appParams";
 
 // components
 import { ChartGapminder } from './chart/ChartGapminder'; 
@@ -77,7 +77,8 @@ export const AppGapminder = () => {
 			/>
 			<div transform={`translate(${margin.left}, ${margin.top})`}>
 				{data 
-					&& <ChartGapminder 
+					&& <ChartGapminder
+						cParamCategories={cParamCategories} 
 						selector={selector}
 						data={data}
 						wrapper={wrapper} 

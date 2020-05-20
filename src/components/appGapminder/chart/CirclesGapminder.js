@@ -154,7 +154,7 @@ export const CirclesGapminder = (props) => {
 				}
 			});
 
-			const circleLabel = d3.select(circlesRef.current).selectAll("text")
+			d3.select(circlesRef.current).selectAll("text")
 				.data(dataAt(dayCounter), d => d)
 				.join("text")
 					.call(label => {

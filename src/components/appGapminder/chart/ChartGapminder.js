@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
+import PropTypes from "prop-types";
 import * as d3 from "d3";
 
 // context
@@ -13,24 +14,8 @@ import { DayCounterSlider } from "../interface/DayCounterSlider";
 import { Grid, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-const cParamCategories = {
-    region: ["Northeast", "Midwest", "South", "West"],
-    division: [
-        "New England",
-        "Mid-Atlantic",
-        "East North Central",
-        "West North Central",
-        "South Atlantic",
-        "East South Central",
-        "West South Central",
-        "Mountain",
-        "Pacific",
-    ],
-    governor: ["Republican", "Democrat", "n/a"],
-};
-
 export const ChartGapminder = props => {
-    const { data, selector, wrapper, bounds } = props;
+	const { cParamCategories, data, selector, wrapper, bounds } = props;
     const { xParam, yParam, cParam } = selector;
     const { wrapperWidth, wrapperHeight, margin } = wrapper;
     const { width, height } = bounds;
@@ -55,6 +40,11 @@ export const ChartGapminder = props => {
 			fill: theme.palette.text.primary,
 			fontWeight: 700,
 			fontSize: "1rem",
+		}, 
+		chartSubtitle: {
+			textAnchor: "middle",
+			fill: theme.palette.text.primary,
+			fontSize: ".6rem",
 		},
         chartWrapper: {
             display: "inline-block",
@@ -254,7 +244,13 @@ export const ChartGapminder = props => {
 							transform={`translate(${width / 2}, 24)`}
 							className={classes.chartTitle}
 						>
-							by Day of Outbreak
+							Outbreak Days 1 - 60
+						</text>
+						<text
+							transform={`translate(${width / 2}, 44)`}
+							className={classes.chartSubtitle}
+						>
+							*data from the New York Times
 						</text>
                         <g
                             ref={xAxisRef}
@@ -296,4 +292,12 @@ export const ChartGapminder = props => {
             </Grid>
         </>
     );
+};
+
+ChartGapminder.propTypes = {
+	cParamCategories: PropTypes.object,
+	data: PropTypes.arrayOf(PropTypes.object),
+	selector: PropTypes.object,
+	wrapper: PropTypes.object,
+	bounds: PropTypes.object,
 };

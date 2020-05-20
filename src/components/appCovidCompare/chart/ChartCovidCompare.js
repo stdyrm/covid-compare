@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import * as d3 from "d3";
 
 // Components
@@ -194,4 +195,9 @@ export const ChartCovidCompare = props => {
             </svg>
 		</>
     );
+};
+
+ChartCovidCompare.propTypes = {
+	wrapper: PropTypes.object,
+	bounds: PropTypes.object,
 };
