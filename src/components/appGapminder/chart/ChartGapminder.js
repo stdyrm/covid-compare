@@ -244,7 +244,7 @@ export const ChartGapminder = props => {
 							transform={`translate(${width / 2}, 24)`}
 							className={classes.chartTitle}
 						>
-							Outbreak Days 1 - 60
+							Outbreak Days 1 - 70
 						</text>
 						<text
 							transform={`translate(${width / 2}, 44)`}
