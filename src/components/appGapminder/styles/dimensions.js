@@ -2,7 +2,7 @@ export const wrapper = {
 	wrapperWidth: window.innerWidth * .8,
 	wrapperHeight: window.innerHeight * .8,
 	margin: { 
-		top: 40,
+		top: 80,
 		right: 40,
 		bottom: 60,
 		left: 60

@@ -100,38 +100,7 @@ export const ChartCovidCompare = props => {
 				ref={svgRef}
 				className={classes.rootSVG}
 				viewBox={`0 0 ${wrapperWidth} ${wrapperHeight}`}
-				// preserveAspectRatio="xMinYMin meet"
 			>
-                <text
-                    className={classes.title}
-                    style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
-                    textAnchor="middle"
-                    transform={`translate (${
-                        margin.left + width / 2
-                    }, ${margin.top / 2})`}
-                >
-                    COVID-19 US State Comparison
-                </text>
-                <text
-                    className={classes.axisLabel}
-                    style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
-                    textAnchor="middle"
-                    transform={`translate(${margin.left + width / 2}, ${
-                        height + margin.top + 40
-                    })`}
-                >
-                    Day of Outbreak
-                </text>
-                <text
-                    className={classes.axisLabel}
-                    style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
-                    textAnchor="middle"
-                    transform={`translate(${
-                        margin.left * .6
-                    }, ${height / 2}) rotate(-90)`}
-                >
-                    Cases per 1000 people
-                </text>
                 <text
                     className={classes.footnotes}
                     textAnchor="left"
@@ -179,6 +148,37 @@ export const ChartCovidCompare = props => {
                     transform={`translate(${margin.left}, ${margin.top})`}
                     ref={boundsRef}
                 >
+					<text
+						className={classes.title}
+						style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
+						textAnchor="middle"
+						x={width / 2}
+						y={-margin.top * .5}
+					>
+						COVID-19 US State Comparison
+					</text>
+					<text
+						className={classes.axisLabel}
+						style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
+						textAnchor="middle"
+						// transform={`translate(${margin.left + width / 2}, ${
+						// 	height + margin.top + 40
+						// })`}
+						x={width / 2}
+						y={height + 40}
+					>
+						Day of Outbreak
+					</text>
+					<text
+						className={classes.axisLabel}
+						style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
+						textAnchor="middle"
+						transform={`rotate(-90)`}
+						x={-height / 2}
+						y={-40}
+					>
+						Cases per 1000 people
+					</text>
                     <g
                         ref={yAxisRef}
                         id="y-axis"

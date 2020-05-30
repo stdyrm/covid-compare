@@ -45,12 +45,18 @@ export const ChartGapminder = props => {
 			textAnchor: "middle",
 			fill: theme.palette.text.primary,
 			fontWeight: 700,
-			fontSize: "1rem",
+			fontSize: ".8rem",
+			[theme.breakpoints.up("sm")]: {
+				fontSize: "1rem"
+			},
 		}, 
 		chartSubtitle: {
 			textAnchor: "middle",
 			fill: theme.palette.text.primary,
-			fontSize: ".6rem",
+			fontSize: ".5rem",
+			[theme.breakpoints.up("sm")]: {
+				fontSize: ".6rem"
+			}
 		},
         chartWrapper: {
             display: "inline-block",
@@ -68,7 +74,10 @@ export const ChartGapminder = props => {
         legend: {
             color: theme.palette.primary.contrastText,
             fontWeight: 700,
-            fontSize: ".8rem",
+			fontSize: ".6rem",
+			[theme.breakpoints.up("sm")]: {
+				fontSize: ".8rem"
+			}
         },
         sliderContainer: {
             flexDirection: () => (mqSmall ? "column" : "row"),
@@ -97,8 +106,9 @@ export const ChartGapminder = props => {
             .range([0, width]);
         const yScale = d3
             .scaleLinear()
-            .domain(d3.extent(dataStates, d => d[yParam.selected]))
-            .range([height, 0]);
+			.domain(d3.extent(dataStates, d => d[yParam.selected]))
+			.range([height, 0]);
+            
         let colorScale;
 
         if (cParam.selected === "region") {
@@ -173,7 +183,7 @@ export const ChartGapminder = props => {
                     enter
                         .append("text")
                         .attr("x", "1rem")
-                        .attr("y", -1000)
+						.attr("y", -1000)
                         .attr("fill", d => colorScale(d))
                         .attr("text-anchor", "start")
                         .text(d => d)
@@ -241,19 +251,22 @@ export const ChartGapminder = props => {
                         transform={`translate(${margin.left}, ${margin.top})`}
                     >
 						<text
-							transform={`translate(${width / 2})`}
+							x={width / 2}
+							y={mqSmall ? -margin.top * .5 : -margin.top * .7}
 							className={classes.chartTitle}
 						>
 							COVID-19 in the United States
 						</text>
 						<text
-							transform={`translate(${width / 2}, 24)`}
+							x={width / 2}
+							y={mqSmall ? -margin.top * .3 : -margin.top * .4}
 							className={classes.chartTitle}
 						>
 							Outbreak Days 1 - 70
 						</text>
 						<text
-							transform={`translate(${width / 2}, 44)`}
+							x={width / 2}
+							y={mqSmall ? -margin.top * .15 : -margin.top * .15}
 							className={classes.chartSubtitle}
 						>
 							*data from the New York Times

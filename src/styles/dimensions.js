@@ -2,10 +2,10 @@ export const wrapper = {
 	wrapperWidth: window.innerWidth * .9,
 	wrapperHeight: window.innerHeight * .9,
 	margin: { 
-		top: 40,
-		right: 40,
+		top: 80,
+		right: window.innerWidth * .1,
 		bottom: 130,
-		left: 60
+		left: window.innerWidth * .1
 	}
   };
   
