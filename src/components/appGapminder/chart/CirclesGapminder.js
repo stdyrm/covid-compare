@@ -65,7 +65,6 @@ export const CirclesGapminder = (props) => {
 			const circle = d3.select(circlesRef.current).selectAll('circle')
 			.data(dataAt(dayCounter), d => d)
 			.join('circle')
-				// .sort((a,b) => d3.descending(a[zParam.selected], b[zParam.selected]))
 				.sort((a,b) => d3.descending(infoStates[a.state][zParam.selected], infoStates[b.state][zParam.selected]))
 				.attr('r', d => zParam.selected === "population" 
 					? infoStates[d.state][zParam.selected] / 1000000 
