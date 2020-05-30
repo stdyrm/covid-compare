@@ -19,7 +19,8 @@ import { gapminderData } from './gapminderData';
 import { wrapper, bounds } from "./styles/dimensions";
 import { makeStyles } from "@material-ui/core/styles";
 
-export const AppGapminder = () => {
+export const AppGapminder = (props) => {
+	const { darkMode, setDarkMode } = props;
 	const { margin } = wrapper;
 	const { width } = bounds;
 
@@ -74,6 +75,8 @@ export const AppGapminder = () => {
 				selector={selector} 
 				handleSelector={handleSelector}
 				className={classes.navbar}
+				darkMode={darkMode}
+				setDarkMode={setDarkMode}
 			/>
 			<div transform={`translate(${margin.left}, ${margin.top})`}>
 				{data 

@@ -2,7 +2,7 @@ import React from "react";
 
 // style
 import { FormControl, InputLabel, Select, MenuItem, Grid, useMediaQuery } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
 	filterSelector: {
         minWidth: 150,
         fontWeight: 500,
-        fontSize: ".8rem",
+		fontSize: ".8rem",
+		color: theme.palette.text.primary
     },
     filterMenuItem: {
         color: theme.palette.text.primary,
@@ -26,16 +27,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const ParamPicker = (props) => {
-	const { selector, handleSelector } = props;
-	const theme = useTheme();
-
-	const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
+	const { flexDirection, selector, handleSelector } = props;
 	const classes = useStyles();
 
     return (
-		<Grid container className={classes.rootContainer} style={mqSmall 
-			? {flexDirection: "column", alignItems: "center"} 
-			: {flexDirection: "row"}}
+		<Grid container className={classes.rootContainer} style=
+			{flexDirection === "row"  
+				? { flexDirection: "row", justifyContent: "space-evenly" }
+				: { flexDirection: "column" }
+			}
 		>
             {Object.keys(selector).map((p) => {
                 return (

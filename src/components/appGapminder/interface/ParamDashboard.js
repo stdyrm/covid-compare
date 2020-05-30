@@ -2,11 +2,10 @@ import React from "react";
 
 // components
 import { ParamPicker } from "../pickers/ParamPicker";
+import { SectionTitle } from "../../sharedComponents/SectionTitle";
 
 // style
-import { IconButton, Tooltip, Menu, List } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import AssessmentIcon from "@material-ui/icons/Assessment";
 
 const useStyles = makeStyles(theme => ({
     menuButton: {
@@ -14,58 +13,35 @@ const useStyles = makeStyles(theme => ({
         "&:hover": {
             backgroundColor: "transparent",
         },
-    },
+	},
+	filterBody: {
+		paddingLeft: theme.spacing(3),
+		marginBottom: theme.spacing(4)
+	},
 }));
 
 export const ParamDashboard = props => {
     const {
-        mqSmall,
+		flexDirection,
         data,
         selector,
         handleSelector,
-        handleParamMenu,
-        anchorEl,
     } = props;
     const classes = useStyles();
 
     return (
         <>
-            {mqSmall ? (
-                <span>
-                    <Tooltip title="Chart parameters">
-                        <IconButton
-                            id="parameters-btn"
-                            className={classes.menuButton}
-                            onClick={handleParamMenu}
-                        >
-                            <AssessmentIcon />
-                        </IconButton>
-                    </Tooltip>
-                    <Menu
-                        anchorEl={anchorEl}
-                        open={
-                            anchorEl
-                                ? Boolean(anchorEl.id === "parameters-btn")
-                                : false
-                        }
-                        onClose={handleParamMenu}
-                    >
-                        <List>
-                            <ParamPicker
-                                data={data}
-                                selector={selector}
-                                handleSelector={handleSelector}
-                            />
-                        </List>
-                    </Menu>
-                </span>
-            ) : (
-                <ParamPicker
-                    data={data}
-                    selector={selector}
-                    handleSelector={handleSelector}
-                />
-            )}
+			<SectionTitle divider>
+				Parameters
+			</SectionTitle>
+			<div className={classes.filterBody}>
+				<ParamPicker
+					flexDirection={flexDirection}
+					data={data}
+					selector={selector}
+					handleSelector={handleSelector}
+				/>
+			</div>
         </>
     );
 };

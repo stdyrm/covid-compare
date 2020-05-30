@@ -11,7 +11,7 @@ import { OpacitySlider } from "../interface/OpacitySlider";
 import { DayCounterSlider } from "../interface/DayCounterSlider";
 
 // style
-import { Grid, useMediaQuery } from "@material-ui/core";
+import { Grid, Box, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 export const ChartGapminder = props => {
@@ -28,6 +28,12 @@ export const ChartGapminder = props => {
     const theme = useTheme();
     const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
     const useStyles = makeStyles(theme => ({
+		bodyWrapper: {
+			paddingLeft: 0,
+			[theme.breakpoints.up("md")]: {
+				paddingLeft: 260
+			}
+		},
         rootSVG: {
             display: "inline-block",
             position: "relative",
@@ -219,7 +225,7 @@ export const ChartGapminder = props => {
     }, [dayCounter, theme]);
 
     return (
-        <>
+        <Box className={classes.bodyWrapper}>
             <div>
                 <svg
 					ref={svgRef}
@@ -290,7 +296,7 @@ export const ChartGapminder = props => {
                     />
                 </Grid>
             </Grid>
-        </>
+        </Box>
     );
 };
 

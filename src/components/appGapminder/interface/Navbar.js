@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import clsx from "clsx";
 
 // components
 import { ParamDashboard } from "./ParamDashboard";
-import { ChartPicker } from "./ChartPicker";
+import { FilterDashboard } from "./FilterDashboard";
+import { ChartPicker } from "../../sharedComponents/ChartPicker";
 import { MenuDrawer } from "./MenuDrawer";
+import { Settings } from "../../Settings";
 
 // style
-import { AppBar, Toolbar, IconButton, useMediaQuery } from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Button, Menu, MenuList } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 
@@ -18,12 +19,8 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
     },
     appBar: {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
-        transition: theme.transitions.create(["margin", "width"], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
+        backgroundColor: theme.palette.background.dark,
+        color: theme.palette.text.primary,
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
@@ -32,13 +29,13 @@ const useStyles = makeStyles(theme => ({
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
         }),
-    },
+	},
     menuButton: {
-        color: theme.palette.primary.contrastText,
+        color: theme.palette.text.primary,
         "&:hover": {
             backgroundColor: "transparent",
         },
-    },
+	},
     hide: {
         display: "none",
     },
@@ -46,67 +43,68 @@ const useStyles = makeStyles(theme => ({
 
 export const Navbar = props => {
     const { data, selector, handleSelector } = props;
-
-    const [open, setOpen] = useState(false);
-    const [anchorEl, setAnchorEl] = useState(null);
+	const [mobileOpen, setMobileOpen] = useState(false);
+	const [anchorEl, setAnchorEl] = useState(null);
 
     const classes = useStyles();
-    const theme = useTheme();
-    const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
+
+	const handleOptions = (e) => {
+		!anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
+	};
 
     const handleDrawer = () => {
-        setOpen(!open);
-    };
-
-    const handleParamMenu = e => {
-        !anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
-    };
-
-    const handleClickAway = e => {
-        if (e.x > drawerWidth && e.y > 70 && open) {
-            setOpen(false);
-        }
+		setMobileOpen(!mobileOpen);
     };
 
     return (
         <>
             <AppBar
                 position="relative"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}
+				className={classes.appBar}
             >
                 <Toolbar className={classes.toolbar}>
                     <IconButton
                         onClick={handleDrawer}
                         edge="start"
                         disableRipple
-                        className={clsx(
-                            classes.menuButton,
-                            open && classes.hide
-                        )}
+                        className={classes.menuButton}
                     >
                         <MenuIcon className={classes.menuButton} />
                     </IconButton>
-                    <ParamDashboard
-                        mqSmall={mqSmall}
-                        data={data}
-                        selector={selector}
-                        handleSelector={handleSelector}
-                        handleParamMenu={handleParamMenu}
-                        anchorEl={anchorEl}
-                    />
-                    <span style={{ marginLeft: "auto" }}>
-                        <ChartPicker />
-                    </span>
-                </Toolbar>
-                <MenuDrawer
-                    data={data}
-                    handleDrawer={handleDrawer}
-                    open={open}
-                    handleClickAway={handleClickAway}
-                />
+					<span style={{ marginLeft: "auto" }}>
+						<Button onClick={handleOptions}>
+							Options
+						</Button>
+						<Menu
+							anchorEl={anchorEl}
+							open={Boolean(anchorEl)}
+							onClose={handleOptions}
+						>
+							<MenuList style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+								<ChartPicker />
+								<Settings />
+							</MenuList>
+						</Menu>
+					</span>
+			    </Toolbar>
             </AppBar>
+			<MenuDrawer
+				mobileOpen={mobileOpen}
+				handleDrawer={handleDrawer}
+				persistent
+			>
+				<div>
+					<ParamDashboard
+						flexDirection="column"
+						data={data}
+						selector={selector}
+						handleSelector={handleSelector}
+					/>
+				</div>
+				<div>
+					<FilterDashboard handleSelector={handleSelector} />
+				</div>
+			</MenuDrawer>
         </>
     );
 };

@@ -1,12 +1,8 @@
 import React, { useState, useContext } from "react";
-import {
-    FormGroup,
-    Typography,
-	Divider,
-} from "@material-ui/core";
+import { FormGroup } from "@material-ui/core";
 
 // components
-import { DeselectAll } from "../pickers/DeselectAll";
+import { SectionTitle } from "../../sharedComponents/SectionTitle";
 import {FilterBatch} from "../pickers/FilterBatch";
 import { SelectedStatus } from "../pickers/SelectedStatus";
 import { NumberPicker } from "../pickers/NumberPicker";
@@ -15,34 +11,31 @@ import { NumberPicker } from "../pickers/NumberPicker";
 import { selectionContext } from "../../../context/selectionContext";
 
 // styles
+import { Tooltip, IconButton, Typography } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import ClearIcon from "@material-ui/icons/Clear";
 
 const useStyles = makeStyles(theme => ({
 	deselectAll: {
-		marginBottom: "1.5rem",
-	},
-	deselectAllButton: {
-		color: "#e32636",
-		"&:hover": {
-			backgroundColor: "transparent",
-		},
-	},
-	dashboardTitle: {
-		color: theme.palette.primary.contrastText,
-		fontWeight: 700,
-		fontSize: "1.2rem" 
-	},
-	dashboardDivider: {
-		backgroundColor: theme.palette.primary.contrastText,
-		marginBottom: ".2rem",
+		display: "flex",
+		alignItems: "center",
+		marginBottom: theme.spacing(2)
 	},
 	filterBatch: {
 		justifyContent: "flex-start",
 		color: theme.palette.text.primary,
 	},
+	selectedStatus: {
+		marginTop: "100"
+	},
+	filterBody: {
+		paddingLeft: theme.spacing(3),
+		marginBottom: theme.spacing(4)
+	},
 }));
 
 export const FilterDashboard = (props) => {
+	const { handleSelector } = props;
     const { selectedCircles, setSelectedCircles } = useContext(selectionContext);
 	const classes = useStyles();
 	const theme = useTheme();
@@ -95,26 +88,30 @@ export const FilterDashboard = (props) => {
     return (
         <>
             <FormGroup>
-				<DeselectAll handleDeselectAll={handleDeselectAll} classes={classes} />
-				<NumberPicker nStates={nStates} setNStates={setNStates} />
-				<Typography className={classes.dashboardTitle}>
+				<SectionTitle divider>
 					Filters
-				</Typography>
-				<Divider className={classes.dashboardDivider} />
-				<FilterBatch 
-					className={classes.filterBatch}
-					nStates={nStates}
-					setNStates={setNStates}
-					filters={filters}
-					setFilters={setFilters}
-					handleDeleteFilter={handleDeleteFilter}
-					handleFilter={handleFilter}
-				/>
-				<SelectedStatus 
-					handleChange={handleChange} 
-					classes={classes} 
-					theme={theme}
-				/>
+				</SectionTitle>
+				<div className={classes.filterBody}>
+					<NumberPicker nStates={nStates} setNStates={setNStates} />
+					<FilterBatch 
+						nStates={nStates}
+						setNStates={setNStates}
+						filters={filters}
+						setFilters={setFilters}
+						handleDeleteFilter={handleDeleteFilter}
+						handleFilter={handleFilter}
+						handleSelector={handleSelector}
+					/>
+				</div>
+				<SectionTitle divider>
+					Selections
+				</SectionTitle>
+				<div className={classes.filterBody}>
+					<SelectedStatus 
+						handleChange={handleChange} 
+						handleDeselectAll={handleDeselectAll}
+					/>
+				</div>
             </FormGroup>
         </>
     );

@@ -9,13 +9,13 @@ import USStates from "./data/us-states.csv";
 import stateInfo from "./data/stateInfo.json";
 
 // components
-import { Footnotes } from "./components/Footnotes";
 import { AppGapminder } from "./components/appGapminder/AppGapminder";
 import { AppCovidCompare } from "./components/appCovidCompare/AppCovidCompare";
 
 // context
 import { dataContext } from "./context/dataContext";
 import { statesContext } from "./context/statesContext";
+import { ThemeContext } from "./context/ThemeContext";
 
 // styles
 import { wrapper, bounds } from "./styles/dimensions";
@@ -118,6 +118,7 @@ function App() {
 
     return (
         <>
+			<ThemeContext.Provider value={{ darkMode, setDarkMode }}>
             <ThemeProvider theme={getTheme(theme, darkMode)}>
                 <CssBaseline />
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -138,16 +139,11 @@ function App() {
 							<Switch>
 								<Redirect exact from="/" to="/gapminder-app" />
 							</Switch>
-							<Footnotes
-								darkMode={darkMode}
-								setDarkMode={setDarkMode}
-								wrapper={wrapper}
-								bounds={bounds}
-							/>
                         </statesContext.Provider>
                     </dataContext.Provider>
                 </MuiPickersUtilsProvider>
             </ThemeProvider>
+			</ThemeContext.Provider>
         </>
     );
 }

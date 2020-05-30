@@ -15,13 +15,14 @@ import clsx from "clsx";
 // components
 import { BatchSelect } from "../pickers/BatchSelect";
 import { Dashboard } from "../pickers/Dashboard";
+import { Settings } from "../../Settings";
+import { ChartPicker } from "../../sharedComponents/ChartPicker";
 
 // styles
+import { Button, MenuList } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MenuIcon from "@material-ui/icons/Menu";
-import TimelineIcon from "@material-ui/icons/Timeline";
-import BubbleChartIcon from "@material-ui/icons/BubbleChart";
 import AssessmentIcon from '@material-ui/icons/Assessment';
 
 const drawerWidth = 250;
@@ -31,8 +32,8 @@ const useStyles = makeStyles(theme => ({
 		display: "flex",
     },
     appBar: {
-		backgroundColor: theme.palette.primary.main,
-		color: theme.palette.primary.contrastText,
+		backgroundColor: theme.palette.background.dark,
+		color: theme.palette.text.primary,
         transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -47,7 +48,7 @@ const useStyles = makeStyles(theme => ({
         }),
     },
     menuButton: {
-        color: theme.palette.primary.contrastText,
+        color: theme.palette.text.primary,
         "&:hover": {
             backgroundColor: "transparent",
         },
@@ -57,10 +58,13 @@ const useStyles = makeStyles(theme => ({
     },
     drawer: {
         width: drawerWidth,
-        flexShrink: 1,
-    },
+		flexShrink: 1,
+		backgroundColor: theme.palette.background.default,
+		color: theme.palette.text.primary,
+	},
     drawerPaper: {
-        width: drawerWidth,
+		width: drawerWidth,
+		backgroundColor: theme.palette.background.default,
     },
     drawerHeader: {
         display: "flex",
@@ -83,7 +87,8 @@ const useStyles = makeStyles(theme => ({
 
 export const Navbar = props => {
     const [open, setOpen] = useState(false);
-    const [anchorEl, setAnchorEl] = useState(null);
+	const [anchorEl, setAnchorEl] = useState(null);
+	const [mobileOpen, setMobileOpen] = useState(false);
 	
 	const theme = useTheme();
 	const classes = useStyles();
@@ -95,7 +100,11 @@ export const Navbar = props => {
 
     const handleDrawerClose = () => {
         setOpen(false);
-    };
+	};
+
+	const handleOptions = (e) => {
+		!anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
+	};
 
     const handleClickAway = e => {
         if (e.x > drawerWidth && e.y > 70 && open) {
@@ -147,18 +156,23 @@ export const Navbar = props => {
 						</> 
 						: <BatchSelect {...props} />
 					}
-					<span style={{marginLeft: "auto"}}>
-						<Tooltip title="Line chart">
-							<IconButton component="a" href="/covidcompare/#/line-app" className={classes.menuButton}>
-								<TimelineIcon />
-							</IconButton>
-						</Tooltip>
-						<Tooltip title="Gapminder chart">
-							<IconButton component="a" href="/covidcompare/#/gapminder-app" className={classes.menuButton}>
-								<BubbleChartIcon />
-							</IconButton>
-						</Tooltip>
+
+					<span style={{ marginLeft: "auto" }}>
+						<Button id="options-btn-cc" onClick={handleOptions}>
+							Options
+						</Button>
+						<Menu
+							anchorEl={anchorEl}
+							open={anchorEl ? Boolean(anchorEl.id === "options-btn-cc") : false}
+							onClose={handleOptions}
+						>
+							<MenuList style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+								<ChartPicker />
+								<Settings />
+							</MenuList>
+						</Menu>
 					</span>
+
                 </Toolbar>
             </AppBar>
             <ClickAwayListener onClickAway={handleClickAway}>
@@ -170,11 +184,9 @@ export const Navbar = props => {
                     classes={{
                         paper: classes.drawerPaper,
                     }}
-                    style={{ color: theme.palette.text.primary }}
                 >
                     <div
                         className={classes.drawerHeader}
-                        style={{ backgroundColor: theme.palette.primary.main }}
                     >
                         <IconButton
                             color="inherit"
@@ -191,6 +203,6 @@ export const Navbar = props => {
                     <Dashboard {...props} />
                 </Drawer>
             </ClickAwayListener>
-        </div>
+		</div>
     );
 };

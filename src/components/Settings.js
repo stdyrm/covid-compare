@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { saveSvgAsPng } from "save-svg-as-png";
+
+// context
+import { ThemeContext } from "../context/ThemeContext";
 
 // styles
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import "../styles/styles.css";
-import { IconButton, Tooltip, Grid } from "@material-ui/core";
+import { IconButton, Tooltip, Typography, MenuItem } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 
-export const Footnotes = props => {
-    const { darkMode, setDarkMode } = props;
+export const Settings = () => {
+    const { darkMode, setDarkMode } = useContext(ThemeContext);
 	
     const useStyles = makeStyles(theme => ({
         rootGrid: {
@@ -18,7 +21,9 @@ export const Footnotes = props => {
         },
         footerButton: {
             color: theme.palette.text.secondary,
-            marginRight: "auto",
+			"&:hover": {
+				backgroundColor: "transparent",
+			}
         },
     }));
     const classes = useStyles();
@@ -44,27 +49,23 @@ export const Footnotes = props => {
 	};
 
     return (
-        <Grid container className={classes.rootGrid}>
-            <Grid item>
-                <Tooltip title="Save chart as image" placement="right">
-                    <IconButton
-                        onClick={saveImage}
-                        className={classes.footerButton}
-                    >
-                        <SaveIcon />
-                    </IconButton>
-                </Tooltip>
-            </Grid>
-            <Grid item>
-                <Tooltip title="Toggle dark/light theme" placement="right">
-                    <IconButton
-                        onClick={() => setDarkMode(!darkMode)}
-                        className={classes.footerButton}
-                    >
-                        <Brightness7Icon />
-                    </IconButton>
-                </Tooltip>
-            </Grid>
-        </Grid>
+        <>
+			<MenuItem onClick={saveImage}>
+				<Tooltip title="Save chart as image" placement="right">
+					<IconButton className={classes.footerButton}>
+						<SaveIcon />
+					</IconButton>
+				</Tooltip>
+				<Typography display="inline">Save chart</Typography>
+			</MenuItem>
+			<MenuItem onClick={() => setDarkMode(!darkMode)}>
+				<Tooltip title="Toggle dark/light theme" placement="right">
+					<IconButton className={classes.footerButton}>
+						<Brightness7Icon />
+					</IconButton>
+				</Tooltip>
+				<Typography display="inline">Dark mode</Typography>
+			</MenuItem>
+	    </>
     );
 };
