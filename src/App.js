@@ -43,7 +43,7 @@ function App() {
                 lockdownEnd: stateInfo[s].lockdownEnd.startsWith("none")
                     ? stateInfo[s].lockdownEnd
                     : dateParser(stateInfo[s].lockdownEnd),
-                color: colors[i],
+				color: colors[i],
             };
         });
 
