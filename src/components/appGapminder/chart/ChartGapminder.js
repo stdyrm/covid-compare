@@ -262,7 +262,7 @@ export const ChartGapminder = props => {
 							y={mqSmall ? -margin.top * .3 : -margin.top * .4}
 							className={classes.chartTitle}
 						>
-							Outbreak Days 1 - 70
+							Outbreak Days 1 - 80
 						</text>
 						<text
 							x={width / 2}
