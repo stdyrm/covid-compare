@@ -4,7 +4,7 @@ import React, { useState, useContext, forwardRef } from "react";
 import { statesContext } from "../../../../context/statesContext";
 
 // style
-import { Menu, MenuItem, FormControl, InputLabel, Select } from "@material-ui/core";
+import { MenuItem } from "@material-ui/core";
 
 const regionOptions = [
     { id: "northeast", name: "Northeast", type: "Region", chartParam: "region" },
