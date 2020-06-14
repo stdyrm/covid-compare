@@ -985,5 +985,16 @@
         "pending": 0,
         "required-hospitalization": 87,
         "deaths": 17
+	},
+	{
+        "date": "06-13-20",
+        "total": 723,
+        "hawaii": 81,
+        "honolulu": 489,
+        "kauai": 21,
+        "maui": 120,
+        "pending": 0,
+        "required-hospitalization": 89,
+        "deaths": 17
     }
 ]
