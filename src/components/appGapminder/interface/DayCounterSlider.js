@@ -13,7 +13,7 @@ export const DayCounterSlider = (props) => {
 				valueLabelDisplay="auto"
 				step={1}
 				min={1}
-				max={85}
+				max={90}
 				onChange={(e, newVal) => setDayCounter(newVal)}
 			/>
 		</>
