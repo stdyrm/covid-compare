@@ -13,8 +13,7 @@ import {
 import clsx from "clsx";
 
 // components
-import { BatchSelect } from "../pickers/BatchSelect";
-import { Dashboard } from "../pickers/Dashboard";
+import { BatchSelect, Dashboard, ParamPicker } from "../pickers";
 import { Settings } from "../../Settings";
 import { ChartPicker } from "../../sharedComponents/ChartPicker";
 
@@ -150,11 +149,16 @@ export const Navbar = props => {
 								anchorEl={anchorEl}
 								open={anchorEl ? Boolean(anchorEl.id === "filters-btn-cc") : false}
 								onClose={handleFilterMenu}
+								style={{textAlign: "center"}}
 							>
 								<BatchSelect handleFilterMenu={handleFilterMenu} {...props} />
+								<ParamPicker {...props}/>
 							</Menu>
 						</> 
-						: <BatchSelect {...props} />
+						: <span style={{display: "flex", alignContent: "flex-end", justifyContent: "space-evenly"}}>
+							<BatchSelect {...props} />
+							<ParamPicker {...props}/>
+						</span>
 					}
 
 					<span style={{ marginLeft: "auto" }}>

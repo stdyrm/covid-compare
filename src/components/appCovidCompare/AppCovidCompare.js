@@ -20,6 +20,7 @@ export const AppCovidCompare = ({ wrapper, bounds }) => {
 	const { infoStates } = useContext(statesContext);
 
 	const [selectedStates, setSelectedStates] = useState(null);
+	const [selectedYParam, setSelectedYParam] = useState("casesPerThousand");
 
 	const mqOrientPortrait = useMediaQuery("(orientation: portrait)");
 
@@ -92,12 +93,15 @@ export const AppCovidCompare = ({ wrapper, bounds }) => {
 					handleSelectedStates={handleSelectedStates}
 					handleSelectAllStates={handleSelectAllStates}
 					handleDeselectAllStates={handleDeselectAllStates}
+					selectedYParam={selectedYParam}
+					setSelectedYParam={setSelectedYParam}
 				/>
 				<ChartCovidCompare
 					chartParams={chartParams}
 					labelParams={labelParams}
 					selectedStates={selectedStates} 
 					setSelectedStates={setSelectedStates}
+					selectedYParam={selectedYParam}
 					wrapper={wrapper}
 					bounds={bounds}
 				/>

@@ -8,12 +8,12 @@ import { dataContext } from '../../context/dataContext';
 import { date } from '../util/constants';
 
 export const MouseMove = (props) => {
-	const { focus, overlay, linesStates, selectedStates, bounds } = props;
+	const { focus, overlay, linesStates, selectedStates, selectedYParam, bounds } = props;
     const { width, height } = bounds;
 	const { dataStates } = useContext(dataContext);
 	
     const xScale = d3.scaleLinear().domain(d3.extent(dataStates, d => d.dayOfOutbreak)).range([0, width]);
-    const yScale = d3.scaleLinear().domain(d3.extent(dataStates, d => d.casesPerThousand)).range([height, 0]);
+    const yScale = d3.scaleLinear().domain(d3.extent(dataStates, d => d[selectedYParam])).range([height, 0]);
 
     useEffect(() => {
         if (overlay && selectedStates) {
@@ -34,8 +34,8 @@ export const MouseMove = (props) => {
                         const i = bisectDate(dataEachState, x0, 0);
 
                         let dataEachStateRangeY = dataEachState[i]
-                            ? dataEachState[i].casesPerThousand 
-                            : dataEachState[dataEachState.length - 1].casesPerThousand;
+                            ? dataEachState[i][selectedYParam] 
+                            : dataEachState[dataEachState.length - 1][selectedYParam];
                         let dataEachStateRangeX = dataEachState[i] 
                             ? dataEachState[i].dayOfOutbreak 
                             : dataEachState[dataEachState.length - 1].dayOfOutbreak;
@@ -62,7 +62,9 @@ export const MouseMove = (props) => {
 								.attr('fill', selectedStates[state].color)
 
                             focus.select(`#d-label-b-${stateHTML}`)
-                                .text(`${dataEachStateRangeY.toFixed(3)} (${dataEachStateRangeCases} tot.)`)
+								.text(d => selectedYParam === "casesPerThousand" 
+									? `${dataEachStateRangeY.toFixed(3)} (${dataEachStateRangeCases.toLocaleString()} tot.)`
+									: `${dataEachStateRangeY.toLocaleString()} new (${dataEachStateRangeCases.toLocaleString()} tot.)`)
                                 .attr('fill', selectedStates[state].color)
                         } 
                     });

@@ -18,6 +18,7 @@ export const Line = props => {
 		overlay,
         selectedStates,
 		bounds,
+		selectedYParam
     } = props;
     const { width, height } = bounds;
 
@@ -46,114 +47,92 @@ export const Line = props => {
                 .scaleLinear()
                 .domain(d3.extent(dataStates, d => d.dayOfOutbreak))
                 .range([0, width]);
-            const yScale = d3
+				
+			const yScale = d3
                 .scaleLinear()
-                .domain(d3.extent(dataStates, d => d.casesPerThousand))
+                .domain(d3.extent(dataStates, d => d[selectedYParam]))
                 .range([height, 0]);
-
-            // Lines
-            const lineGenerator = d3
+				
+			const lineGenerator = d3
                 .line()
                 .x(d => xScale(d.dayOfOutbreak))
-                .y(d => yScale(d.casesPerThousand));
+                .y(d => yScale(d[selectedYParam]));
 
             const linesObject = {};
 
 			const filtered = filterStates(selectedStates)
 			filtered
-                .forEach((state, i) => {
+                .forEach((state,i) => {
                     const dataEachState = dataStates.filter(
                         d => d.state === state
-                    );
+					);
+					
                     // Line label placement
                     const lastDayOfOutbreak =
                         dataEachState[dataEachState.length - 1].dayOfOutbreak;
-                    const lastCasesPerThousand =
+                    const lastCasesDatum =
                         dataEachState[dataEachState.length - 1]
-                            .casesPerThousand;
-
-                    // markers for lockdown date
-                    const lockdownDate = selectedStates[state].lockdown;
-                    const lockdownDay =
-                        (lockdownDate - dataEachState[0].date) /
-                            (24 * 60 * 60 * 10 * 10 * 10) +
-                        1;
-                    const lockdownDayDatum = dataEachState.filter(
-                        d => d.dayOfOutbreak === lockdownDay
-                    )[0];
-
-                    if (lockdownDayDatum) {
-                        linesObject[state] = {
-                            line: lineGenerator(dataEachState),
-                            lineLabelX: xScale(lastDayOfOutbreak) + 3,
-                            lineLabelY: yScale(lastCasesPerThousand),
-                            lockdownMarkerX: xScale(lockdownDay),
-                            lockdownMarkerY: yScale(
-                                lockdownDayDatum.casesPerThousand
-                            ),
-                        };
-                    } else {
-                        linesObject[state] = {
-                            line: lineGenerator(dataEachState),
-                            lineLabelX: xScale(lastDayOfOutbreak) + 3,
-                            lineLabelY: yScale(lastCasesPerThousand),
-                        };
-                    }
+                            [selectedYParam];
+					
+					linesObject[state] = {
+						line: lineGenerator(dataEachState),
+						lineLabelX: xScale(lastDayOfOutbreak) + 3,
+						lineLabelY: yScale(lastCasesDatum),
+					};
                 });
             setLinesStates(linesObject);
         };
-	}, [dataStates, selectedStates, theme]);
+	}, [dataStates, selectedStates, selectedYParam, theme]);
 
 	useEffect(() => {
 		if (selectedStates) {
 			const filtered = filterStates(selectedStates);
 
 			filtered
-			.forEach((state, i) => {
-				const stateHTML = infoStates[state].htmlFormat;
-				// for mousemove
-				let xShift = 0;
-				let yShift = 0;
+				.forEach((state, i) => {
+					const stateHTML = infoStates[state].htmlFormat;
+					// for mousemove
+					let xShift = 0;
+					let yShift = 0;
 
-				if (i > 11) {
-					if (mqLarge) {
-						xShift = 180;
-						yShift = 12 * 40;
-					} else if (mqMedium) {
-						xShift = 120;
-						yShift = 12 * 40;
-					} 
-				}
+					if (i > 11) {
+						if (mqLarge) {
+							xShift = 180;
+							yShift = 12 * 40;
+						} else if (mqMedium) {
+							xShift = 120;
+							yShift = 12 * 40;
+						} 
+					}
 
 				focus
 					.append("circle")
-					.attr("id", `circle-${stateHTML}`)
-					.attr("r", 5)
-					.attr("fill", selectedStates[state].color)
-					.attr("stroke", theme.palette.text.primary);
+						.attr("id", `circle-${stateHTML}`)
+						.attr("r", 5)
+						.attr("fill", selectedStates[state].color)
+						.attr("stroke", theme.palette.text.primary);
 
 				if (mqMedium ? i < 24 : i < 12) {
 					focus
 						.append("text")
-						.attr("id", `d-label-${stateHTML}`)
-						.attr("x", 10 + xShift)
-						.attr("y", d => mqMedium ? 10 + i * 40 - yShift : 10 + i * 30)
-						.style("font-size", d => mqLarge ? ".8rem" : ".6rem")
-						.style(
-							"font-family",
-							"ralewaymedium, Helvetica, Arial, sans-serif"
-						);
-
+							.attr("id", `d-label-${stateHTML}`)
+							.attr("x", 10 + xShift)
+							.attr("y", d => mqMedium ? 10 + i * 40 - yShift : 10 + i * 30)
+							.style("font-size", d => mqLarge ? ".8rem" : ".6rem")
+							.style(
+								"font-family",
+								"ralewaymedium, Helvetica, Arial, sans-serif"
+							);
 					focus
 						.append("text")
-						.attr("id", `d-label-b-${stateHTML}`)
-						.attr("x", 10 + xShift)
-						.attr("y", d => mqMedium ? 25 + i * 40 - yShift : 25 + i * 30)
-						.style("font-size", d => mqLarge ? ".8rem" : ".6rem")
-						.style(
-							"font-family",
-							"ralewaymedium, Helvetica, Arial, sans-serif"
-						);
+							.attr("id", `d-label-b-${stateHTML}`)
+							.attr("x", 10 + xShift)
+							.attr("y", d => mqMedium ? 25 + i * 40 - yShift : 25 + i * 30)
+							.style("font-size", d => mqLarge ? ".8rem" : ".6rem")
+							.style(
+								"font-family",
+								"ralewaymedium, Helvetica, Arial, sans-serif"
+							);
 				}
 			});
 		}
@@ -170,6 +149,7 @@ export const Line = props => {
 				overlay={overlay}
 				linesStates={linesStates}
 				bounds={bounds}
+				selectedYParam={selectedYParam}
                 {...props}
             />
             {dataStates.length > 0 ? (
@@ -188,17 +168,6 @@ export const Line = props => {
 										strokeLinejoin="round"
 										strokeLinecap="round"
 										d={linesStates[state].line}
-									/>
-									<circle
-										id="line-marker-lockdown"
-										r={4}
-										fill={
-											linesStates[state].lockdownMarkerX
-												? selectedStates[state].color
-												: "none"
-										}
-										cx={linesStates[state].lockdownMarkerX}
-										cy={linesStates[state].lockdownMarkerY}
 									/>
 									<text
 										id={`line-label-${stateHTML}`}

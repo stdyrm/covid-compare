@@ -59,7 +59,7 @@ function App() {
             const latestCaseCount = nested[i].values[lastIndex].cases;
             const latestCaseCountPerThou =
                 (nested[i].values[lastIndex].cases / stateInfo[s].population) *
-                1000;
+				1000;
 
             revisedStates[s] = {
                 ...revisedStates[s],
@@ -98,8 +98,9 @@ function App() {
             // Add state population
             // Add "casesPerThousand", "deathsPerThousand", "mortalityRate"
             Object.keys(stateInfo).forEach(state => {
-                const stateData = data.filter(d => d.state === state);
-                stateData.forEach(d => {
+				const stateData = data.filter(d => d.state === state);
+				let caseCounter = 0;
+				stateData.forEach(d => {
                     d.dayOfOutbreak =
                         (d.date - stateData[0].date) /
                             (24 * 60 * 60 * 10 * 10 * 10) +
@@ -108,10 +109,13 @@ function App() {
                         (d.cases / stateInfo[state].population) * 1000;
                     d.deathsPerThousand =
                         (d.deaths / stateInfo[state].population) * 1000;
-                    d.mortalityRate = (d.deaths / d.cases) * 100;
+					d.mortalityRate = (d.deaths / d.cases) * 100;
+					d.newCases = d.cases - caseCounter;
+
+					caseCounter = d.cases;
                 });
             });
-            setDataStates(data);
+			setDataStates(data);
             console.log("imported dataset");
         });
 	}, []);

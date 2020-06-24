@@ -12,7 +12,7 @@ import { dataContext } from "../../../context/dataContext";
 import { makeStyles } from "@material-ui/core/styles";
 
 export const ChartCovidCompare = props => {
-	const { wrapper, bounds } = props;
+	const { wrapper, bounds, selectedYParam } = props;
 	const { wrapperWidth, wrapperHeight, margin } = wrapper;
 	const { width, height } = bounds;
 	const { dataStates } = useContext(dataContext);
@@ -56,20 +56,21 @@ export const ChartCovidCompare = props => {
 		return d3
 			.select(boundsRef.current)
 			.append("g")
-			.attr("class", "focus")
-			.style("display", "none");
+				.attr("class", "focus")
+				.style("display", "none");
 	};
+
 	const focus = getFocus();
 
 	const getOverlay = () => {
 		return d3
 			.select(boundsRef.current)
 			.append("rect")
-			.attr("class", "overlay")
-			.attr("width", width)
-			.attr("height", height)
-			.attr("opacity", "0")
-			.on("mouseover", () => focus.style("display", null));
+				.attr("class", "overlay")
+				.attr("width", width)
+				.attr("height", height)
+				.attr("opacity", "0")
+				.on("mouseover", () => focus.style("display", null));
 	};
 	const overlay = getOverlay();
 
@@ -79,9 +80,10 @@ export const ChartCovidCompare = props => {
             .scaleLinear()
             .domain(d3.extent(dataStates, d => d.dayOfOutbreak))
             .range([0, width]);
-        const yScale = d3
+			
+		const yScale = d3
             .scaleLinear()
-            .domain(d3.extent(dataStates, d => d.casesPerThousand))
+            .domain(d3.extent(dataStates, d => d[selectedYParam]))
             .range([height, 0]);
 
         // Axes
@@ -89,7 +91,7 @@ export const ChartCovidCompare = props => {
         const xAxisGenerator = d3.axisBottom().scale(xScale);
         d3.select(xAxisRef.current).call(xAxisGenerator);
         d3.select(yAxisRef.current).call(yAxisGenerator);
-	}, [dataStates]);
+	}, [dataStates, selectedYParam]);
 
     return (
 		<>
@@ -117,18 +119,8 @@ export const ChartCovidCompare = props => {
                     textAnchor="left"
                     style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
                     transform={`translate(${margin.left}, ${
-                        height + margin.top + 80
-                    })`}
-                >
-                    **Population data from US Census Bureau (2019).
-                </text>
-                <text
-                    className={classes.footnotes}
-                    textAnchor="left"
-                    style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
-                    transform={`translate(${margin.left}, ${
-                        height + margin.top + 100
-                    })`}
+						height + margin.top + 80                    
+					})`}
                 >
                     ***2/27 is earliest possible 'Day 1,' since prior cases were
                     isolated and may skew insights of "community spread"
@@ -138,7 +130,7 @@ export const ChartCovidCompare = props => {
                     textAnchor="left"
                     style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
                     transform={`translate(${margin.left}, ${
-                        height + margin.top + 120
+                        height + margin.top + 100
                     })`}
                 >
                     †Legend will display up to 24 states (alphabetical order)
@@ -161,9 +153,6 @@ export const ChartCovidCompare = props => {
 						className={classes.axisLabel}
 						style={{fontFamily: "ralewaymedium, Helvetica, Arial, sans-serif"}}
 						textAnchor="middle"
-						// transform={`translate(${margin.left + width / 2}, ${
-						// 	height + margin.top + 40
-						// })`}
 						x={width / 2}
 						y={height + 40}
 					>
@@ -175,9 +164,9 @@ export const ChartCovidCompare = props => {
 						textAnchor="middle"
 						transform={`rotate(-90)`}
 						x={-height / 2}
-						y={-40}
+						y={-45}
 					>
-						Cases per 1000 people
+						{selectedYParam}
 					</text>
                     <g
                         ref={yAxisRef}
