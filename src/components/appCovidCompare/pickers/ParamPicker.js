@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 // styles
 import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 
 const ParamPicker = (props) => {
 	const { selectedYParam, setSelectedYParam } = props;
-
-	useEffect(() => {
-		console.log(selectedYParam);
-	}, [selectedYParam])
 
 	return (
 		<FormControl>
