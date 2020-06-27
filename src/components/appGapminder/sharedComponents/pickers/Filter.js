@@ -7,7 +7,12 @@ import { statesContext } from "../../../../context/statesContext";
 import { MenuItem } from "@material-ui/core";
 
 const regionOptions = [
-    { id: "northeast", name: "Northeast", type: "Region", chartParam: "region" },
+    {
+        id: "northeast",
+        name: "Northeast",
+        type: "Region",
+        chartParam: "region",
+    },
     { id: "midwest", name: "Midwest", type: "Region", chartParam: "region" },
     { id: "south", name: "South", type: "Region", chartParam: "region" },
     { id: "west", name: "West", type: "Region", chartParam: "region" },
@@ -24,20 +29,20 @@ export const Filter = forwardRef((props, ref) => {
     };
 
     return (
-		<>
-			{infoStates &&
-				filterData.map(d => {
-					return (
-						<MenuItem
-							key={d.id}
-							id={d.id}
-							onClick={() => handleFilter(d)}
-							onClose={handleMenu}
-						>
-							{d.name}
-						</MenuItem>
-					);
-			})}
-		</>
+        <>
+            {infoStates &&
+                filterData.map(d => {
+                    return (
+                        <MenuItem
+                            key={d.id}
+                            id={d.id}
+                            onClick={() => handleFilter(d)}
+                            onClose={handleMenu}
+                        >
+                            {d.name}
+                        </MenuItem>
+                    );
+                })}
+        </>
     );
 });

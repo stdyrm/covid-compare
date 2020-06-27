@@ -26,18 +26,11 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "deploy": "gh-pages -d build",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "format": "prettier \"src/**/*.{js,html}\" --write"
     },
     "eslintConfig": {
         "extends": "react-app"
-    },
-    "prettier": {
-        "bracketSpacing": true,
-        "tabs": true,
-        "tabWidth": 4,
-        "semicolons": true,
-        "arrowParens": "avoid",
-        "trailingComma": "es5"
     },
     "browserslist": {
         "production": [
@@ -50,5 +43,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "prettier": "^2.0.5"
     }
 }

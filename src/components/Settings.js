@@ -13,17 +13,17 @@ import Brightness7Icon from "@material-ui/icons/Brightness7";
 
 export const Settings = () => {
     const { darkMode, setDarkMode } = useContext(ThemeContext);
-	
+
     const useStyles = makeStyles(theme => ({
         rootGrid: {
             maxWidth: window.innerWidth,
-			margin: "0 auto",
+            margin: "0 auto",
         },
         footerButton: {
             color: theme.palette.text.secondary,
-			"&:hover": {
-				backgroundColor: "transparent",
-			}
+            "&:hover": {
+                backgroundColor: "transparent",
+            },
         },
     }));
     const classes = useStyles();
@@ -46,26 +46,26 @@ export const Settings = () => {
                 },
             ],
         });
-	};
+    };
 
     return (
         <>
-			<MenuItem onClick={saveImage}>
-				<Tooltip title="Save chart as image" placement="right">
-					<IconButton className={classes.footerButton}>
-						<SaveIcon />
-					</IconButton>
-				</Tooltip>
-				<Typography display="inline">Save chart</Typography>
-			</MenuItem>
-			<MenuItem onClick={() => setDarkMode(!darkMode)}>
-				<Tooltip title="Toggle dark/light theme" placement="right">
-					<IconButton className={classes.footerButton}>
-						<Brightness7Icon />
-					</IconButton>
-				</Tooltip>
-				<Typography display="inline">Dark mode</Typography>
-			</MenuItem>
-	    </>
+            <MenuItem onClick={saveImage}>
+                <Tooltip title="Save chart as image" placement="right">
+                    <IconButton className={classes.footerButton}>
+                        <SaveIcon />
+                    </IconButton>
+                </Tooltip>
+                <Typography display="inline">Save chart</Typography>
+            </MenuItem>
+            <MenuItem onClick={() => setDarkMode(!darkMode)}>
+                <Tooltip title="Toggle dark/light theme" placement="right">
+                    <IconButton className={classes.footerButton}>
+                        <Brightness7Icon />
+                    </IconButton>
+                </Tooltip>
+                <Typography display="inline">Dark mode</Typography>
+            </MenuItem>
+        </>
     );
 };

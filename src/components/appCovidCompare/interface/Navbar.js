@@ -7,8 +7,8 @@ import {
     Drawer,
     Divider,
     Menu,
-	Tooltip,
-	useMediaQuery
+    Tooltip,
+    useMediaQuery,
 } from "@material-ui/core";
 import clsx from "clsx";
 
@@ -22,17 +22,17 @@ import { Button, MenuList } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MenuIcon from "@material-ui/icons/Menu";
-import AssessmentIcon from '@material-ui/icons/Assessment';
+import AssessmentIcon from "@material-ui/icons/Assessment";
 
 const drawerWidth = 250;
 
 const useStyles = makeStyles(theme => ({
     root: {
-		display: "flex",
+        display: "flex",
     },
     appBar: {
-		backgroundColor: theme.palette.background.dark,
-		color: theme.palette.text.primary,
+        backgroundColor: theme.palette.background.dark,
+        color: theme.palette.text.primary,
         transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -57,13 +57,13 @@ const useStyles = makeStyles(theme => ({
     },
     drawer: {
         width: drawerWidth,
-		flexShrink: 1,
-		backgroundColor: theme.palette.background.default,
-		color: theme.palette.text.primary,
-	},
+        flexShrink: 1,
+        backgroundColor: theme.palette.background.default,
+        color: theme.palette.text.primary,
+    },
     drawerPaper: {
-		width: drawerWidth,
-		backgroundColor: theme.palette.background.default,
+        width: drawerWidth,
+        backgroundColor: theme.palette.background.default,
     },
     drawerHeader: {
         display: "flex",
@@ -86,12 +86,12 @@ const useStyles = makeStyles(theme => ({
 
 export const Navbar = props => {
     const [open, setOpen] = useState(false);
-	const [anchorEl, setAnchorEl] = useState(null);
-	const [mobileOpen, setMobileOpen] = useState(false);
-	
-	const theme = useTheme();
-	const classes = useStyles();
-	const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [mobileOpen, setMobileOpen] = useState(false);
+
+    const theme = useTheme();
+    const classes = useStyles();
+    const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -99,11 +99,11 @@ export const Navbar = props => {
 
     const handleDrawerClose = () => {
         setOpen(false);
-	};
+    };
 
-	const handleOptions = (e) => {
-		!anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
-	};
+    const handleOptions = e => {
+        !anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
+    };
 
     const handleClickAway = e => {
         if (e.x > drawerWidth && e.y > 70 && open) {
@@ -134,49 +134,74 @@ export const Navbar = props => {
                     >
                         <MenuIcon className={classes.menuButton} />
                     </IconButton>
-					{mqSmall
-						? <>
-							<Tooltip title="Chart filters"> 
-								<IconButton
-									id="filters-btn-cc"
-									onClick={handleFilterMenu}
-									className={classes.menuButton}
-								>
-									<AssessmentIcon />
-								</IconButton>
-							</Tooltip>
-							<Menu
-								anchorEl={anchorEl}
-								open={anchorEl ? Boolean(anchorEl.id === "filters-btn-cc") : false}
-								onClose={handleFilterMenu}
-								style={{textAlign: "center"}}
-							>
-								<BatchSelect handleFilterMenu={handleFilterMenu} {...props} />
-								<ParamPicker {...props}/>
-							</Menu>
-						</> 
-						: <span style={{display: "flex", alignContent: "flex-end", justifyContent: "space-evenly"}}>
-							<BatchSelect {...props} />
-							<ParamPicker {...props}/>
-						</span>
-					}
+                    {mqSmall ? (
+                        <>
+                            <Tooltip title="Chart filters">
+                                <IconButton
+                                    id="filters-btn-cc"
+                                    onClick={handleFilterMenu}
+                                    className={classes.menuButton}
+                                >
+                                    <AssessmentIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                anchorEl={anchorEl}
+                                open={
+                                    anchorEl
+                                        ? Boolean(
+                                              anchorEl.id === "filters-btn-cc"
+                                          )
+                                        : false
+                                }
+                                onClose={handleFilterMenu}
+                                style={{ textAlign: "center" }}
+                            >
+                                <BatchSelect
+                                    handleFilterMenu={handleFilterMenu}
+                                    {...props}
+                                />
+                                <ParamPicker {...props} />
+                            </Menu>
+                        </>
+                    ) : (
+                        <span
+                            style={{
+                                display: "flex",
+                                alignContent: "flex-end",
+                                justifyContent: "space-evenly",
+                            }}
+                        >
+                            <BatchSelect {...props} />
+                            <ParamPicker {...props} />
+                        </span>
+                    )}
 
-					<span style={{ marginLeft: "auto" }}>
-						<Button id="options-btn-cc" onClick={handleOptions}>
-							Options
-						</Button>
-						<Menu
-							anchorEl={anchorEl}
-							open={anchorEl ? Boolean(anchorEl.id === "options-btn-cc") : false}
-							onClose={handleOptions}
-						>
-							<MenuList style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
-								<ChartPicker />
-								<Settings />
-							</MenuList>
-						</Menu>
-					</span>
-
+                    <span style={{ marginLeft: "auto" }}>
+                        <Button id="options-btn-cc" onClick={handleOptions}>
+                            Options
+                        </Button>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={
+                                anchorEl
+                                    ? Boolean(anchorEl.id === "options-btn-cc")
+                                    : false
+                            }
+                            onClose={handleOptions}
+                        >
+                            <MenuList
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "center",
+                                }}
+                            >
+                                <ChartPicker />
+                                <Settings />
+                            </MenuList>
+                        </Menu>
+                    </span>
                 </Toolbar>
             </AppBar>
             <ClickAwayListener onClickAway={handleClickAway}>
@@ -189,9 +214,7 @@ export const Navbar = props => {
                         paper: classes.drawerPaper,
                     }}
                 >
-                    <div
-                        className={classes.drawerHeader}
-                    >
+                    <div className={classes.drawerHeader}>
                         <IconButton
                             color="inherit"
                             edge="end"
@@ -207,6 +230,6 @@ export const Navbar = props => {
                     <Dashboard {...props} />
                 </Drawer>
             </ClickAwayListener>
-		</div>
+        </div>
     );
 };

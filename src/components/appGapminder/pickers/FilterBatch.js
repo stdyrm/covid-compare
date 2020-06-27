@@ -16,19 +16,19 @@ const useStyles = makeStyles(theme => ({
         "&:hover": {
             backgroundColor: "transparent",
         },
-	},
-	filterSelector: {
+    },
+    filterSelector: {
         minWidth: 150,
         fontWeight: 500,
         fontSize: ".8rem",
     },
     chipContainer: {
         listStyle: "none",
-		backgroundColor: "transparent",
-		padding: 0
+        backgroundColor: "transparent",
+        padding: 0,
     },
     chip: {
-		color: theme.palette.primary.main,
+        color: theme.palette.primary.main,
         backgroundColor: theme.palette.primary.contrastText,
         padding: theme.spacing(0.5),
         margin: theme.spacing(0.5),
@@ -41,126 +41,129 @@ export const FilterBatch = props => {
         filters,
         handleDeleteFilter,
         handleFilter,
-		nStates,
-		handleSelector
+        nStates,
+        handleSelector,
     } = props;
-    const { setSelectedCircles } = useContext(
-        selectionContext
-    );
+    const { setSelectedCircles } = useContext(selectionContext);
     const { infoStates } = useContext(statesContext);
     const [anchorEl, setAnchorEl] = useState(null);
-	const classes = useStyles();
-	
+    const classes = useStyles();
+
     const handleFilterCategories = newFilter => {
         const filtered = Object.keys(infoStates).filter(
             s => infoStates[s][newFilter.chartParam] === newFilter.name
-		);
+        );
 
         setAnchorEl(null);
         return filtered;
-	};
-	
-	const filterParams = [
-		{
-			category: "Region",
-			params: [
-				{
-					id: "northeast",
-					name: "Northeast",
-					type: "Region",
-					chartParam: "region",
-				},
-				{
-					id: "midwest",
-					name: "Midwest",
-					type: "Region",
-					chartParam: "region",
-				},
-				{
-					id: "south",
-					name: "South",
-					type: "Region",
-					chartParam: "region",
-				},
-				{ id: "west", name: "West", type: "Region", chartParam: "region" },
-			],
-		},
-		{
-			category: "Gov. party",
-			params: [
-				{
-					id: "democrat",
-					name: "Democrat",
-					type: "Governor",
-					chartParam: "governor",
-				},
-				{
-					id: "republican",
-					name: "Republican",
-					type: "Governor",
-					chartParam: "governor",
-				},
-			],
-		},
-		{
-			category: "Population",
-			params: [
-				{
-					id: "pop-high",
-					name: `Top ${nStates} (pop. total)`,
-					type: "Pop.",
-					chartParam: "population",
-					sort: "descending",
-					n: nStates,
-				},
-				{
-					id: "pop-low",
-					name: `Bottom ${nStates} (pop. total)`,
-					type: "Pop.",
-					chartParam: "population",
-					sort: "ascending",
-					n: nStates,
-				},
-				{
-					id: "pop-density-high",
-					name: `Top ${nStates} (pop. density)`,
-					type: "Pop.",
-					chartParam: "populationDensity",
-					sort: "descending",
-					n: nStates,
-				},
-				{
-					id: "pop-density-low",
-					name: `Bottom ${nStates} (pop. density)`,
-					type: "Pop.",
-					chartParam: "populationDensity",
-					sort: "ascending",
-					n: nStates,
-				},
-			],
-		},
-		{
-			category: "GDP",
-			params: [
-				{
-					id: "gdp-high",
-					name: `Top ${nStates} (2019 GDP)`,
-					type: "GDP",
-					chartParam: "gdp",
-					sort: "descending",
-					n: nStates,
-				},
-				{
-					id: "gdp-low",
-					name: `Bottom ${nStates} (2019 GDP)`,
-					type: "GDP",
-					chartParam: "gdp",
-					sort: "ascending",
-					n: nStates,
-				},
-			],
-		},
-	];
+    };
+
+    const filterParams = [
+        {
+            category: "Region",
+            params: [
+                {
+                    id: "northeast",
+                    name: "Northeast",
+                    type: "Region",
+                    chartParam: "region",
+                },
+                {
+                    id: "midwest",
+                    name: "Midwest",
+                    type: "Region",
+                    chartParam: "region",
+                },
+                {
+                    id: "south",
+                    name: "South",
+                    type: "Region",
+                    chartParam: "region",
+                },
+                {
+                    id: "west",
+                    name: "West",
+                    type: "Region",
+                    chartParam: "region",
+                },
+            ],
+        },
+        {
+            category: "Gov. party",
+            params: [
+                {
+                    id: "democrat",
+                    name: "Democrat",
+                    type: "Governor",
+                    chartParam: "governor",
+                },
+                {
+                    id: "republican",
+                    name: "Republican",
+                    type: "Governor",
+                    chartParam: "governor",
+                },
+            ],
+        },
+        {
+            category: "Population",
+            params: [
+                {
+                    id: "pop-high",
+                    name: `Top ${nStates} (pop. total)`,
+                    type: "Pop.",
+                    chartParam: "population",
+                    sort: "descending",
+                    n: nStates,
+                },
+                {
+                    id: "pop-low",
+                    name: `Bottom ${nStates} (pop. total)`,
+                    type: "Pop.",
+                    chartParam: "population",
+                    sort: "ascending",
+                    n: nStates,
+                },
+                {
+                    id: "pop-density-high",
+                    name: `Top ${nStates} (pop. density)`,
+                    type: "Pop.",
+                    chartParam: "populationDensity",
+                    sort: "descending",
+                    n: nStates,
+                },
+                {
+                    id: "pop-density-low",
+                    name: `Bottom ${nStates} (pop. density)`,
+                    type: "Pop.",
+                    chartParam: "populationDensity",
+                    sort: "ascending",
+                    n: nStates,
+                },
+            ],
+        },
+        {
+            category: "GDP",
+            params: [
+                {
+                    id: "gdp-high",
+                    name: `Top ${nStates} (2019 GDP)`,
+                    type: "GDP",
+                    chartParam: "gdp",
+                    sort: "descending",
+                    n: nStates,
+                },
+                {
+                    id: "gdp-low",
+                    name: `Bottom ${nStates} (2019 GDP)`,
+                    type: "GDP",
+                    chartParam: "gdp",
+                    sort: "ascending",
+                    n: nStates,
+                },
+            ],
+        },
+    ];
 
     const handleFilterValues = newFilter => {
         const n = newFilter.n;
@@ -209,25 +212,27 @@ export const FilterBatch = props => {
                   selected: [],
                   notSelected: prevState.all,
               }));
-	}, [filters]);
+    }, [filters]);
 
     return (
         <>
-			{filterParams.map(f => (
-				<FormControl key={f.category}>
-					<InputLabel>{f.category}</InputLabel>
-					<Select
-						name={f.category}
-						onChange={handleSelector}
-						className={classes.filterSelector}
-					>
-						<Filter handleFilter={handleFilter} filterData={f.params} />
-					</Select>
-				</FormControl>
-			))}
+            {filterParams.map(f => (
+                <FormControl key={f.category}>
+                    <InputLabel>{f.category}</InputLabel>
+                    <Select
+                        name={f.category}
+                        onChange={handleSelector}
+                        className={classes.filterSelector}
+                    >
+                        <Filter
+                            handleFilter={handleFilter}
+                            filterData={f.params}
+                        />
+                    </Select>
+                </FormControl>
+            ))}
             <Box component="ul" className={classes.chipContainer}>
-				{filters.length > 0 
-				&& (
+                {filters.length > 0 &&
                     filters.map(f => {
                         return (
                             <li key={f.id}>
@@ -239,8 +244,7 @@ export const FilterBatch = props => {
                                 />
                             </li>
                         );
-                    })
-                )}
+                    })}
             </Box>
         </>
     );

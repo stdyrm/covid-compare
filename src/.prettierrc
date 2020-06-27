@@ -1,0 +1,8 @@
+{
+	"bracketSpacing": true,
+	"tabs": true,
+	"tabWidth": 4,
+	"semicolons": true,
+	"arrowParens": "avoid",
+	"trailingComma": "es5"
+}

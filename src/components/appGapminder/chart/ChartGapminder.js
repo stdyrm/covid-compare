@@ -15,7 +15,7 @@ import { Grid, Box, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 export const ChartGapminder = props => {
-	const { cParamCategories, data, selector, wrapper, bounds } = props;
+    const { cParamCategories, data, selector, wrapper, bounds } = props;
     const { xParam, yParam, cParam } = selector;
     const { wrapperWidth, wrapperHeight, margin } = wrapper;
     const { width, height } = bounds;
@@ -28,36 +28,36 @@ export const ChartGapminder = props => {
     const theme = useTheme();
     const mqSmall = useMediaQuery(theme.breakpoints.down("sm"));
     const useStyles = makeStyles(theme => ({
-		bodyWrapper: {
-			paddingLeft: 0,
-			[theme.breakpoints.up("md")]: {
-				paddingLeft: 260
-			}
-		},
+        bodyWrapper: {
+            paddingLeft: 0,
+            [theme.breakpoints.up("md")]: {
+                paddingLeft: 260,
+            },
+        },
         rootSVG: {
             display: "inline-block",
             position: "relative",
             width: "100%",
             verticalAlign: "middle",
             overflow: "hidden",
-		},
-		chartTitle: {
-			textAnchor: "middle",
-			fill: theme.palette.text.primary,
-			fontWeight: 700,
-			fontSize: ".8rem",
-			[theme.breakpoints.up("sm")]: {
-				fontSize: "1rem"
-			},
-		}, 
-		chartSubtitle: {
-			textAnchor: "middle",
-			fill: theme.palette.text.primary,
-			fontSize: ".5rem",
-			[theme.breakpoints.up("sm")]: {
-				fontSize: ".6rem"
-			}
-		},
+        },
+        chartTitle: {
+            textAnchor: "middle",
+            fill: theme.palette.text.primary,
+            fontWeight: 700,
+            fontSize: ".8rem",
+            [theme.breakpoints.up("sm")]: {
+                fontSize: "1rem",
+            },
+        },
+        chartSubtitle: {
+            textAnchor: "middle",
+            fill: theme.palette.text.primary,
+            fontSize: ".5rem",
+            [theme.breakpoints.up("sm")]: {
+                fontSize: ".6rem",
+            },
+        },
         chartWrapper: {
             display: "inline-block",
             position: "absolute",
@@ -74,10 +74,10 @@ export const ChartGapminder = props => {
         legend: {
             color: theme.palette.primary.contrastText,
             fontWeight: 700,
-			fontSize: ".6rem",
-			[theme.breakpoints.up("sm")]: {
-				fontSize: ".8rem"
-			}
+            fontSize: ".6rem",
+            [theme.breakpoints.up("sm")]: {
+                fontSize: ".8rem",
+            },
         },
         sliderContainer: {
             flexDirection: () => (mqSmall ? "column" : "row"),
@@ -93,7 +93,7 @@ export const ChartGapminder = props => {
 
     const classes = useStyles();
 
-	const svgRef = useRef(null);
+    const svgRef = useRef(null);
     const boundsRef = useRef(null);
     const yAxisRef = useRef(null);
     const xAxisRef = useRef(null);
@@ -106,9 +106,9 @@ export const ChartGapminder = props => {
             .range([0, width]);
         const yScale = d3
             .scaleLinear()
-			.domain(d3.extent(dataStates, d => d[yParam.selected]))
-			.range([height, 0]);
-            
+            .domain(d3.extent(dataStates, d => d[yParam.selected]))
+            .range([height, 0]);
+
         let colorScale;
 
         if (cParam.selected === "region") {
@@ -172,7 +172,7 @@ export const ChartGapminder = props => {
             .attr("transform", "rotate(-90)")
             .attr("class", "yLabel")
             .attr("fill", theme.palette.text.primary)
-			.text(yParam.selected);
+            .text(yParam.selected);
 
         // legend
         d3.select(legendRef.current)
@@ -183,7 +183,7 @@ export const ChartGapminder = props => {
                     enter
                         .append("text")
                         .attr("x", "1rem")
-						.attr("y", -1000)
+                        .attr("y", -1000)
                         .attr("fill", d => colorScale(d))
                         .attr("text-anchor", "start")
                         .text(d => d)
@@ -219,7 +219,7 @@ export const ChartGapminder = props => {
     useEffect(() => {
         if (dataStates) {
             renderChart();
-        }
+		}
     }, [dataStates, selector, theme]);
 
     useEffect(() => {
@@ -238,7 +238,7 @@ export const ChartGapminder = props => {
         <Box className={classes.bodyWrapper}>
             <div>
                 <svg
-					ref={svgRef}
+                    ref={svgRef}
                     id="gapminder-app"
                     height={wrapperHeight}
                     width={wrapperWidth}
@@ -250,27 +250,31 @@ export const ChartGapminder = props => {
                         className={classes.bounds}
                         transform={`translate(${margin.left}, ${margin.top})`}
                     >
-						<text
-							x={width / 2}
-							y={mqSmall ? -margin.top * .5 : -margin.top * .7}
-							className={classes.chartTitle}
-						>
-							COVID-19 in the United States
-						</text>
-						<text
-							x={width / 2}
-							y={mqSmall ? -margin.top * .3 : -margin.top * .4}
-							className={classes.chartTitle}
-						>
-							Outbreak Days 1 - 90
-						</text>
-						<text
-							x={width / 2}
-							y={mqSmall ? -margin.top * .15 : -margin.top * .15}
-							className={classes.chartSubtitle}
-						>
-							*data from the New York Times
-						</text>
+                        <text
+                            x={width / 2}
+                            y={mqSmall ? -margin.top * 0.5 : -margin.top * 0.7}
+                            className={classes.chartTitle}
+                        >
+                            COVID-19 in the United States
+                        </text>
+                        <text
+                            x={width / 2}
+                            y={mqSmall ? -margin.top * 0.3 : -margin.top * 0.4}
+                            className={classes.chartTitle}
+                        >
+                            Outbreak Days 1 - 90
+                        </text>
+                        <text
+                            x={width / 2}
+                            y={
+                                mqSmall
+                                    ? -margin.top * 0.15
+                                    : -margin.top * 0.15
+                            }
+                            className={classes.chartSubtitle}
+                        >
+                            *data from the New York Times
+                        </text>
                         <g
                             ref={xAxisRef}
                             transform={`translate(0, ${height})`}
@@ -314,9 +318,9 @@ export const ChartGapminder = props => {
 };
 
 ChartGapminder.propTypes = {
-	cParamCategories: PropTypes.object,
-	data: PropTypes.arrayOf(PropTypes.object),
-	selector: PropTypes.object,
-	wrapper: PropTypes.object,
-	bounds: PropTypes.object,
+    cParamCategories: PropTypes.object,
+    data: PropTypes.arrayOf(PropTypes.object),
+    selector: PropTypes.object,
+    wrapper: PropTypes.object,
+    bounds: PropTypes.object,
 };

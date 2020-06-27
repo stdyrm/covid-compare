@@ -15,36 +15,36 @@ import CheckIcon from "@material-ui/icons/Check";
 import ClearIcon from "@material-ui/icons/Clear";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
-	sectionTitleTypography: {
-		color: theme.palette.text.primary,
-		fontWeight: 700
-	},
-	drawerBody: {
-		alignText: "left",
-		paddingLeft: theme.spacing(3),
-	},
-	selectAllButton: {
-		color: "green",
-		"&:hover": {
-			backgroundColor: "transparent"
-		},
-	},
-	deselectAllButton: {
-		color: "red",
-		"&:hover": {
-			backgroundColor: "transparent"
-		},
-	},
-	stateLabelSelected: {
-		fontSize: ".9rem",
-	},
-	stateLabelNotSelected: {
-		color: "gray",
-		opacity: 0.7,
-		fontSize: ".9rem",
-	},
-}))
+const useStyles = makeStyles(theme => ({
+    sectionTitleTypography: {
+        color: theme.palette.text.primary,
+        fontWeight: 700,
+    },
+    drawerBody: {
+        alignText: "left",
+        paddingLeft: theme.spacing(3),
+    },
+    selectAllButton: {
+        color: "green",
+        "&:hover": {
+            backgroundColor: "transparent",
+        },
+    },
+    deselectAllButton: {
+        color: "red",
+        "&:hover": {
+            backgroundColor: "transparent",
+        },
+    },
+    stateLabelSelected: {
+        fontSize: ".9rem",
+    },
+    stateLabelNotSelected: {
+        color: "gray",
+        opacity: 0.7,
+        fontSize: ".9rem",
+    },
+}));
 
 export const Dashboard = props => {
     const {
@@ -54,14 +54,17 @@ export const Dashboard = props => {
         handleDeselectAllStates,
     } = props;
 
-	const classes = useStyles();
+    const classes = useStyles();
     const theme = useTheme();
 
     return (
         <div>
-			<SectionTitle divider classes={{typography: classes.sectionTitleTypography}}>
-				Selections
-			</SectionTitle>
+            <SectionTitle
+                divider
+                classes={{ typography: classes.sectionTitleTypography }}
+            >
+                Selections
+            </SectionTitle>
             <FormGroup className={classes.drawerBody}>
                 <FormControlLabel
                     id="select-all"
@@ -105,12 +108,16 @@ export const Dashboard = props => {
                                     id={selectedStates[state].htmlFormat}
                                     name={state}
                                     checked={selectedStates[state].selected}
-									onChange={handleSelectedStates}
-									classes={{label: classes.stateLabelSelected}}
+                                    onChange={handleSelectedStates}
+                                    classes={{
+                                        label: classes.stateLabelSelected,
+                                    }}
                                     control={
                                         <Checkbox
-											name={state}
-											className={classes.stateLabelSelected}
+                                            name={state}
+                                            className={
+                                                classes.stateLabelSelected
+                                            }
                                             style={{
                                                 color:
                                                     selectedStates[state].color,
@@ -136,12 +143,16 @@ export const Dashboard = props => {
                                     id={selectedStates[state].htmlFormat}
                                     name={state}
                                     checked={selectedStates[state].selected}
-									onChange={handleSelectedStates}
-									classes={{label: classes.stateLabelNotSelected}}
+                                    onChange={handleSelectedStates}
+                                    classes={{
+                                        label: classes.stateLabelNotSelected,
+                                    }}
                                     control={
                                         <Checkbox
                                             name={state}
-                                            className={classes.stateLabelNotSelected}
+                                            className={
+                                                classes.stateLabelNotSelected
+                                            }
                                         />
                                     }
                                     label={`${state} (${selectedStates[state].abbreviation})`}

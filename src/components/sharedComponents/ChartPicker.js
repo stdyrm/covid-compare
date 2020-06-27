@@ -20,22 +20,22 @@ export const ChartPicker = () => {
 
     return (
         <>
-			<MenuItem component="a" href="/covidcompare/#/line-app">
-				<Tooltip title="Line chart">
-					<IconButton className={classes.menuButton}>
-						<TimelineIcon />
-					</IconButton>
-				</Tooltip>
-				<Typography display="inline">Line chart</Typography>
-			</MenuItem>
-			<MenuItem component="a" href="/covidcompare/#/gapminder-app">
-				<Tooltip title="Gapminder chart">
-					<IconButton className={classes.menuButton}>
-						<BubbleChartIcon />
-					</IconButton>
-				</Tooltip>
-				<Typography display="inline">Gapminder chart</Typography>
-			</MenuItem>
-	    </>
+            <MenuItem component="a" href="/covidcompare/#/line-app">
+                <Tooltip title="Line chart">
+                    <IconButton className={classes.menuButton}>
+                        <TimelineIcon />
+                    </IconButton>
+                </Tooltip>
+                <Typography display="inline">Line chart</Typography>
+            </MenuItem>
+            <MenuItem component="a" href="/covidcompare/#/gapminder-app">
+                <Tooltip title="Gapminder chart">
+                    <IconButton className={classes.menuButton}>
+                        <BubbleChartIcon />
+                    </IconButton>
+                </Tooltip>
+                <Typography display="inline">Gapminder chart</Typography>
+            </MenuItem>
+        </>
     );
 };

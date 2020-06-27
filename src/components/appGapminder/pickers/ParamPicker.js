@@ -1,23 +1,29 @@
 import React from "react";
 
 // style
-import { FormControl, InputLabel, Select, MenuItem, Grid, useMediaQuery } from "@material-ui/core";
+import {
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    Grid,
+    useMediaQuery,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-
-const useStyles = makeStyles((theme) => ({
-	rootContainer: {
-		maxWidth: 750,
-		minWidth: 175,
-		justifyContent: "space-evenly",
-		padding: 0,
-		margin: 0,
-	},
-	filterSelector: {
+const useStyles = makeStyles(theme => ({
+    rootContainer: {
+        maxWidth: 750,
+        minWidth: 175,
+        justifyContent: "space-evenly",
+        padding: 0,
+        margin: 0,
+    },
+    filterSelector: {
         minWidth: 150,
         fontWeight: 500,
-		fontSize: ".8rem",
-		color: theme.palette.text.primary
+        fontSize: ".8rem",
+        color: theme.palette.text.primary,
     },
     filterMenuItem: {
         color: theme.palette.text.primary,
@@ -26,18 +32,21 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const ParamPicker = (props) => {
-	const { flexDirection, selector, handleSelector } = props;
-	const classes = useStyles();
+export const ParamPicker = props => {
+    const { flexDirection, selector, handleSelector } = props;
+    const classes = useStyles();
 
     return (
-		<Grid container className={classes.rootContainer} style=
-			{flexDirection === "row"  
-				? { flexDirection: "row", justifyContent: "space-evenly" }
-				: { flexDirection: "column" }
-			}
-		>
-            {Object.keys(selector).map((p) => {
+        <Grid
+            container
+            className={classes.rootContainer}
+            style={
+                flexDirection === "row"
+                    ? { flexDirection: "row", justifyContent: "space-evenly" }
+                    : { flexDirection: "column" }
+            }
+        >
+            {Object.keys(selector).map(p => {
                 return (
                     <FormControl key={selector[p].output}>
                         <InputLabel>{selector[p].output}</InputLabel>
@@ -47,7 +56,7 @@ export const ParamPicker = (props) => {
                             onChange={handleSelector}
                             className={classes.filterSelector}
                         >
-                            {selector[p].options.map((o) => {
+                            {selector[p].options.map(o => {
                                 return (
                                     <MenuItem
                                         key={o}

@@ -33,37 +33,37 @@ export const MenuDrawer = props => {
     const theme = useTheme();
 
     return (
-		<>
-			<Hidden mdUp>
-				<Drawer
-					variant="temporary"
-					anchor={theme.direction === "rtl" ? "right" : "left"}
-					open={mobileOpen}
-					onClose={handleDrawer}
-					classes={{ paper: classes.drawerPaper }}
-					ModalProps={{ keepMounted: true }}
-				>
-					<Toolbar />
-					<Grid item style={{marginBottom: "auto"}}>
-						{props.children}
-					</Grid>
-				</Drawer>
-			</Hidden>
-			{persistent
-				&& <Hidden smDown>
-					<Drawer
-						className={classes.drawer}
-						variant="permanent"
-						classes={{ paper: classes.drawerPaper }}
-						open
-					>
-						<Toolbar />
-						<div className={classes.drawerContainer}>
-							{props.children}
-						</div>
-					</Drawer>
-				</Hidden>
-			}
-		</>
+        <>
+            <Hidden mdUp>
+                <Drawer
+                    variant="temporary"
+                    anchor={theme.direction === "rtl" ? "right" : "left"}
+                    open={mobileOpen}
+                    onClose={handleDrawer}
+                    classes={{ paper: classes.drawerPaper }}
+                    ModalProps={{ keepMounted: true }}
+                >
+                    <Toolbar />
+                    <Grid item style={{ marginBottom: "auto" }}>
+                        {props.children}
+                    </Grid>
+                </Drawer>
+            </Hidden>
+            {persistent && (
+                <Hidden smDown>
+                    <Drawer
+                        className={classes.drawer}
+                        variant="permanent"
+                        classes={{ paper: classes.drawerPaper }}
+                        open
+                    >
+                        <Toolbar />
+                        <div className={classes.drawerContainer}>
+                            {props.children}
+                        </div>
+                    </Drawer>
+                </Hidden>
+            )}
+        </>
     );
 };
