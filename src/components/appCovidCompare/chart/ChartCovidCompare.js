@@ -91,7 +91,7 @@ const ChartCovidCompare = props => {
         const xAxisGenerator = d3.axisBottom().scale(xScale);
         d3.select(xAxisRef.current).call(xAxisGenerator);
         d3.select(yAxisRef.current).call(yAxisGenerator);
-    }, [dataStates, selectedYParam]);
+    }, [dataStates, selectedYParam, height, width]);
 
     return (
         <>
