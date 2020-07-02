@@ -81,13 +81,18 @@ const useStyles = makeStyles(theme => ({
         "&:hover": {
             opacity: 1,
         },
-    },
+	},
+	navbarPickers: {
+		width: 750,
+		display: "flex",
+		alignContent: "baseline",
+		justifyContent: "space-between",
+	}
 }));
 
 export const Navbar = props => {
     const [open, setOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
-    const [mobileOpen, setMobileOpen] = useState(false);
 
     const theme = useTheme();
     const classes = useStyles();
@@ -156,24 +161,26 @@ export const Navbar = props => {
                                 }
                                 onClose={handleFilterMenu}
                                 style={{ textAlign: "center" }}
-                            >
+							>
+								<ParamPicker
+									chartParams={props.chartParams}
+									setChartParams={props.setChartParams}
+								/>
                                 <BatchSelect
                                     handleFilterMenu={handleFilterMenu}
                                     {...props}
                                 />
-                                <ParamPicker {...props} />
                             </Menu>
                         </>
                     ) : (
                         <span
-                            style={{
-                                display: "flex",
-                                alignContent: "flex-end",
-                                justifyContent: "space-evenly",
-                            }}
+							className={classes.navbarPickers}
                         >
-                            <BatchSelect {...props} />
-                            <ParamPicker {...props} />
+							<ParamPicker
+								chartParams={props.chartParams}
+								setChartParams={props.setChartParams}
+							/>
+							<BatchSelect {...props} />
                         </span>
                     )}
 

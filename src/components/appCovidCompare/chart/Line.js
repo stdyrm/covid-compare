@@ -13,8 +13,9 @@ import { useTheme } from "@material-ui/core/styles";
 import { useMediaQuery } from "@material-ui/core";
 
 export const Line = props => {
-    const { focus, overlay, selectedStates, bounds, selectedYParam } = props;
-    const { width, height } = bounds;
+    const { focus, overlay, selectedStates, bounds, chartParams, scales } = props;
+	const { xScale, yScale } = scales;
+	const selectedYParam = chartParams.yParam.selected;
 
     // context
     const { dataStates } = useContext(dataContext);
@@ -36,23 +37,13 @@ export const Line = props => {
 
     useEffect(() => {
         if (selectedStates && dataStates.length > 0) {
-            // Scales
-            const xScale = d3
-                .scaleLinear()
-                .domain(d3.extent(dataStates, d => d.dayOfOutbreak))
-                .range([0, width]);
-
-            const yScale = d3
-                .scaleLinear()
-                .domain(d3.extent(dataStates, d => d[selectedYParam]))
-                .range([height, 0]);
 
             const lineGenerator = d3
                 .line()
                 .x(d => xScale(d.dayOfOutbreak))
                 .y(d => yScale(d[selectedYParam]));
 
-            const linesObject = {};
+			const linesObject = {};
 
             const filtered = filterStates(selectedStates);
             filtered.forEach((state, i) => {
@@ -72,10 +63,10 @@ export const Line = props => {
             });
             setLinesStates(linesObject);
         }
-    }, [dataStates, selectedStates, selectedYParam, theme]);
+    }, [dataStates, selectedStates, chartParams, selectedYParam, scales, theme]);
 
     useEffect(() => {
-        if (selectedStates) {
+		if (selectedStates) {
             const filtered = filterStates(selectedStates);
 
             filtered.forEach((state, i) => {
@@ -142,10 +133,10 @@ export const Line = props => {
                 overlay={overlay}
                 linesStates={linesStates}
                 bounds={bounds}
-                selectedYParam={selectedYParam}
+				chartParams={chartParams}
                 {...props}
             />
-            {dataStates.length > 0 ? (
+			{dataStates.length > 0 && ( 
                 Object.keys(linesStates)
                     .sort()
                     .map((state, i) => {
@@ -180,9 +171,7 @@ export const Line = props => {
                             </Fragment>
                         );
                     })
-            ) : (
-                <g></g>
-            )}
+			)}
         </>
     );
 };

@@ -58,7 +58,7 @@ export const FilterGDP = props => {
     return (
         <>
             <Button id="gdp-btn" onClick={handleMenu}>
-                Filter By Case
+                Filter GDP
             </Button>
             <Menu
                 anchorEl={anchorEl}

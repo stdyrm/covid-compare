@@ -36,7 +36,7 @@ export const FilterRegion = props => {
     return (
         <>
             <Button id="region-btn" onClick={handleMenu}>
-                Filter By Region
+                Filter Region
             </Button>
             <Menu
                 anchorEl={anchorEl}

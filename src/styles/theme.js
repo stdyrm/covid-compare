@@ -53,7 +53,6 @@ export const theme = createMuiTheme({
         MuiInputBase: {
             root: {
                 color: "#fff",
-                maxWidth: 115,
                 paddingLeft: 10,
             },
         },

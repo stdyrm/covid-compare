@@ -7,7 +7,7 @@ import ChartCovidCompare from "./chart/ChartCovidCompare";
 import { Navbar } from "./interface/Navbar";
 
 // params
-import { chartParams, labelParams } from "./appParams";
+import { CHART_PARAMS } from "./appParams";
 
 // context
 import { statesContext } from "../../context/statesContext";
@@ -20,7 +20,7 @@ const AppCovidCompare = ({ wrapper, bounds }) => {
     const { infoStates } = useContext(statesContext);
 
     const [selectedStates, setSelectedStates] = useState(null);
-    const [selectedYParam, setSelectedYParam] = useState("casesPerThousand");
+	const [chartParams, setChartParams] = useState(CHART_PARAMS);
 
     const mqOrientPortrait = useMediaQuery("(orientation: portrait)");
 
@@ -85,21 +85,18 @@ const AppCovidCompare = ({ wrapper, bounds }) => {
                 <Grid item className={classes.item}>
                     <Navbar
                         style={{ width: "100%" }}
-                        chartParams={chartParams}
+						chartParams={chartParams}
+						setChartParams={setChartParams}
                         selectedStates={selectedStates}
                         setSelectedStates={setSelectedStates}
                         handleSelectedStates={handleSelectedStates}
                         handleSelectAllStates={handleSelectAllStates}
                         handleDeselectAllStates={handleDeselectAllStates}
-                        selectedYParam={selectedYParam}
-                        setSelectedYParam={setSelectedYParam}
                     />
                     <ChartCovidCompare
                         chartParams={chartParams}
-                        labelParams={labelParams}
                         selectedStates={selectedStates}
                         setSelectedStates={setSelectedStates}
-                        selectedYParam={selectedYParam}
                         wrapper={wrapper}
                         bounds={bounds}
                     />

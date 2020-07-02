@@ -13,20 +13,13 @@ export const MouseMove = props => {
         overlay,
         linesStates,
         selectedStates,
-        selectedYParam,
-        bounds,
+		chartParams,
+		scales
     } = props;
-    const { width, height } = bounds;
+	const { xScale, yScale } = scales;
     const { dataStates } = useContext(dataContext);
 
-    const xScale = d3
-        .scaleLinear()
-        .domain(d3.extent(dataStates, d => d.dayOfOutbreak))
-        .range([0, width]);
-    const yScale = d3
-        .scaleLinear()
-        .domain(d3.extent(dataStates, d => d[selectedYParam]))
-        .range([height, 0]);
+	const selectedYParam = chartParams.yParam.selected;
 
     useEffect(() => {
         if (overlay && selectedStates) {
@@ -97,7 +90,9 @@ export const MouseMove = props => {
                                         ? `${dataEachStateRangeY.toFixed(
                                               3
                                           )} (${dataEachStateRangeCases.toLocaleString()} tot.)`
-                                        : `${dataEachStateRangeY.toLocaleString()} new (${dataEachStateRangeCases.toLocaleString()} tot.)`
+										: selectedYParam === "casesPerThousand"
+										? `${dataEachStateRangeY.toLocaleString()} new (${dataEachStateRangeCases.toLocaleString()} tot.)`
+										: `${dataEachStateRangeCases.toLocaleString()} tot.`
                                 )
                                 .attr("fill", selectedStates[state].color);
                         }

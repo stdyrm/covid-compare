@@ -51,7 +51,7 @@ export const FilterCases = props => {
     return (
         <>
             <Button id="cases-btn" onClick={handleMenu}>
-                Filter By Case
+                Filter Cases
             </Button>
             <Menu
                 anchorEl={anchorEl}

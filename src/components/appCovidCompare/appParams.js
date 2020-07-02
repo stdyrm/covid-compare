@@ -1,5 +1,5 @@
 // Chart params: define params for drawing axes and chart
-export const chartParams = {
+export const CHART_PARAMS = {
     chartType: "line",
     toTimestamp: null,
     multiple: true,
@@ -42,7 +42,7 @@ export const chartParams = {
 };
 
 // Label params:
-export const labelParams = {
+export const LABEL_PARAMS = {
     chartTitle: "COVID-19 State Comparison",
     xLabel: "Cases per Thousand",
     yLabel: "Deaths per Thousand",

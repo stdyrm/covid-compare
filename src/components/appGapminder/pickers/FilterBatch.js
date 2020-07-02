@@ -17,8 +17,9 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: "transparent",
         },
     },
-    filterSelector: {
-        minWidth: 150,
+	filterSelector: {
+		display: "block",
+        minWidth: 175,
         fontWeight: 500,
         fontSize: ".8rem",
     },

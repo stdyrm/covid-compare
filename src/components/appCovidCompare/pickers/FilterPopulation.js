@@ -52,7 +52,7 @@ export const FilterPopulation = props => {
     return (
         <>
             <Button id="population-btn" onClick={handleMenu}>
-                Filter By Population
+                Filter Population
             </Button>
             <Menu
                 anchorEl={anchorEl}

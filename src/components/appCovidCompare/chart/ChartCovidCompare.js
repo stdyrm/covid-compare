@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import * as d3 from "d3";
+// import * as d3 from "d3";
+import { select, max, scaleLinear, scaleLog, extent, axisLeft, axisBottom, formatPrefix } from "d3";
 
 // Components
 import { Line } from "./Line";
@@ -9,43 +10,48 @@ import { Line } from "./Line";
 import { dataContext } from "../../../context/dataContext";
 
 // Styles
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(theme => ({
+	rootSVG: {
+		display: "inline-block",
+		position: "relative",
+		width: "100%",
+		verticalAlign: "middle",
+		overflow: "hidden",
+	},
+	bounds: {
+		width: props => props.width,
+		height: props => props.height,
+	},
+	title: {
+		fill: theme.palette.text.primary,
+		fontSize: "1.2rem",
+	},
+	axes: {
+		fill: theme.palette.text.primary,
+	},
+	axisLabel: {
+		fill: theme.palette.text.primary,
+		fontSize: ".8rem",
+	},
+	footnotes: {
+		fill: theme.palette.text.primary,
+		fontSize: ".6rem",
+	},
+}));
 
 const ChartCovidCompare = props => {
-    const { wrapper, bounds, selectedYParam } = props;
+	const { wrapper, bounds, chartParams } = props;
     const { wrapperWidth, wrapperHeight, margin } = wrapper;
     const { width, height } = bounds;
-    const { dataStates } = useContext(dataContext);
+	const { dataStates } = useContext(dataContext);
+	
+	const selectedYParam = chartParams.yParam.selected;
 
-    const useStyles = makeStyles(theme => ({
-        rootSVG: {
-            display: "inline-block",
-            position: "relative",
-            width: "100%",
-            verticalAlign: "middle",
-            overflow: "hidden",
-        },
-        bounds: {
-            width: width,
-            height: height,
-        },
-        title: {
-            fill: theme.palette.text.primary,
-            fontSize: "1.2rem",
-        },
-        axes: {
-            fill: theme.palette.text.primary,
-        },
-        axisLabel: {
-            fill: theme.palette.text.primary,
-            fontSize: ".8rem",
-        },
-        footnotes: {
-            fill: theme.palette.text.primary,
-            fontSize: ".6rem",
-        },
-    }));
-    let classes = useStyles();
+	const [scales, setScales] = useState(null);
+	const classes = useStyles(props);
+	const theme = useTheme();
 
     const yAxisRef = useRef(null);
     const xAxisRef = useRef(null);
@@ -53,8 +59,7 @@ const ChartCovidCompare = props => {
     const boundsRef = useRef(null);
 
     const getFocus = () => {
-        return d3
-            .select(boundsRef.current)
+        return select(boundsRef.current)
             .append("g")
             .attr("class", "focus")
             .style("display", "none");
@@ -63,8 +68,7 @@ const ChartCovidCompare = props => {
     const focus = getFocus();
 
     const getOverlay = () => {
-        return d3
-            .select(boundsRef.current)
+        return select(boundsRef.current)
             .append("rect")
             .attr("class", "overlay")
             .attr("width", width)
@@ -74,24 +78,33 @@ const ChartCovidCompare = props => {
     };
     const overlay = getOverlay();
 
-    useEffect(() => {
+	useEffect(() => {
         // Scales
-        const xScale = d3
-            .scaleLinear()
-            .domain(d3.extent(dataStates, d => d.dayOfOutbreak))
+        const xScale = scaleLinear()
+            .domain(extent(dataStates, d => d.dayOfOutbreak))
             .range([0, width]);
 
-        const yScale = d3
-            .scaleLinear()
-            .domain(d3.extent(dataStates, d => d[selectedYParam]))
-            .range([height, 0]);
+		const yScale = chartParams.yParam.type === "log"
+			? scaleLog()
+				.domain([1, max(dataStates, d => d[selectedYParam])])
+				.range([height, 0])
+			: scaleLinear()
+				.domain([0, max(dataStates, d => d[selectedYParam])])
+				.range([height, 0]);
+	
+		setScales({
+			xScale,
+			yScale
+		});
 
         // Axes
-        const yAxisGenerator = d3.axisLeft().scale(yScale);
-        const xAxisGenerator = d3.axisBottom().scale(xScale);
-        d3.select(xAxisRef.current).call(xAxisGenerator);
-        d3.select(yAxisRef.current).call(yAxisGenerator);
-    }, [dataStates, selectedYParam, height, width]);
+		const yAxisGenerator = chartParams.yParam.selected === "cases"
+			? axisLeft().scale(yScale).ticks(5).tickFormat(t => t.toLocaleString())
+			: axisLeft().scale(yScale);
+        const xAxisGenerator = axisBottom().scale(xScale);
+        select(xAxisRef.current).call(xAxisGenerator);
+        select(yAxisRef.current).call(yAxisGenerator);
+    }, [dataStates, chartParams, selectedYParam, height, width]);
 
     return (
         <>
@@ -191,7 +204,8 @@ const ChartCovidCompare = props => {
                         id="y-axis"
                         style={{
                             fontFamily:
-                                "ralewaymedium, Helvetica, Arial, sans-serif",
+								"ralewaymedium, Helvetica, Arial, sans-serif",
+							color: theme.palette.text.primary,
                         }}
                     />
                     <g
@@ -200,10 +214,18 @@ const ChartCovidCompare = props => {
                         transform={`translate(0,${height})`}
                         style={{
                             fontFamily:
-                                "ralewaymedium, Helvetica, Arial, sans-serif",
+								"ralewaymedium, Helvetica, Arial, sans-serif",
+							color: theme.palette.text.primary,
                         }}
                     />
-                    <Line focus={focus} overlay={overlay} {...props} />
+					{scales &&
+						<Line
+						focus={focus}
+						overlay={overlay}
+						scales={scales}
+						{...props}
+						/>
+					}
                 </g>
             </svg>
         </>
