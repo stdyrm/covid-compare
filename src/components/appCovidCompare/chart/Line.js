@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, Fragment } from "react";
-import * as d3 from "d3";
+import { line } from "d3";
 
 // functions
 import { MouseMove } from "../../util/MouseMove";
@@ -28,150 +28,167 @@ export const Line = props => {
 
     const [linesStates, setLinesStates] = useState([]);
 
-    const filterStates = statesObject => {
-        let filtered = Object.keys(statesObject)
+	const filterStates = async selectedStates => {
+        let filtered = Object.keys(selectedStates)
             .sort()
-            .filter(s => statesObject[s].selected === true);
+			.filter(s => selectedStates[s].selected === true);
         return filtered;
-    };
+	};
+	
+	const generateLine = async filtered => {
+		const lineGenerator = line()
+			.x(d => xScale(d.dayOfOutbreak))
+			.y(d => yScale(d[selectedYParam]));
 
-    useEffect(() => {
-        if (selectedStates && dataStates.length > 0) {
+		const lineData = {};
 
-            const lineGenerator = d3
-                .line()
-                .x(d => xScale(d.dayOfOutbreak))
-                .y(d => yScale(d[selectedYParam]));
+		// const filtered = filterStates(selectedStates);
+		filtered.forEach(state => {
+			const dataEachState = dataStates.filter(d => d.state === state);
 
-			const linesObject = {};
+			// Line label placement
+			const lastDayOfOutbreak =
+				dataEachState[dataEachState.length - 1].dayOfOutbreak;
+			const lastCasesDatum =
+				dataEachState[dataEachState.length - 1][selectedYParam];
 
-            const filtered = filterStates(selectedStates);
-            filtered.forEach((state, i) => {
-                const dataEachState = dataStates.filter(d => d.state === state);
+			lineData[state] = {
+				line: lineGenerator(dataEachState),
+				lineLabelX: xScale(lastDayOfOutbreak) + 3,
+				lineLabelY: yScale(lastCasesDatum),
+			};
+		});
 
-                // Line label placement
-                const lastDayOfOutbreak =
-                    dataEachState[dataEachState.length - 1].dayOfOutbreak;
-                const lastCasesDatum =
-                    dataEachState[dataEachState.length - 1][selectedYParam];
+		return lineData;
+	};
 
-                linesObject[state] = {
-                    line: lineGenerator(dataEachState),
-                    lineLabelX: xScale(lastDayOfOutbreak) + 3,
-                    lineLabelY: yScale(lastCasesDatum),
-                };
-            });
-            setLinesStates(linesObject);
-        }
-    }, [dataStates, selectedStates, chartParams, selectedYParam, scales, theme]);
+	const generateFocus = async filtered => {
+		filtered.forEach((state, i) => {
+			const stateHTML = infoStates[state].htmlFormat;
+			// for mousemove
+			let xShift = 0;
+			let yShift = 0;
 
-    useEffect(() => {
-		if (selectedStates) {
-            const filtered = filterStates(selectedStates);
+			if (i > 11) {
+				if (mqLarge) {
+					xShift = 180;
+					yShift = 12 * 40;
+				} else if (mqMedium) {
+					xShift = 120;
+					yShift = 12 * 40;
+				}
+			}
 
-            filtered.forEach((state, i) => {
-                const stateHTML = infoStates[state].htmlFormat;
-                // for mousemove
-                let xShift = 0;
-                let yShift = 0;
+			focus
+				.append("circle")
+				.attr("id", `circle-${stateHTML}`)
+				.attr("r", 5)
+				.attr("fill", selectedStates[state].color)
+				.attr("stroke", theme.palette.text.primary);
 
-                if (i > 11) {
-                    if (mqLarge) {
-                        xShift = 180;
-                        yShift = 12 * 40;
-                    } else if (mqMedium) {
-                        xShift = 120;
-                        yShift = 12 * 40;
-                    }
-                }
+			if (mqMedium ? i < 24 : i < 12) {
+				focus
+					.append("text")
+					.attr("id", `d-label-${stateHTML}`)
+					.attr("x", 10 + xShift)
+					.attr("y", d =>
+						mqMedium ? 10 + i * 40 - yShift : 10 + i * 30
+					)
+					.style("font-size", d => (mqLarge ? ".8rem" : ".6rem"))
+					.style(
+						"font-family",
+						"ralewaymedium, Helvetica, Arial, sans-serif"
+					);
+				focus
+					.append("text")
+					.attr("id", `d-label-b-${stateHTML}`)
+					.attr("x", 10 + xShift)
+					.attr("y", d =>
+						mqMedium ? 25 + i * 40 - yShift : 25 + i * 30
+					)
+					.style("font-size", d => (mqLarge ? ".8rem" : ".6rem"))
+					.style(
+						"font-family",
+						"ralewaymedium, Helvetica, Arial, sans-serif"
+					);
+			}
+		});
+	};
 
-                focus
-                    .append("circle")
-                    .attr("id", `circle-${stateHTML}`)
-                    .attr("r", 5)
-                    .attr("fill", selectedStates[state].color)
-                    .attr("stroke", theme.palette.text.primary);
+	useEffect(() => {
+		if (!selectedStates || dataStates.length < 1 || !selectedYParam) return;
+		let mounted = true;
+		filterStates(selectedStates)
+			.then(filtered => generateLine(filtered))
+			.then(lineData => {
+				if (mounted) {
+					setLinesStates(lineData)
+				}
+			});
+		
+		return () => {
+			mounted = false;
+			setLinesStates(null);
+		}
+	}, [dataStates, selectedStates, chartParams, selectedYParam, scales]);
 
-                if (mqMedium ? i < 24 : i < 12) {
-                    focus
-                        .append("text")
-                        .attr("id", `d-label-${stateHTML}`)
-                        .attr("x", 10 + xShift)
-                        .attr("y", d =>
-                            mqMedium ? 10 + i * 40 - yShift : 10 + i * 30
-                        )
-                        .style("font-size", d => (mqLarge ? ".8rem" : ".6rem"))
-                        .style(
-                            "font-family",
-                            "ralewaymedium, Helvetica, Arial, sans-serif"
-                        );
-                    focus
-                        .append("text")
-                        .attr("id", `d-label-b-${stateHTML}`)
-                        .attr("x", 10 + xShift)
-                        .attr("y", d =>
-                            mqMedium ? 25 + i * 40 - yShift : 25 + i * 30
-                        )
-                        .style("font-size", d => (mqLarge ? ".8rem" : ".6rem"))
-                        .style(
-                            "font-family",
-                            "ralewaymedium, Helvetica, Arial, sans-serif"
-                        );
-                }
-            });
-        }
+	useEffect(() => {
+		if (!selectedStates) return;
+		filterStates(selectedStates)
+			.then(filtered => generateFocus(filtered));
+
         return () => {
             focus.selectAll("circle").remove();
             focus.selectAll("text").remove();
         };
-    }, [linesStates]);
+	}, [linesStates]);
 
     return (
-        <>
-            <MouseMove
-                focus={focus}
-                overlay={overlay}
-                linesStates={linesStates}
-                bounds={bounds}
+		<React.Fragment>
+			<MouseMove
+				focus={focus}
+				overlay={overlay}
+				linesStates={linesStates}
+				bounds={bounds}
 				chartParams={chartParams}
-                {...props}
-            />
-			{dataStates.length > 0 && ( 
-                Object.keys(linesStates)
-                    .sort()
-                    .map((state, i) => {
-                        const stateHTML = infoStates[state].htmlFormat;
+				{...props}
+			/>
+			{linesStates && selectedStates && (
+				Object.keys(linesStates)
+					.sort()
+					.map((state, i) => {
+						const stateHTML = infoStates[state].htmlFormat;
 
-                        return (
-                            <Fragment key={state}>
-                                <g id={`bounds-render-${stateHTML}`}>
-                                    <path
-                                        fill="none"
-                                        stroke={selectedStates[state].color}
-                                        strokeWidth={2.5}
-                                        strokeLinejoin="round"
-                                        strokeLinecap="round"
-                                        d={linesStates[state].line}
-                                    />
-                                    <text
-                                        id={`line-label-${stateHTML}`}
-                                        className="line-label"
-                                        style={{
-                                            fill: theme.palette.text.primary,
-                                            fontSize: "14px",
-                                            fontFamily:
-                                                "ralewaymedium, Helvetica, Arial, sans-serif",
-                                        }}
-                                        x={linesStates[state].lineLabelX}
-                                        y={linesStates[state].lineLabelY}
-                                    >
-                                        {selectedStates[state].abbreviation}
-                                    </text>
-                                </g>
-                            </Fragment>
-                        );
-                    })
+						return (
+							<Fragment key={state}>
+								<g id={`bounds-render-${stateHTML}`}>
+									<path
+										fill="none"
+										stroke={selectedStates[state].color}
+										strokeWidth={2.5}
+										strokeLinejoin="round"
+										strokeLinecap="round"
+										d={linesStates[state].line}
+									/>
+									<text
+										id={`line-label-${stateHTML}`}
+										className="line-label"
+										style={{
+											fill: theme.palette.text.primary,
+											fontSize: "14px",
+											fontFamily:
+												"ralewaymedium, Helvetica, Arial, sans-serif",
+										}}
+										x={linesStates[state].lineLabelX}
+										y={linesStates[state].lineLabelY}
+									>
+										{selectedStates[state].abbreviation}
+									</text>
+								</g>
+							</Fragment>
+						);
+					})
 			)}
-        </>
+        </React.Fragment>
     );
 };
