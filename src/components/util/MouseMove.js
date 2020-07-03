@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react";
-import * as d3 from "d3";
+import { mouse, bisector } from "d3";
 
 // context
 import { dataContext } from "../../context/dataContext";
@@ -22,14 +22,14 @@ export const MouseMove = props => {
 	const selectedYParam = chartParams.yParam.selected;
 
     useEffect(() => {
-        if (overlay && selectedStates) {
+        if (dataStates && selectedStates && overlay) {
             overlay.on("mousemove", mousemove);
 
             let frozen = false;
 
             function mousemove() {
-                let x0 = xScale.invert(d3.mouse(this)[0]);
-                const bisectDate = d3.bisector(d => d.dayOfOutbreak).left;
+                let x0 = xScale.invert(mouse(this)[0]);
+                const bisectDate = bisector(d => d.dayOfOutbreak).left;
 
                 Object.keys(selectedStates)
                     .sort()
@@ -98,7 +98,7 @@ export const MouseMove = props => {
                         }
                     });
             }
-        }
+		};
     }, [linesStates]);
 
     return null;

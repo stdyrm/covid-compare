@@ -13,7 +13,7 @@ import { CHART_PARAMS } from "./appParams";
 import { statesContext } from "../../context/statesContext";
 
 // styles
-import { Grid, useMediaQuery } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const AppCovidCompare = ({ wrapper, bounds }) => {
@@ -22,15 +22,12 @@ const AppCovidCompare = ({ wrapper, bounds }) => {
     const [selectedStates, setSelectedStates] = useState(null);
 	const [chartParams, setChartParams] = useState(CHART_PARAMS);
 
-    const mqOrientPortrait = useMediaQuery("(orientation: portrait)");
-
     const useStyles = makeStyles(theme => ({
         container: {
             padding: 0,
             width: "100%",
             height: "100%",
             display: "flex",
-            flexDirection: () => (mqOrientPortrait ? "row" : "column"),
             justifyContent: "center",
         },
         item: {
@@ -76,30 +73,34 @@ const AppCovidCompare = ({ wrapper, bounds }) => {
     useEffect(() => {
         if (infoStates) {
             setSelectedStates(infoStates);
-        }
+		};
+
+		return () => {
+			setSelectedStates(null);
+		};
     }, [infoStates]);
 
     return (
         <Grid className={classes.container}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Grid item className={classes.item}>
-                    <Navbar
-                        style={{ width: "100%" }}
+				<Grid item className={classes.item}>
+					<Navbar
+						style={{ width: "100%" }}
 						chartParams={chartParams}
 						setChartParams={setChartParams}
-                        selectedStates={selectedStates}
-                        setSelectedStates={setSelectedStates}
-                        handleSelectedStates={handleSelectedStates}
-                        handleSelectAllStates={handleSelectAllStates}
-                        handleDeselectAllStates={handleDeselectAllStates}
-                    />
-                    <ChartCovidCompare
-                        chartParams={chartParams}
-                        selectedStates={selectedStates}
-                        setSelectedStates={setSelectedStates}
-                        wrapper={wrapper}
-                        bounds={bounds}
-                    />
+						selectedStates={selectedStates}
+						setSelectedStates={setSelectedStates}
+						handleSelectedStates={handleSelectedStates}
+						handleSelectAllStates={handleSelectAllStates}
+						handleDeselectAllStates={handleDeselectAllStates}
+					/>
+					<ChartCovidCompare
+						chartParams={chartParams}
+						selectedStates={selectedStates}
+						setSelectedStates={setSelectedStates}
+						wrapper={wrapper}
+						bounds={bounds}
+					/>
                 </Grid>
             </MuiPickersUtilsProvider>
         </Grid>

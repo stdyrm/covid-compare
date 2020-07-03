@@ -1,15 +1,4 @@
 import React, { useState } from "react";
-import {
-    AppBar,
-    Toolbar,
-    IconButton,
-    ClickAwayListener,
-    Drawer,
-    Divider,
-    Menu,
-    Tooltip,
-    useMediaQuery,
-} from "@material-ui/core";
 import clsx from "clsx";
 
 // components
@@ -18,7 +7,19 @@ import { Settings } from "../../Settings";
 import { ChartPicker } from "../../sharedComponents/ChartPicker";
 
 // styles
-import { Button, MenuList } from "@material-ui/core";
+import {
+    AppBar,
+    Toolbar,
+    IconButton,
+    ClickAwayListener,
+    Drawer,
+    Divider,
+	Menu,
+	Button,
+	MenuList,
+    Tooltip,
+    useMediaQuery,
+} from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -91,6 +92,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const Navbar = props => {
+	const {
+		chartParams,
+		setChartParams,
+		selectedStates,
+		setSelectedStates,
+		handleSelectedStates,
+		handleSelectAllStates,
+		handleDeselectAllStates
+	} = props;
     const [open, setOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -116,7 +126,7 @@ export const Navbar = props => {
         }
     };
 
-    const handleFilterMenu = e => {
+	const handleFilterMenu = e => {
         !anchorEl ? setAnchorEl(e.currentTarget) : setAnchorEl(null);
     };
 
@@ -158,17 +168,17 @@ export const Navbar = props => {
                                               anchorEl.id === "filters-btn-cc"
                                           )
                                         : false
-                                }
+								}
                                 onClose={handleFilterMenu}
                                 style={{ textAlign: "center" }}
 							>
 								<ParamPicker
-									chartParams={props.chartParams}
-									setChartParams={props.setChartParams}
+									chartParams={chartParams}
+									setChartParams={setChartParams}
 								/>
                                 <BatchSelect
-                                    handleFilterMenu={handleFilterMenu}
-                                    {...props}
+									selectedStates={selectedStates}
+									setSelectedStates={setSelectedStates}
                                 />
                             </Menu>
                         </>
@@ -180,7 +190,10 @@ export const Navbar = props => {
 								chartParams={props.chartParams}
 								setChartParams={props.setChartParams}
 							/>
-							<BatchSelect {...props} />
+							<BatchSelect
+								selectedStates={selectedStates}
+								setSelectedStates={setSelectedStates}
+							/>
                         </span>
                     )}
 

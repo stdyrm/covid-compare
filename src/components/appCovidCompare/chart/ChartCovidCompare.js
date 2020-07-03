@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-// import * as d3 from "d3";
-import { select, max, scaleLinear, scaleLog, extent, axisLeft, axisBottom, formatPrefix } from "d3";
+import { select, max, scaleLinear, scaleLog, extent, axisLeft, axisBottom } from "d3";
 
 // Components
 import { Line } from "./Line";
@@ -41,9 +40,9 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const ChartCovidCompare = props => {
+const ChartCovidCompare = (props) => {
 	const { wrapper, bounds, chartParams } = props;
-    const { wrapperWidth, wrapperHeight, margin } = wrapper;
+	const { wrapperWidth, wrapperHeight, margin } = wrapper;
     const { width, height } = bounds;
 	const { dataStates } = useContext(dataContext);
 	
@@ -76,7 +75,7 @@ const ChartCovidCompare = props => {
             .attr("opacity", "0")
             .on("mouseover", () => focus.style("display", null));
     };
-    const overlay = getOverlay();
+	const overlay = getOverlay();
 
 	useEffect(() => {
         // Scales
@@ -86,7 +85,7 @@ const ChartCovidCompare = props => {
 
 		const yScale = chartParams.yParam.type === "log"
 			? scaleLog()
-				.domain([1, max(dataStates, d => d[selectedYParam])])
+				.domain([1, 1000000])
 				.range([height, 0])
 			: scaleLinear()
 				.domain([0, max(dataStates, d => d[selectedYParam])])
@@ -99,11 +98,15 @@ const ChartCovidCompare = props => {
 
         // Axes
 		const yAxisGenerator = chartParams.yParam.selected === "cases"
-			? axisLeft().scale(yScale).ticks(5).tickFormat(t => t.toLocaleString())
+			? axisLeft().scale(yScale).ticks(6).tickFormat(t => t.toLocaleString())
 			: axisLeft().scale(yScale);
         const xAxisGenerator = axisBottom().scale(xScale);
         select(xAxisRef.current).call(xAxisGenerator);
-        select(yAxisRef.current).call(yAxisGenerator);
+		select(yAxisRef.current).call(yAxisGenerator);
+		
+		return () => {
+			setScales(null);
+		};
     }, [dataStates, chartParams, selectedYParam, height, width]);
 
     return (
