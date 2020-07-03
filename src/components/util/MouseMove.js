@@ -1,11 +1,8 @@
 import { useEffect, useContext } from "react";
-import { mouse, bisector } from "d3";
+import { mouse, bisector, timeFormat } from "d3";
 
 // context
 import { dataContext } from "../../context/dataContext";
-
-// constants
-import { date } from "../util/constants";
 
 export const MouseMove = props => {
     const {
@@ -21,15 +18,17 @@ export const MouseMove = props => {
 
 	const selectedYParam = chartParams.yParam.selected;
 
+	const dateFormatter = timeFormat("%m-%d-%y");
+
     useEffect(() => {
-        if (dataStates && selectedStates && overlay) {
+		if (dataStates.length > 0) {
             overlay.on("mousemove", mousemove);
 
             let frozen = false;
 
             function mousemove() {
                 let x0 = xScale.invert(mouse(this)[0]);
-                const bisectDate = bisector(d => d.dayOfOutbreak).left;
+				const bisectDate = bisector(d => d.dayOfOutbreak).left;
 
                 Object.keys(selectedStates)
                     .sort()
@@ -39,7 +38,7 @@ export const MouseMove = props => {
                             d => d.state === state
                         );
                         const stateHTML = selectedStates[state].htmlFormat;
-                        const i = bisectDate(dataEachState, x0, 0);
+						const i = bisectDate(dataEachState, x0, 0);
 
                         let dataEachStateRangeY = dataEachState[i]
                             ? dataEachState[i][selectedYParam]
@@ -51,8 +50,8 @@ export const MouseMove = props => {
                             : dataEachState[dataEachState.length - 1]
                                   .dayOfOutbreak;
                         let dataEachStateRangeDate = dataEachState[i]
-                            ? date.dateFormatter(dataEachState[i].date)
-                            : date.dateFormatter(
+                            ? dateFormatter(dataEachState[i].date)
+                            : dateFormatter(
                                   dataEachState[dataEachState.length - 1].date
                               );
                         let dataEachStateRangeCases = dataEachState[i]
@@ -90,7 +89,7 @@ export const MouseMove = props => {
                                         ? `${dataEachStateRangeY.toFixed(
                                               3
                                           )} (${dataEachStateRangeCases.toLocaleString()} tot.)`
-										: selectedYParam === "casesPerThousand"
+										: selectedYParam === "newCases"
 										? `${dataEachStateRangeY.toLocaleString()} new (${dataEachStateRangeCases.toLocaleString()} tot.)`
 										: `${dataEachStateRangeCases.toLocaleString()} tot.`
                                 )
@@ -99,7 +98,7 @@ export const MouseMove = props => {
                     });
             }
 		};
-    }, [linesStates]);
+    }, [linesStates, dataStates, selectedStates]);
 
     return null;
 };

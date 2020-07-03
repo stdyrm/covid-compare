@@ -119,7 +119,7 @@ const ChartCovidCompare = (props) => {
                 className={classes.rootSVG}
                 viewBox={`0 0 ${wrapperWidth} ${wrapperHeight}`}
             >
-                <text
+                {/* <text
                     className={classes.footnotes}
                     textAnchor="left"
                     style={{
@@ -159,7 +159,7 @@ const ChartCovidCompare = (props) => {
                     })`}
                 >
                     †Legend will display up to 24 states (alphabetical order)
-                </text>
+                </text> */}
                 <g
                     id="bounds"
                     transform={`translate(${margin.left}, ${margin.top})`}
@@ -224,6 +224,7 @@ const ChartCovidCompare = (props) => {
 					{scales &&
 						<Line
 						focus={focus}
+						wrapper={wrapper}
 						overlay={overlay}
 						scales={scales}
 						{...props}

@@ -3,14 +3,11 @@
 import React, { useState } from "react";
 import { FilterValues } from "../components/FilterValues";
 
-import { Menu, MenuItem, Button } from "@material-ui/core";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import { Menu, Button } from "@material-ui/core";
 
 export const FilterGDP = props => {
     const {
         nStates,
-        selectedStates,
-        setSelectedStates,
         handleSelectedFilter,
     } = props;
 

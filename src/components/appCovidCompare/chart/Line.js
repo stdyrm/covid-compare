@@ -13,7 +13,8 @@ import { useTheme } from "@material-ui/core/styles";
 import { useMediaQuery } from "@material-ui/core";
 
 export const Line = props => {
-    const { focus, overlay, selectedStates, bounds, chartParams, scales } = props;
+	const { focus, overlay, selectedStates, bounds, chartParams, scales } = props;
+	const { width, height } = bounds;
 	const { xScale, yScale } = scales;
 	const selectedYParam = chartParams.yParam.selected;
 
@@ -23,8 +24,6 @@ export const Line = props => {
 
     // style
     const theme = useTheme();
-    const mqMedium = useMediaQuery(theme.breakpoints.up("md"));
-    const mqLarge = useMediaQuery(theme.breakpoints.up("lg"));
 
     const [linesStates, setLinesStates] = useState([]);
 
@@ -63,22 +62,11 @@ export const Line = props => {
 	};
 
 	const generateFocus = async filtered => {
+		let xShift = 0;
+		let yShift = 0;
+
 		filtered.forEach((state, i) => {
 			const stateHTML = infoStates[state].htmlFormat;
-			// for mousemove
-			let xShift = 0;
-			let yShift = 0;
-
-			if (i > 11) {
-				if (mqLarge) {
-					xShift = 180;
-					yShift = 12 * 40;
-				} else if (mqMedium) {
-					xShift = 120;
-					yShift = 12 * 40;
-				}
-			}
-
 			focus
 				.append("circle")
 				.attr("id", `circle-${stateHTML}`)
@@ -86,15 +74,23 @@ export const Line = props => {
 				.attr("fill", selectedStates[state].color)
 				.attr("stroke", theme.palette.text.primary);
 
-			if (mqMedium ? i < 24 : i < 12) {
+			if (i === 0) {
+				xShift = 0;
+				yShift = 0;
+			} else if (i % 4 === 0) {
+				xShift += 130;
+				yShift = 0;
+			} else {
+				yShift += 35;
+			}
+			
+			if (xShift + 65 < width) {
 				focus
 					.append("text")
 					.attr("id", `d-label-${stateHTML}`)
-					.attr("x", 10 + xShift)
-					.attr("y", d =>
-						mqMedium ? 10 + i * 40 - yShift : 10 + i * 30
-					)
-					.style("font-size", d => (mqLarge ? ".8rem" : ".6rem"))
+					.attr("x", xShift)
+					.attr("y", d => 70 + height + yShift)
+					.style("font-size", ".75rem")
 					.style(
 						"font-family",
 						"ralewaymedium, Helvetica, Arial, sans-serif"
@@ -102,11 +98,9 @@ export const Line = props => {
 				focus
 					.append("text")
 					.attr("id", `d-label-b-${stateHTML}`)
-					.attr("x", 10 + xShift)
-					.attr("y", d =>
-						mqMedium ? 25 + i * 40 - yShift : 25 + i * 30
-					)
-					.style("font-size", d => (mqLarge ? ".8rem" : ".6rem"))
+					.attr("x", xShift)
+					.attr("y", d => 70 + height + yShift + 15)
+					.style("font-size", ".75rem")
 					.style(
 						"font-family",
 						"ralewaymedium, Helvetica, Arial, sans-serif"
@@ -145,14 +139,15 @@ export const Line = props => {
 
     return (
 		<React.Fragment>
-			<MouseMove
-				focus={focus}
-				overlay={overlay}
-				linesStates={linesStates}
-				bounds={bounds}
-				chartParams={chartParams}
-				{...props}
-			/>
+			{dataStates && linesStates && selectedStates &&
+				<MouseMove
+					focus={focus}
+					overlay={overlay}
+					linesStates={linesStates}
+					bounds={bounds}
+					chartParams={chartParams}
+					{...props}
+			/>}
 			{linesStates && selectedStates && (
 				Object.keys(linesStates)
 					.sort()

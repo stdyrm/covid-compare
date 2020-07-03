@@ -92,15 +92,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const Navbar = props => {
-	const {
-		chartParams,
-		setChartParams,
-		selectedStates,
-		setSelectedStates,
-		handleSelectedStates,
-		handleSelectAllStates,
-		handleDeselectAllStates
-	} = props;
+	const { chartParams, setChartParams, selectedStates, setSelectedStates } = props;
     const [open, setOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
 

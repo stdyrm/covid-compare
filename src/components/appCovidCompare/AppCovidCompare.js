@@ -16,7 +16,23 @@ import { statesContext } from "../../context/statesContext";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-const AppCovidCompare = ({ wrapper, bounds }) => {
+const wrapper = {
+    wrapperWidth: window.innerWidth * 0.9,
+    wrapperHeight: window.innerHeight * 0.9,
+    margin: {
+        top: 80,
+        right: window.innerWidth * 0.1,
+        bottom: 200,
+        left: window.innerWidth * 0.1,
+    },
+};
+
+const bounds = {
+    width: wrapper.wrapperWidth - wrapper.margin.left - wrapper.margin.right,
+    height: wrapper.wrapperHeight - wrapper.margin.top - wrapper.margin.bottom,
+};
+
+const AppCovidCompare = () => {
     const { infoStates } = useContext(statesContext);
 
     const [selectedStates, setSelectedStates] = useState(null);
@@ -28,7 +44,8 @@ const AppCovidCompare = ({ wrapper, bounds }) => {
             width: "100%",
             height: "100%",
             display: "flex",
-            justifyContent: "center",
+			justifyContent: "center",
+			flexDirection: "column"
         },
         item: {
             width: "100%",
@@ -101,8 +118,13 @@ const AppCovidCompare = ({ wrapper, bounds }) => {
 						wrapper={wrapper}
 						bounds={bounds}
 					/>
-                </Grid>
-            </MuiPickersUtilsProvider>
+				</Grid>
+			</MuiPickersUtilsProvider>
+				<Grid item className={classes.item}>
+					<section>
+						<h1>About</h1>
+					</section>
+				</Grid>
         </Grid>
     );
 };
