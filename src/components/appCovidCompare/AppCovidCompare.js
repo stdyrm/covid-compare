@@ -13,7 +13,7 @@ import { CHART_PARAMS } from "./appParams";
 import { statesContext } from "../../context/statesContext";
 
 // styles
-import { Grid } from "@material-ui/core";
+import { Grid, Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const wrapper = {
@@ -50,7 +50,21 @@ const AppCovidCompare = () => {
         item: {
             width: "100%",
             flexBasis: "100%",
-        },
+		},
+		about: {
+			padding: theme.spacing(4),
+			"& h3, h4": {
+				[theme.breakpoints.up("sm")]: {
+					paddingLeft: theme.spacing(4)
+				}
+			},
+			"& p": {
+				paddingLeft: theme.spacing(2),
+				[theme.breakpoints.up("sm")]: {
+					paddingLeft: theme.spacing(8)
+				}
+			}
+		}
     }));
 
     const classes = useStyles();
@@ -120,10 +134,25 @@ const AppCovidCompare = () => {
 					/>
 				</Grid>
 			</MuiPickersUtilsProvider>
-				<Grid item className={classes.item}>
-					<section>
+				<Grid item className={classes.about}>
+						<div>
 						<h1>About</h1>
+						<Divider />
+						<h2>Data</h2>
+						<p>Data is from The New York Times, based on reports from state and local health agencies.</p>
+						<p>"Day of Outbreak" is used to measure time instead of "Date". This is to easily compare spread among each state.</p>
+					<section>
+						<h2>Parameters</h2>
+						<p><strong>Cases/1000 - </strong> number of cases per 1000 people in a state population</p>
+						<p><strong>Total cases (log chart) - </strong> total number of cases. Log chart is used to better illustrate change in number of cases.</p>
+						<p><strong>New Cases - </strong> daily new cases by day of outbreak.</p>
 					</section>
+					<section>
+						<h2>Notes</h2>
+						<p>2/27 is earliest possible 'Day 1,' since prior cases were
+						isolated and may skew insights of "community spread"</p>
+					</section>
+					</div>
 				</Grid>
         </Grid>
     );

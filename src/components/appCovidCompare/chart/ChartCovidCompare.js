@@ -119,47 +119,6 @@ const ChartCovidCompare = (props) => {
                 className={classes.rootSVG}
                 viewBox={`0 0 ${wrapperWidth} ${wrapperHeight}`}
             >
-                {/* <text
-                    className={classes.footnotes}
-                    textAnchor="left"
-                    style={{
-                        fontFamily:
-                            "ralewaymedium, Helvetica, Arial, sans-serif",
-                    }}
-                    transform={`translate(${margin.left}, ${
-                        height + margin.top + 60
-                    })`}
-                >
-                    *Data from The New York Times, based on reports from state
-                    and local health agencies.
-                </text>
-                <text
-                    className={classes.footnotes}
-                    textAnchor="left"
-                    style={{
-                        fontFamily:
-                            "ralewaymedium, Helvetica, Arial, sans-serif",
-                    }}
-                    transform={`translate(${margin.left}, ${
-                        height + margin.top + 80
-                    })`}
-                >
-                    ***2/27 is earliest possible 'Day 1,' since prior cases were
-                    isolated and may skew insights of "community spread"
-                </text>
-                <text
-                    className={classes.footnotes}
-                    textAnchor="left"
-                    style={{
-                        fontFamily:
-                            "ralewaymedium, Helvetica, Arial, sans-serif",
-                    }}
-                    transform={`translate(${margin.left}, ${
-                        height + margin.top + 100
-                    })`}
-                >
-                    †Legend will display up to 24 states (alphabetical order)
-                </text> */}
                 <g
                     id="bounds"
                     transform={`translate(${margin.left}, ${margin.top})`}
