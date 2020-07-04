@@ -38,11 +38,9 @@ export const Settings = () => {
             encoderOptions: 1,
             fonts: [
                 {
-                    url:
-                        "../../styles/ralewaymedium/raleway-medium-webfont.woff",
-                    format: "application/font-woff",
-                    text:
-                        "@font-face {font-family: 'ralewaymedium'; src: url('./ralewaymedium/raleway-medium-webfont.woff2') format('woff2'), url('./ralewaymedium/raleway-medium-webfont.woff') format('woff'); font-weight: normal;font-style: normal;}",
+					text: "@font-face {font-family:'ralewaymedium';src:url('../styles/fonts/raleway-medium-webfont.woff2') format('woff2'),url('../styles/fonts/raleway-medium-webfont.woff') format('woff')}",
+                    url: "../styles/fonts/raleway-medium-webfont.woff",
+                    format: "application/font-woff"
                 },
             ],
         });

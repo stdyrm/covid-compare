@@ -61,7 +61,7 @@ const AppCovidCompare = () => {
 			"& p": {
 				paddingLeft: theme.spacing(2),
 				[theme.breakpoints.up("sm")]: {
-					paddingLeft: theme.spacing(8)
+					paddingLeft: theme.spacing(6)
 				}
 			}
 		}

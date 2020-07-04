@@ -1,4 +1,4 @@
-export const wrapper = {
+const wrapper = {
     wrapperWidth: window.innerWidth * 0.9,
     wrapperHeight: window.innerHeight * 0.9,
     margin: {
@@ -9,7 +9,9 @@ export const wrapper = {
     },
 };
 
-export const bounds = {
+const bounds = {
     width: wrapper.wrapperWidth - wrapper.margin.left - wrapper.margin.right,
     height: wrapper.wrapperHeight - wrapper.margin.top - wrapper.margin.bottom,
 };
+
+export { wrapper, bounds };
