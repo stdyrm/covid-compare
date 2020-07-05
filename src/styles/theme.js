@@ -54,8 +54,26 @@ export const theme = createMuiTheme({
             root: {
                 color: "#fff",
                 paddingLeft: 10,
-            },
-        },
+			},
+		},
+		MuiButton: {
+			root: {
+				transition: "opacity .3s",
+				"&:hover": {
+					backgroundColor: "transparent",
+					opacity: 0.7
+				}
+			}
+		},
+		MuiIconButton: {
+			root: {
+				transition: "opacity .3s",
+				"&:hover": {
+					backgroundColor: "transparent",
+					opacity: 0.7
+				}
+			}
+		},	
     },
 });
 

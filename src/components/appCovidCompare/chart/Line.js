@@ -78,7 +78,7 @@ export const Line = props => {
 				xShift = 0;
 				yShift = 0;
 			} else if (i % 4 === 0) {
-				xShift += 130;
+				xShift += 135;
 				yShift = 0;
 			} else {
 				yShift += 35;

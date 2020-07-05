@@ -13,6 +13,7 @@ import { cleanStateInfo, importCSV } from "./components/util";
 // components
 import AppGapminder from "./components/appGapminder/AppGapminder";
 import AppCovidCompare from "./components/appCovidCompare/AppCovidCompare";
+import Footer from "./components/sharedComponents/Footer";
 
 // context
 import { dataContext } from "./context/dataContext";
@@ -74,7 +75,8 @@ function App() {
                                         from="/"
                                         to="/gapminder-app"
                                     />
-                                </Switch>
+								</Switch>
+								<Footer />
                             </statesContext.Provider>
                         </dataContext.Provider>
                     </MuiPickersUtilsProvider>
