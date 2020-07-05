@@ -1,41 +1,31 @@
 ## **COVID-19 State Comparison**
-This purpose of this graph is to measure the spread of COVID-19 throughout each state.
+When I first created the chart in late March, there weren't many resources comparing states by "cases per capita" or by "days of outbreak". My goal was to create a fair comparison among all the states, so we could better isolate factors in each outbreak.
 
-### **Graph: COVID-19 US State Comparison**
-Comparison of COVID-19 cases in US states, normalized for population and measured over number of days since initial outbreak (from 2/27/20).
+COVID-19 data has been freely provided by the New York Times.
 
-*COVID-19 data from The New York Times, based on reports from state and local health agencies.*
-*Population data from US Census Bureau (2019).*
+**There are two charts:** 
+1. Line chart - three different parameter choices:
+	* Cases/1000 - number of cases per 1000 people in a state population
+	* Total cases (log chart) - total number of cases. Log chart is used to better illustrate change in number of cases.
+	* New Cases - daily new cases by day of outbreak.
+2. Gapminder chart - measures cases vs. deaths for all states over the first 105 days of outbreak ("date" of "day 1" varies by state). There are a number of parameter and filter choices.
 
-#### **Normalized for population:**
-Number of cases / state population * 1000
-Doesn't currently account for population density
+- Both charts have filter options to quickly see the outbreak in different regions, populations, etc.
+- There are options to save the chart as a PNG file, and "light mode" for a printer-friendly version. WARNING: currently, changing to "light mode" will re-render the chart.
 
-#### **Measured over number of days since first case starting from 2/27/20:**
-Day of first case = Day 1. Date of Day 1 may be different for different states. 
-Although Washington and California had isolated cases since January, the first case of US community spread was reported on 2/26/20.
-Including January would lengthen the days since first case in Washington and California, possibly overstating the effectiveness of their policies.
-
-**To do:**
-1. (data) Add additional state data:
-    * Geographic region
-    * (population) Population density
-
-2. (COVID-19 US State Comparison graph):
-    * Geographic region filter
-    * Combine filters feature
-    * Responsive graph width/mobile-friendly layout
-    * Custom filters (save selected) feature
-    * Highlight line feature
-
-I am not a health expert or statistician; this is a passion project keeping me busy during isolation.
-This is not an official source for COVID-19 data and should not be cited without additional research, but hopefully it helps move the discussion along.
-
-## **COVID-19 Gapminder Visualization**
-
-## **Data sources**
+### **Data sources**
 1. State COVID-19 data: New York Times
 2. State population: U.S. Census Bureau
 3. State GDP: Bureau of Economic Analysis (BEA) 
 	*Gross domestic product (GDP) by state: All industry total (Millions of current dollars)
-	*https://apps.bea.gov/iTable/iTable.cfm?reqid=70&step=1&isuri=1&acrdn=1#reqid=70&step=1&isuri=1&acrdn=1
+
+### **License:**
+You may freely explore and share these charts, but please credit the source: 
+Data is from the New York Times, based on reports from state and local agencies.
+
+### **Notes:**
+Day of first case = Day 1. Date of Day 1 may be different for different states. 
+Although Washington and California had isolated cases since January, the first case of US community spread was reported on 2/26/20.
+Including January would lengthen the days since first case in Washington and California, possibly overstating the effectiveness of their policies.
+
+I am not a health expert or statistician. This is a personal project and should not be cited without additional institutional or scientific research, but I hope it adds a new perspective and encourages data exploration. 
