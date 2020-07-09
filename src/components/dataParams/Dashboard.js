@@ -11,212 +11,210 @@ import stateInfo from "../../data/stateInfo.json";
 // styles
 import { colors } from "../../styles/colors";
 import {
-    IconButton,
-    FormControlLabel,
-    FormGroup,
-    Checkbox,
-    Typography,
-    Divider,
+  IconButton,
+  FormControlLabel,
+  FormGroup,
+  Checkbox,
+  Typography,
+  Divider,
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import CheckIcon from "@material-ui/icons/Check";
 import ClearIcon from "@material-ui/icons/Clear";
 
 const Dashboard = () => {
-    const { dataStates } = useContext(dataContext);
-    const { selectedStates, setSelectedStates } = useContext(statesContext);
+  const { dataStates } = useContext(dataContext);
+  const { selectedStates, setSelectedStates } = useContext(statesContext);
 
-    const theme = useTheme();
+  const theme = useTheme();
 
-    const handleChange = e => {
-        setSelectedStates({
-            ...selectedStates,
-            [e.target.name]: {
-                ...selectedStates[e.target.name],
-                selected: e.target.checked,
-            },
-        });
-    };
+  const handleChange = e => {
+    setSelectedStates({
+      ...selectedStates,
+      [e.target.name]: {
+        ...selectedStates[e.target.name],
+        selected: e.target.checked,
+      },
+    });
+  };
 
-    const handleSelectAll = e => {
-        const revisedStates = {};
-        Object.keys(selectedStates).forEach((s, i) => {
-            revisedStates[s] = {
-                ...selectedStates[s],
-                selected: true,
-            };
-        });
-        setSelectedStates(revisedStates);
-    };
+  const handleSelectAll = e => {
+    const revisedStates = {};
+    Object.keys(selectedStates).forEach((s, i) => {
+      revisedStates[s] = {
+        ...selectedStates[s],
+        selected: true,
+      };
+    });
+    setSelectedStates(revisedStates);
+  };
 
-    const handleDeselectAll = e => {
-        const revisedStates = {};
-        Object.keys(selectedStates).forEach((s, i) => {
-            revisedStates[s] = {
-                ...selectedStates[s],
-                selected: false,
-            };
-        });
-        setSelectedStates(revisedStates);
-    };
+  const handleDeselectAll = e => {
+    const revisedStates = {};
+    Object.keys(selectedStates).forEach((s, i) => {
+      revisedStates[s] = {
+        ...selectedStates[s],
+        selected: false,
+      };
+    });
+    setSelectedStates(revisedStates);
+  };
 
-    useEffect(() => {
-        // clean stateInfo data and assign selectedStates
-        const dateParser = timeParse("%m-%d-%y");
-        const revisedStates = {};
+  useEffect(() => {
+    // clean stateInfo data and assign selectedStates
+    const dateParser = timeParse("%m-%d-%y");
+    const revisedStates = {};
 
-        Object.keys(stateInfo).forEach((s, i) => {
-            revisedStates[s] = {
-                ...stateInfo[s],
-                lockdown: stateInfo[s].lockdown.startsWith("none")
-                    ? stateInfo[s].lockdown
-                    : dateParser(stateInfo[s].lockdown),
-                lockdownEnd: stateInfo[s].lockdownEnd.startsWith("none")
-                    ? stateInfo[s].lockdownEnd
-                    : dateParser(stateInfo[s].lockdownEnd),
-                color: colors[i],
-            };
-        });
+    Object.keys(stateInfo).forEach((s, i) => {
+      revisedStates[s] = {
+        ...stateInfo[s],
+        lockdown: stateInfo[s].lockdown.startsWith("none")
+          ? stateInfo[s].lockdown
+          : dateParser(stateInfo[s].lockdown),
+        lockdownEnd: stateInfo[s].lockdownEnd.startsWith("none")
+          ? stateInfo[s].lockdownEnd
+          : dateParser(stateInfo[s].lockdownEnd),
+        color: colors[i],
+      };
+    });
 
-        const nested = nest()
-            .key(d => d.state)
-            .entries(dataStates);
+    const nested = nest()
+      .key(d => d.state)
+      .entries(dataStates);
 
-        Object.keys(nested).forEach(i => {
-            const s = nested[i].key;
+    Object.keys(nested).forEach(i => {
+      const s = nested[i].key;
 
-            const lastIndex = nested[i].values.length - 1;
-            const latestCaseCount = nested[i].values[lastIndex].cases;
-            revisedStates[s] = {
-                ...revisedStates[s],
-                latestCaseCount: latestCaseCount,
-            };
-        });
-        setSelectedStates(revisedStates);
-    }, [dataStates]);
+      const lastIndex = nested[i].values.length - 1;
+      const latestCaseCount = nested[i].values[lastIndex].cases;
+      revisedStates[s] = {
+        ...revisedStates[s],
+        latestCaseCount: latestCaseCount,
+      };
+    });
+    setSelectedStates(revisedStates);
+  }, [dataStates]);
 
-    return (
-        <div>
-            <FormGroup
-                style={{
-                    alignItems: "left",
-                    backgroundColor: theme.palette.primary.main,
-                    color: theme.palette.text.primary,
-                }}
+  return (
+    <div>
+      <FormGroup
+        style={{
+          alignItems: "left",
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.text.primary,
+        }}
+      >
+        <FormControlLabel
+          id="select-all"
+          label="Select All"
+          name="Select All"
+          onClick={handleSelectAll}
+          control={
+            <IconButton
+              id="selector-all"
+              name="select-all"
+              style={{ color: "green" }}
             >
+              <CheckIcon />
+            </IconButton>
+          }
+        />
+        <FormControlLabel
+          id="deselect-all"
+          label="Deselect All"
+          name="Deselect All"
+          onClick={handleDeselectAll}
+          control={
+            <IconButton
+              id="deselector-all"
+              name="deselect-all"
+              style={{ color: "red" }}
+            >
+              <ClearIcon />
+            </IconButton>
+          }
+        />
+        <br />
+        <Typography
+          variant="h6"
+          style={{ color: theme.palette.primary.contrastText }}
+        >
+          Selected
+        </Typography>
+        <Divider
+          style={{
+            backgroundColor: theme.palette.primary.contrastText,
+          }}
+        />
+        {selectedStates ? (
+          Object.keys(selectedStates)
+            .sort()
+            .filter(s => selectedStates[s].selected === true)
+            .map((state, i) => {
+              return (
                 <FormControlLabel
-                    id="select-all"
-                    label="Select All"
-                    name="Select All"
-                    onClick={handleSelectAll}
-                    control={
-                        <IconButton
-                            id="selector-all"
-                            name="select-all"
-                            style={{ color: "green" }}
-                        >
-                            <CheckIcon />
-                        </IconButton>
-                    }
+                  key={i}
+                  id={selectedStates[state].htmlFormat}
+                  name={state}
+                  checked={selectedStates[state].selected}
+                  onChange={handleChange}
+                  control={
+                    <Checkbox
+                      name={state}
+                      style={{
+                        color: selectedStates[state].color,
+                      }}
+                    />
+                  }
+                  label={`${state} (${selectedStates[state].abbreviation})`}
                 />
+              );
+            })
+        ) : (
+          <div />
+        )}
+        <br />
+        <Typography
+          variant="h6"
+          style={{ color: theme.palette.primary.contrastText }}
+        >
+          Not Selected
+        </Typography>
+        <Divider
+          style={{
+            backgroundColor: theme.palette.primary.contrastText,
+          }}
+        />
+        {selectedStates ? (
+          Object.keys(selectedStates)
+            .sort()
+            .filter(s => selectedStates[s].selected === false)
+            .map((state, i) => {
+              return (
                 <FormControlLabel
-                    id="deselect-all"
-                    label="Deselect All"
-                    name="Deselect All"
-                    onClick={handleDeselectAll}
-                    control={
-                        <IconButton
-                            id="deselector-all"
-                            name="deselect-all"
-                            style={{ color: "red" }}
-                        >
-                            <ClearIcon />
-                        </IconButton>
-                    }
+                  key={i}
+                  id={selectedStates[state].htmlFormat}
+                  name={state}
+                  checked={selectedStates[state].selected}
+                  onChange={handleChange}
+                  control={
+                    <Checkbox
+                      name={state}
+                      style={{
+                        color: selectedStates[state].color,
+                      }}
+                    />
+                  }
+                  label={`${state} (${selectedStates[state].abbreviation})`}
                 />
-                <br />
-                <Typography
-                    variant="h6"
-                    style={{ color: theme.palette.primary.contrastText }}
-                >
-                    Selected
-                </Typography>
-                <Divider
-                    style={{
-                        backgroundColor: theme.palette.primary.contrastText,
-                    }}
-                />
-                {selectedStates ? (
-                    Object.keys(selectedStates)
-                        .sort()
-                        .filter(s => selectedStates[s].selected === true)
-                        .map((state, i) => {
-                            return (
-                                <FormControlLabel
-                                    key={i}
-                                    id={selectedStates[state].htmlFormat}
-                                    name={state}
-                                    checked={selectedStates[state].selected}
-                                    onChange={handleChange}
-                                    control={
-                                        <Checkbox
-                                            name={state}
-                                            style={{
-                                                color:
-                                                    selectedStates[state].color,
-                                            }}
-                                        />
-                                    }
-                                    label={`${state} (${selectedStates[state].abbreviation})`}
-                                />
-                            );
-                        })
-                ) : (
-                    <div />
-                )}
-                <br />
-                <Typography
-                    variant="h6"
-                    style={{ color: theme.palette.primary.contrastText }}
-                >
-                    Not Selected
-                </Typography>
-                <Divider
-                    style={{
-                        backgroundColor: theme.palette.primary.contrastText,
-                    }}
-                />
-                {selectedStates ? (
-                    Object.keys(selectedStates)
-                        .sort()
-                        .filter(s => selectedStates[s].selected === false)
-                        .map((state, i) => {
-                            return (
-                                <FormControlLabel
-                                    key={i}
-                                    id={selectedStates[state].htmlFormat}
-                                    name={state}
-                                    checked={selectedStates[state].selected}
-                                    onChange={handleChange}
-                                    control={
-                                        <Checkbox
-                                            name={state}
-                                            style={{
-                                                color:
-                                                    selectedStates[state].color,
-                                            }}
-                                        />
-                                    }
-                                    label={`${state} (${selectedStates[state].abbreviation})`}
-                                />
-                            );
-                        })
-                ) : (
-                    <div />
-                )}
-            </FormGroup>
-        </div>
-    );
+              );
+            })
+        ) : (
+          <div />
+        )}
+      </FormGroup>
+    </div>
+  );
 };
 
 export { Dashboard };

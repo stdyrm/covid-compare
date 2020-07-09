@@ -28,62 +28,51 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 
 function App() {
-    const [dataStates, setDataStates] = useState([]);
-    const [infoStates, setInfoStates] = useState(null);
-    const [darkMode, setDarkMode] = useState(true);
+  const [dataStates, setDataStates] = useState([]);
+  const [infoStates, setInfoStates] = useState(null);
+  const [darkMode, setDarkMode] = useState(true);
 
-	useEffect(() => {
-		cleanStateInfo(dataStates, STATE_INFO, COLORS)
-			.then(res => setInfoStates(res));
-	}, [dataStates]);
-		
-	useEffect(() => {
-		importCSV(USStates, STATE_INFO)
-			.then(res => setDataStates(res));
-    }, []);
-
-    return (
-        <>
-            <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
-                <ThemeProvider theme={getTheme(theme, darkMode)}>
-                    <CssBaseline />
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <dataContext.Provider
-                            value={{ dataStates, setDataStates }}
-                        >
-                            <statesContext.Provider
-                                value={{ infoStates, setInfoStates }}
-                            >
-                                <Route
-                                    path="/line-app"
-                                    className="line-app"
-                                    component={() => (
-                                        <AppCovidCompare
-                                            wrapper={wrapper}
-                                            bounds={bounds}
-                                        />
-                                    )}
-                                />
-                                <Route
-                                    path="/gapminder-app"
-                                    className="gapminder-app"
-                                    render={() => <AppGapminder />}
-                                />
-                                <Switch>
-                                    <Redirect
-                                        exact
-                                        from="/"
-                                        to="/gapminder-app"
-                                    />
-								</Switch>
-								<Footer />
-                            </statesContext.Provider>
-                        </dataContext.Provider>
-                    </MuiPickersUtilsProvider>
-                </ThemeProvider>
-            </ThemeContext.Provider>
-        </>
+  useEffect(() => {
+    cleanStateInfo(dataStates, STATE_INFO, COLORS).then(res =>
+      setInfoStates(res)
     );
+  }, [dataStates]);
+
+  useEffect(() => {
+    importCSV(USStates, STATE_INFO).then(res => setDataStates(res));
+  }, []);
+
+  return (
+    <>
+      <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+        <ThemeProvider theme={getTheme(theme, darkMode)}>
+          <CssBaseline />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <dataContext.Provider value={{ dataStates, setDataStates }}>
+              <statesContext.Provider value={{ infoStates, setInfoStates }}>
+                <Route
+                  path="/line-app"
+                  className="line-app"
+                  component={() => (
+                    <AppCovidCompare wrapper={wrapper} bounds={bounds} />
+                  )}
+                />
+                <Route
+                  path="/gapminder-app"
+                  className="gapminder-app"
+                  render={() => <AppGapminder />}
+                />
+                <Switch>
+                  <Redirect exact from="/" to="/gapminder-app" />
+                </Switch>
+                <Footer />
+              </statesContext.Provider>
+            </dataContext.Provider>
+          </MuiPickersUtilsProvider>
+        </ThemeProvider>
+      </ThemeContext.Provider>
+    </>
+  );
 }
 
 export default App;
