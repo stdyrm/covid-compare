@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const ParamDrawer = props => {
-  const { mobileOpen, handleDrawer, appMenuParams, persistent } = props;
+  const { mobileOpen, handleDrawer, persistent } = props;
   const classes = useStyles();
   const theme = useTheme();
 
