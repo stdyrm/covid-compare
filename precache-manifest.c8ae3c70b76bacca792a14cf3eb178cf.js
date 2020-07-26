@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3bb56aa2549da80e5276315882f4fec0",
+    "revision": "b515aca51d3aa2f1a54d2df4f1131c73",
     "url": "/covidcompare/index.html"
   },
   {
-    "revision": "307797618e25496fe881",
+    "revision": "3f80207dd0643dd427f8",
     "url": "/covidcompare/static/css/main.d82284b7.chunk.css"
   },
   {
-    "revision": "b4819803b5043fce237e",
-    "url": "/covidcompare/static/js/2.58f684ee.chunk.js"
+    "revision": "31b4e97c8c11d612dc55",
+    "url": "/covidcompare/static/js/2.cbac17ec.chunk.js"
   },
   {
     "revision": "eac4cf64bf573541fd6dba29c78393a0",
-    "url": "/covidcompare/static/js/2.58f684ee.chunk.js.LICENSE.txt"
+    "url": "/covidcompare/static/js/2.cbac17ec.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "307797618e25496fe881",
-    "url": "/covidcompare/static/js/main.1f6e8f1b.chunk.js"
+    "revision": "3f80207dd0643dd427f8",
+    "url": "/covidcompare/static/js/main.a0684726.chunk.js"
   },
   {
     "revision": "3b7759b90d7bde89c1fb",
     "url": "/covidcompare/static/js/runtime-main.596165d2.js"
+  },
+  {
+    "revision": "d1cf3d5c4b871d24929ef70385096e80",
+    "url": "/covidcompare/static/media/co-est2019-annres_csv.d1cf3d5c.csv"
   },
   {
     "revision": "547fc9db27e54e2e21e411d19eb1a9d1",
@@ -40,7 +44,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/covidcompare/static/media/raleway-medium-webfont.78c3ee5f.woff"
   },
   {
-    "revision": "604896edc94964bc4a632ded1cb7934f",
-    "url": "/covidcompare/static/media/us-states.604896ed.csv"
+    "revision": "962846b18f0bac2be8ecb1e455fe5e07",
+    "url": "/covidcompare/static/media/us-states.962846b1.csv"
   }
 ]);
