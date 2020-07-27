@@ -15,6 +15,8 @@ import AppGapminder from "./components/appGapminder/AppGapminder";
 import AppCovidCompare from "./components/appCovidCompare/AppCovidCompare";
 import Footer from "./components/sharedComponents/Footer";
 
+import AppCounty from "./components/appCounty/AppCounty";
+
 // context
 import { dataContext } from "./context/dataContext";
 import { statesContext } from "./context/statesContext";
@@ -49,7 +51,8 @@ function App() {
           <CssBaseline />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <dataContext.Provider value={{ dataStates, setDataStates }}>
-              <statesContext.Provider value={{ infoStates, setInfoStates }}>
+							<statesContext.Provider value={{ infoStates, setInfoStates }}>
+								{/* <AppCounty /> */}
                 <Route
                   path="/line-app"
                   className="line-app"
