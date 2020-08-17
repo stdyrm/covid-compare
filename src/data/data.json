@@ -1526,7 +1526,7 @@
     "deaths": 40
 	},
 	{
-    "date": "08-15-20",
+    "date": "08-14-20",
     "total": 4543,
     "hawaii": 144,
     "honolulu": 4117,
@@ -1537,7 +1537,7 @@
     "deaths": 40
 	},
 	{
-    "date": "08-16-20",
+    "date": "08-15-20",
     "total": 4825,
     "hawaii": 145,
     "honolulu": 4390,
@@ -1545,6 +1545,17 @@
     "maui": 213,
     "pending": 0,
     "required-hospitalization": 279,
+    "deaths": 40
+	},
+	{
+    "date": "08-16-20",
+    "total": 5042,
+    "hawaii": 148,
+    "honolulu": 4591,
+    "kauai": 54,
+    "maui": 226,
+    "pending": 0,
+    "required-hospitalization": 283,
     "deaths": 40
 	}
 ]
