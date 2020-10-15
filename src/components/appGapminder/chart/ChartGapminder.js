@@ -100,13 +100,13 @@ export const ChartGapminder = props => {
   const legendRef = useRef(null);
 
   const renderChart = () => {
-    const xScale = d3
-      .scaleLinear()
-      .domain(d3.extent(dataStates, d => d[xParam.selected]))
-      .range([0, width]);
+		const xScale = d3
+			.scaleLinear()
+			.domain([0, d3.max(dataStates, d => d[xParam.selected]) + 3])
+			.range([0, width]);
     const yScale = d3
       .scaleLinear()
-      .domain(d3.extent(dataStates, d => d[yParam.selected]))
+			.domain([0, d3.max(dataStates, d => d[yParam.selected]) + .2])
       .range([height, 0]);
 
     let colorScale;
