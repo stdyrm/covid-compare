@@ -4,22 +4,22 @@
     "private": true,
     "homepage": "https://stdyrm.github.io/covidcompare",
     "dependencies": {
-        "@date-io/date-fns": "^1.3.13",
-        "@material-ui/core": "^4.9.8",
+        "@date-io/date-fns": "^2.10.6",
+        "@material-ui/core": "^4.11.0",
         "@material-ui/icons": "^4.9.1",
         "@material-ui/pickers": "^3.2.10",
-        "@testing-library/jest-dom": "^4.2.4",
-        "@testing-library/react": "^9.3.2",
-        "@testing-library/user-event": "^7.1.2",
-        "clsx": "^1.1.0",
-        "d3": "^5.15.0",
-        "date-fns": "^2.11.1",
-        "gh-pages": "^2.2.0",
+        "@testing-library/jest-dom": "^5.11.4",
+        "@testing-library/react": "^11.0.4",
+        "@testing-library/user-event": "^12.1.7",
+        "clsx": "^1.1.1",
+        "d3": "^6.2.0",
+        "date-fns": "^2.16.1",
+        "gh-pages": "^3.1.0",
         "prop-types": "^15.7.2",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
-        "react-router-dom": "^5.1.2",
-        "react-scripts": "3.4.1",
+        "react-router-dom": "^5.2.0",
+        "react-scripts": "^3.4.3",
         "save-svg-as-png": "^1.4.17"
     },
     "scripts": {
@@ -45,6 +45,6 @@
         ]
     },
     "devDependencies": {
-        "prettier": "^2.0.5"
+        "prettier": "^2.1.2"
     }
 }
