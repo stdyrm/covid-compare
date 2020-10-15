@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/covidcompare/static/css/main.d82284b7.chunk.css",
-    "main.js": "/covidcompare/static/js/main.a73e9ad0.chunk.js",
-    "main.js.map": "/covidcompare/static/js/main.a73e9ad0.chunk.js.map",
-    "runtime-main.js": "/covidcompare/static/js/runtime-main.596165d2.js",
-    "runtime-main.js.map": "/covidcompare/static/js/runtime-main.596165d2.js.map",
-    "static/js/2.cbac17ec.chunk.js": "/covidcompare/static/js/2.cbac17ec.chunk.js",
-    "static/js/2.cbac17ec.chunk.js.map": "/covidcompare/static/js/2.cbac17ec.chunk.js.map",
+    "main.js": "/covidcompare/static/js/main.17d91e6b.chunk.js",
+    "main.js.map": "/covidcompare/static/js/main.17d91e6b.chunk.js.map",
+    "runtime-main.js": "/covidcompare/static/js/runtime-main.57c45eaf.js",
+    "runtime-main.js.map": "/covidcompare/static/js/runtime-main.57c45eaf.js.map",
+    "static/js/2.97408ea5.chunk.js": "/covidcompare/static/js/2.97408ea5.chunk.js",
+    "static/js/2.97408ea5.chunk.js.map": "/covidcompare/static/js/2.97408ea5.chunk.js.map",
     "index.html": "/covidcompare/index.html",
-    "precache-manifest.158131f2c8ed2f4d8e5380f3faf90e6f.js": "/covidcompare/precache-manifest.158131f2c8ed2f4d8e5380f3faf90e6f.js",
+    "precache-manifest.5b5412b54230e0e5e4c4fa0add05e976.js": "/covidcompare/precache-manifest.5b5412b54230e0e5e4c4fa0add05e976.js",
     "service-worker.js": "/covidcompare/service-worker.js",
     "static/css/main.d82284b7.chunk.css.map": "/covidcompare/static/css/main.d82284b7.chunk.css.map",
-    "static/js/2.cbac17ec.chunk.js.LICENSE.txt": "/covidcompare/static/js/2.cbac17ec.chunk.js.LICENSE.txt",
+    "static/js/2.97408ea5.chunk.js.LICENSE.txt": "/covidcompare/static/js/2.97408ea5.chunk.js.LICENSE.txt",
     "static/media/co-est2019-annres_csv.csv": "/covidcompare/static/media/co-est2019-annres_csv.d1cf3d5c.csv",
     "static/media/styles.css": "/covidcompare/static/media/raleway-medium-webfont.78c3ee5f.woff",
-    "static/media/us-states.csv": "/covidcompare/static/media/us-states.6243dbc5.csv"
+    "static/media/us-states.csv": "/covidcompare/static/media/us-states.48ec9126.csv"
   },
   "entrypoints": [
-    "static/js/runtime-main.596165d2.js",
-    "static/js/2.cbac17ec.chunk.js",
+    "static/js/runtime-main.57c45eaf.js",
+    "static/js/2.97408ea5.chunk.js",
     "static/css/main.d82284b7.chunk.css",
-    "static/js/main.a73e9ad0.chunk.js"
+    "static/js/main.17d91e6b.chunk.js"
   ]
 }
