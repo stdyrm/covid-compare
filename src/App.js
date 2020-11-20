@@ -4,7 +4,7 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
 // data
-import USStates from "./data/us-states.csv";
+import USStates from "./nyt-data/us-states.csv";
 import STATE_INFO from "./data/stateInfo.json";
 
 // util
@@ -14,8 +14,6 @@ import { cleanStateInfo, importCSV } from "./components/util";
 import AppGapminder from "./components/appGapminder/AppGapminder";
 import AppCovidCompare from "./components/appCovidCompare/AppCovidCompare";
 import Footer from "./components/sharedComponents/Footer";
-
-import AppCounty from "./components/appCounty/AppCounty";
 
 // context
 import { dataContext } from "./context/dataContext";
