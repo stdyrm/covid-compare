@@ -5,11 +5,15 @@ import { saveSvgAsPng } from "save-svg-as-png";
 import { ThemeContext } from "../context/ThemeContext";
 
 // styles
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import "../styles/styles.css";
-import { IconButton, Tooltip, Typography, MenuItem } from "@material-ui/core";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import useTheme from "@material-ui/core/styles/useTheme";
+import IconButton from "@material-ui/core/IconButton";
+import Tooltip from "@material-ui/core/Tooltip";
+import Typography from "@material-ui/core/Typography";
+import MenuItem from "@material-ui/core/MenuItem";
 import SaveIcon from "@material-ui/icons/Save";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
+import "../styles/styles.css";
 
 export const Settings = () => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
