@@ -93,7 +93,7 @@ const ChartCovidCompare = props => {
 
     const yScale =
       chartParams.yParam.type === "log"
-        ? scaleLog().domain([1, 1000000]).range([height, 0])
+        ? scaleLog().domain([1, 10000000]).range([height, 0])
         : scaleLinear()
             .domain([0, max(dataStates, d => d[selectedYParam])])
             .range([height, 0]);
