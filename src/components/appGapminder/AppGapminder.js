@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 
 // params
-import { chartParams, cParamCategories } from "./appParams";
+import { chartParams, cParamCategories, DAY_RANGE } from "./appParams";
 
 // components
 import { ChartGapminder } from "./chart/ChartGapminder";
@@ -87,6 +87,8 @@ const AppGapminder = props => {
             data={data}
             wrapper={wrapper}
             bounds={bounds}
+            dayStart={DAY_RANGE.start}
+            dayEnd={DAY_RANGE.end}
           />
         )}
       </div>

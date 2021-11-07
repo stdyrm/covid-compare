@@ -2,7 +2,9 @@ import React from "react";
 import { Slider, Typography } from "@material-ui/core";
 
 export const DayCounterSlider = props => {
-  const { dayCounter, setDayCounter } = props;
+  const { 
+    dayCounter, setDayCounter, dayStart, dayEnd 
+  } = props;
 
   return (
     <>
@@ -12,8 +14,8 @@ export const DayCounterSlider = props => {
         value={dayCounter}
         valueLabelDisplay="auto"
         step={1}
-        min={1}
-        max={545}
+        min={dayStart}
+        max={dayEnd}
         onChange={(e, newVal) => setDayCounter(newVal)}
       />
     </>

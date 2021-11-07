@@ -68,3 +68,10 @@ export const cParamCategories = {
   ],
   governor: ["Republican", "Democrat", "n/a"],
 };
+
+// data params
+export const DAY_RANGE = {
+  start: 1,
+  end: 604
+}
+

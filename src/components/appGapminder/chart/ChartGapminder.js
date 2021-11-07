@@ -15,14 +15,16 @@ import { Grid, Box, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 export const ChartGapminder = props => {
-  const { cParamCategories, data, selector, wrapper, bounds } = props;
+  const { 
+    cParamCategories, data, selector, wrapper, bounds, dayStart, dayEnd 
+  } = props;
   const { xParam, yParam, cParam } = selector;
   const { wrapperWidth, wrapperHeight, margin } = wrapper;
   const { width, height } = bounds;
 
   const { dataStates } = useContext(dataContext);
   const [scales, setScales] = useState(null);
-  const [dayCounter, setDayCounter] = useState(1);
+  const [dayCounter, setDayCounter] = useState(dayStart);
   const [opacityNotSel, setOpacityNotSel] = useState(0.6);
 
   const theme = useTheme();
@@ -256,7 +258,7 @@ export const ChartGapminder = props => {
               y={mqSmall ? -margin.top * 0.3 : -margin.top * 0.4}
               className={classes.chartTitle}
             >
-              Outbreak Days 1 - 545
+              {`Outbreak Days ${dayStart} - ${dayEnd}`}
             </text>
             <text
               x={width / 2}
@@ -294,6 +296,8 @@ export const ChartGapminder = props => {
           <DayCounterSlider
             dayCounter={dayCounter}
             setDayCounter={setDayCounter}
+            dayStart={dayStart}
+            dayEnd={dayEnd}
           />
         </Grid>
         <Grid item className={classes.slider}>
