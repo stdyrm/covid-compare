@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/covidcompare/static/css/main.af4071fb.chunk.css",
-    "main.js": "/covidcompare/static/js/main.f8147cc2.chunk.js",
-    "main.js.map": "/covidcompare/static/js/main.f8147cc2.chunk.js.map",
+    "main.js": "/covidcompare/static/js/main.c165a0ee.chunk.js",
+    "main.js.map": "/covidcompare/static/js/main.c165a0ee.chunk.js.map",
     "runtime-main.js": "/covidcompare/static/js/runtime-main.c9f75227.js",
     "runtime-main.js.map": "/covidcompare/static/js/runtime-main.c9f75227.js.map",
     "static/js/2.8856023d.chunk.js": "/covidcompare/static/js/2.8856023d.chunk.js",
@@ -11,12 +11,12 @@
     "static/css/main.af4071fb.chunk.css.map": "/covidcompare/static/css/main.af4071fb.chunk.css.map",
     "static/js/2.8856023d.chunk.js.LICENSE.txt": "/covidcompare/static/js/2.8856023d.chunk.js.LICENSE.txt",
     "static/media/styles.css": "/covidcompare/static/media/raleway-medium-webfont.e2adf2f5.woff",
-    "static/media/us-states.d86bc6cd.csv": "/covidcompare/static/media/us-states.d86bc6cd.csv"
+    "static/media/us-states.e9a93610.csv": "/covidcompare/static/media/us-states.e9a93610.csv"
   },
   "entrypoints": [
     "static/js/runtime-main.c9f75227.js",
     "static/js/2.8856023d.chunk.js",
     "static/css/main.af4071fb.chunk.css",
-    "static/js/main.f8147cc2.chunk.js"
+    "static/js/main.c165a0ee.chunk.js"
   ]
 }
